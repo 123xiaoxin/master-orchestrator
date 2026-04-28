@@ -47,7 +47,7 @@ master-orchestrator/
 git clone https://github.com/123xiaoxin/master-orchestrator.git
 cd master-orchestrator
 
-# 2. 克隆外部专家库（必需）
+# 2. 克隆外部专家库（必需，详见下方归属声明）
 git clone https://github.com/msitarzewski/agency-agents.git ~/.openclaw/agency-agents/
 
 # 3. 设置 PowerShell 执行策略（如未设置）
@@ -56,6 +56,16 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 # 4. 验证模型就绪
 openclaw models status
 ```
+
+## 📎 第三方依赖归属声明
+
+本项目的核心特性之一——**144+ 领域专家调度**，依赖以下第三方项目：
+
+| 依赖 | 作者 | 仓库 | 许可证 |
+|------|------|------|--------|
+| **agency-agents** | @msitarzewski | https://github.com/msitarzewski/agency-agents | 参见其仓库 |
+
+> ⚠️ `agency-agents` 是独立维护的开源项目，本仓库仅引用（通过 git clone 方式）而非 fork 或复制其代码。使用时请同时遵守该项目的许可证。
 
 ---
 
@@ -255,7 +265,13 @@ $r = & .\helpers\create_temp_expert.ps1 `
 
 本项目采用 [MIT License](LICENSE)。你可以自由使用、修改和分发，但需保留版权声明。
 
-> **注意**：本项目引用的外部专家库 [`agency-agents`](https://github.com/msitarzewski/agency-agents) 由第三方维护，其许可证请参考其源仓库。
+## 📎 第三方归属
+
+| 项目 | 作者 | 说明 |
+|------|------|------|
+| [agency-agents](https://github.com/msitarzewski/agency-agents) | @msitarzewski | 本项目引用的外部专家库，其许可证由原作者规定 |
+
+> **重要提示**：`agency-agents` 由第三方独立维护。本 Master Orchestrator 项目仅通过 git clone 方式引用它，而非 fork 或复制其代码。使用 `agency-agents` 时请遵守其源仓库的许可证。
 
 ---
 
