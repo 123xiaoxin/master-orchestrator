@@ -12,6 +12,15 @@ Agent Pack 模板用于保存一组可复用的专家组合。模板只引用专
 - 长期保留的是模板，不是带上下文和临时文件的运行 workspace。
 - 模板默认不声明 channel bindings；需要长期对外服务时，应创建独立的长期 OpenClaw Agent。
 
+## 目录
+
+| 路径 | 说明 |
+|------|------|
+| `templates/*.json` | 通用 Agent Pack 模板 |
+| `templates/industrial/*.json` | 工业安全优先型 Agent Pack 模板 |
+
+工业模板必须默认保持 `proposal_only`，并声明 `auditRequired`、`forbiddenActions`、`approvalRequiredFor` 和 `fallbackPolicy`。
+
 ## 字段
 
 | 字段 | 说明 |
@@ -43,6 +52,7 @@ Phase 0 先检查环境：
 
 ```powershell
 .\helpers\create_agent_pack.ps1 -TemplateFile .\templates\webapp-build.json
+.\helpers\create_agent_pack.ps1 -TemplateFile .\templates\industrial\industrial-safety-governance.json
 ```
 
 预览而不创建 Agent：

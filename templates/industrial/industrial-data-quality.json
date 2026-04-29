@@ -1,0 +1,70 @@
+{
+  "name": "industrial-data-quality",
+  "domain": "industrial",
+  "description": "Assess industrial data readiness for agent decision support, with focus on missing, dirty, drifted, delayed, and inconsistent signals.",
+  "useCases": [
+    "time-series data readiness",
+    "sensor anomaly screening",
+    "decision trust assessment",
+    "data quality audit"
+  ],
+  "inputs": [
+    "sensor list",
+    "time-series sample or summary",
+    "expected sampling interval",
+    "known process constraints",
+    "label or alarm history"
+  ],
+  "outputs": [
+    "data quality report",
+    "missing or delayed signal list",
+    "drift and outlier findings",
+    "decision confidence impact",
+    "data remediation proposal"
+  ],
+  "safetyMode": "proposal_only",
+  "riskLevels": ["observe", "recommend", "low_risk_action", "high_risk_action", "emergency"],
+  "forbiddenActions": [
+    "fabricate_missing_sensor_values",
+    "hide_data_drift",
+    "use_unverified_data_for_control",
+    "execute_uncertain_instruction"
+  ],
+  "approvalRequiredFor": [
+    "data_imputation_for_control_decision",
+    "label_correction_affecting_operations",
+    "model_threshold_change"
+  ],
+  "fallbackPolicy": "mark_untrusted_and_escalate",
+  "auditRequired": true,
+  "maxAgents": 5,
+  "execution": "serial_then_review",
+  "cleanupPolicy": "ask",
+  "agents": [
+    {
+      "name": "data-engineer",
+      "role": "Assess time alignment, missingness, schema drift, stale readings, and pipeline health.",
+      "dependsOn": []
+    },
+    {
+      "name": "ai-data-remediation-engineer",
+      "role": "Propose safe remediation options and label correction boundaries.",
+      "dependsOn": ["data-engineer"]
+    },
+    {
+      "name": "analytics-reporter",
+      "role": "Summarize quality metrics, trend impacts, and operational reporting needs.",
+      "dependsOn": ["data-engineer"]
+    },
+    {
+      "name": "reality-checker",
+      "role": "Flag unsupported assumptions, unverifiable data claims, and unsafe confidence inflation.",
+      "dependsOn": ["ai-data-remediation-engineer", "analytics-reporter"]
+    },
+    {
+      "name": "evidence-collector",
+      "role": "Collect evidence, unresolved questions, and audit-ready data quality notes.",
+      "dependsOn": ["reality-checker"]
+    }
+  ]
+}

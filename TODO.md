@@ -12,6 +12,9 @@
 - [x] `create_agent_pack.ps1` 增加模板校验：专家存在、依赖存在、无自依赖、无循环依赖
 - [x] `create_temp_expert.ps1` 输出 `modelSelectionReason`
 - [x] Prompt 明确 Phase 1-2 禁止创建/清理临时 Agent
+- [x] 新增工业安全优先型模板目录 `templates/industrial/`
+- [x] 新增工业原则文档 `docs/industrial/`
+- [x] 新增双集群实验协议 `experiments/dual-cluster-industrial/`
 
 ## 下一步建议
 
@@ -20,6 +23,7 @@
 - [ ] 增加 `templates/code-review.json` 和 `templates/research-report.json`
 - [ ] 为 manifest 增加任务标题、用户确认记录和最终收尾状态
 - [ ] 补充 `CONTRIBUTING.md`
+- [ ] 跑第一次双集群实验，并把实际日志写入 `experiments/dual-cluster-industrial/`
 
 ## 暂不建议
 
