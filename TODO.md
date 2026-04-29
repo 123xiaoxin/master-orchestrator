@@ -15,6 +15,8 @@
 - [x] 新增工业安全优先型模板目录 `templates/industrial/`
 - [x] 新增工业原则文档 `docs/industrial/`
 - [x] 新增双集群实验协议 `experiments/dual-cluster-industrial/`
+- [x] 新增 `validate_templates.ps1` 批量模板校验
+- [x] 新增双集群首轮实验计划和 Master 启动提示词
 
 ## 下一步建议
 

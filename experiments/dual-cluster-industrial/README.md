@@ -20,6 +20,8 @@ The experiment is successful only if Master keeps both clusters isolated during 
 | `protocol.md` | Experiment protocol and phase rules |
 | `phase-checklist.md` | Per-phase checklist |
 | `run-log-template.md` | Audit-friendly run log template |
+| `first-run-plan.md` | Concrete first-run scope and expected outputs |
+| `master-start-prompt.md` | Prompt to start the experiment in a Master session |
 
 ## Default Scope
 

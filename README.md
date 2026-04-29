@@ -286,6 +286,7 @@ experiments/dual-cluster-industrial/
 | 脚本 | 用途 |
 |------|------|
 | `helpers/check_env.ps1` | Phase 0 只读环境检查，输出专家、模板、OpenClaw agents 和模型状态 JSON |
+| `helpers/validate_templates.ps1` | 批量 dry-run 校验所有 Agent Pack 模板 |
 | `helpers/create_temp_expert.ps1` | 按专家名创建单个临时 Agent |
 | `helpers/cleanup_temp.ps1` | 安全删除单个 `temp-*` Agent 和 workspace |
 | `helpers/create_agent_pack.ps1` | 按模板创建 1-5 个临时 Agent，并写入 manifest |
@@ -295,6 +296,7 @@ Phase 0 推荐先运行：
 
 ```powershell
 .\helpers\check_env.ps1
+.\helpers\validate_templates.ps1
 ```
 
 `create_temp_expert.ps1` 输出中包含 `modelSelectionReason`，用于解释自动选模原因，方便 Phase 4 审计。
