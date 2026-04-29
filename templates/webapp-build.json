@@ -1,0 +1,34 @@
+{
+  "name": "webapp-build",
+  "description": "从需求梳理到 UI、前端实现和验收的 Web App / Landing Page 构建流程。",
+  "maxAgents": 5,
+  "execution": "serial_then_parallel",
+  "cleanupPolicy": "ask",
+  "agents": [
+    {
+      "name": "product-manager",
+      "role": "提炼需求、约束、用户路径和验收标准。",
+      "dependsOn": []
+    },
+    {
+      "name": "ui-designer",
+      "role": "基于需求输出信息架构、界面结构和视觉方向。",
+      "dependsOn": ["product-manager"]
+    },
+    {
+      "name": "frontend-developer",
+      "role": "基于设计和需求实现响应式前端。",
+      "dependsOn": ["product-manager", "ui-designer"]
+    },
+    {
+      "name": "evidence-collector",
+      "role": "验证桌面和移动端结果，收集截图、错误和可复现证据。",
+      "dependsOn": ["frontend-developer"]
+    },
+    {
+      "name": "code-reviewer",
+      "role": "做最终代码审查，指出高风险缺陷和缺失测试。",
+      "dependsOn": ["frontend-developer", "evidence-collector"]
+    }
+  ]
+}

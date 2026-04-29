@@ -1,52 +1,27 @@
-# TODO — 上线前还需要你手动完成的步骤
+# TODO / Roadmap
 
-## ✅ 已完成（仓库已建好）
+## v5.2 draft 已落地
 
-- [x] README.md（含端到端示例 + MIT License 声明）
-- [x] prompts/ 全部 4 个插件文件
-- [x] helpers/ 两个 PowerShell 脚本
-- [x] examples/ 一个演示文件
-- [x] LICENSE（MIT，版权人：123xiaoxin）
-- [x] Git 初始化并提交
+- [x] 修正专家库路径契约：`~/.openclaw/agency-agents/<expert-name>/AGENTS.md`
+- [x] `create_temp_expert.ps1` 支持只传 `-ExpertName` 自动解析专家文件
+- [x] 新增 Agent Pack 模板目录 `templates/`
+- [x] 新增 `create_agent_pack.ps1`：按模板创建 1-5 个临时 Agent
+- [x] 新增 `finalize_agent_pack.ps1`：支持 `destroy` / `keep` / `archive-template`
+- [x] README 改为“冷专家库 + 运行时 1-5 Agent Pack + 模板沉淀”的叙述
+- [x] 新增 `check_env.ps1`：Phase 0 只读环境检查
+- [x] `create_agent_pack.ps1` 增加模板校验：专家存在、依赖存在、无自依赖、无循环依赖
+- [x] `create_temp_expert.ps1` 输出 `modelSelectionReason`
+- [x] Prompt 明确 Phase 1-2 禁止创建/清理临时 Agent
 
----
+## 下一步建议
 
-## ⬜ 还需要你手动完成
+- [ ] 为 helper 脚本添加 Pester 单元测试，mock `openclaw`
+- [ ] 添加 GitHub Actions：PowerShell 语法检查、JSON 模板校验、README 路径一致性检查
+- [ ] 增加 `templates/code-review.json` 和 `templates/research-report.json`
+- [ ] 为 manifest 增加任务标题、用户确认记录和最终收尾状态
+- [ ] 补充 `CONTRIBUTING.md`
 
-### 1. 创建 GitHub 仓库
+## 暂不建议
 
-```
-访问：https://github.com/new
-Repository name: master-orchestrator
-Description: 为 OpenClaw 打造的企业级、微内核 AI 工作流编排引擎
-选择 Public（公开）/ Private（私有）
-不要勾选 Initialize this repository with any template
-点击 Create repository
-```
-
-### 2. 绑定远程仓库并推送
-
-```bash
-cd ~\github\master-orchestrator
-git remote add origin https://github.com/123xiaoxin/master-orchestrator.git
-git branch -M main
-git push -u origin main
-```
-
-### 3. 补充 agency-agents 外部依赖说明（可选）
-
-如果你希望用户一站式完成安装，可以考虑在仓库里放一个 `SETUP.md`，写清楚：
-
-```bash
-# 克隆专家库（必需依赖）
-git clone https://github.com/msitarzewski/agency-agents.git ~/.openclaw/agency-agents/
-```
-
----
-
-## 🔜 可选的后续优化
-
-- [ ] 添加 CONTRIBUTING.md（贡献指南）
-- [ ] 录制一个 GIF 演示，放在 README 里
-- [ ] 添加 GitHub Actions CI（自动检查 PowerShell 语法）
-- [ ] 考虑把 agency-agents 作为 submodule 引入
+- [ ] 不建议把 `agency-agents` 作为 submodule 引入，除非要锁定具体版本
+- [ ] 不建议默认保留运行实例，长期复用应优先沉淀模板

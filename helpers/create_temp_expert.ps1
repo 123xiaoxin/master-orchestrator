@@ -1,186 +1,247 @@
 <#
 .SYNOPSIS
-  读取 Agency 专家 .md 文件，创建临时 OpenClaw Agent
+  Create one temporary OpenClaw agent from an agency-agents expert.
 .DESCRIPTION
-  依据外挂兵器库模式，将 agency-agents 目录中的专家定义文件，
-  通过 OpenClaw CLI 动态注册为临时子 Agent。
-  模型分配策略：扫描本地实际可用模型 → 按命名规律动态分类 → 按专家类型匹配
-  无需硬编码任何模型 ID，跨机器即插即用。
+  Resolves the expert definition from either:
+  - -ExpertFile pointing to a file
+  - -ExpertFile pointing to an expert directory
+  - -ExpertName resolving to ~/.openclaw/agency-agents/<ExpertName>/AGENTS.md
+
+  The script writes only the final machine-readable result to the success
+  pipeline. Progress messages use Write-Host so callers can capture JSON.
 .PARAMETER ExpertName
-  专家名称，如 frontend-developer
+  Expert id, for example frontend-developer.
 .PARAMETER ExpertFile
-  专家 .md 文件的绝对路径
+  Optional expert definition file or expert directory. If omitted, the script
+  uses ~/.openclaw/agency-agents/<ExpertName>/AGENTS.md.
 .PARAMETER Model
-  可选，强制指定模型 ID（覆盖自动分配）
+  Optional explicit model id. When omitted, the script scans local OpenClaw
+  model status and chooses a model by naming convention.
+.PARAMETER BatchId
+  Optional pack/run id. When provided, it is included in the temporary agent id.
 .OUTPUTS
-  成功时输出 JSON：{"agentId":"temp-xxx-12345","model":"deepseek/deepseek-chat","workspace":"..."}
-  Master 解析此 JSON 获取 AgentId 和所用模型。
+  JSON: {"agentId":"...","expertName":"...","model":"...","modelSelectionReason":"...","workspace":"...","agentDir":"...","expertFile":"...","batchId":"..."}
 .EXAMPLE
-  .\create_temp_expert.ps1 -ExpertName frontend-developer `
-    -ExpertFile "$env:USERPROFILE\.openclaw\agency-agents\engineering\frontend-developer.md"
+  .\create_temp_expert.ps1 -ExpertName frontend-developer
+.EXAMPLE
+  .\create_temp_expert.ps1 -ExpertName frontend-developer -Model "deepseek/deepseek-chat"
 #>
 
 param(
     [Parameter(Mandatory = $true)]
+    [ValidatePattern('^[A-Za-z0-9._-]+$')]
     [string]$ExpertName,
 
-    [Parameter(Mandatory = $true)]
-    [string]$ExpertFile,
+    [Parameter(Mandatory = $false)]
+    [string]$ExpertFile = "",
 
     [Parameter(Mandatory = $false)]
-    [string]$Model = ""
+    [string]$Model = "",
+
+    [Parameter(Mandatory = $false)]
+    [ValidatePattern('^[A-Za-z0-9._-]*$')]
+    [string]$BatchId = ""
 )
 
-# ============================================================
-# 第一步：扫描本地可用模型（不依赖任何硬编码）
-# ============================================================
-Write-Host "🔍 正在扫描本地可用模型..."
+$ErrorActionPreference = "Stop"
 
-$modelsJson = & openclaw models status --json 2>&1
-if ($LASTEXITCODE -ne 0) {
-    Write-Error "❌ 无法获取模型状态: $modelsJson"
-    exit 1
+function ConvertTo-SafeId {
+    param([Parameter(Mandatory = $true)][string]$Value)
+    $safe = $Value -replace '[^A-Za-z0-9._-]', '-'
+    $safe = $safe.Trim('-')
+    if ([string]::IsNullOrWhiteSpace($safe)) {
+        throw "Cannot convert value to a safe id: $Value"
+    }
+    return $safe
 }
 
-$models = $modelsJson | ConvertFrom-Json
-$allModels = @($models.allowed)
-$defaultModel = $models.defaultModel
-$fallbacks = @($models.fallbacks)
+function Resolve-ExpertFile {
+    param(
+        [Parameter(Mandatory = $true)][string]$Name,
+        [Parameter(Mandatory = $false)][string]$Path
+    )
 
-Write-Host "   ✅ 系统默认: $defaultModel"
-Write-Host "   ✅ 可用模型: $($allModels -join ', ')"
+    $candidates = New-Object System.Collections.Generic.List[string]
 
-# ============================================================
-# 第二步：动态模型分类（纯规律驱动，零硬编码）
-# ============================================================
-$codeKeywords = @("code", "coder", "coding")
-$fastKeywords = @("highspeed", "fast", "speed", "quick", "turbo", "lite")
-$fastSuffix = "-mini$|_mini$|\.mini$"
+    if (-not [string]::IsNullOrWhiteSpace($Path)) {
+        $expanded = [Environment]::ExpandEnvironmentVariables($Path)
+        if (Test-Path -LiteralPath $expanded -PathType Container) {
+            $candidates.Add((Join-Path $expanded "AGENTS.md"))
+        } else {
+            $candidates.Add($expanded)
+        }
+    }
 
-$codeModels = $allModels | Where-Object {
-    $id = $_.ToLower()
-    ($codeKeywords | Where-Object { $id -match $_ }) -ne $null
+    $agencyRoot = Join-Path $env:USERPROFILE ".openclaw\agency-agents"
+    $candidates.Add((Join-Path (Join-Path $agencyRoot $Name) "AGENTS.md"))
+
+    foreach ($candidate in $candidates) {
+        if (Test-Path -LiteralPath $candidate -PathType Leaf) {
+            return (Resolve-Path -LiteralPath $candidate).Path
+        }
+    }
+
+    $tried = $candidates -join "; "
+    throw "Expert definition not found for '$Name'. Tried: $tried"
 }
 
-$fastModels = $allModels | Where-Object {
-    $id = $_.ToLower()
-    ($fastKeywords | Where-Object { $id -match $_ }) -ne $null -or
-    $id -match $fastSuffix
-}
+function Get-ModelChoice {
+    param(
+        [Parameter(Mandatory = $true)][string]$Name,
+        [Parameter(Mandatory = $false)][string]$ExplicitModel
+    )
 
-$specialized = $codeModels + $fastModels | Select-Object -Unique
-$generalModels = $allModels | Where-Object { $specialized -notcontains $_ }
+    if (-not [string]::IsNullOrWhiteSpace($ExplicitModel)) {
+        Write-Host "Using explicit model: $ExplicitModel"
+        return [pscustomobject]@{
+            model = $ExplicitModel
+            reason = "explicit model override"
+        }
+    }
 
-Write-Host "   🤖 动态分类:"
-Write-Host "     代码类 ($($codeModels.Count) 个): $($codeModels -join ', ')"   | Where-Object { $_ }
-Write-Host "     高速类 ($($fastModels.Count) 个): $($fastModels -join ', ')"   | Where-Object { $_ }
-Write-Host "     通用类 ($($generalModels.Count) 个): $($generalModels -join ', ')" | Where-Object { $_ }
+    Write-Host "Scanning OpenClaw models..."
+    $modelsJson = & openclaw models status --json 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-Warning "Could not read OpenClaw model status. Agent will use OpenClaw default model. Details: $modelsJson"
+        return [pscustomobject]@{
+            model = ""
+            reason = "model status unavailable; omitted --model so OpenClaw default applies"
+        }
+    }
 
-# ============================================================
-# 第三步：按专家类型匹配模型
-# ============================================================
-function Pick-Model {
-    param([string]$ExpertName)
+    $models = $modelsJson | ConvertFrom-Json
+    $allModels = @($models.allowed)
+    $defaultModel = $models.defaultModel
+    $fallbacks = @($models.fallbacks)
 
+    $codeKeywords = @("code", "coder", "coding")
+    $fastKeywords = @("highspeed", "fast", "speed", "quick", "turbo", "lite")
+    $fastSuffix = "-mini$|_mini$|\.mini$"
+
+    $codeModels = $allModels | Where-Object {
+        $id = $_.ToLowerInvariant()
+        ($codeKeywords | Where-Object { $id -match $_ }) -ne $null
+    }
+
+    $fastModels = $allModels | Where-Object {
+        $id = $_.ToLowerInvariant()
+        (($fastKeywords | Where-Object { $id -match $_ }) -ne $null) -or ($id -match $fastSuffix)
+    }
+
+    $expert = $Name.ToLowerInvariant()
     $codeExpertPattern = @(
         "developer", "architect", "engineer", "programmer", "coder",
         "builder", "maintainer", "automator", "tester",
         "frontend", "backend", "fullstack", "mobile", "devops"
     )
-    if ($codeExpertPattern | Where-Object { $ExpertName -match $_ }) {
-        if ($codeModels) { return $codeModels | Select-Object -First 1 }
+    if (($codeExpertPattern | Where-Object { $expert -match $_ }) -and $codeModels) {
+        return [pscustomobject]@{
+            model = ($codeModels | Select-Object -First 1)
+            reason = "expert name matched code role pattern; selected first model containing code/coder/coding"
+        }
     }
 
     $fastExpertPattern = @("highspeed", "lightweight", "quick", "fast")
-    if ($fastExpertPattern | Where-Object { $ExpertName -match $_ }) {
-        if ($fastModels) { return $fastModels | Select-Object -First 1 }
+    if (($fastExpertPattern | Where-Object { $expert -match $_ }) -and $fastModels) {
+        return [pscustomobject]@{
+            model = ($fastModels | Select-Object -First 1)
+            reason = "expert name matched fast role pattern; selected first fast/turbo/lite/mini model"
+        }
     }
 
-    return $null
-}
-
-if ($Model -eq "") {
-    $autoModel = Pick-Model -ExpertName $ExpertName
-    if ($autoModel) {
-        $Model = $autoModel
-        Write-Host "   🤖 智能匹配: '$ExpertName' → $Model"
+    if ($defaultModel) {
+        return [pscustomobject]@{
+            model = $defaultModel
+            reason = "no specialized model matched; selected OpenClaw default model"
+        }
     }
-}
-
-# ============================================================
-# 第四步：最终模型确认 + Fallback 链
-# ============================================================
-if ($Model -eq "") {
-    Write-Host "   🤖 未指定模型，使用系统默认: $defaultModel"
-    $Model = $defaultModel
-}
-
-if ($allModels -notcontains $Model -and $Model -ne $defaultModel) {
-    Write-Warning "⚠️ 模型 '$Model' 不在可用列表中"
-    Write-Host "   → 回退到系统默认: $defaultModel"
-    $Model = $defaultModel
-}
-
-if ($allModels -notcontains $Model) {
-    Write-Warning "⚠️ 系统默认 '$defaultModel' 也不在可用列表中"
     if ($fallbacks) {
-        $Model = $fallbacks | Select-Object -First 1
-        Write-Host "   → 回退到第一个 fallback: $Model"
-    } elseif ($allModels) {
-        $Model = $allModels | Select-Object -First 1
-        Write-Host "   → 回退到第一个可用模型: $Model"
-    } else {
-        Write-Error "❌ 没有可用的模型，无法创建临时 Agent"
-        exit 1
+        return [pscustomobject]@{
+            model = ($fallbacks | Select-Object -First 1)
+            reason = "no default model available; selected first OpenClaw fallback model"
+        }
+    }
+    if ($allModels) {
+        return [pscustomobject]@{
+            model = ($allModels | Select-Object -First 1)
+            reason = "no default or fallback model available; selected first allowed model"
+        }
+    }
+
+    return [pscustomobject]@{
+        model = ""
+        reason = "no model information available; omitted --model so OpenClaw decides"
     }
 }
 
-Write-Host "   ✅ 最终模型: $Model"
+try {
+    $ResolvedExpertFile = Resolve-ExpertFile -Name $ExpertName -Path $ExpertFile
+    $modelChoice = Get-ModelChoice -Name $ExpertName -ExplicitModel $Model
+    $SelectedModel = [string]$modelChoice.model
+    $ModelSelectionReason = [string]$modelChoice.reason
 
-# ============================================================
-# 第五步：创建临时 Agent
-# ============================================================
-$TS = [int][double]::Parse((Get-Date -UFormat %s))
-$AgentId = "temp-$ExpertName-$TS"
-$WorkspaceDir = "$env:USERPROFILE\.openclaw\temp\$AgentId"
+    $safeExpertName = ConvertTo-SafeId -Value $ExpertName
+    $timestamp = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()
+    if ([string]::IsNullOrWhiteSpace($BatchId)) {
+        $AgentId = "temp-$safeExpertName-$timestamp"
+    } else {
+        $safeBatchId = ConvertTo-SafeId -Value $BatchId
+        $AgentId = "temp-$safeBatchId-$safeExpertName-$timestamp"
+    }
 
-New-Item -ItemType Directory -Path $WorkspaceDir -Force | Out-Null
-Write-Host "📁 创建临时工作区: $WorkspaceDir"
+    $tempRoot = Join-Path $env:USERPROFILE ".openclaw\temp"
+    $WorkspaceDir = Join-Path $tempRoot $AgentId
+    $AgentDir = Join-Path (Join-Path $env:USERPROFILE ".openclaw\agents\$AgentId") "agent"
+    New-Item -ItemType Directory -Path $WorkspaceDir -Force | Out-Null
+    New-Item -ItemType Directory -Path $AgentDir -Force | Out-Null
 
-Copy-Item $ExpertFile "$WorkspaceDir\AGENTS.md"
-@"
+    Copy-Item -LiteralPath $ResolvedExpertFile -Destination (Join-Path $WorkspaceDir "AGENTS.md") -Force
+
+    $identity = @"
 # $ExpertName (Temporary Instance)
-emoji: 🧑‍💻
-description: 由 Master Orchestrator 按需创建的临时专家 Agent
-model: $Model
-"@ | Out-File -FilePath "$WorkspaceDir\IDENTITY.md" -Encoding utf8
+emoji: agent
+description: Temporary expert agent created by Master Orchestrator
+model: $SelectedModel
+"@
+    $identity | Out-File -LiteralPath (Join-Path $WorkspaceDir "IDENTITY.md") -Encoding utf8
 
-@"
-你是根据 Agency 专家定义动态创建的临时 Agent。
-你的角色和职责已写入 AGENTS.md。
-请按该定义完成分配的任务。
-"@ | Out-File -FilePath "$WorkspaceDir\SOUL.md" -Encoding utf8
+    $soul = @"
+You are a temporary agent created from an agency-agents expert definition.
+Your role and responsibilities are stored in AGENTS.md.
+Complete only the task assigned by the Master Orchestrator.
+"@
+    $soul | Out-File -LiteralPath (Join-Path $WorkspaceDir "SOUL.md") -Encoding utf8
 
-Write-Host "📝 专家定义已写入: $WorkspaceDir\AGENTS.md"
+    $addArgs = @(
+        "agents", "add", $AgentId,
+        "--workspace", $WorkspaceDir,
+        "--agent-dir", $AgentDir,
+        "--non-interactive",
+        "--json"
+    )
+    if (-not [string]::IsNullOrWhiteSpace($SelectedModel)) {
+        $addArgs += @("--model", $SelectedModel)
+    }
 
-$addArgs = @(
-    "agents", "add", $AgentId,
-    "--workspace", "$WorkspaceDir",
-    "--model", "$Model",
-    "--non-interactive"
-)
+    $result = & openclaw $addArgs 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        Remove-Item -LiteralPath $WorkspaceDir -Recurse -Force -ErrorAction SilentlyContinue
+        Remove-Item -LiteralPath (Split-Path -Parent $AgentDir) -Recurse -Force -ErrorAction SilentlyContinue
+        throw "OpenClaw agent registration failed: $result"
+    }
 
-$result = & openclaw $addArgs 2>&1
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "✅ 临时 Agent 注册成功: $AgentId"
-    $output = @{
-        agentId   = $AgentId
-        model     = $Model
+    $output = [ordered]@{
+        agentId = $AgentId
+        expertName = $ExpertName
+        model = $SelectedModel
+        modelSelectionReason = $ModelSelectionReason
         workspace = $WorkspaceDir
+        agentDir = $AgentDir
+        expertFile = $ResolvedExpertFile
+        batchId = $BatchId
     }
     Write-Output ($output | ConvertTo-Json -Compress)
-} else {
-    Write-Error "❌ OpenClaw 注册 Agent 失败: $result"
-    Remove-Item -Path $WorkspaceDir -Recurse -Force -ErrorAction SilentlyContinue
+} catch {
+    Write-Error $_.Exception.Message
     exit 1
 }

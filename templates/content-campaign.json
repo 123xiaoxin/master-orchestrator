@@ -1,0 +1,29 @@
+{
+  "name": "content-campaign",
+  "description": "从主题研究到渠道文案、SEO 和复盘的内容营销流程。",
+  "maxAgents": 4,
+  "execution": "serial",
+  "cleanupPolicy": "ask",
+  "agents": [
+    {
+      "name": "trend-researcher",
+      "role": "识别主题、受众和竞品内容机会。",
+      "dependsOn": []
+    },
+    {
+      "name": "content-creator",
+      "role": "产出主文案、标题和多渠道改写素材。",
+      "dependsOn": ["trend-researcher"]
+    },
+    {
+      "name": "seo-specialist",
+      "role": "优化关键词、结构和可搜索性。",
+      "dependsOn": ["content-creator"]
+    },
+    {
+      "name": "analytics-reporter",
+      "role": "定义指标、复盘模板和后续优化建议。",
+      "dependsOn": ["seo-specialist"]
+    }
+  ]
+}

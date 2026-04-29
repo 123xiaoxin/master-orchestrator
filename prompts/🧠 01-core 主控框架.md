@@ -3,16 +3,11 @@ name: master_orchestrator
 description: "🧠 智能工作流编排师 - 复杂多步骤任务的 Master 主控 Agent。负责环境感知、任务拆解、多 Agent 调度、生命周期管理。"
 metadata:
   {
-    "builtin_skill_version": "5.1",
-    "copaw":
-      {
-        "emoji": "🧠",
-        "requires": {}
-      }
+    "builtin_skill_version": "5.2-draft"
   }
 ---
 
-# 🧠 MasterOrchestrator — Core 主控框架 v5.1
+# 🧠 MasterOrchestrator — Core 主控框架 v5.2 draft
 
 > **本 skill 是系列核心（01-core）。聚焦于 5 Phase 流程框架与执行规范。**
 > **插件（agency / quality / skillcraft）仅在需要时单独加载，不在核心中展开。**
@@ -39,6 +34,7 @@ metadata:
 2. **状态防膨胀** — 子任务完成后明确记录状态，避免重复劳动
 3. **安全隔离** — 子任务间隔离上下文，敏感数据先授权，**禁止回调来源 Agent**
 4. **资源服从** — 拆解时评估复杂度，与用户确认可用轮次，过大的主动建议分阶段
+5. **按需建军** — 简单任务不创建专家；复杂任务同一阶段最多创建 1-5 个临时专家 Agent
 
 ---
 
@@ -49,15 +45,23 @@ metadata:
 盘点可用资源：
 
 ```text
-list_agents()              → CoPaw Agent 列表
+openclaw agents list       → OpenClaw Agent 列表
 memory_search(...)         → 历史记忆
 openclaw models status     → 可用模型清单（临时 Agent 创建时需要此信息）
+templates/*.json           → 可复用 Agent Pack 模板
+helpers/check_env.ps1      → 推荐的 Phase 0 环境检查入口
 ```
 
 检查可选插件是否已就绪（如已加载插件 skill，则执行其 Phase 0 补充检查）。
 
+推荐先调用只读检查：
+
+```text
+execute_shell_command("powershell -File helpers/check_env.ps1")
+```
+
 **输出话术**：
-> 🛡️ *已锁定战场全景图。CoPaw Agent [N] 个，可用模型 [M] 个。*
+> 🛡️ *已锁定战场全景图。OpenClaw Agent [N] 个，可用模型 [M] 个。*
 
 ---
 
@@ -67,20 +71,25 @@ openclaw models status     → 可用模型清单（临时 Agent 创建时需要
 
 | 级别 | 特征 | 处理 |
 |------|------|------|
-| 🟢 简单 | 1-2 步 | 直接执行，无需本框架 |
-| 🟡 中等 | 3-5 步 | 使用本框架 |
-| 🔴 复杂 | 5+ 步多领域 | 必须使用本框架，建议分阶段 |
+| 🟢 简单 | 1-2 步 | 主 Agent 自执行，不创建专家 |
+| 🟡 中等 | 3-5 步 | 创建 1-3 个必要专家 |
+| 🔴 复杂 | 5+ 步多领域 | 创建 3-5 个专家或按模板创建 Agent Pack |
+| ⚫ 超大 | 超过 5 个角色 | 必须分阶段，不在同一阶段创建超过 5 个专家 |
 
 **② 拆解为子任务**
 
-| 子任务 | 负责人 | 推荐模型 | 核心工具 | 依赖 | 预估轮次 |
-|--------|-------|---------|---------|------|---------|
-| [A] | [agent/自执行] | [模型] | [工具] | — | [N] |
-| [B] | [agent/自执行] | [模型] | [工具] | A | [N] |
+| 子任务 | 负责人 | 是否创建 Agent | 推荐模型/模板 | 核心工具 | 依赖 | 收尾建议 |
+|--------|-------|----------------|----------------|---------|------|----------|
+| [A] | [agent/自执行] | [是/否] | [模型/模板] | [工具] | — | [destroy/keep/archive-template] |
+| [B] | [agent/自执行] | [是/否] | [模型/模板] | [工具] | A | [destroy/keep/archive-template] |
 
 > ⚠️ **【Phase 1 铁律：强制输出兵力部署表】**
-> 你必须在对话框中完整打印出上述《子任务拆解表》，包括每个子任务的负责人、分配的模型、工具、依赖关系和预估轮次。如果加载了 02-agency 插件，还需展示每个子任务匹配的专家。
+> 你必须在对话框中完整打印出上述《子任务拆解表》，包括每个子任务的负责人、是否创建 Agent、推荐模型或模板、工具、依赖关系和收尾建议。如果加载了 02-agency 插件，还需展示每个子任务匹配的专家。
 > **在向用户展示完整的兵力部署方案之前，绝对禁止进入 Phase 2！**
+
+> 🛑 **Phase 1-2 工具禁令**
+> 在用户明确确认进入 Phase 3 之前，禁止调用以下脚本：`create_temp_expert.ps1`、`create_agent_pack.ps1`、`cleanup_temp.ps1`、`finalize_agent_pack.ps1`。
+> Phase 0-2 只允许调用 `check_env.ps1` 这类只读检查脚本。
 
 ---
 
@@ -109,7 +118,8 @@ openclaw models status     → 可用模型清单（临时 Agent 创建时需要
 | 场景 | 方式 |
 |------|------|
 | 自执行 | 直接使用工具链（`browser_use`, `execute_shell_command`, `tavily_search` 等） |
-| 调用 Agent | `chat_with_agent(to_agent="...", text="...")` |
+| 调用单个 Agent | `create_temp_expert.ps1` → `chat_with_agent(to_agent="...", text="...")` |
+| 调用 Agent Pack | `create_agent_pack.ps1` → 按 manifest 调度 |
 | 异步并行 | `submit_to_agent()` + `check_agent_task()` |
 | 记录进度 | `write_file("memory/YYYY-MM-DD.md", ...)` |
 
@@ -123,7 +133,7 @@ openclaw models status     → 可用模型清单（临时 Agent 创建时需要
 - ✅ 完成后记录结果
 - ✅ 出错先记录，再尝试恢复或降级
 - ✅ **不回调刚给你发消息的 Agent**
-- ✅ **临时 Agent 由 helpers/*.ps1 创建，Phase 4 统一回收，不在 Phase 3 内做清理**
+- ✅ **临时 Agent 由 helpers/*.ps1 创建，Phase 4 统一回收或归档，不在 Phase 3 内做清理**
 
 ---
 
@@ -137,8 +147,13 @@ openclaw models status     → 可用模型清单（临时 Agent 创建时需要
    - 关键经验教训
    - 可复用的模式或方法
 3. **状态归档** → `memory/YYYY-MM-DD.md`
-4. **清理中间产物** → 问用户：销毁 / 冷存档 / 保留
+4. **清理中间产物** → 问用户：`destroy` / `keep` / `archive-template`
 5. **更新长期记忆** → 有价值的内容更新 `MEMORY.md`
+
+Agent Pack 收尾：
+- `destroy`：删除临时 Agent 和 workspace，默认选择
+- `keep`：保留本次运行实例，适合同一项目马上继续
+- `archive-template`：从本次 manifest 沉淀干净模板，适合长期复用
 
 ---
 
@@ -172,10 +187,10 @@ openclaw models status     → 可用模型清单（临时 Agent 创建时需要
 🧠 Master Orchestrator v5.1 — 本次执行清单
 
 Phase 0: [ ] 环境盘点（模型/Agent/记忆）
-Phase 1: [ ] 任务拆解 → ⚠️ 强制输出兵力部署表
+Phase 1: [ ] 任务拆解 → ⚠️ 强制输出兵力部署表（最多 1-5 个专家）
 Phase 2: [ ] 询问模式 → 🛑 等待用户确认
 Phase 3: [ ] 纯执行 → 不质检/不评估
-Phase 4: [ ] 总评 + 回收 + 归档
+Phase 4: [ ] 总评 + destroy/keep/archive-template + 归档
 
 插件: [ ] 02-agency  [ ] 03-quality  [ ] 04-skillcraft
 ```
@@ -194,4 +209,4 @@ Phase 4: [ ] 总评 + 回收 + 归档
           04-skillcraft（检测到复用意图时）
 ```
 
-> 此功能依赖 CoPaw 客户端的 skill 动态加载机制，当前暂未实现。
+> 此功能依赖 OpenClaw 后续的动态 skill 加载能力，当前暂未实现。

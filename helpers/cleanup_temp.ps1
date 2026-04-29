@@ -1,48 +1,74 @@
 <#
 .SYNOPSIS
-  回收由 create_temp_expert.ps1 创建的临时 OpenClaw Agent
+  Delete one temporary OpenClaw agent created by create_temp_expert.ps1.
 .DESCRIPTION
-  Phase 4 统一清理阶段调用。
-  从 OpenClaw 注销临时 Agent 并物理销毁其沙盒工作区。
-  内置安全白名单：只允许删除以 "temp-" 开头的 Agent。
+  Safety rules:
+  - AgentId must match the temp-* naming convention.
+  - Workspace deletion is restricted to ~/.openclaw/temp/<AgentId>.
+  - Agent state deletion is restricted to ~/.openclaw/agents/<AgentId>.
+  - The script continues local cleanup even if OpenClaw deletion warns.
 .PARAMETER AgentId
-  要回收的临时 Agent ID（如 temp-frontend-developer-1713992400）
+  Temporary agent id, for example temp-frontend-developer-1713992400000.
+.OUTPUTS
+  JSON summary.
 .EXAMPLE
-  .\cleanup_temp.ps1 -AgentId "temp-frontend-developer-1713992400"
+  .\cleanup_temp.ps1 -AgentId "temp-frontend-developer-1713992400000"
 #>
 
 param(
     [Parameter(Mandatory = $true)]
+    [ValidatePattern('^temp-[A-Za-z0-9._-]+-\d{10,}$')]
     [string]$AgentId
 )
 
-# ---------- 安全白名单：只允许回收 temp- 前缀的 Agent ----------
-if ($AgentId -notmatch "^temp-") {
-    Write-Error "🛡️ 安全拦截：只能回收以 temp- 开头的临时 Agent（收到: $AgentId）"
+$ErrorActionPreference = "Stop"
+
+try {
+    $tempRoot = Join-Path $env:USERPROFILE ".openclaw\temp"
+    $agentsRoot = Join-Path $env:USERPROFILE ".openclaw\agents"
+    $workspaceDir = Join-Path $tempRoot $AgentId
+    $agentStateDir = Join-Path $agentsRoot $AgentId
+    $removedWorkspace = $false
+    $removedAgentState = $false
+
+    $deleteResult = & openclaw agents delete $AgentId --force --json 2>&1
+    $openclawDeleted = ($LASTEXITCODE -eq 0)
+    if (-not $openclawDeleted) {
+        Write-Warning "OpenClaw deletion returned a non-zero exit code: $deleteResult"
+    }
+
+    if (Test-Path -LiteralPath $workspaceDir) {
+        $resolvedTempRoot = (Resolve-Path -LiteralPath $tempRoot).Path.TrimEnd('\')
+        $resolvedWorkspace = (Resolve-Path -LiteralPath $workspaceDir).Path
+        if (-not $resolvedWorkspace.StartsWith($resolvedTempRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+            throw "Refusing to remove workspace outside temp root: $resolvedWorkspace"
+        }
+
+        Remove-Item -LiteralPath $resolvedWorkspace -Recurse -Force
+        $removedWorkspace = -not (Test-Path -LiteralPath $resolvedWorkspace)
+    }
+
+    if (Test-Path -LiteralPath $agentStateDir) {
+        $resolvedAgentsRoot = (Resolve-Path -LiteralPath $agentsRoot).Path.TrimEnd('\')
+        $resolvedAgentState = (Resolve-Path -LiteralPath $agentStateDir).Path
+        if (-not $resolvedAgentState.StartsWith($resolvedAgentsRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+            throw "Refusing to remove agent state outside agents root: $resolvedAgentState"
+        }
+
+        Remove-Item -LiteralPath $resolvedAgentState -Recurse -Force
+        $removedAgentState = -not (Test-Path -LiteralPath $resolvedAgentState)
+    }
+
+    $output = [ordered]@{
+        agentId = $AgentId
+        openclawDeleted = $openclawDeleted
+        workspace = $workspaceDir
+        workspaceRemoved = $removedWorkspace
+        agentState = $agentStateDir
+        agentStateRemoved = $removedAgentState
+    }
+    Write-Output ($output | ConvertTo-Json -Compress)
+} catch {
+    Write-Error $_.Exception.Message
     exit 1
 }
-
-Write-Host "🧹 正在回收临时专家: $AgentId ..."
-
-# ---------- 从 OpenClaw 注销 ----------
-$result = & openclaw agents delete $AgentId --force 2>&1
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "✅ 已从 OpenClaw 注销: $AgentId"
-} else {
-    Write-Warning "⚠️ OpenClaw 注销可能未完全成功: $result"
-}
-
-# ---------- 物理销毁沙盒工作区 ----------
-$WorkspaceDir = "$env:USERPROFILE\.openclaw\temp\$AgentId"
-if (Test-Path $WorkspaceDir) {
-    Remove-Item -Path $WorkspaceDir -Recurse -Force -ErrorAction SilentlyContinue
-    if (Test-Path $WorkspaceDir) {
-        Write-Warning "⚠️ 沙盒目录未能完全删除: $WorkspaceDir"
-    } else {
-        Write-Host "✅ 沙盒已销毁: $WorkspaceDir"
-    }
-} else {
-    Write-Host "📁 沙盒目录不存在，可能已被清理: $WorkspaceDir"
-}
-
-Write-Host "✅ 回收完毕。"
