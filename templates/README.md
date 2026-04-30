@@ -17,9 +17,6 @@ Agent Pack 模板用于保存一组可复用的专家组合。模板只引用专
 | 路径 | 说明 |
 |------|------|
 | `templates/*.json` | 通用 Agent Pack 模板 |
-| `templates/industrial/*.json` | 工业安全优先型 Agent Pack 模板 |
-
-工业模板必须默认保持 `proposal_only`，并声明 `auditRequired`、`forbiddenActions`、`approvalRequiredFor` 和 `fallbackPolicy`。
 
 ## 字段
 
@@ -52,7 +49,6 @@ Phase 0 先检查环境：
 
 ```powershell
 .\helpers\create_agent_pack.ps1 -TemplateFile .\templates\webapp-build.json
-.\helpers\create_agent_pack.ps1 -TemplateFile .\templates\industrial\industrial-safety-governance.json
 ```
 
 预览而不创建 Agent：

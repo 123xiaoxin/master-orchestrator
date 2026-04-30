@@ -20,21 +20,13 @@ master-orchestrator/
 │   ├── create_temp_expert.ps1
 │   ├── cleanup_temp.ps1
 │   ├── create_agent_pack.ps1
-│   └── finalize_agent_pack.ps1
+│   ├── finalize_agent_pack.ps1
+│   ├── check_env.ps1
+│   └── validate_templates.ps1
 ├── templates/
 │   ├── README.md
 │   ├── webapp-build.json
-│   ├── content-campaign.json
-│   └── industrial/
-│       ├── industrial-safety-governance.json
-│       ├── industrial-incident-triage.json
-│       └── industrial-data-quality.json
-├── docs/
-│   └── industrial/
-│       ├── industrial-agent-principles.md
-│       └── safety-gateway-design.md
-├── experiments/
-│   └── dual-cluster-industrial/
+│   └── content-campaign.json
 ├── examples/
 │   └── web-landing-page.md
 └── LICENSE
@@ -46,7 +38,6 @@ master-orchestrator/
 - **运行时按需拉起**：每个任务只选择 1-5 个专家创建临时 Agent；简单任务可以不创建专家。
 - **实例和模板分离**：运行实例带上下文和临时 workspace，用完后可销毁或短期保留；长期沉淀的是干净的 Agent Pack 模板。
 - **五阶段编排**：Phase 0-4 保持独立，先感知和规划，再让用户确认执行模式，最后集中回收与沉淀。
-- **工业安全优先**：工业模板默认 `proposal_only`，用于提案、校验、审批和审计设计，不直接控制设备。
 
 ## 依赖
 
@@ -210,56 +201,6 @@ $pack | ConvertFrom-Json
 ```
 
 默认安全网：`create_agent_pack.ps1` 如果创建中途失败，会自动回滚并清理已经创建的临时 Agent。只有显式传入 `-KeepOnFailure` 时才会保留失败现场，适合调试。
-
-## 工业方向
-
-工业模板放在：
-
-```text
-templates/industrial/
-```
-
-当前包含：
-
-| 模板 | 用途 |
-|------|------|
-| `industrial-safety-governance.json` | 工业智能体安全边界、审批、审计和降级设计 |
-| `industrial-incident-triage.json` | 告警、工单、异常工况的处置提案 |
-| `industrial-data-quality.json` | 工业时序数据质量与可信度评估 |
-
-工业设计文档：
-
-```text
-docs/industrial/
-├── industrial-agent-principles.md
-└── safety-gateway-design.md
-```
-
-工业模板默认只输出可审计提案，不直接生成设备控制命令。任何高危动作都必须经过规则校验、权限校验、人工审批、二次确认和审计留痕。
-
-## 双集群实验
-
-双集群实验协议放在：
-
-```text
-experiments/dual-cluster-industrial/
-```
-
-目标是同时验证两个工作流：
-
-| Cluster | 方向 | 目标 |
-|---------|------|------|
-| A | 框架工程 | 打磨 Master Orchestrator helper、schema、文档和生命周期 |
-| B | 工业垂直 | 开发工业安全优先型 Agent Pack |
-
-实验文件：
-
-| 文件 | 用途 |
-|------|------|
-| `README.md` | 实验说明 |
-| `protocol.md` | 双集群 Phase 协议 |
-| `phase-checklist.md` | 执行检查清单 |
-| `run-log-template.md` | 审计友好的运行日志模板 |
 
 ## 五阶段引擎
 
