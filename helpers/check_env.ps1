@@ -194,6 +194,13 @@ try {
     $output = [ordered]@{
         generatedAt = [DateTimeOffset]::UtcNow.ToString("o")
         repoRoot = $repoRoot
+        governance = [ordered]@{
+            phase = "Phase 0 read-only context snapshot"
+            userAgentPolicy = "bypass unverified user-created agents by default"
+            recommendedMaxSpawnDepth = 2
+            recommendedMaxChildrenPerAgent = 5
+            heartbeatDefault = 0
+        }
         openclaw = [ordered]@{
             models = $models
             agents = $agents

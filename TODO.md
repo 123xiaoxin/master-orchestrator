@@ -14,13 +14,27 @@
 - [x] Prompt 明确 Phase 1-2 禁止创建/清理临时 Agent
 - [x] 新增 `validate_templates.ps1` 批量模板校验
 
+## v5.3 draft 已落地
+
+- [x] README 升级为“Runtime Governor + Analysis as Compilation”定位
+- [x] Core prompt 从 Phase 0-4 升级为 Phase -1 到 Phase 5
+- [x] 明确 Master-First、用户自建 Agent 默认旁路、默认无 heartbeat、临时对象默认销毁
+- [x] 补充 Agent / Sub-agent 区分与创建判断规则
+- [x] 新增 `schemas/task_analysis.v1.schema.json`
+- [x] 新增 `schemas/agent_pack.v1.schema.json`
+- [x] Agent Pack 模板补充 `schemaVersion` 与 `microSop`
+- [x] `create_agent_pack.ps1` manifest 增加任务标题、执行模式、用户确认记录、成功标准和 Micro-SOP
+- [x] `finalize_agent_pack.ps1` manifest 增加 lifecycle / finalStatus
+- [x] Quality / Skillcraft 调整到 Phase 5 集中处理
+
 ## 下一步建议
 
 - [ ] 为 helper 脚本添加 Pester 单元测试，mock `openclaw`
 - [ ] 添加 GitHub Actions：PowerShell 语法检查、JSON 模板校验、README 路径一致性检查
 - [ ] 增加 `templates/code-review.json` 和 `templates/research-report.json`
-- [ ] 为 manifest 增加任务标题、用户确认记录和最终收尾状态
 - [ ] 补充 `CONTRIBUTING.md`
+- [ ] 为 `schemas/*.json` 添加 CI 校验
+- [ ] 为用户自建 Agent 设计 `agent_spec.v1` 和胜任力评分机制
 
 ## 暂不建议
 

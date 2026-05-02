@@ -1,8 +1,9 @@
-# 🎭 MasterOrchestrator — Agency 专家调度
+# MasterOrchestrator — Agency 专家调度
 
-> **版本**：v2.2 draft | **定位**：系列插件，需搭配 Core 使用
-> **核心规则**：按任务只创建必要的 1-5 个临时专家 Agent，不常驻注册全部专家。
-> **数据源**：`~/.openclaw/agency-agents/<expert-name>/AGENTS.md`
+> 版本：v2.3 draft
+> 定位：系列插件，需搭配 Core v5.3 使用。
+> 核心规则：按任务只创建必要的 1-5 个临时专家 Agent，不常驻注册全部专家。
+> 数据源：`~/.openclaw/agency-agents/<expert-name>/AGENTS.md`
 
 ---
 
@@ -14,9 +15,10 @@
 |------|------|
 | 多角色协作 | 产品、设计、开发、测试、评审 |
 | 明确专业分工 | 前端、后端、运维、数据、营销、法务 |
+| 需要独立验证 | 证据收集、代码审查、安全审查 |
 | 可沉淀组合模板 | Web App 构建、内容营销、代码审查 |
 
-简单的一步任务不需要创建专家，由主 Agent 自执行。
+简单的一步任务不需要创建专家，由 Master 自执行。
 
 ---
 
@@ -37,16 +39,22 @@ OpenClaw Isolation
   sessions: 由 OpenClaw 写入对应 agent 状态目录
 
 Lifecycle
-  Phase 4 选择 destroy / keep / archive-template。
+  Phase 5 选择 destroy / keep / archive-template。
 ```
 
-### 反模式
+用户自建 Agent 默认旁路。原因：能力边界不清、权限不明、重复执行风险、token 成本不可控。只有未来通过 Agent Spec、能力标签、历史成功率和权限校验后，才可进入候选池。
 
-- ❌ 一次性注册全部专家。
-- ❌ 直接调用 `chat_with_agent(to_agent="frontend-developer")`，因为专家定义不是已注册 Agent。
-- ❌ 长期保留运行 workspace 当作模板。
-- ❌ 为了凑阵容创建无必要专家。
-- ❌ 默认给临时专家绑定外部渠道。channel bindings 更适合长期服务型 Agent。
+---
+
+## 反模式
+
+- 一次性注册全部专家。
+- 直接调用 `chat_with_agent(to_agent="frontend-developer")`，因为专家定义不是已注册 Agent。
+- 长期保留运行 workspace 当作模板。
+- 为了凑阵容创建无必要专家。
+- 默认给临时专家绑定外部渠道。
+- 用用户自建 Agent 自动补位。
+- 能力缺失时凭空捏造专家。
 
 ---
 
@@ -81,13 +89,13 @@ openclaw models status
 
 ---
 
-## Phase 1 补充：选择 1-5 个专家
+## Phase 1-2 补充：能力匹配
 
 ### 决策规则
 
 | 复杂度 | 建议专家数 | 处理方式 |
 |--------|------------|----------|
-| 简单 | 0 | 主 Agent 自执行 |
+| 简单 | 0 | Master 自执行 |
 | 中等 | 1-3 | 创建必要专家 |
 | 复杂 | 3-5 | 创建 Agent Pack |
 | 超过 5 个角色 | 分阶段 | 不在同一轮创建超过 5 个 |
@@ -108,25 +116,58 @@ openclaw models status
 | 安全/合规 | `security-engineer`, `compliance-auditor`, `legal-compliance-checker` |
 | 文档 | `document-generator`, `technical-writer`, `executive-summary-generator` |
 
-### 兵力部署表必须包含
+### 降级协商
 
-| 子任务 | 专家 | 是否创建 Agent | 推荐模板/脚本 | 依赖 | 收尾建议 |
-|--------|------|----------------|----------------|------|----------|
-| A | `product-manager` | 是 | `create_temp_expert.ps1` | — | destroy |
-| B | `frontend-developer` | 是 | `webapp-build` | A | archive-template |
+能力匹配失败时必须提供降级选项：
+
+- Master 单独输出方案。
+- 创建单个临时 Agent。
+- 创建局部 Sub-agent。
+- 分阶段执行。
+- 跳过非必要能力。
+- 降低交付范围。
+- 请求用户补充信息。
 
 ---
 
-## Phase 3 补充：创建与调度
+## Phase 3 补充：部署表与 Micro-SOP
 
-> 🛑 Phase 1-2 禁止调用 `create_temp_expert.ps1`、`create_agent_pack.ps1`、`cleanup_temp.ps1`、`finalize_agent_pack.ps1`。只有用户确认执行模式并进入 Phase 3 后，才能创建或清理临时 Agent。
+Phase 3 必须输出兵力部署表，且在用户确认前停止。
+
+| 子任务 | 专家 | 类型 | 是否创建 Agent | 推荐模板/脚本 | Micro-SOP 摘要 | 依赖 | 收尾建议 |
+|--------|------|------|----------------|----------------|----------------|------|----------|
+| A | `product-manager` | Agent | 是 | `create_temp_expert.ps1` | 产出需求边界和验收标准 | - | destroy |
+| B | `frontend-developer` | Agent | 是 | `webapp-build` | 根据 PRD/UI 实现前端 | A | archive-template |
+
+Micro-SOP 标准：
+
+```json
+{
+  "context": "先读哪些文件 / 使用哪些上游结果",
+  "deliverable": "具体交付物",
+  "negativeConstraints": ["绝对不能做什么"],
+  "exitCondition": "停止条件",
+  "budget": {
+    "tokenBudget": null,
+    "maxRounds": 3,
+    "timeoutMinutes": 20,
+    "heartbeat": 0
+  }
+}
+```
+
+---
+
+## Phase 4 补充：创建与调度
+
+> Phase 1-3 禁止调用 `create_temp_expert.ps1`、`create_agent_pack.ps1`、`cleanup_temp.ps1`、`finalize_agent_pack.ps1`。只有用户确认执行模式并进入 Phase 4 后，才能创建或清理临时 Agent。
 
 ### 单个专家
 
 ```text
 $r = execute_shell_command("powershell -File helpers/create_temp_expert.ps1 -ExpertName frontend-developer")
 $id = parse_json($r).agentId
-chat_with_agent(to_agent=$id, text="...")
+chat_with_agent(to_agent=$id, text="<Micro-SOP + 上下文>")
 ```
 
 脚本默认解析：
@@ -135,49 +176,23 @@ chat_with_agent(to_agent=$id, text="...")
 ~/.openclaw/agency-agents/frontend-developer/AGENTS.md
 ```
 
-### OpenClaw 官方创建格式
-
-`create_temp_expert.ps1` 是对 OpenClaw CLI 的封装。需要直接使用官方格式时，按以下顺序创建 workspace 并注册 Agent：
-
-```powershell
-$agentId = "temp-frontend-developer-1713992400000"
-$workspace = "$env:USERPROFILE\.openclaw\temp\$agentId"
-$agentDir = "$env:USERPROFILE\.openclaw\agents\$agentId\agent"
-New-Item -ItemType Directory -Path $workspace -Force | Out-Null
-New-Item -ItemType Directory -Path $agentDir -Force | Out-Null
-Copy-Item "$env:USERPROFILE\.openclaw\agency-agents\frontend-developer\AGENTS.md" "$workspace\AGENTS.md"
-
-openclaw agents add $agentId `
-  --workspace $workspace `
-  --agent-dir $agentDir `
-  --model "<model-id>" `
-  --non-interactive `
-  --json
-```
-
-删除时使用：
-
-```powershell
-openclaw agents delete $agentId --force --json
-```
-
 ### Agent Pack
 
 ```text
-$pack = execute_shell_command("powershell -File helpers/create_agent_pack.ps1 -TemplateFile templates/webapp-build.json")
+$pack = execute_shell_command("powershell -File helpers/create_agent_pack.ps1 -TemplateFile templates/webapp-build.json -TaskTitle ... -UserConfirmed")
 $manifest = parse_json($pack).manifest
 ```
 
 `create_agent_pack.ps1` 在创建前会验证：专家存在、数量不超过 5、依赖存在、无自依赖、无循环依赖。默认失败会自动回滚已创建的临时 Agent；只有 `-KeepOnFailure` 会保留失败现场。
 
-调度时按 `manifest.agents` 中的 `agentId` 分派任务。
+调度时按 `manifest.agents` 中的 `agentId` 和 `dependsOn` 顺序派发任务。
 
 ### 串行依赖
 
 ```text
-prd = chat_with_agent(product_manager_id, "出 PRD")
-ui = chat_with_agent(ui_designer_id, "基于 PRD 设计：\n{prd}")
-code = chat_with_agent(frontend_developer_id, "基于 PRD 和 UI 实现：\n{prd}\n{ui}")
+prd = chat_with_agent(product_manager_id, "Micro-SOP: 出 PRD")
+ui = chat_with_agent(ui_designer_id, "Micro-SOP: 基于 PRD 设计\n{prd}")
+code = chat_with_agent(frontend_developer_id, "Micro-SOP: 基于 PRD 和 UI 实现\n{prd}\n{ui}")
 ```
 
 ### 并行
@@ -190,7 +205,7 @@ merge(check(task_a), check(task_b))
 
 ---
 
-## Phase 4 补充：收尾策略
+## Phase 5 补充：收尾策略
 
 运行结束后必须询问或执行预先约定的收尾策略：
 
@@ -215,11 +230,12 @@ execute_shell_command("powershell -File helpers/cleanup_temp.ps1 -AgentId <id>")
 | 上限 | 同一任务最多创建 5 个临时 Agent |
 | 默认 | 不保留运行实例，保留模板 |
 | 失败恢复 | 创建 Pack 失败时默认清理已创建 Agent，除非指定 KeepOnFailure |
-| 路径 | 当前专家结构是 `<expert-name>/AGENTS.md`，不是旧式分类目录 `.md` 文件 |
+| 路径 | 当前专家结构是 `<expert-name>/AGENTS.md` |
 | 模型 | `create_temp_expert.ps1` 可自动匹配，也可用 `-Model` 覆盖 |
+| heartbeat | 临时 Agent 默认 heartbeat=0 |
 
 ---
 
-> 基础流程：🧠 01-core 主控框架
-> 质量总评：🔄 03-quality 质量飞轮
-> 技能沉淀：📚 04-skillcraft 技能锻造
+> 基础流程：01-core 主控框架
+> 质量总评：03-quality 质量飞轮
+> 技能沉淀：04-skillcraft 技能锻造

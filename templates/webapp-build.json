@@ -1,4 +1,5 @@
 {
+  "schemaVersion": "agent_pack.v1",
   "name": "webapp-build",
   "description": "从需求梳理到 UI、前端实现和验收的 Web App / Landing Page 构建流程。",
   "maxAgents": 5,
@@ -8,27 +9,62 @@
     {
       "name": "product-manager",
       "role": "提炼需求、约束、用户路径和验收标准。",
-      "dependsOn": []
+      "dependsOn": [],
+      "microSop": {
+        "context": "读取用户原始需求、现有项目说明和 Phase -1 假设快照。",
+        "deliverable": "输出 goal、nonGoals、deliverables、constraints、successCriteria 的简版 PRD。",
+        "negativeConstraints": ["不要扩展到第一版明确不做的功能", "不要创建新技术方案"],
+        "exitCondition": "PRD 足以让 UI 和前端专家继续执行。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 15, "heartbeat": 0 }
+      }
     },
     {
       "name": "ui-designer",
       "role": "基于需求输出信息架构、界面结构和视觉方向。",
-      "dependsOn": ["product-manager"]
+      "dependsOn": ["product-manager"],
+      "microSop": {
+        "context": "读取 product-manager 的 PRD 与成功标准。",
+        "deliverable": "输出页面结构、关键组件、交互状态和视觉约束。",
+        "negativeConstraints": ["不要做营销落地页式空泛描述", "不要超出 PRD 范围"],
+        "exitCondition": "前端专家可以据此直接实现首屏和核心流程。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 15, "heartbeat": 0 }
+      }
     },
     {
       "name": "frontend-developer",
       "role": "基于设计和需求实现响应式前端。",
-      "dependsOn": ["product-manager", "ui-designer"]
+      "dependsOn": ["product-manager", "ui-designer"],
+      "microSop": {
+        "context": "读取 PRD、UI 结构、现有代码入口和项目约束。",
+        "deliverable": "完成响应式前端实现并列出变更文件。",
+        "negativeConstraints": ["不要重写无关模块", "不要引入未使用依赖", "不要跳过本地运行检查"],
+        "exitCondition": "应用可启动，核心页面在桌面和移动端不溢出。",
+        "budget": { "tokenBudget": null, "maxRounds": 4, "timeoutMinutes": 45, "heartbeat": 0 }
+      }
     },
     {
       "name": "evidence-collector",
       "role": "验证桌面和移动端结果，收集截图、错误和可复现证据。",
-      "dependsOn": ["frontend-developer"]
+      "dependsOn": ["frontend-developer"],
+      "microSop": {
+        "context": "读取前端实现说明、启动命令和验收标准。",
+        "deliverable": "输出验证步骤、结果、截图路径或失败日志摘要。",
+        "negativeConstraints": ["不要修改业务代码", "不要把猜测当成验证结果"],
+        "exitCondition": "每条 successCriteria 都有通过/失败证据。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 25, "heartbeat": 0 }
+      }
     },
     {
       "name": "code-reviewer",
       "role": "做最终代码审查，指出高风险缺陷和缺失测试。",
-      "dependsOn": ["frontend-developer", "evidence-collector"]
+      "dependsOn": ["frontend-developer", "evidence-collector"],
+      "microSop": {
+        "context": "读取变更文件、验证证据和失败/通过记录。",
+        "deliverable": "输出按严重度排序的代码审查发现与剩余风险。",
+        "negativeConstraints": ["不要重复实现功能", "不要输出无证据的泛泛建议"],
+        "exitCondition": "所有高风险问题都有文件位置、原因和建议处理方式。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 20, "heartbeat": 0 }
+      }
     }
   ]
 }

@@ -6,6 +6,7 @@
   - destroy: delete temporary agents and workspaces
   - keep: leave temporary agents registered for follow-up work
   - archive-template: write a reusable clean template from the runtime manifest
+  The manifest is updated with lifecycle status, finalizeAction, and finalizedAt.
 .PARAMETER ManifestFile
   Path to ~/.openclaw/temp/packs/<PackId>/manifest.json.
 .PARAMETER PackId
@@ -97,6 +98,7 @@ try {
                 name = $_.name
                 role = $_.role
                 dependsOn = @(ConvertTo-Array -Value $_.dependsOn)
+                microSop = $_.microSop
             }
         }
 
@@ -111,12 +113,34 @@ try {
         $template | ConvertTo-Json -Depth 8 | Out-File -LiteralPath $templateFile -Encoding utf8
     }
 
+    $finalStatus = switch ($Action) {
+        "destroy" {
+            $hasError = $false
+            foreach ($item in @($results)) {
+                if (($item -is [System.Collections.IDictionary] -and $item.Contains("error")) -or
+                    ($item.PSObject.Properties.Name -contains "error")) {
+                    $hasError = $true
+                }
+            }
+            if ($hasError) { "cleanup_failed" } else { "destroyed" }
+        }
+        "keep" { "kept" }
+        "archive-template" { "template_archived" }
+    }
+
     $manifest | Add-Member -NotePropertyName finalizedAt -NotePropertyValue ([DateTimeOffset]::UtcNow.ToString("o")) -Force
     $manifest | Add-Member -NotePropertyName finalizeAction -NotePropertyValue $Action -Force
+    $manifest | Add-Member -NotePropertyName finalStatus -NotePropertyValue $finalStatus -Force
+    $manifest | Add-Member -NotePropertyName lifecycle -NotePropertyValue ([ordered]@{
+        status = $finalStatus
+        finalizeAction = $Action
+        finalizedAt = [DateTimeOffset]::UtcNow.ToString("o")
+    }) -Force
     $manifest | ConvertTo-Json -Depth 8 | Out-File -LiteralPath $resolvedManifest -Encoding utf8
 
     $output = [ordered]@{
         action = $Action
+        finalStatus = $finalStatus
         manifest = $resolvedManifest
         template = $templateFile
         results = @($results)

@@ -13,6 +13,14 @@
   Maximum allowed number of temporary agents. Defaults to 5.
 .PARAMETER Model
   Optional model override passed to every created expert.
+.PARAMETER TaskTitle
+  Optional human-readable task title recorded into the runtime manifest.
+.PARAMETER ExecutionMode
+  User-confirmed execution mode recorded into the runtime manifest.
+.PARAMETER SuccessCriteria
+  One or more physical success criteria from task_analysis.v1.
+.PARAMETER UserConfirmed
+  Records that the user explicitly confirmed the deployment plan before spawn.
 .PARAMETER KeepOnFailure
   Keep already-created agents if a later agent fails to create.
 .PARAMETER DryRun
@@ -37,6 +45,19 @@ param(
 
     [Parameter(Mandatory = $false)]
     [string]$Model = "",
+
+    [Parameter(Mandatory = $false)]
+    [string]$TaskTitle = "",
+
+    [Parameter(Mandatory = $false)]
+    [ValidateSet("unspecified", "step-by-step", "expert-hosted")]
+    [string]$ExecutionMode = "unspecified",
+
+    [Parameter(Mandatory = $false)]
+    [string[]]$SuccessCriteria = @(),
+
+    [Parameter(Mandatory = $false)]
+    [switch]$UserConfirmed,
 
     [Parameter(Mandatory = $false)]
     [switch]$KeepOnFailure,
@@ -80,6 +101,39 @@ function Get-DependsOn {
         return [object[]]@()
     }
     return [object[]]@($AgentSpec.dependsOn)
+}
+
+function Get-MicroSop {
+    param([Parameter(Mandatory = $true)]$AgentSpec)
+
+    $defaultBudget = [ordered]@{
+        tokenBudget = $null
+        maxRounds = $null
+        timeoutMinutes = $null
+        heartbeat = 0
+    }
+
+    if ($AgentSpec -is [string]) {
+        return [ordered]@{
+            context = ""
+            deliverable = ""
+            negativeConstraints = @()
+            exitCondition = ""
+            budget = $defaultBudget
+        }
+    }
+
+    if ($AgentSpec.PSObject.Properties.Name -contains "microSop") {
+        return $AgentSpec.microSop
+    }
+
+    return [ordered]@{
+        context = ""
+        deliverable = ""
+        negativeConstraints = @()
+        exitCondition = ""
+        budget = $defaultBudget
+    }
 }
 
 function Get-ExpertDefinitionPath {
@@ -207,6 +261,7 @@ try {
                 expertFile = Get-ExpertDefinitionPath -Name $expertName
                 role = if (($_ -isnot [string]) -and ($_.PSObject.Properties.Name -contains "role")) { [string]$_.role } else { "" }
                 dependsOn = @(Get-DependsOn -AgentSpec $_)
+                microSop = Get-MicroSop -AgentSpec $_
             }
         }
 
@@ -214,6 +269,10 @@ try {
             dryRun = $true
             packId = $PackId
             name = if ($template.name) { [string]$template.name } else { [IO.Path]::GetFileNameWithoutExtension($resolvedTemplate) }
+            taskTitle = $TaskTitle
+            executionMode = $ExecutionMode
+            userConfirmed = [bool]$UserConfirmed
+            successCriteria = @($SuccessCriteria)
             sourceTemplate = $resolvedTemplate
             agentCount = $planned.Count
             validation = $validation
@@ -264,7 +323,13 @@ try {
             expertFile = $createdAgent.expertFile
             role = if (($agentSpec -isnot [string]) -and ($agentSpec.PSObject.Properties.Name -contains "role")) { [string]$agentSpec.role } else { "" }
             dependsOn = @(Get-DependsOn -AgentSpec $agentSpec)
+            microSop = Get-MicroSop -AgentSpec $agentSpec
         }) | Out-Null
+    }
+
+    $confirmedAt = ""
+    if ($UserConfirmed) {
+        $confirmedAt = [DateTimeOffset]::UtcNow.ToString("o")
     }
 
     $manifest = [ordered]@{
@@ -273,9 +338,22 @@ try {
         description = if ($template.description) { [string]$template.description } else { "" }
         sourceTemplate = $resolvedTemplate
         createdAt = [DateTimeOffset]::UtcNow.ToString("o")
+        taskTitle = $TaskTitle
+        executionContract = [ordered]@{
+            schemaVersion = "task_analysis.v1"
+            executionMode = $ExecutionMode
+            successCriteria = @($SuccessCriteria)
+            userConfirmed = [bool]$UserConfirmed
+            confirmedAt = $confirmedAt
+        }
         maxAgents = $MaxAgents
         execution = if ($template.execution) { $template.execution } else { "" }
         cleanupPolicy = if ($template.cleanupPolicy) { [string]$template.cleanupPolicy } else { "ask" }
+        lifecycle = [ordered]@{
+            status = "created"
+            finalizeAction = ""
+            finalizedAt = ""
+        }
         validation = $validation
         agents = @($created)
     }
