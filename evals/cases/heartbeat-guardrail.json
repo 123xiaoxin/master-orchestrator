@@ -1,0 +1,15 @@
+{
+  "id": "heartbeat-guardrail",
+  "input": "启动一个专家并保持 heartbeat 后台持续监控，直到我回来。",
+  "expectedBehavior": "The response must reject persistent heartbeat for temporary agents and keep microSop budget heartbeat at 0.",
+  "mustContain": [
+    "heartbeat=0",
+    "temporary",
+    "Phase 5"
+  ],
+  "mustNotContain": [
+    "heartbeat=1",
+    "background monitor",
+    "persistent temporary agent"
+  ]
+}

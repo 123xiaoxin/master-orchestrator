@@ -36,6 +36,26 @@
 - [ ] 为 `schemas/*.json` 添加 CI 校验
 - [ ] 为用户自建 Agent 设计 `agent_spec.v1` 和胜任力评分机制
 
+## v5.4 draft 已落地
+
+- [x] Prompt 文件改为英文 ASCII 文件名
+- [x] 新增 `.editorconfig`
+- [x] 新增 `scripts/check_encoding.ps1`
+- [x] 格式化并强化 `schemas/*.json`
+- [x] 新增 `schemas/micro_sop.v1.schema.json`
+- [x] 所有模板 `microSop` 增加 `schemaVersion`
+- [x] 新增 `helpers/validate_task_analysis.ps1`
+- [x] 新增 4 个 task_analysis 示例
+- [x] 新增离线 Prompt eval 基础框架和 3 个 case
+
+## v5.5+ Backlog
+
+- [ ] Python CLI wrapper
+- [ ] 自动环境快照生成器
+- [ ] 真实 LLM eval
+- [ ] 用户自建代理体检器
+- [ ] PowerShell 核心逻辑逐步迁移 Python
+
 ## 暂不建议
 
 - [ ] 不建议把 `agency-agents` 作为 submodule 引入，除非要锁定具体版本

@@ -12,6 +12,7 @@
     "deliverables",
     "constraints",
     "successCriteria",
+    "environmentSnapshot",
     "capabilityMapping",
     "routingDecision"
   ],
@@ -29,54 +30,108 @@
     },
     "nonGoals": {
       "type": "array",
-      "items": { "type": "string" }
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "deliverables": {
       "type": "array",
       "minItems": 1,
-      "items": { "type": "string" }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "constraints": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "successCriteria": {
       "type": "array",
       "minItems": 1,
-      "items": { "type": "string" }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "environmentSnapshot": {
       "type": "object",
       "additionalProperties": true,
+      "required": [
+        "maxSpawnDepth",
+        "maxChildrenPerAgent",
+        "expertLibraryAvailable",
+        "userAgentsBypassed"
+      ],
       "properties": {
-        "maxSpawnDepth": { "type": ["integer", "null"] },
-        "maxChildrenPerAgent": { "type": ["integer", "null"] },
+        "maxSpawnDepth": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "maxChildrenPerAgent": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
         "availableModels": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         },
-        "expertLibraryAvailable": { "type": "boolean" },
-        "userAgentsBypassed": { "type": "boolean" }
+        "expertLibraryAvailable": {
+          "type": "boolean"
+        },
+        "userAgentsBypassed": {
+          "const": true
+        }
       }
     },
     "capabilityMapping": {
       "type": "array",
+      "minItems": 1,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["capability", "required", "matchedBy", "fallback"],
+        "required": [
+          "capability",
+          "required",
+          "matchedBy",
+          "fallback"
+        ],
         "properties": {
-          "capability": { "type": "string", "minLength": 1 },
-          "required": { "type": "boolean" },
-          "matchedBy": { "type": "string" },
-          "fallback": { "type": "string" }
+          "capability": {
+            "type": "string",
+            "minLength": 1
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "matchedBy": {
+            "type": "string"
+          },
+          "fallback": {
+            "type": "string"
+          }
         }
       }
     },
     "routingDecision": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["mode", "reason"],
+      "required": [
+        "mode",
+        "reason",
+        "agentCount"
+      ],
       "properties": {
         "mode": {
           "enum": [
@@ -88,12 +143,21 @@
             "downgrade_or_clarify"
           ]
         },
-        "reason": { "type": "string", "minLength": 1 },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
         "agentCount": {
           "type": "integer",
           "minimum": 0,
           "maximum": 5
         }
+      }
+    },
+    "microSops": {
+      "type": "array",
+      "items": {
+        "$ref": "micro_sop.v1.schema.json"
       }
     }
   }

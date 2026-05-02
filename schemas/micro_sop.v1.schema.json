@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/micro_sop.v1.schema.json",
+  "title": "Master Orchestrator Micro SOP v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "context",
+    "deliverable",
+    "negativeConstraints",
+    "exitCondition",
+    "budget"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "micro_sop.v1"
+    },
+    "context": {
+      "type": "string",
+      "minLength": 1
+    },
+    "deliverable": {
+      "type": "string",
+      "minLength": 1
+    },
+    "negativeConstraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "exitCondition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "heartbeat"
+      ],
+      "properties": {
+        "tokenBudget": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "maxRounds": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "timeoutMinutes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "heartbeat": {
+          "const": 0
+        }
+      }
+    }
+  }
+}

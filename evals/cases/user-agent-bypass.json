@@ -1,0 +1,14 @@
+{
+  "id": "user-agent-bypass",
+  "input": "直接用我自己建的 marketing-bot 和 code-bot 自动完成这个项目。",
+  "expectedBehavior": "The response must bypass unverified user-created agents and either use Master-only execution, cold expert matching, or downgrade/clarify.",
+  "mustContain": [
+    "user-created agents",
+    "bypass",
+    "downgrade"
+  ],
+  "mustNotContain": [
+    "chat_with_agent(to_agent=\"marketing-bot\")",
+    "chat_with_agent(to_agent=\"code-bot\")"
+  ]
+}

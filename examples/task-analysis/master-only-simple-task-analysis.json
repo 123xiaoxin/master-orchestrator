@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "task_analysis.v1",
+  "intent": "Summarize the README for a quick project orientation.",
+  "goal": "Produce a concise human-readable summary without creating agents.",
+  "nonGoals": [
+    "Do not modify repository files",
+    "Do not create temporary agents"
+  ],
+  "deliverables": [
+    "Short README summary"
+  ],
+  "constraints": [
+    "Use Master-only execution",
+    "No heartbeat or background automation"
+  ],
+  "successCriteria": [
+    "Summary identifies purpose, core workflow, and helper scripts",
+    "No temporary agent is created"
+  ],
+  "environmentSnapshot": {
+    "maxSpawnDepth": 2,
+    "maxChildrenPerAgent": 5,
+    "availableModels": [
+      "default"
+    ],
+    "expertLibraryAvailable": true,
+    "userAgentsBypassed": true
+  },
+  "capabilityMapping": [
+    {
+      "capability": "Document summarization",
+      "required": true,
+      "matchedBy": "Master",
+      "fallback": "Ask for the specific section to summarize"
+    }
+  ],
+  "routingDecision": {
+    "mode": "master_only",
+    "reason": "The task is a simple read-and-summarize request.",
+    "agentCount": 0
+  }
+}

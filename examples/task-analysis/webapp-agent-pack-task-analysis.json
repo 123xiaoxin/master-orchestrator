@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "task_analysis.v1",
+  "intent": "Build a responsive product landing page using an Agent Pack.",
+  "goal": "Deliver a working landing page with design, implementation, evidence, and review.",
+  "nonGoals": [
+    "Do not build authentication",
+    "Do not add a backend service",
+    "Do not create more than one task phase"
+  ],
+  "deliverables": [
+    "PRD summary",
+    "UI structure",
+    "Responsive frontend implementation",
+    "Validation evidence",
+    "Code review findings"
+  ],
+  "constraints": [
+    "Use at most five temporary agents",
+    "Keep temporary agents heartbeat=0",
+    "Archive reusable template only after Phase 5"
+  ],
+  "successCriteria": [
+    "The app starts without errors",
+    "Desktop and mobile views do not visibly overflow",
+    "Code review has no unresolved high-risk findings"
+  ],
+  "environmentSnapshot": {
+    "maxSpawnDepth": 2,
+    "maxChildrenPerAgent": 5,
+    "availableModels": [
+      "default"
+    ],
+    "expertLibraryAvailable": true,
+    "userAgentsBypassed": true
+  },
+  "capabilityMapping": [
+    {
+      "capability": "Requirements shaping",
+      "required": true,
+      "matchedBy": "product-manager",
+      "fallback": "Master writes a smaller PRD"
+    },
+    {
+      "capability": "Frontend implementation",
+      "required": true,
+      "matchedBy": "frontend-developer",
+      "fallback": "Split into a separate implementation phase"
+    },
+    {
+      "capability": "Independent evidence collection",
+      "required": true,
+      "matchedBy": "evidence-collector",
+      "fallback": "Master performs a manual verification pass"
+    }
+  ],
+  "routingDecision": {
+    "mode": "create_agent_pack",
+    "reason": "The request requires sequential product, design, implementation, evidence, and review roles.",
+    "agentCount": 5
+  },
+  "microSops": [
+    {
+      "schemaVersion": "micro_sop.v1",
+      "context": "Read user brief and existing project files.",
+      "deliverable": "PRD summary with goal, non-goals, and success criteria.",
+      "negativeConstraints": [
+        "Do not add backend scope",
+        "Do not alter credentials"
+      ],
+      "exitCondition": "PRD is sufficient for UI and frontend execution.",
+      "budget": {
+        "tokenBudget": null,
+        "maxRounds": 2,
+        "timeoutMinutes": 15,
+        "heartbeat": 0
+      }
+    },
+    {
+      "schemaVersion": "micro_sop.v1",
+      "context": "Read PRD summary.",
+      "deliverable": "UI structure and interaction states.",
+      "negativeConstraints": [
+        "Do not introduce unrelated screens"
+      ],
+      "exitCondition": "Frontend expert can implement from the structure.",
+      "budget": {
+        "tokenBudget": null,
+        "maxRounds": 2,
+        "timeoutMinutes": 15,
+        "heartbeat": 0
+      }
+    },
+    {
+      "schemaVersion": "micro_sop.v1",
+      "context": "Read PRD, UI structure, and existing frontend entry points.",
+      "deliverable": "Responsive frontend implementation.",
+      "negativeConstraints": [
+        "Do not rewrite unrelated modules",
+        "Do not skip local run checks"
+      ],
+      "exitCondition": "App starts and core view renders on desktop and mobile.",
+      "budget": {
+        "tokenBudget": null,
+        "maxRounds": 4,
+        "timeoutMinutes": 45,
+        "heartbeat": 0
+      }
+    },
+    {
+      "schemaVersion": "micro_sop.v1",
+      "context": "Read implementation notes and success criteria.",
+      "deliverable": "Validation evidence with pass/fail notes.",
+      "negativeConstraints": [
+        "Do not modify production code"
+      ],
+      "exitCondition": "Each success criterion has evidence.",
+      "budget": {
+        "tokenBudget": null,
+        "maxRounds": 2,
+        "timeoutMinutes": 25,
+        "heartbeat": 0
+      }
+    },
+    {
+      "schemaVersion": "micro_sop.v1",
+      "context": "Read changed files and validation evidence.",
+      "deliverable": "Code review findings ordered by risk.",
+      "negativeConstraints": [
+        "Do not re-implement the feature",
+        "Do not give generic feedback without evidence"
+      ],
+      "exitCondition": "High-risk findings are specific and actionable.",
+      "budget": {
+        "tokenBudget": null,
+        "maxRounds": 2,
+        "timeoutMinutes": 20,
+        "heartbeat": 0
+      }
+    }
+  ]
+}

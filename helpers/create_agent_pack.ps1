@@ -103,6 +103,14 @@ function Get-DependsOn {
     return [object[]]@($AgentSpec.dependsOn)
 }
 
+function Has-Property {
+    param(
+        [Parameter(Mandatory = $true)]$Object,
+        [Parameter(Mandatory = $true)][string]$Name
+    )
+    return ($null -ne $Object -and $Object.PSObject.Properties.Name -contains $Name)
+}
+
 function Get-MicroSop {
     param([Parameter(Mandatory = $true)]$AgentSpec)
 
@@ -115,6 +123,7 @@ function Get-MicroSop {
 
     if ($AgentSpec -is [string]) {
         return [ordered]@{
+            schemaVersion = "micro_sop.v1"
             context = ""
             deliverable = ""
             negativeConstraints = @()
@@ -128,11 +137,42 @@ function Get-MicroSop {
     }
 
     return [ordered]@{
+        schemaVersion = "micro_sop.v1"
         context = ""
         deliverable = ""
         negativeConstraints = @()
         exitCondition = ""
         budget = $defaultBudget
+    }
+}
+
+function Test-MicroSopSpec {
+    param(
+        [Parameter(Mandatory = $true)]$AgentSpec,
+        [Parameter(Mandatory = $true)][string]$Name
+    )
+
+    if ($AgentSpec -is [string]) {
+        throw "Template agent '$Name' must use object form with a microSop in v5.4."
+    }
+    if (-not (Has-Property -Object $AgentSpec -Name "microSop")) {
+        throw "Template agent '$Name' must define microSop."
+    }
+
+    $microSop = $AgentSpec.microSop
+    if (-not (Has-Property -Object $microSop -Name "schemaVersion") -or $microSop.schemaVersion -ne "micro_sop.v1") {
+        throw "Template agent '$Name' microSop.schemaVersion must be micro_sop.v1."
+    }
+    foreach ($field in @("context", "deliverable", "exitCondition")) {
+        if (-not (Has-Property -Object $microSop -Name $field) -or [string]::IsNullOrWhiteSpace([string]$microSop.$field)) {
+            throw "Template agent '$Name' microSop.$field must be a non-empty string."
+        }
+    }
+    if (-not (Has-Property -Object $microSop -Name "negativeConstraints") -or @($microSop.negativeConstraints).Count -lt 1) {
+        throw "Template agent '$Name' microSop.negativeConstraints must contain at least one item."
+    }
+    if (-not (Has-Property -Object $microSop -Name "budget") -or -not (Has-Property -Object $microSop.budget -Name "heartbeat") -or [int]$microSop.budget.heartbeat -ne 0) {
+        throw "Template agent '$Name' microSop.budget.heartbeat must be 0."
     }
 }
 
@@ -229,6 +269,7 @@ function Validate-AgentPack {
             }
         }
         $graph[$name] = $deps
+        Test-MicroSopSpec -AgentSpec $agentSpec -Name $name
     }
 
     Test-DependencyCycle -Graph $graph -Names ([string[]]$names.ToArray())

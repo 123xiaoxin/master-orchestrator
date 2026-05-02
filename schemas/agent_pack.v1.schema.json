@@ -4,10 +4,17 @@
   "title": "Master Orchestrator Agent Pack v1",
   "type": "object",
   "additionalProperties": true,
-  "required": ["name", "maxAgents", "execution", "cleanupPolicy", "agents"],
+  "required": [
+    "schemaVersion",
+    "name",
+    "maxAgents",
+    "execution",
+    "cleanupPolicy",
+    "agents"
+  ],
   "properties": {
     "schemaVersion": {
-      "enum": ["agent_pack.v1"]
+      "const": "agent_pack.v1"
     },
     "name": {
       "type": "string",
@@ -25,7 +32,12 @@
       "type": "string"
     },
     "cleanupPolicy": {
-      "enum": ["ask", "destroy", "keep", "archive-template"]
+      "enum": [
+        "ask",
+        "destroy",
+        "keep",
+        "archive-template"
+      ]
     },
     "agents": {
       "type": "array",
@@ -34,7 +46,12 @@
       "items": {
         "type": "object",
         "additionalProperties": true,
-        "required": ["name", "role", "dependsOn"],
+        "required": [
+          "name",
+          "role",
+          "dependsOn",
+          "microSop"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -45,31 +62,12 @@
           },
           "dependsOn": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           },
           "microSop": {
-            "type": "object",
-            "additionalProperties": true,
-            "required": ["context", "deliverable", "negativeConstraints", "exitCondition", "budget"],
-            "properties": {
-              "context": { "type": "string" },
-              "deliverable": { "type": "string" },
-              "negativeConstraints": {
-                "type": "array",
-                "items": { "type": "string" }
-              },
-              "exitCondition": { "type": "string" },
-              "budget": {
-                "type": "object",
-                "additionalProperties": true,
-                "properties": {
-                  "tokenBudget": { "type": ["integer", "null"], "minimum": 0 },
-                  "maxRounds": { "type": ["integer", "null"], "minimum": 1 },
-                  "timeoutMinutes": { "type": ["integer", "null"], "minimum": 1 },
-                  "heartbeat": { "const": 0 }
-                }
-              }
-            }
+            "$ref": "micro_sop.v1.schema.json"
           }
         }
       }

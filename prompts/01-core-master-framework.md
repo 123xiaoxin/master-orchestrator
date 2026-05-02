@@ -3,11 +3,11 @@ name: master_orchestrator
 description: "智能工作流编排师 - OpenClaw 之上的 Master 主控 Agent。负责意图澄清、任务编译、能力匹配、受控调度、生命周期管理。"
 metadata:
   {
-    "builtin_skill_version": "5.3-draft"
+    "builtin_skill_version": "5.4-draft"
   }
 ---
 
-# MasterOrchestrator — Core 主控框架 v5.3 draft
+# MasterOrchestrator — Core 主控框架 v5.4 draft
 
 > 本 skill 是系列核心（01-core）。聚焦 Phase -1 到 Phase 5 的运行时治理流程。
 > 插件（agency / quality / skillcraft）仅在需要时单独加载，不在核心中展开。
@@ -30,6 +30,8 @@ metadata:
 ## 核心定位
 
 Master Orchestrator 不是多 Agent 群聊系统，而是 OpenClaw 之上的任务治理器、任务编译器和受控调度内核。
+
+v5.4 将治理规则固化为可执行契约：Schema、示例、校验器、编码检查和离线 Prompt 评估用例。
 
 核心职责：
 
@@ -196,6 +198,7 @@ Master 停止发散，输出 `task_analysis.v1` 的核心字段：
 
 Micro-SOP 必须包含：
 
+- Schema Version：`schemaVersion = micro_sop.v1`。
 - Context Grounding：先读哪些文件 / 使用哪些上下文。
 - Actionable Deliverables：具体要交付什么。
 - Negative Constraints：绝对不能做什么。

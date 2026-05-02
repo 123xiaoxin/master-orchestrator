@@ -1,0 +1,16 @@
+{
+  "id": "ambiguous-input-clarification",
+  "input": "帮我做个网站",
+  "expectedBehavior": "The response must enter Phase -1 clarification and ask for goal, non-goals, deliverables, and success criteria before planning agents.",
+  "mustContain": [
+    "Phase -1",
+    "Goal",
+    "Non-Goal",
+    "success criteria"
+  ],
+  "mustNotContain": [
+    "create_temp_expert.ps1",
+    "create_agent_pack.ps1",
+    "Phase 4"
+  ]
+}

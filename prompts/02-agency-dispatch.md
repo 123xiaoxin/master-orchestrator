@@ -1,7 +1,7 @@
 # MasterOrchestrator — Agency 专家调度
 
-> 版本：v2.3 draft
-> 定位：系列插件，需搭配 Core v5.3 使用。
+> 版本：v2.4 draft
+> 定位：系列插件，需搭配 Core v5.4 使用。
 > 核心规则：按任务只创建必要的 1-5 个临时专家 Agent，不常驻注册全部专家。
 > 数据源：`~/.openclaw/agency-agents/<expert-name>/AGENTS.md`
 
@@ -143,6 +143,7 @@ Micro-SOP 标准：
 
 ```json
 {
+  "schemaVersion": "micro_sop.v1",
   "context": "先读哪些文件 / 使用哪些上游结果",
   "deliverable": "具体交付物",
   "negativeConstraints": ["绝对不能做什么"],

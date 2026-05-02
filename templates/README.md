@@ -19,6 +19,7 @@ Agent Pack 模板用于保存一组可复用的专家组合。模板只引用专
 |------|------|
 | `templates/*.json` | 通用 Agent Pack 模板 |
 | `schemas/agent_pack.v1.schema.json` | 模板结构参考 |
+| `schemas/micro_sop.v1.schema.json` | Micro-SOP 结构参考 |
 
 ## 字段
 
@@ -40,6 +41,7 @@ Agent Pack 模板用于保存一组可复用的专家组合。模板只引用专
   "role": "实现前端页面",
   "dependsOn": ["ui-designer"],
   "microSop": {
+    "schemaVersion": "micro_sop.v1",
     "context": "先读哪些文件 / 使用哪些上游结果",
     "deliverable": "具体交付物",
     "negativeConstraints": ["绝对不能做什么"],

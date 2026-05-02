@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "task_analysis.v1",
+  "intent": "Package and verify a Windows OpenClaw helper release.",
+  "goal": "Produce a reproducible Windows packaging plan with verification and rollback steps.",
+  "nonGoals": [
+    "Do not publish binaries automatically",
+    "Do not modify user credentials or channel bindings"
+  ],
+  "deliverables": [
+    "Windows packaging checklist",
+    "PowerShell verification commands",
+    "Rollback notes"
+  ],
+  "constraints": [
+    "Use OpenClaw CLI only through documented commands",
+    "Keep temporary agents short-lived",
+    "Use heartbeat=0 for delegated work"
+  ],
+  "successCriteria": [
+    "Packaging commands are explicit and reproducible",
+    "Verification covers install, model status, and cleanup",
+    "Rollback path is documented"
+  ],
+  "environmentSnapshot": {
+    "maxSpawnDepth": 2,
+    "maxChildrenPerAgent": 5,
+    "availableModels": [
+      "default"
+    ],
+    "expertLibraryAvailable": true,
+    "userAgentsBypassed": true
+  },
+  "capabilityMapping": [
+    {
+      "capability": "Windows release packaging",
+      "required": true,
+      "matchedBy": "devops-automator",
+      "fallback": "Master creates a manual checklist if the expert is unavailable"
+    },
+    {
+      "capability": "PowerShell validation",
+      "required": true,
+      "matchedBy": "infrastructure-maintainer",
+      "fallback": "Run only static command review"
+    }
+  ],
+  "routingDecision": {
+    "mode": "create_agent_pack",
+    "reason": "The task needs packaging and verification roles with clean separation.",
+    "agentCount": 2
+  },
+  "microSops": [
+    {
+      "schemaVersion": "micro_sop.v1",
+      "context": "Read README.md, helpers/*.ps1, and the release target notes.",
+      "deliverable": "Packaging checklist with exact commands and expected outputs.",
+      "negativeConstraints": [
+        "Do not publish artifacts",
+        "Do not alter credentials"
+      ],
+      "exitCondition": "Checklist covers build, verify, and rollback.",
+      "budget": {
+        "tokenBudget": null,
+        "maxRounds": 3,
+        "timeoutMinutes": 30,
+        "heartbeat": 0
+      }
+    },
+    {
+      "schemaVersion": "micro_sop.v1",
+      "context": "Read packaging checklist and helper script names.",
+      "deliverable": "PowerShell validation commands and failure interpretation.",
+      "negativeConstraints": [
+        "Do not execute destructive cleanup",
+        "Do not assume network access"
+      ],
+      "exitCondition": "Every success criterion has a verification command.",
+      "budget": {
+        "tokenBudget": null,
+        "maxRounds": 2,
+        "timeoutMinutes": 20,
+        "heartbeat": 0
+      }
+    }
+  ]
+}

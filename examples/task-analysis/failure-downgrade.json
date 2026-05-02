@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "task_analysis.v1",
+  "intent": "Handle a request that needs an unavailable compliance expert.",
+  "goal": "Return a safe downgraded plan instead of inventing an expert.",
+  "nonGoals": [
+    "Do not create a fake compliance expert",
+    "Do not claim legal approval"
+  ],
+  "deliverables": [
+    "Downgrade explanation",
+    "User options for scope reduction or expert installation"
+  ],
+  "constraints": [
+    "No unverified user-created agents",
+    "No invented capabilities"
+  ],
+  "successCriteria": [
+    "The missing capability is explicit",
+    "At least one fallback path is offered",
+    "No temporary agent is created"
+  ],
+  "environmentSnapshot": {
+    "maxSpawnDepth": 2,
+    "maxChildrenPerAgent": 5,
+    "availableModels": [
+      "default"
+    ],
+    "expertLibraryAvailable": true,
+    "userAgentsBypassed": true
+  },
+  "capabilityMapping": [
+    {
+      "capability": "Regulated legal compliance signoff",
+      "required": true,
+      "matchedBy": "",
+      "fallback": "Ask the user to install or authorize a compliance expert, or reduce scope to a non-legal checklist"
+    }
+  ],
+  "routingDecision": {
+    "mode": "downgrade_or_clarify",
+    "reason": "A required capability is missing and must not be fabricated.",
+    "agentCount": 0
+  }
+}

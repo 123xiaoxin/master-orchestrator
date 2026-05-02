@@ -1,4 +1,4 @@
-# Master Orchestrator (v5.3 draft)
+# Master Orchestrator (v5.4 draft)
 
 > 为 OpenClaw 打造的微内核运行时治理器。它不是多 Agent 群聊系统，而是把模糊用户意图编译成安全、可执行、可追溯调度蓝图的 Master 主控层。
 
@@ -8,6 +8,10 @@
 ## Current Positioning
 
 Master Orchestrator 的现行阶段目标是建立调度纪律，而不是追求 Agent 数量。
+
+**v5.4 turns Master Orchestrator's governance rules into enforceable contracts: schemas, examples, validators, encoding checks, and offline prompt eval cases.**
+
+**v5.4 将 Master Orchestrator 的治理规则固化为可执行契约：Schema、示例、校验器、编码检查和离线 Prompt 评估用例。**
 
 - **Master-First**: 默认由主代理执行。只有任务确实需要专业能力、独立验证、并行分工或受控隔离时，才创建临时 Agent / Sub-agent。
 - **Analysis as Compilation**: 主控先把自然语言请求编译成 `task_analysis.v1` 和 `agent_pack.v1`，再决定路由。
@@ -22,26 +26,35 @@ master-orchestrator/
 ├── README.md
 ├── TODO.md
 ├── prompts/
-│   ├── 🧠 01-core 主控框架.md
-│   ├── 🎭 02-agency 专家调度.md
-│   ├── 🔄 03-quality 质量飞轮.md
-│   └── 📚 04-skillcraft 技能锻造.md
+│   ├── 01-core-master-framework.md
+│   ├── 02-agency-dispatch.md
+│   ├── 03-quality-flywheel.md
+│   └── 04-skillcraft.md
 ├── helpers/
 │   ├── check_env.ps1
 │   ├── validate_templates.ps1
+│   ├── validate_task_analysis.ps1
 │   ├── create_temp_expert.ps1
 │   ├── cleanup_temp.ps1
 │   ├── create_agent_pack.ps1
 │   └── finalize_agent_pack.ps1
+├── scripts/
+│   └── check_encoding.ps1
 ├── schemas/
 │   ├── task_analysis.v1.schema.json
-│   └── agent_pack.v1.schema.json
+│   ├── agent_pack.v1.schema.json
+│   └── micro_sop.v1.schema.json
 ├── templates/
 │   ├── README.md
 │   ├── webapp-build.json
 │   └── content-campaign.json
 ├── examples/
-│   └── web-landing-page.md
+│   ├── web-landing-page.md
+│   └── task-analysis/
+├── evals/
+│   ├── README.md
+│   ├── run_prompt_evals.ps1
+│   └── cases/
 └── LICENSE
 ```
 
@@ -84,6 +97,23 @@ master-orchestrator/
 - `negativeConstraints`: 禁止操作
 - `exitCondition`: 何时停止
 - `budget`: `tokenBudget`、`maxRounds`、`timeoutMinutes`、`heartbeat: 0`
+
+### `micro_sop.v1`
+
+`schemas/micro_sop.v1.schema.json` 固化每个临时 Agent/Sub-agent 的派工契约。所有 `microSop` 必须声明 `schemaVersion: "micro_sop.v1"`，并保持 `budget.heartbeat: 0`。
+
+## v5.4 Validation Layer
+
+v5.4 增加发布前可执行检查：
+
+```powershell
+.\scripts\check_encoding.ps1
+.\helpers\validate_templates.ps1
+.\helpers\validate_task_analysis.ps1 -File .\examples\task-analysis\*.json
+.\evals\run_prompt_evals.ps1
+```
+
+这些检查只验证契约、示例和离线 eval case，不调用真实 LLM，不生成自动环境快照，也不启动 Python CLI。
 
 ## Agent vs Sub-agent
 
@@ -198,10 +228,12 @@ $pack | ConvertFrom-Json
 |------|------|
 | `helpers/check_env.ps1` | Phase 0 只读环境检查，输出专家、模板、OpenClaw agents 和模型状态 JSON |
 | `helpers/validate_templates.ps1` | 批量 dry-run 校验所有 Agent Pack 模板 |
+| `helpers/validate_task_analysis.ps1` | 校验 `task_analysis.v1` 示例和治理语义 |
 | `helpers/create_temp_expert.ps1` | 按专家名创建单个临时 Agent |
 | `helpers/cleanup_temp.ps1` | 安全删除单个 `temp-*` Agent、workspace 和 agent state |
 | `helpers/create_agent_pack.ps1` | 按模板创建 1-5 个临时 Agent，并写入执行契约 manifest |
 | `helpers/finalize_agent_pack.ps1` | 对一个 Agent Pack 执行 `destroy`、`keep` 或 `archive-template` 并记录最终状态 |
+| `scripts/check_encoding.ps1` | 检查 UTF-8 无 BOM 和 ASCII prompt 文件名 |
 
 Phase 0 推荐先运行：
 

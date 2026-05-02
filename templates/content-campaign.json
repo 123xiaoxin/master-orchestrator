@@ -11,6 +11,7 @@
       "role": "识别主题、受众和竞品内容机会。",
       "dependsOn": [],
       "microSop": {
+        "schemaVersion": "micro_sop.v1",
         "context": "读取主题、目标受众、渠道约束和现有素材。",
         "deliverable": "输出受众洞察、竞品角度、内容机会和风险提醒。",
         "negativeConstraints": ["不要编造数据来源", "不要直接产出最终文案"],
@@ -23,6 +24,7 @@
       "role": "产出主文案、标题和多渠道改写素材。",
       "dependsOn": ["trend-researcher"],
       "microSop": {
+        "schemaVersion": "micro_sop.v1",
         "context": "读取研究结论、目标受众和渠道要求。",
         "deliverable": "输出主文案、标题候选和渠道化改写素材。",
         "negativeConstraints": ["不要脱离研究结论", "不要使用未授权品牌承诺"],
@@ -35,6 +37,7 @@
       "role": "优化关键词、结构和可搜索性。",
       "dependsOn": ["content-creator"],
       "microSop": {
+        "schemaVersion": "micro_sop.v1",
         "context": "读取主文案、标题候选和目标渠道。",
         "deliverable": "输出关键词建议、标题结构调整和搜索可见性建议。",
         "negativeConstraints": ["不要牺牲内容准确性堆砌关键词", "不要引入无法验证的搜索数据"],
@@ -47,6 +50,7 @@
       "role": "定义指标、复盘模板和后续优化建议。",
       "dependsOn": ["seo-specialist"],
       "microSop": {
+        "schemaVersion": "micro_sop.v1",
         "context": "读取最终内容方向、SEO 建议和渠道目标。",
         "deliverable": "输出指标表、复盘模板和下一轮优化建议。",
         "negativeConstraints": ["不要把无法采集的指标列为核心指标", "不要修改最终文案"],
