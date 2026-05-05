@@ -19,7 +19,7 @@
 
 ---
 
-## 1. Repository Execution Mode（仓库只读执行模式）
+## 1. Repository Execution Mode（仓库授权执行模式）
 
 **触发**：用户要求操作本地 Git 仓库时（无论是否在 master-orchestrator 仓库本身）。
 
@@ -111,9 +111,9 @@ git status --short：[status]
 ```
 验证命令 -> 检查结果
   ├─ 通过 -> 汇报完成
-  └─ 失败 -> 进入 Repair
-              ├─ 可修复 -> 执行修复 -> 重新验证
-              ├─ 不可修复 -> 汇报失败原因和风险
+  └─ 失败 -> 进入 Repair（最多 2 轮）
+              ├─ 可修复（轮次 < 2） -> 执行修复 -> 重新验证
+              ├─ 轮次已达 2 -> 汇报失败原因和风险，停止
               └─ 需要用户决策 -> 停止，等待明确指示
 ```
 
@@ -156,6 +156,19 @@ git status --short：[status]
 | `repaired` | 修复后重新验证通过 |
 | `blocked` | 等待依赖项完成 |
 | `completed` | 所有状态已resolved，任务可以推进 |
+
+### 状态转移规则
+
+| 当前状态 | 事件 | 下一状态 |
+|----------|------|----------|
+| `pending` | 开始执行 | `in_progress` |
+| `in_progress` | 子任务完成 | `verified` |
+| `in_progress` | 验证失败 | `failed` |
+| `in_progress` | 等待依赖 | `blocked` |
+| `blocked` | 依赖完成 | `in_progress` |
+| `failed` | 修复成功 | `repaired` |
+| `repaired` | 重新验证通过 | `verified` |
+| `verified` | 所有依赖完成 | `completed` |
 
 ### 执行规则
 
