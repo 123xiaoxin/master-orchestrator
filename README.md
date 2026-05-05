@@ -11,7 +11,14 @@ Master Orchestrator 的现行阶段目标是建立调度纪律，而不是追求
 
 **v5.4 turns Master Orchestrator's governance rules into enforceable contracts: schemas, examples, validators, encoding checks, and offline prompt eval cases.**
 
-**v5.5 adds an Agent Capability Imitation Layer that codifies mature Agent engineering habits: Repository Execution Mode, Context Retrieval Mode, Conservative Editing Mode, Verify/Repair Loop, Phase 4 Internal State Machine, and Final Engineering Report.**
+**v5.5 adds an Agent Capability Imitation Layer that codifies mature Agent engineering habits:**
+
+- Repository Execution Mode
+- Context Retrieval Mode
+- Conservative Editing Mode
+- Verify/Repair Loop
+- Phase 4 Internal State Machine
+- Final Engineering Report
 
 **v5.4 将 Master Orchestrator 的治理规则固化为可执行契约：Schema、示例、校验器、编码检查和离线 Prompt 评估用例。**
 
