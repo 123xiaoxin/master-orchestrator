@@ -1,4 +1,4 @@
-# Master Orchestrator (v5.4 draft)
+# Master Orchestrator (v5.4 / v5.5-phase-1)
 
 > 为 OpenClaw 打造的微内核运行时治理器。它不是多 Agent 群聊系统，而是把模糊用户意图编译成安全、可执行、可追溯调度蓝图的 Master 主控层。
 
@@ -10,6 +10,8 @@
 Master Orchestrator 的现行阶段目标是建立调度纪律，而不是追求 Agent 数量。
 
 **v5.4 turns Master Orchestrator's governance rules into enforceable contracts: schemas, examples, validators, encoding checks, and offline prompt eval cases.**
+
+**v5.5 adds an Agent Capability Imitation Layer that codifies mature Agent engineering habits: Repository Execution Mode, Context Retrieval Mode, Conservative Editing Mode, Verify/Repair Loop, Phase 4 Internal State Machine, and Final Engineering Report.**
 
 **v5.4 将 Master Orchestrator 的治理规则固化为可执行契约：Schema、示例、校验器、编码检查和离线 Prompt 评估用例。**
 
@@ -29,7 +31,8 @@ master-orchestrator/
 │   ├── 01-core-master-framework.md
 │   ├── 02-agency-dispatch.md
 │   ├── 03-quality-flywheel.md
-│   └── 04-skillcraft.md
+│   ├── 04-skillcraft.md
+│   └── 05-agent-capability-imitation.md
 ├── helpers/
 │   ├── check_env.ps1
 │   ├── validate_templates.ps1
@@ -114,6 +117,29 @@ v5.4 增加发布前可执行检查：
 ```
 
 这些检查只验证契约、示例和离线 eval case，不调用真实 LLM，不生成自动环境快照，也不启动 Python CLI。
+
+## v5.5 Extension Layer
+
+v5.5 adds `prompts/05-agent-capability-imitation.md` — an Agent Capability Imitation Layer that runs alongside the v5.4 execution engine without modifying it.
+
+### v5.5 Capabilities
+
+| 模式 | 说明 |
+|------|------|
+| Repository Execution Mode | 对仓库操作前先只读检查，写操作需用户明确授权 |
+| Context Retrieval Mode | 修改前先读文件、理解上下文，不猜 |
+| Conservative Editing Mode | 大范围修改收敛为最小改动，不破坏 v5.4 结构 |
+| Verify / Repair Loop | 验证失败必须进入 repair 或明确报告，不得声称完成 |
+| Phase 4 Internal State Machine | Phase 4 期间追踪子任务状态，明确汇报 |
+| Final Engineering Report | 每个任务结束后输出标准化工程报告 |
+
+### v5.5 Eval Cases
+
+```powershell
+.\evals\run_prompt_evals.ps1
+```
+
+Cases: `repository-readonly`, `conservative-edit`, `verify-repair-loop`
 
 ## Agent vs Sub-agent
 

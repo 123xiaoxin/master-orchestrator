@@ -48,6 +48,24 @@
 - [x] 新增 4 个 task_analysis 示例
 - [x] 新增离线 Prompt eval 基础框架和 3 个 case
 
+## v5.5 Phase 1 — Agent Capability Imitation Foundation (已落地)
+
+- [x] 新增 `prompts/05-agent-capability-imitation.md`：固化 6 个成熟 Agent 执行习惯
+- [x] 新增 `evals/cases/repository-readonly.json`：仓库只读检查 guardrail
+- [x] 新增 `evals/cases/conservative-edit.json`：最小改动 guardrail
+- [x] 新增 `evals/cases/verify-repair-loop.json`：验证失败必须 repair 或报告失败
+- [x] README.md 新增 v5.5 扩展层说明
+- [x] TODO.md 新增 v5.5 Phase 1 计划
+
+## v5.5 Phase 2+ Backlog
+
+- [ ] `schemas/execution_mode.v1.schema.json`：固化 execution mode 契约
+- [ ] `schemas/verify_repair_loop.v1.schema.json`：固化 verify/repair 循环契约
+- [ ] `schemas/state_machine.v1.schema.json`：Phase 4 内部状态机契约
+- [ ] `helpers/validate_execution_modes.ps1`：执行模式校验脚本
+- [ ] `helpers/run_verify_repair_loop.ps1`：Verify/Repair 循环运行脚本
+- [ ] `prompts/06-execution-mode-router.md`：根据 task_analysis 自动路由执行模式（扩展 02-agency）
+
 ## v5.5+ Backlog
 
 - [ ] Python CLI wrapper
