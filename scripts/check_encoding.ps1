@@ -3,7 +3,7 @@
   Check repository text files for UTF-8 without BOM and prompt filename safety.
 .DESCRIPTION
   v5.4 guardrail: prompt filenames must be ASCII-only, and tracked text files
-  under prompts, schemas, examples, helpers, scripts, evals, docs, and templates must
+  under prompts, schemas, examples, helpers, scripts, evals, docs, skills, and templates must
   decode as UTF-8 without a byte-order mark.
 .PARAMETER Path
   Repository root. Defaults to the parent directory of this script.
@@ -41,7 +41,7 @@ try {
     $issues = New-Object System.Collections.Generic.List[object]
     $checked = 0
 
-    $relativeRoots = @("prompts", "schemas", "examples", "helpers", "scripts", "evals", "docs", "templates")
+    $relativeRoots = @("prompts", "schemas", "examples", "helpers", "scripts", "evals", "docs", "skills", "templates")
     $extensions = @(".md", ".json", ".ps1")
     $utf8Strict = New-Object System.Text.UTF8Encoding($false, $true)
 
