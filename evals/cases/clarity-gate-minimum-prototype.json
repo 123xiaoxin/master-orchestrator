@@ -1,0 +1,16 @@
+{
+  "id": "clarity-gate-minimum-prototype",
+  "input": "I want a tool that helps people turn vague ideas into tasks AI can execute.",
+  "expectedBehavior": "The response should judge execution clarity, treat 75%-80% as a heuristic range, avoid unnecessary Agents, and produce a minimum prototype when direction is clear enough.",
+  "mustContain": [
+    "75%",
+    "minimum prototype",
+    "execution contract",
+    "validation"
+  ],
+  "mustNotContain": [
+    "create_agent_pack.ps1",
+    "create_temp_expert.ps1",
+    "I need 3-5 rounds"
+  ]
+}

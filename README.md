@@ -50,17 +50,21 @@ master-orchestrator/
 │   └── finalize_agent_pack.ps1
 ├── scripts/
 │   └── check_encoding.ps1
+├── docs/
+│   └── Master-Skill-v0.1-Clarity-Gate/
 ├── schemas/
 │   ├── task_analysis.v1.schema.json
 │   ├── agent_pack.v1.schema.json
-│   └── micro_sop.v1.schema.json
+│   ├── micro_sop.v1.schema.json
+│   └── requirement_clarity.v1.schema.json
 ├── templates/
 │   ├── README.md
 │   ├── webapp-build.json
 │   └── content-campaign.json
 ├── examples/
 │   ├── web-landing-page.md
-│   └── task-analysis/
+│   ├── task-analysis/
+│   └── requirement_clarity.sample.json
 ├── evals/
 │   ├── README.md
 │   ├── run_prompt_evals.ps1
@@ -74,7 +78,7 @@ master-orchestrator/
 
 | Phase | 名称 | 核心动作 | 产物 / 断点 |
 |-------|------|---------|-------------|
-| -1 | 需求澄清 | 模糊请求进入 3-5 轮漏斗式追问；丰满请求直接放行 | 当前假设快照 |
+| -1 | 清晰度闸门 | 以执行清晰度判断澄清、执行或最小雏形验证；不使用固定澄清轮数 | 当前假设快照 / 最小雏形 |
 | 0 | 环境快照 | 只读检查模型、工具权限、专家库、模板、OpenClaw agents | `check_env.ps1` JSON |
 | 1 | 剖面与转码 | 输出 Intent、Deliverables、Constraints、Success Criteria、Non-Goals | `task_analysis.v1` |
 | 2 | 能力匹配 | 在冷专家库硬匹配能力；缺失则降级协商，不捏造专家 | capability mapping |
@@ -112,6 +116,10 @@ master-orchestrator/
 
 `schemas/micro_sop.v1.schema.json` 固化每个临时 Agent/Sub-agent 的派工契约。所有 `microSop` 必须声明 `schemaVersion: "micro_sop.v1"`，并保持 `budget.heartbeat: 0`。
 
+### `requirement_clarity.v1`
+
+`schemas/requirement_clarity.v1.schema.json` 固化 Master Skill v0.1 的清晰度闸门判断：表面需求、真实目标、关键变量、缺失信息、最小雏形、执行清晰度分数、决策、执行契约、验证点和风险边界。
+
 ## v5.4 Validation Layer
 
 v5.4 增加发布前可执行检查：
@@ -124,6 +132,17 @@ v5.4 增加发布前可执行检查：
 ```
 
 这些检查只验证契约、示例和离线 eval case，不调用真实 LLM，不生成自动环境快照，也不启动 Python CLI。
+
+## Master Skill v0.1 Clarity Gate
+
+新增行业无关的 Master Skill v0.1 清晰度闸门文档：
+
+- [Master Skill v0.1 Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/README.md)
+- [Core Principles](docs/Master-Skill-v0.1-Clarity-Gate/01-core-principles.md)
+- [Requirement Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/02-clarity-gate.md)
+- [Minimum Prototype](docs/Master-Skill-v0.1-Clarity-Gate/03-minimum-prototype.md)
+- [Dynamic Calibration](docs/Master-Skill-v0.1-Clarity-Gate/04-dynamic-calibration.md)
+- [Execution Contract](docs/Master-Skill-v0.1-Clarity-Gate/05-execution-contract.md)
 
 ## v5.5 Extension Layer
 
@@ -279,7 +298,7 @@ Phase 0 推荐先运行：
 
 ```text
 启动 Master Orchestrator。严格执行 Phase -1 到 Phase 3。
-如果需求模糊，先用 3-5 轮短问答澄清 Goal、Non-Goal 和 Success Criteria。
+如果需求模糊，先用执行清晰度闸门判断澄清、执行或最小雏形验证；不要机械执行固定澄清轮数。
 不要默认使用用户自建代理；只在必要时选择 1-5 个临时专家。
 展示 task_analysis、能力匹配和兵力部署表后暂停，等我确认执行模式和收尾策略。
 ```

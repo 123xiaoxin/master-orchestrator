@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "requirement_clarity.v1",
+  "surface_request": "我想做一个工具，帮普通人把模糊想法拆成 AI 能执行的任务。",
+  "real_goal": "Create a practical thinking aid that turns vague intent into clear, bounded, executable AI task contracts.",
+  "domain_direction": "General-purpose task clarification and execution-contract generation.",
+  "key_variables": [
+    "Target users have ideas but lack task decomposition vocabulary",
+    "The output must be understandable by both humans and AI agents",
+    "The first version should prove the clarity workflow, not build a full platform"
+  ],
+  "missing_critical_info": [
+    "Primary output format for the first prototype",
+    "Whether the tool is interactive, document-based, or prompt-based"
+  ],
+  "unnecessary_complexity": [
+    "Multi-agent orchestration before the contract format is proven",
+    "User accounts, cloud sync, or marketplace features",
+    "Automatic execution before users trust the generated contract"
+  ],
+  "positive_outcomes": [
+    "Users can see their real goal, constraints, and next step",
+    "AI execution receives a bounded contract instead of a vague request",
+    "The prototype can be tested with several neutral user scenarios"
+  ],
+  "negative_risks": [
+    "The tool may over-question users instead of helping them move forward",
+    "The tool may create rigid templates that ignore user context",
+    "Execution may start before risk boundaries are clear"
+  ],
+  "minimum_prototype": {
+    "type": "execution_contract",
+    "description": "A one-page contract generator showing real goal, boundaries, allowed actions, forbidden actions, validation points, and risks."
+  },
+  "minimum_action": "Draft the contract structure and run it against three sample vague requests.",
+  "execution_readiness_score": 78,
+  "decision": "prototype",
+  "assumptions": [
+    "A document-style prototype is enough to validate direction",
+    "No external integrations are required for the first test",
+    "Master should directly produce the first prototype without creating Agents"
+  ],
+  "execution_contract": {
+    "real_goal": "Help non-expert users convert vague ideas into executable AI task contracts.",
+    "task_boundaries": [
+      "Design the first contract format",
+      "Use neutral examples",
+      "Do not build a production app"
+    ],
+    "allowed_actions": [
+      "Create a document outline",
+      "Define required contract fields",
+      "List validation points and risk boundaries"
+    ],
+    "forbidden_actions": [
+      "Do not create Agents by default",
+      "Do not add accounts, automation, or publishing features",
+      "Do not send raw vague requests to execution"
+    ],
+    "minimum_prototype": "One-page execution contract draft with three example conversions.",
+    "validation_metrics": [
+      "A user can identify whether the real goal is correct",
+      "The next action is clear without additional broad questioning",
+      "Risks and forbidden actions are visible"
+    ],
+    "risk_boundaries": [
+      "Pause if the requested domain requires specialized legal, medical, or financial judgment",
+      "Pause if the first prototype reveals the real goal is wrong"
+    ]
+  },
+  "validation_points": [
+    "The generated contract is easier to execute than the original request",
+    "The prototype can be reviewed in one pass",
+    "The method remains industry-agnostic"
+  ],
+  "risk_boundaries": [
+    "Do not claim the contract is complete when critical variables are unknown",
+    "Do not add workflow complexity before the clarity mechanism is validated"
+  ]
+}

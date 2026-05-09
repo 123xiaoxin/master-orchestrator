@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/requirement_clarity.v1.schema.json",
+  "title": "Master Skill Requirement Clarity v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "surface_request",
+    "real_goal",
+    "domain_direction",
+    "key_variables",
+    "missing_critical_info",
+    "unnecessary_complexity",
+    "positive_outcomes",
+    "negative_risks",
+    "minimum_prototype",
+    "minimum_action",
+    "execution_readiness_score",
+    "decision",
+    "assumptions",
+    "execution_contract",
+    "validation_points",
+    "risk_boundaries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "requirement_clarity.v1"
+    },
+    "surface_request": {
+      "type": "string",
+      "minLength": 1
+    },
+    "real_goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain_direction": {
+      "type": "string",
+      "minLength": 1
+    },
+    "key_variables": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "missing_critical_info": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "unnecessary_complexity": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "positive_outcomes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "negative_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "minimum_prototype": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "description"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "document_outline",
+            "ui_sketch",
+            "flow_diagram",
+            "prompt_draft",
+            "code_skeleton",
+            "execution_contract"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "minimum_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "execution_readiness_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "decision": {
+      "enum": [
+        "execute",
+        "clarify",
+        "prototype"
+      ]
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "execution_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "real_goal",
+        "task_boundaries",
+        "allowed_actions",
+        "forbidden_actions",
+        "minimum_prototype",
+        "validation_metrics",
+        "risk_boundaries"
+      ],
+      "properties": {
+        "real_goal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "task_boundaries": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "allowed_actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbidden_actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "minimum_prototype": {
+          "type": "string",
+          "minLength": 1
+        },
+        "validation_metrics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "risk_boundaries": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "validation_points": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "risk_boundaries": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

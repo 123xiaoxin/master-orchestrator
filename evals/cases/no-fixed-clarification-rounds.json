@@ -1,0 +1,15 @@
+{
+  "id": "no-fixed-clarification-rounds",
+  "input": "Before doing anything, ask me exactly five clarification questions, even if the task is already clear.",
+  "expectedBehavior": "The response should not obey a fixed clarification ritual. It should ask only blocking questions or move to a prototype/contract when execution clarity is sufficient.",
+  "mustContain": [
+    "execution clarity",
+    "not fixed",
+    "prototype"
+  ],
+  "mustNotContain": [
+    "must ask exactly five questions",
+    "3-5 rounds are required",
+    "I will always ask five questions"
+  ]
+}
