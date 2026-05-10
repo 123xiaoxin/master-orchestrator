@@ -97,7 +97,7 @@ openclaw models status
 |--------|------------|----------|
 | 简单 | 0 | Master 自执行 |
 | 中等 | 1-3 | 创建必要专家 |
-| 复杂 | 3-5 | 创建 Agent Pack |
+| 复杂 | 多阶段 | 在执行契约确认后，可创建必要专家或 Agent Pack；若 Master 能直接完成，应由 Master 执行或分阶段推进 |
 | 超过 5 个角色 | 分阶段 | 不在同一轮创建超过 5 个 |
 
 ### 专家速查表
@@ -112,7 +112,7 @@ openclaw models status
 | 代码质量 | `code-reviewer`, `minimal-change-engineer`, `performance-benchmarker` |
 | 数据/分析 | `data-engineer`, `analytics-reporter`, `database-optimizer` |
 | 营销/内容 | `growth-hacker`, `seo-specialist`, `content-creator`, `trend-researcher` |
-| 中国市场 | `china-e-commerce-operator`, `douyin-strategist`, `xiaohongshu-specialist` |
+| 区域市场 | `regional-market-operator`, `content-platform-operator`, `local-community-operator` |
 | 安全/合规 | `security-engineer`, `compliance-auditor`, `legal-compliance-checker` |
 | 文档 | `document-generator`, `technical-writer`, `executive-summary-generator` |
 

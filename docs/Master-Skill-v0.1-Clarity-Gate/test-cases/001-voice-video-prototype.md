@@ -1,4 +1,8 @@
-\# Test Case 001: Voice Video Prototype
+\# Test Case 001: Voice-Based Content Prototype
+
+This is a local validation case, not a domain direction of Master Skill v0.1.
+The core mechanism remains industry-neutral.
+The case is used only to test whether Master can convert a concrete user scenario into clear intent, minimum prototype, and execution contract.
 
 
 
@@ -6,7 +10,7 @@
 
 
 
-用户有一篇中文主稿，但还没有录制口播。用户希望用自己的原声音频，制作一条不露脸的抖音思考型视频。
+用户有一篇中文主稿，但还没有录制口播。用户希望用自己的原声音频，制作一个不露脸的 voice-based content prototype。
 
 
 
@@ -24,7 +28,7 @@
 
 \- 主要讲概念和个人思考；
 
-\- 后续可能使用图片素材 + 字幕 + 剪映合成。
+\- 后续可能使用图片素材 + 字幕 + 通用编辑工具合成。
 
 
 
@@ -32,17 +36,17 @@
 
 
 
-使用 master-skill 分析下面这个任务，不要直接生成视频：
+使用 master-skill 分析下面这个任务，不要直接生成最终内容成品：
 
 
 
 我现在有一篇中文主稿，还没有录口播。
 
-我想后面用自己的声音读这篇稿子，做成一条不露脸的抖音思考型视频。
+我想后面用自己的声音读这篇稿子，做成一个不露脸的 voice-based content prototype。
 
 画面不要炫酷，不要营销感，主要讲概念和个人思考。
 
-后续可能使用图片素材 + 字幕 + 剪映合成。
+后续可能使用图片素材 + 字幕 + 通用编辑工具合成。
 
 
 
@@ -90,7 +94,7 @@ Master Skill 应该：
 
 
 
-\- 不直接生成最终视频；
+\- 不直接生成最终内容成品；
 
 \- 不假设音频已经存在；
 
@@ -122,15 +126,15 @@ Master Skill 应该：
 
 
 
-\- 用户表面需求：把中文主稿变成不露脸的抖音思考型视频；
+\- 用户表面需求：把中文主稿变成不露脸的 voice-based content prototype；
 
-\- 真实目标：制作一条认知输出型短视频；
+\- 真实目标：制作一个 voice-based content prototype；
 
 \- 执行清晰度：约 70%，方向足够明确，可以输出最小雏形；
 
 \- 当前动作：prototype；
 
-\- 最小雏形：一分钟视频分镜 + 文案压缩稿；
+\- 最小雏形：一分钟内容结构 + 文案压缩稿；
 
 \- 下一步最小动作：用户提供中文主稿后，进入压缩和分镜设计。
 

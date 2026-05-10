@@ -2,7 +2,7 @@
 
 Clarity gate for Master Orchestrator.
 
-Purpose: convert unclear user intent into clear intent, a minimum prototype, dynamic calibration signals, and an execution contract before execution begins.
+Purpose: convert unclear user intent into clear intent, a professional execution view, a minimum prototype or progress map, calibration signals, and an execution contract before execution begins.
 
 Operating posture:
 

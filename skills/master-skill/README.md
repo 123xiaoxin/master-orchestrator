@@ -20,6 +20,8 @@ The skill only covers:
 - Occam's razor
 - cognitive completion
 - requirement clarity gate
+- professional execution view selection
+- HTML Progress Map as a user-visible minimum visual execution contract
 - execution contract before execution
 
 It does not include industry-specific cases, platform-specific workflows, or content-form-specific implementation logic.

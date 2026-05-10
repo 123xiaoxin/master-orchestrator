@@ -18,6 +18,8 @@ Use this skill to:
 - apply Occam's razor
 - apply cognitive completion
 - route through a requirement clarity gate
+- select a professional execution view from the execution contract
+- generate an HTML Progress Map only when it improves user control or serves as a minimum prototype
 - ensure execution layers consume only an execution contract
 
 ## Operating Principles

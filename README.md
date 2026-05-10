@@ -143,10 +143,13 @@ v5.4 增加发布前可执行检查：
 - [Minimum Prototype](docs/Master-Skill-v0.1-Clarity-Gate/03-minimum-prototype.md)
 - [Dynamic Calibration](docs/Master-Skill-v0.1-Clarity-Gate/04-dynamic-calibration.md)
 - [Execution Contract](docs/Master-Skill-v0.1-Clarity-Gate/05-execution-contract.md)
+- [Professional Execution View And HTML Progress Map](docs/Master-Skill-v0.1-Clarity-Gate/06-professional-view-and-progress-map.md)
 
 ## v5.5 Extension Layer
 
 v5.5 adds `prompts/05-agent-capability-imitation.md` — an Agent Capability Imitation Layer that runs alongside the v5.4 execution engine without modifying it.
+
+v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
 
 ### v5.5 Capabilities
 
