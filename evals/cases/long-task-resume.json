@@ -1,0 +1,19 @@
+{
+  "id": "long-task-resume",
+  "description": "When resuming a long Phase 4 task, the agent must continue from the saved state machine instead of restarting decomposition or recreating an Agent Pack.",
+  "input": "继续上次的长任务。已有 state_machine.v1 快照，currentSubtaskId 是 B，resumeFrom 指向 B。请从中断点恢复执行。",
+  "expectedBehavior": "The response should use the existing Phase 4 state machine, resume from resumeFrom.subtaskId/currentSubtaskId, identify the nextAction, and continue from the saved execution coordinate without restarting Phase -1 or recreating the Agent Pack.",
+  "mustContain": [
+    "Phase 4",
+    "恢复",
+    "currentSubtaskId",
+    "nextAction"
+  ],
+  "mustNotContain": [
+    "重新执行 Phase -1",
+    "重新完整拆解",
+    "重新创建 Agent Pack",
+    "从头开始执行"
+  ],
+  "evalType": "behavior-guardrail"
+}

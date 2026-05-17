@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "verify_repair_loop.v1",
+  "target": "Repository encoding guardrail",
+  "verifyStep": {
+    "command": ".\\scripts\\check_encoding.ps1",
+    "scope": "Repository text files covered by the encoding guardrail"
+  },
+  "expectedSignal": "OK encoding check passed",
+  "status": "repaired",
+  "attempt": 1,
+  "maxAttempts": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "failureReason": "check_encoding.ps1 reported a text file that did not satisfy UTF-8 without BOM requirements.",
+      "repairAction": {
+        "summary": "Normalize the affected file to UTF-8 without BOM while preserving content semantics.",
+        "changedFiles": [
+          "docs/master-skill-foundation.md"
+        ]
+      },
+      "result": "repair_applied",
+      "notes": "Repair was applied. The next action is to rerun check_encoding.ps1 before claiming completion."
+    }
+  ],
+  "nextAction": "Rerun .\\scripts\\check_encoding.ps1 and only report success if the verification output matches the expected signal.",
+  "updatedAt": "2026-05-17T09:20:00Z"
+}

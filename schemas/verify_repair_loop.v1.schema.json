@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/verify_repair_loop.v1.schema.json",
+  "title": "Verify Repair Loop v1",
+  "description": "attempt is the current in-progress or just-completed repair round. maxAttempts is the maximum allowed repair rounds. attempts.length is the number of recorded repair attempts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "target",
+    "verifyStep",
+    "expectedSignal",
+    "status",
+    "attempt",
+    "maxAttempts",
+    "attempts",
+    "nextAction",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "verify_repair_loop.v1"
+    },
+    "target": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verifyStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command",
+        "scope"
+      ],
+      "properties": {
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "expectedSignal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "pending_verification",
+        "verification_failed",
+        "repair_in_progress",
+        "repaired",
+        "verification_passed",
+        "exhausted",
+        "needs_user_decision"
+      ]
+    },
+    "attempt": {
+      "description": "Current in-progress or just-completed repair round.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2
+    },
+    "maxAttempts": {
+      "description": "Maximum allowed repair rounds.",
+      "const": 2
+    },
+    "attempts": {
+      "description": "Recorded repair attempts. attempts.length is the number of recorded repair attempts.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "attempt",
+          "failureReason",
+          "repairAction",
+          "result"
+        ],
+        "properties": {
+          "attempt": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "failureReason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "repairAction": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "summary",
+              "changedFiles"
+            ],
+            "properties": {
+              "summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "changedFiles": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "result": {
+            "enum": [
+              "repair_applied",
+              "verification_passed",
+              "verification_failed",
+              "needs_user_decision",
+              "exhausted"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nextAction": {
+      "type": "string",
+      "minLength": 1
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

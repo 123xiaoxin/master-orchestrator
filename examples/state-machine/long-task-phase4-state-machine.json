@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "state_machine.v1",
+  "taskId": "long-task-phase4-docs-refresh",
+  "phase": "phase_4",
+  "status": "blocked",
+  "currentSubtaskId": "B",
+  "resumeFrom": {
+    "subtaskId": "B",
+    "instruction": "Resume from subtask B by reviewing the repaired formatting changes, then rerun the required verification before unblocking subtask C.",
+    "requiredArtifacts": [
+      "README.md diff",
+      "check_encoding.ps1 output",
+      "run_prompt_evals.ps1 output"
+    ]
+  },
+  "summary": {
+    "goal": "Complete Phase 4 execution for a long documentation maintenance task without restarting decomposition.",
+    "completed": [
+      "Subtask A collected and verified current repository state",
+      "Subtask B applied a formatting repair"
+    ],
+    "remaining": [
+      "Rerun verification for subtask B",
+      "Unblock subtask C after B is verified",
+      "Prepare final engineering report"
+    ],
+    "risks": [
+      "Subtask C must not start until B verification passes",
+      "The task must resume from B rather than restart from Phase -1"
+    ],
+    "nextAction": "Rerun verification for subtask B and update its status based on the result."
+  },
+  "repairCount": 1,
+  "subtasks": [
+    {
+      "id": "A",
+      "title": "Collect current repository state",
+      "status": "verified",
+      "dependsOn": [],
+      "repairCount": 0,
+      "artifacts": [
+        "git status -sb output",
+        "git log --oneline output"
+      ],
+      "notes": "Repository state was collected and verified before edits."
+    },
+    {
+      "id": "B",
+      "title": "Repair README Markdown formatting",
+      "status": "repaired",
+      "dependsOn": [
+        "A"
+      ],
+      "repairCount": 1,
+      "artifacts": [
+        "README.md diff"
+      ],
+      "notes": "Long lines were split without changing content semantics. Verification is still required."
+    },
+    {
+      "id": "C",
+      "title": "Prepare final engineering report",
+      "status": "blocked",
+      "dependsOn": [
+        "B"
+      ],
+      "repairCount": 0,
+      "artifacts": [],
+      "notes": "Blocked until subtask B is verified."
+    }
+  ],
+  "transitions": [
+    {
+      "subtaskId": "A",
+      "from": "in_progress",
+      "to": "verified",
+      "reason": "Repository state was collected successfully.",
+      "at": "2026-05-17T09:00:00Z"
+    },
+    {
+      "subtaskId": "B",
+      "from": "failed",
+      "to": "repaired",
+      "reason": "Markdown formatting issue was repaired within the allowed repair budget.",
+      "at": "2026-05-17T09:12:00Z"
+    },
+    {
+      "subtaskId": "C",
+      "from": "pending",
+      "to": "blocked",
+      "reason": "Subtask C depends on verified output from subtask B.",
+      "at": "2026-05-17T09:13:00Z"
+    }
+  ],
+  "updatedAt": "2026-05-17T09:13:00Z"
+}

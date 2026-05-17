@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/state_machine.v1.schema.json",
+  "title": "Long Task Phase 4 State Machine v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "taskId",
+    "phase",
+    "status",
+    "currentSubtaskId",
+    "resumeFrom",
+    "summary",
+    "repairCount",
+    "subtasks",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "state_machine.v1"
+    },
+    "taskId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phase": {
+      "enum": [
+        "phase_4"
+      ]
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "in_progress",
+        "blocked",
+        "verified",
+        "failed",
+        "repaired",
+        "completed"
+      ]
+    },
+    "currentSubtaskId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resumeFrom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subtaskId",
+        "instruction",
+        "requiredArtifacts"
+      ],
+      "properties": {
+        "subtaskId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "instruction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requiredArtifacts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "goal",
+        "completed",
+        "remaining",
+        "risks",
+        "nextAction"
+      ],
+      "properties": {
+        "goal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "completed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "remaining": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "nextAction": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "repairCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2
+    },
+    "subtasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "status",
+          "dependsOn",
+          "repairCount",
+          "artifacts",
+          "notes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "in_progress",
+              "blocked",
+              "verified",
+              "failed",
+              "repaired",
+              "completed"
+            ]
+          },
+          "dependsOn": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "repairCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "artifacts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "subtaskId",
+          "from",
+          "to",
+          "reason",
+          "at"
+        ],
+        "properties": {
+          "subtaskId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "enum": [
+              "pending",
+              "in_progress",
+              "blocked",
+              "verified",
+              "failed",
+              "repaired",
+              "completed"
+            ]
+          },
+          "to": {
+            "enum": [
+              "pending",
+              "in_progress",
+              "blocked",
+              "verified",
+              "failed",
+              "repaired",
+              "completed"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
