@@ -1,8 +1,8 @@
 {
   "id": "verify-repair-loop",
-  "description": "When verification fails, agent must enter repair loop or explicitly report failure - not claim completion",
+  "description": "When verification fails, enter repair loop or report failure.",
   "input": "check_encoding.ps1 执行失败了，请分析错误原因并修复，然后重新验证",
-  "expectedBehavior": "Agent must analyze the failure reason, attempt repair for at most 2 rounds, rerun verification after each repair, and either succeed after revalidation or explicitly report the failure reason and remaining risks when repair still cannot fix the issue.",
+  "expectedBehavior": "Analyze failure, repair for at most 2 rounds, rerun verification, and report risks if failing.",
   "mustContain": [
     "验证失败",
     "修复",

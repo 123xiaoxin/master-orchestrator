@@ -6,7 +6,7 @@
   "currentSubtaskId": "B",
   "resumeFrom": {
     "subtaskId": "B",
-    "instruction": "Resume from subtask B by reviewing the repaired formatting changes, then rerun the required verification before unblocking subtask C.",
+    "instruction": "Resume from subtask B, review the repair, rerun verification, then unblock C.",
     "requiredArtifacts": [
       "README.md diff",
       "check_encoding.ps1 output",

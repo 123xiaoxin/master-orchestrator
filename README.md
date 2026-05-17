@@ -126,6 +126,18 @@ master-orchestrator/
 表面需求、真实目标、关键变量、缺失信息、最小雏形、执行清晰度分数、
 决策、执行契约、验证点和风险边界。
 
+### `state_machine.v1`
+
+`schemas/state_machine.v1.schema.json` 固化 v5.5 Phase 2A 的长任务执行态快照：
+Phase 4、`currentSubtaskId`、`resumeFrom`、`summary`、`subtasks`、
+`transitions`、`repairCount` 和 `updatedAt`。
+
+### `verify_repair_loop.v1`
+
+`schemas/verify_repair_loop.v1.schema.json` 固化 v5.5 Phase 2A 的验证/修复循环：
+`verifyStep`、`expectedSignal`、`attempt`、`maxAttempts`、`attempts`、
+`nextAction` 和有限 repair 约束。
+
 ## v5.4 Validation Layer
 
 v5.4 增加发布前可执行检查：
@@ -149,7 +161,7 @@ v5.4 增加发布前可执行检查：
 - [Minimum Prototype](docs/Master-Skill-v0.1-Clarity-Gate/03-minimum-prototype.md)
 - [Dynamic Calibration](docs/Master-Skill-v0.1-Clarity-Gate/04-dynamic-calibration.md)
 - [Execution Contract](docs/Master-Skill-v0.1-Clarity-Gate/05-execution-contract.md)
-- [Professional Execution View And HTML Progress Map](docs/Master-Skill-v0.1-Clarity-Gate/06-professional-view-and-progress-map.md)
+- [Professional View / Progress Map](docs/Master-Skill-v0.1-Clarity-Gate/06-professional-view-and-progress-map.md)
 
 ## v5.5 Extension Layer
 
@@ -175,7 +187,18 @@ v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
 .\evals\run_prompt_evals.ps1
 ```
 
-Cases: `repository-readonly`, `conservative-edit`, `verify-repair-loop`
+Current offline eval cases: 10 total.
+
+- `ambiguous-input-clarification`
+- `clarity-gate-minimum-prototype`
+- `conservative-edit`
+- `execution-contract-required`
+- `heartbeat-guardrail`
+- `long-task-resume`
+- `no-fixed-clarification-rounds`
+- `repository-readonly`
+- `user-agent-bypass`
+- `verify-repair-loop`
 
 ## Agent vs Sub-agent
 

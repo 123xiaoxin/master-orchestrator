@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/verify_repair_loop.v1.schema.json",
   "title": "Verify Repair Loop v1",
-  "description": "attempt is the current in-progress or just-completed repair round. maxAttempts is the maximum allowed repair rounds. attempts.length is the number of recorded repair attempts.",
+  "description": "Bounded verify/repair loop contract for revalidation after failed checks.",
   "type": "object",
   "additionalProperties": false,
   "required": [

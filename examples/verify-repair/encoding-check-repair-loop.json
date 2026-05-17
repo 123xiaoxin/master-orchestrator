@@ -23,6 +23,6 @@
       "notes": "Repair was applied. The next action is to rerun check_encoding.ps1 before claiming completion."
     }
   ],
-  "nextAction": "Rerun .\\scripts\\check_encoding.ps1 and only report success if the verification output matches the expected signal.",
+  "nextAction": "Rerun .\\scripts\\check_encoding.ps1 before reporting success.",
   "updatedAt": "2026-05-17T09:20:00Z"
 }
