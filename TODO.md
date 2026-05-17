@@ -57,20 +57,27 @@
 - [x] README.md 新增 v5.5 扩展层说明
 - [x] TODO.md 新增 v5.5 Phase 1 计划
 
+## v5.5 Phase 2A — Long Task Runtime Contracts (已落地)
+
+- [x] 新增 `schemas/state_machine.v1.schema.json`：Phase 4 内部状态机契约
+- [x] 新增 `schemas/verify_repair_loop.v1.schema.json`：固化 verify/repair 循环契约
+- [x] 新增 `examples/state-machine/long-task-phase4-state-machine.json`
+- [x] 新增 `examples/verify-repair/encoding-check-repair-loop.json`
+- [x] 新增 `evals/cases/long-task-resume.json`：长任务恢复 guardrail
+
 ## v5.5 Phase 2+ Backlog
 
 - [ ] `schemas/execution_mode.v1.schema.json`：固化 execution mode 契约
-- [ ] `schemas/verify_repair_loop.v1.schema.json`：固化 verify/repair 循环契约
-- [ ] `schemas/state_machine.v1.schema.json`：Phase 4 内部状态机契约
 - [ ] `helpers/validate_execution_modes.ps1`：执行模式校验脚本
 - [ ] `helpers/run_verify_repair_loop.ps1`：Verify/Repair 循环运行脚本
 - [ ] `prompts/06-execution-mode-router.md`：根据 task_analysis 自动路由执行模式（扩展 02-agency）
+- [ ] manifest checkpoint / resume：持久化长任务断点与恢复入口
+- [ ] 真实 LLM eval
 
 ## v5.5+ Backlog
 
 - [ ] Python CLI wrapper
 - [ ] 自动环境快照生成器
-- [ ] 真实 LLM eval
 - [ ] 用户自建代理体检器
 - [ ] PowerShell 核心逻辑逐步迁移 Python
 
