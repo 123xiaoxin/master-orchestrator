@@ -9,7 +9,8 @@
 
 Master Orchestrator 的现行阶段目标是建立调度纪律，而不是追求 Agent 数量。
 
-**v5.4 turns Master Orchestrator's governance rules into enforceable contracts: schemas, examples, validators, encoding checks, and offline prompt eval cases.**
+**v5.4 turns Master Orchestrator's governance rules into enforceable contracts:**
+schemas, examples, validators, encoding checks, and offline prompt eval cases.
 
 **v5.5 adds an Agent Capability Imitation Layer that codifies mature Agent engineering habits:**
 
@@ -100,7 +101,8 @@ master-orchestrator/
 - `successCriteria`: 可验证退出断言
 - `environmentSnapshot`: 当前 OpenClaw / 模型 / 专家库状态
 - `capabilityMapping`: 所需能力、匹配结果和降级方案
-- `routingDecision`: `master_only` / `create_temp_agent` / `create_subagent` / `create_agent_pack` / `staged_execution` / `downgrade_or_clarify`
+- `routingDecision`: one of `master_only`, `create_temp_agent`, `create_subagent`,
+  `create_agent_pack`, `staged_execution`, or `downgrade_or_clarify`
 
 ### `agent_pack.v1`
 
@@ -114,11 +116,15 @@ master-orchestrator/
 
 ### `micro_sop.v1`
 
-`schemas/micro_sop.v1.schema.json` 固化每个临时 Agent/Sub-agent 的派工契约。所有 `microSop` 必须声明 `schemaVersion: "micro_sop.v1"`，并保持 `budget.heartbeat: 0`。
+`schemas/micro_sop.v1.schema.json` 固化每个临时 Agent/Sub-agent 的派工契约。
+所有 `microSop` 必须声明 `schemaVersion: "micro_sop.v1"`，
+并保持 `budget.heartbeat: 0`。
 
 ### `requirement_clarity.v1`
 
-`schemas/requirement_clarity.v1.schema.json` 固化 Master Skill v0.1 的清晰度闸门判断：表面需求、真实目标、关键变量、缺失信息、最小雏形、执行清晰度分数、决策、执行契约、验证点和风险边界。
+`schemas/requirement_clarity.v1.schema.json` 固化 Master Skill v0.1 的清晰度闸门判断：
+表面需求、真实目标、关键变量、缺失信息、最小雏形、执行清晰度分数、
+决策、执行契约、验证点和风险边界。
 
 ## v5.4 Validation Layer
 
@@ -147,7 +153,8 @@ v5.4 增加发布前可执行检查：
 
 ## v5.5 Extension Layer
 
-v5.5 adds `prompts/05-agent-capability-imitation.md` — an Agent Capability Imitation Layer that runs alongside the v5.4 execution engine without modifying it.
+v5.5 adds `prompts/05-agent-capability-imitation.md`.
+It is an Agent Capability Imitation Layer that runs alongside the v5.4 execution engine without modifying it.
 
 v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
 
