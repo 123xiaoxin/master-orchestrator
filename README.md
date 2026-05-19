@@ -155,6 +155,8 @@ v5.4 增加发布前可执行检查：
 
 新增行业无关的 Master Skill v0.1 清晰度闸门文档：
 
+- [Master Skill Foundation](docs/master-skill-foundation.md):
+  系统建模 / 信息降熵 / 反馈控制
 - [Master Skill v0.1 Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/README.md)
 - [Core Principles](docs/Master-Skill-v0.1-Clarity-Gate/01-core-principles.md)
 - [Requirement Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/02-clarity-gate.md)
@@ -180,6 +182,24 @@ v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
 | Verify / Repair Loop | 验证失败必须进入 repair 或明确报告，不得声称完成 |
 | Phase 4 Internal State Machine | Phase 4 期间追踪子任务状态，明确汇报 |
 | Final Engineering Report | 每个任务结束后输出标准化工程报告 |
+
+### v5.5 Phase 2A Long Task Runtime Contracts
+
+- `schemas/state_machine.v1.schema.json`
+- `schemas/verify_repair_loop.v1.schema.json`
+- `evals/cases/long-task-resume.json`
+
+### v5.5 Phase 2B Minimal Capability Runtime
+
+- [Minimal Capability Runtime](docs/minimal-capability-runtime.md)
+
+### v5.5 Phase 2C Pre-Execution Cognitive Staging
+
+- [Pre-Execution Cognitive Staging](docs/pre-execution-cognitive-staging.md)
+
+### External Capability Packs
+
+- [gstack reference analysis](docs/external-capability-packs-gstack.md)
 
 ### v5.5 Eval Cases
 

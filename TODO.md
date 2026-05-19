@@ -65,6 +65,12 @@
 - [x] 新增 `examples/verify-repair/encoding-check-repair-loop.json`
 - [x] 新增 `evals/cases/long-task-resume.json`：长任务恢复 guardrail
 
+## v5.5 Phase 2B/2C — Runtime and Cognitive Design Docs (已落地)
+
+- [x] 新增 `docs/minimal-capability-runtime.md`：Minimal Capability Runtime 设计
+- [x] 新增 `docs/pre-execution-cognitive-staging.md`：Pre-Execution Cognitive Staging 设计
+- [x] 新增 `docs/external-capability-packs-gstack.md`：gstack reference analysis，不是默认集成
+
 ## v5.5 Phase 2+ Backlog
 
 - [ ] `schemas/execution_mode.v1.schema.json`：固化 execution mode 契约
@@ -73,6 +79,7 @@
 - [ ] `prompts/06-execution-mode-router.md`：根据 task_analysis 自动路由执行模式（扩展 02-agency）
 - [ ] manifest checkpoint / resume：持久化长任务断点与恢复入口
 - [ ] 真实 LLM eval
+- [ ] Phase 2B/2C future schema 工程化：仅在流程稳定后再设计
 
 ## v5.5+ Backlog
 
