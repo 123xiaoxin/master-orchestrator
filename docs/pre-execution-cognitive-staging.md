@@ -98,6 +98,119 @@ Pre-Execution Cognitive Staging 是复杂任务进入执行前的认知分阶段
 
 复杂任务必须完成 Pre-Execution Cognitive Staging。
 
+## Multi-Perspective Specialist Review：多元专业视角审查
+
+复杂任务不能只依赖 Master 的单一通用推理。
+
+当任务涉及多个专业质量维度时，Master 必须进行专业视角扫描，判断哪些视角应参与
+任务分析、Execution Contract 修正或交付质量审查。
+
+Master 至少应判断是否需要以下视角：
+
+- Product / 产品目标视角；
+- UX / 用户体验视角；
+- UI / 界面设计视角；
+- Frontend / 前端实现视角；
+- Backend / API / 数据视角；
+- AI Engineer / RAG / Agent / 模型工程视角；
+- Security / 权限 / token / 数据安全视角；
+- QA / 测试验证视角；
+- Release / Deploy / CI / 回滚视角；
+- Documentation / README / 用户文档视角；
+- Audience Experience / 受众体验视角；
+- Counter-Agent / 独立反推视角。
+
+专业视角不等于默认创建执行 Agent。
+
+正确顺序是：
+
+1. 先识别任务质量依赖哪些专业视角；
+2. 再判断这些视角是否只需要作为内部检查维度；
+3. 如果某个视角会显著影响真实交付质量，则升级为独立专业 Agent；
+4. 专业 Agent 不直接替代 Master 决策；
+5. Master 必须融合专业 Agent 的输出，修订 Execution Contract 或最小雏形。
+
+Master 在任务分析阶段必须明确回答：
+
+- 当前任务的关键质量维度是什么？
+- 哪些专业视角会影响最终交付质量？
+- 哪些视角可以由 Master 内部检查？
+- 哪些视角必须升级为独立 Agent？
+- 哪些视角只需要在 Counter-Agent Review 中反推？
+- 哪些视角可以延后到执行后 Verify / Repair 阶段？
+
+## Specialist Escalation Rule：专业视角升级规则
+
+Master 不能用通用推理替代专业视角。
+
+当任务产物质量依赖某个专业领域判断时，Master 必须至少激活该专业视角。
+如果该专业视角会显著影响真实交付质量、客户交付、用户体验、安全风险或返工成本，
+则应调用或创建独立专业 Agent。
+
+满足以下任一条件，应考虑从“内部视角检查”升级为“独立专业 Agent”：
+
+1. 该专业视角会显著影响最终交付质量；
+2. Master 缺少足够专业判断；
+3. 忽略该视角会导致明显返工；
+4. 该视角涉及真实客户、真实用户或真实业务流程；
+5. 该视角涉及安全、权限、数据、部署、发布或不可逆操作；
+6. 该视角需要独立反推，而不是普通检查；
+7. 用户明确要求高质量、专业、可交付、可上线或可商用结果。
+
+不应升级为独立 Agent 的情况：
+
+1. 用户只要求简单草稿；
+2. 输出只是临时雏形；
+3. 任务低风险、低复杂度；
+4. 专业视角不是最终质量关键；
+5. Master 能用明确 checklist 完成基本检查；
+6. 创建 Agent 的成本高于收益。
+
+## Agent Creation Governance
+
+限制的是无效 Agent，不是专业 Agent。
+
+Master 不应为了形式创建 Agent，也不应把复杂任务压缩成单 Agent 通用推理。
+
+当独立专业视角会显著影响 Execution Contract 质量、用户体验、安全风险、工程可行性、
+交付标准或返工成本时，Master 应创建或调用对应专业 Agent。
+
+Agent 创建的正当性来自：
+
+- 是否提供独立专业视角；
+- 是否降低任务盲区；
+- 是否补足 Master 缺少的专业判断；
+- 是否提升 Execution Contract 质量；
+- 是否减少返工风险；
+- 是否产生可融合、可验证的输出。
+
+应限制的 Agent：
+
+- 没有明确职责；
+- 与 Master 输出重复；
+- 没有独立专业视角；
+- 没有可融合产物；
+- 没有验证标准；
+- 会扩大任务目标；
+- 没有停止条件。
+
+应鼓励的 Agent：
+
+- Counter-Agent；
+- UI/UX Agent；
+- Security Agent；
+- QA Agent；
+- AI Engineer Agent；
+- Frontend / Backend Agent；
+- Knowledge Collision Agent；
+- Experience Review Agent。
+
+最终规则：
+
+- 专业视角不等于默认创建执行 Agent；
+- 但当专业视角影响真实交付质量时，Master 应升级为独立专业 Agent；
+- Master 必须融合各专业 Agent 输出，再修订 Execution Contract。
+
 ## 最小认知阶段
 
 ### 1. Information Gathering：信息收集
@@ -292,6 +405,126 @@ Counter-Agent 的目标不是增加人工确认，而是减少不必要的人工
 - 目标冲突：多个目标无法同时满足；
 - 关键信息缺失：无法通过只读检查或安全默认值解决。
 
+#### Counter-Agent Modes
+
+Counter-Agent 不只是“唱反调”，它是 Master 在定稿 Execution Contract 前引入的
+第二认知视角。
+
+Counter-Agent 至少包含四种模式。
+
+##### 1. Counter Review Mode
+
+用途：审查复杂方案是否现实、可执行、可验证、风险可控。
+
+适用任务：
+
+- 完整项目；
+- 代码开发；
+- 客户交付；
+- 多文件修改；
+- 自动化任务；
+- 长任务；
+- 高风险操作；
+- 多路径决策。
+
+输出重点：
+
+- `likelyFailurePoints`
+- `missingConstraints`
+- `unrealisticSteps`
+- `missingVerification`
+- `deleteOrDelay`
+- `requiredHumanConfirmation`
+- `recommendedContractChanges`
+
+##### 2. Knowledge Collision Mode
+
+用途：用专业术语、行业背景、外部信息和受众认知，与 Master 初版理解进行碰撞。
+
+适用任务：
+
+- PPT；
+- 报告；
+- 市场调研；
+- 产品方案；
+- 技术文章；
+- 商业分析；
+- 行业内容；
+- 客户方案。
+
+输出重点：
+
+- 缺少的专业术语；
+- 缺少的行业背景；
+- 可能误用的概念；
+- 需要解释的术语；
+- 需要补充论据的观点；
+- 与现有信息冲突的地方；
+- 可提升质量的表达框架。
+
+##### 3. Standard Completion Mode
+
+用途：补齐某类交付物应有的结构、标准、验收要素。
+
+适用任务：
+
+- PPT；
+- Word 文档；
+- 项目方案；
+- 工程方案；
+- 客户交付文档；
+- 产品设计说明；
+- README / 技术文档；
+- 项目计划。
+
+输出重点：
+
+- 必须包含的结构；
+- 可选结构；
+- 验收标准；
+- 常见遗漏项；
+- 不应过度展开的部分；
+- 最小合格交付标准。
+
+##### 4. Experience Review Mode
+
+用途：从最终用户、读者、听众、客户、操作者的角度审查交付物体验。
+
+适用任务：
+
+- PPT；
+- Word 文档；
+- 报告；
+- 商业方案；
+- 产品介绍；
+- 客户交付方案；
+- 教程；
+- 直播话术；
+- 软件 UI；
+- 自动化工具；
+- README / 开源文档。
+
+目标：审查交付物是否易理解、易使用、逻辑顺畅、信息密度合适、可信、可接受、
+可行动，并符合真实使用场景。
+
+输出重点：
+
+- `targetAudience`
+- `audienceKnowledgeLevel`
+- `comprehensionRisks`
+- `usabilityRisks`
+- `attentionRisks`
+- `trustRisks`
+- `actionClarity`
+- `suggestedExperienceFixes`
+
+四种模式的区别：
+
+- Counter Review Mode 解决执行风险和现实可行性问题；
+- Knowledge Collision Mode 解决内容专业性和信息不足问题；
+- Standard Completion Mode 解决结构完整性和交付标准问题；
+- Experience Review Mode 解决用户 / 受众体验问题。
+
 ### 6. Contract Fusion：契约融合修正
 
 目标：Master 融合 Counter Review Report，生成修订后的 Execution Contract。
@@ -328,9 +561,81 @@ Counter-Agent 的目标不是增加人工确认，而是减少不必要的人工
 
 如果 `finalDecision.canProceed = false`，不得进入执行。
 
+## UI / UX 任务硬规则
+
+如果任务包含以下内容，Master 必须触发 Experience Review Mode：
+
+- UI；
+- UX；
+- 页面设计；
+- 用户路径；
+- 交互设计；
+- 前端产品体验；
+- 客户可见界面；
+- 用户可操作工具。
+
+如果该 UI 会被真实开发、客户使用，或者用户体验会影响交付质量，Master 应调用
+UI/UX Agent 或 UX Architect Agent。
+
+UI/UX Agent 不执行代码，不替代 Master 决策，只输出：
+
+- 用户是谁；
+- 用户要完成什么任务；
+- 用户路径；
+- 页面结构；
+- 信息架构；
+- 视觉层级；
+- 关键交互状态；
+- 空状态 / 错误状态 / 加载状态；
+- 可能导致用户困惑的地方；
+- 可能造成操作负担的地方；
+- 给前端实现的组件建议；
+- 最小可开发 UI 结构。
+
+Master 必须将 UI/UX Agent 的输出融合进 Execution Contract，而不是直接照搬。
+
+## PPT / 文档 / 报告任务规则
+
+PPT / Word / Excel / 报告这类任务看似简单，但不代表完全不需要专业视角。
+
+如果只是简单草稿，可以不创建 Agent。
+
+但如果任务依赖专业术语、行业背景、客户说服、用户理解或受众体验，则可以调用
+轻量 Counter-Agent：
+
+- Knowledge Collision Mode：补专业术语和背景；
+- Standard Completion Mode：补结构和交付标准；
+- Experience Review Mode：检查听众 / 读者是否能理解、接受、行动。
+
+例如，做一个 AI Agent PPT 不一定需要 PPT Agent，但可能需要轻量 Knowledge
+Collision Counter-Agent 来补：
+
+- AI Agent 的核心概念；
+- RAG / MCP / Tool Use / Skill / workflow 等术语；
+- 容易误用的概念；
+- 普通听众需要解释的内容。
+
+同时可能需要 Experience Review Mode 来检查：
+
+- 听众是否能听懂；
+- 页面信息密度是否过高；
+- 逻辑推进是否自然；
+- 结尾是否有清晰行动或结论。
+
 ## 进入 Minimal Capability Runtime
 
 只有认知阶段完成后，复杂任务才进入 Minimal Capability Runtime。
+
+Multi-Perspective Specialist Review 发生在 Pre-Execution Cognitive Staging 内部，通常位于：
+
+```text
+Task Framing
+-> Draft Execution Contract
+-> Counter-Agent / Specialist Review
+-> Contract Fusion
+```
+
+专业视角不是执行阶段才出现，而是在 Execution Contract 定稿前就应该参与质量审查。
 
 此时 Master 再判断使用：
 
@@ -342,6 +647,38 @@ Counter-Agent 的目标不是增加人工确认，而是减少不必要的人工
 - 人工接管。
 
 能力选择必须消费修订后的 Execution Contract，而不是用户原始需求。
+
+专业视角判断发生在能力选择之前。
+
+流程是：
+
+1. 先完成认知分阶段；
+2. 再做专业视角扫描；
+3. 必要时调用 Counter-Agent / Specialist Agent；
+4. 融合输出，修订 Execution Contract；
+5. 然后才进入 Minimal Capability Runtime；
+6. 再判断使用 CLI / MCP / Skill / 临时脚本 / 执行 Agent / 人工接管。
+
+不能反过来：不能先选工具，再补专业视角。
+
+## 与“减少人工接入”的关系
+
+引入专业视角不是为了增加用户打断，而是为了减少返工和减少不必要的人工确认。
+
+专业 Agent / Counter-Agent 应优先输出 Master 可自行处理的修正建议：
+
+- `MasterCanResolve`
+- `SafeDefault`
+- `RequiresUserConfirmation`
+
+只有以下情况才打断用户：
+
+- 权限操作；
+- 不可逆操作；
+- 成本风险；
+- 用户偏好；
+- 目标冲突；
+- 关键信息缺失。
 
 ## 与“不默认创建执行 Agent”的关系
 
@@ -411,3 +748,13 @@ Master 是自主执行之上的控制层，而不是单纯更主动的执行 Age
 交付真实或执行成本高。
 
 如果任务简单、低风险、边界清楚，Master 应直接进入最小雏形或最小执行。
+
+## 最终原则
+
+1. Master 不能用通用推理替代专业视角。
+2. 专业视角不等于默认创建执行 Agent。
+3. 专业视角先进入分析，关键视角才升级为 Agent。
+4. 复杂任务和高质量交付物，不只需要“能做出来”，还需要“用户能理解、能使用、能接受、能行动”。
+5. Counter-Agent 不只是唱反调，它是 Execution Contract 定稿前的第二认知视角。
+6. 简单任务保持轻量，复杂任务必须专业视角扫描。
+7. 没有专业视角扫描，复杂任务不应直接进入执行。
