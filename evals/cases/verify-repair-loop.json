@@ -1,13 +1,32 @@
 {
   "id": "verify-repair-loop",
   "description": "When verification fails, enter repair loop or report failure.",
-  "input": "check_encoding.ps1 执行失败了，请分析错误原因并修复，然后重新验证",
-  "expectedBehavior": "Analyze failure, repair for at most 2 rounds, rerun verification, and report risks if failing.",
+  "input": "check_encoding.ps1 failed. Analyze the failure, repair, revalidate after each repair, use max repair attempts = 2, and stop after 2 failed repair attempts with remaining risks.",
+  "expectedBehavior": "Emit master_output_contract.v1 or a bounded verify/repair plan: mark verification_failed or failed, repair with maxRepairAttempts or at most 2 rounds, revalidate after each repair, and report risks if still failing.",
   "mustContain": [
-    "验证失败",
-    "修复",
-    "重新验证",
-    "2 轮"
+    "master_output_contract.v1"
+  ],
+  "mustContainAny": [
+    [
+      "verification_failed",
+      "failed",
+      "failure"
+    ],
+    [
+      "repair",
+      "repair loop"
+    ],
+    [
+      "revalidate",
+      "rerun verification",
+      "validationPlan"
+    ],
+    [
+      "maxRepairAttempts",
+      "at most 2",
+      "2 rounds",
+      "max repair attempts = 2"
+    ]
   ],
   "mustNotContain": [
     "跳过重新验证",

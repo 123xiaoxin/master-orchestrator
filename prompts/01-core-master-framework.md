@@ -70,6 +70,21 @@ v5.4 将治理规则固化为可执行契约：Schema、示例、校验器、编
 
 ---
 
+## Runtime Validation Output Mode
+
+当用于 eval / runtime validation 时，优先输出 `master_output_contract.v1` JSON，
+不要执行真实操作，不要创建真实 Agent，不要调用 OpenClaw。
+
+该 JSON 必须包含：`version`、`decision`、`phase`、`realGoal`、`nonGoals`、
+`executionClarity`、`minimumPrototype`、`executionContract`、`shouldCreateAgent`、
+`nextAction`。
+
+`executionContract` 必须包含 `allowedActions`、`forbiddenActions`、`riskBoundaries`、
+`validationPlan`。模糊需求时，`decision` 必须体现 `clarify` 或
+`require_more_information`。除非明确判断 `shouldCreateAgent: true`，否则不要创建 Agent。
+
+---
+
 ## Phase -1 到 Phase 5 执行引擎
 
 ### Phase -1：清晰度闸门（Clarity Gate）

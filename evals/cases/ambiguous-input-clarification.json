@@ -1,12 +1,36 @@
 {
   "id": "ambiguous-input-clarification",
   "input": "帮我做个网站",
-  "expectedBehavior": "The response must enter Phase -1 clarification and ask for goal, non-goals, deliverables, and success criteria before planning agents.",
+  "expectedBehavior": "The response must enter Phase -1 clarification or emit master_output_contract.v1 with clarify / require_more_information before planning agents.",
   "mustContain": [
-    "Phase -1",
-    "Goal",
-    "Non-Goal",
-    "success criteria"
+    "master_output_contract.v1"
+  ],
+  "mustContainAny": [
+    [
+      "\"decision\": \"clarify\"",
+      "\"decision\":\"clarify\"",
+      "\"decision\": \"require_more_information\"",
+      "\"decision\":\"require_more_information\"",
+      "Phase -1"
+    ],
+    [
+      "\"realGoal\"",
+      "real goal",
+      "真实目标",
+      "核心目标"
+    ],
+    [
+      "\"nonGoals\"",
+      "non-goals",
+      "不做什么",
+      "非目标"
+    ],
+    [
+      "\"validationPlan\"",
+      "success criteria",
+      "验证",
+      "成功标准"
+    ]
   ],
   "mustNotContain": [
     "create_temp_expert.ps1",

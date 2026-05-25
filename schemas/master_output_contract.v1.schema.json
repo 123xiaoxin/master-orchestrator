@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/master_output_contract.v1.schema.json",
+  "title": "Master Output Contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "decision",
+    "phase",
+    "realGoal",
+    "nonGoals",
+    "executionClarity",
+    "minimumPrototype",
+    "executionContract",
+    "shouldCreateAgent",
+    "nextAction"
+  ],
+  "properties": {
+    "version": {
+      "const": "master_output_contract.v1"
+    },
+    "decision": {
+      "enum": [
+        "execute",
+        "clarify",
+        "require_more_information",
+        "prototype",
+        "degrade",
+        "block"
+      ]
+    },
+    "phase": {
+      "type": "string",
+      "minLength": 1
+    },
+    "realGoal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nonGoals": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "executionClarity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "score",
+        "rationale"
+      ],
+      "properties": {
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "minimumPrototype": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "executionContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowedActions",
+        "forbiddenActions",
+        "riskBoundaries",
+        "validationPlan"
+      ],
+      "properties": {
+        "allowedActions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbiddenActions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "riskBoundaries": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "validationPlan": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "shouldCreateAgent": {
+      "type": "boolean"
+    },
+    "nextAction": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

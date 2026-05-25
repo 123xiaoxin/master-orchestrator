@@ -43,6 +43,9 @@ try {
 
     $relativeRoots = @("prompts", "schemas", "examples", "helpers", "scripts", "evals", "docs", "skills", "templates")
     $extensions = @(".md", ".json", ".ps1")
+    $excludedRelativePrefixes = @(
+        "evals\results\"
+    )
     $utf8Strict = New-Object System.Text.UTF8Encoding($false, $true)
 
     foreach ($relativeRoot in $relativeRoots) {
@@ -54,8 +57,14 @@ try {
         Get-ChildItem -LiteralPath $dir -Recurse -File | Where-Object {
             $extensions -contains $_.Extension.ToLowerInvariant()
         } | ForEach-Object {
-            $checked += 1
             $relative = $_.FullName.Substring($root.Length).TrimStart('\', '/')
+            foreach ($excludedPrefix in $excludedRelativePrefixes) {
+                if ($relative.StartsWith($excludedPrefix, [System.StringComparison]::OrdinalIgnoreCase)) {
+                    return
+                }
+            }
+
+            $checked += 1
             $bytes = [System.IO.File]::ReadAllBytes($_.FullName)
 
             if ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) {
