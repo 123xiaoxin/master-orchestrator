@@ -182,31 +182,89 @@ is only for complex, high-risk, long-running, or quality-critical tasks.
 The snapshot can live inside task analysis, an Execution Contract, or a report.
 It does not require a new schema in this phase.
 
+The `fit` field is a descriptive judgment, not a schema enum. Recommended values
+are `sufficient`, `partial`, `weak`, and `unknown`.
+
 Minimal structure:
 
 ```json
 {
   "modelLayer": {
-    "fit": "sufficient | weak | unknown",
+    "fit": "sufficient | partial | weak | unknown",
     "notes": []
   },
   "harnessLayer": {
-    "fit": "sufficient | weak | unknown",
+    "fit": "sufficient | partial | weak | unknown",
     "requiredControls": []
   },
   "promptLayer": {
-    "fit": "sufficient | weak | unknown",
+    "fit": "sufficient | partial | weak | unknown",
     "requiredViews": []
   },
   "skillLayer": {
-    "fit": "sufficient | weak | unknown",
+    "fit": "sufficient | partial | weak | unknown",
     "availableTools": [],
     "missingTools": []
   },
   "ragMemoryLayer": {
-    "fit": "sufficient | weak | unknown",
+    "fit": "sufficient | partial | weak | unknown",
     "requiredContext": [],
     "missingContext": []
+  }
+}
+```
+
+Minimum viable example:
+
+Task: "Design the UI for a simple web tool and produce a frontend
+implementation plan."
+
+```json
+{
+  "modelLayer": {
+    "fit": "sufficient",
+    "notes": [
+      "The model can reason about UI structure, frontend planning, and tradeoffs."
+    ]
+  },
+  "harnessLayer": {
+    "fit": "partial",
+    "requiredControls": [
+      "Clarity Gate",
+      "Experience Review",
+      "Final Report"
+    ]
+  },
+  "promptLayer": {
+    "fit": "partial",
+    "requiredViews": [
+      "Product goal",
+      "UX",
+      "UI",
+      "Frontend implementation"
+    ]
+  },
+  "skillLayer": {
+    "fit": "partial",
+    "availableTools": [
+      "repository read",
+      "frontend file editing"
+    ],
+    "missingTools": [
+      "visual screenshot verification, if implementation is required"
+    ]
+  },
+  "ragMemoryLayer": {
+    "fit": "unknown",
+    "requiredContext": [
+      "existing design system",
+      "target users",
+      "frontend stack"
+    ],
+    "missingContext": [
+      "brand constraints",
+      "current UI conventions"
+    ]
   }
 }
 ```

@@ -89,6 +89,39 @@ goal confirmation, risk judgment, and result verification.
 Complex, high-risk, long-running, customer-facing, or quality-critical tasks
 cannot skip required phases.
 
+Phase -1 through Phase 5 and the 11-step Runtime Phase Gate are not competing
+models.
+
+- Phase -1 through Phase 5 is Master's macro lifecycle.
+- The 11-step Runtime Phase Gate is the fine-grained Harness gate for complex
+  task execution control.
+- It mainly expands the runtime discipline inside Phase 3, Phase 4, and Phase 5.
+- Simple tasks can use a lightweight path.
+- Complex, high-risk, long-running, customer-facing, and quality-critical tasks
+  should use the more complete gate.
+
+Nested example:
+
+```text
+Phase -1: Clarity Gate
+Phase 0: Environment Snapshot
+Phase 1: Task Analysis
+Phase 2: Capability Mapping
+Phase 3: Contract Confirmation
+  -> intake
+  -> cognitive_staging
+  -> draft_execution_contract
+  -> specialist_review / counter_review
+  -> contract_fusion
+  -> capability_matching
+  -> capability_gap_decision
+Phase 4: Controlled Execution
+  -> execution
+  -> verify_repair
+Phase 5: Cleanup / Deposition
+  -> final_report
+```
+
 | Phase | Purpose |
 |---|---|
 | intake | Receive the user request and classify task type and risk. |
@@ -247,10 +280,23 @@ Trigger rules:
 Master should not use generic reasoning as a substitute for professional
 perspective when that perspective materially affects delivery quality.
 
+Specialist Trigger can resolve into four execution shapes:
+
+| Level | Shape | Use When |
+|---|---|---|
+| Level 0 | Internal checklist | Master can check the perspective internally without creating an Agent. |
+| Level 1 | Specialist perspective section | Master should include a dedicated review section in its output. |
+| Level 2 | Counter-Agent / Specialist Agent | An independent professional Agent should produce a fusible report. |
+| Level 3 | Human confirmation | Permission, preference, irreversible action, high risk, or customer-visible commitment needs user confirmation. |
+
 Specialist perspective does not mean default execution Agent creation. When the
 perspective affects real delivery quality, user experience, security risk, or
 rework cost, it should be escalated to an independent specialist Agent or
 Counter-Agent.
+
+High-risk and user-preference questions should move to Level 3. Master must
+fuse specialist output into the Execution Contract or final deliverable; it
+should not copy specialist output blindly.
 
 ## 8. Authorization Gate
 
