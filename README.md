@@ -1,4 +1,4 @@
-# Master Orchestrator (v5.4 / v5.5-phase-1)
+# Master Orchestrator (v5.6)
 
 > 为 OpenClaw 打造的微内核运行时治理器。它不是多 Agent 群聊系统，而是把模糊用户意图编译成安全、可执行、可追溯调度蓝图的 Master 主控层。
 
@@ -20,6 +20,15 @@ schemas, examples, validators, encoding checks, and offline prompt eval cases.
 - Verify/Repair Loop
 - Phase 4 Internal State Machine
 - Final Engineering Report
+
+**v5.6 closes the current line with Agent Performance Stack and Harness Runtime Control:**
+
+- Agent Performance Stack: Model / Harness / Prompt / Skill / RAG-Memory 五层 Agent 表现栈
+- Harness Runtime Control: 将关键规则从 Prompt / 文档推进到运行时纪律定义
+
+v5.6 is a diagnostic framework and Harness discipline definition. It is not a
+runtime implementation, does not add schemas, does not automatically modify
+OpenClaw, does not add hooks, and does not execute tools or change configuration.
 
 **v5.4 将 Master Orchestrator 的治理规则固化为可执行契约：Schema、示例、校验器、编码检查和离线 Prompt 评估用例。**
 
@@ -157,6 +166,10 @@ v5.4 增加发布前可执行检查：
 
 - [Master Skill Foundation](docs/master-skill-foundation.md):
   系统建模 / 信息降熵 / 反馈控制
+- [Agent Performance Stack](docs/agent-performance-stack.md):
+  Model / Harness / Prompt / Skill / RAG-Memory 五层 Agent 表现栈
+- [Harness Runtime Control](docs/harness-runtime-control.md):
+  Phase Gate / State Machine / Verify-Repair / Authorization / Final Report 等运行时控制纪律
 - [Master Skill v0.1 Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/README.md)
 - [Core Principles](docs/Master-Skill-v0.1-Clarity-Gate/01-core-principles.md)
 - [Requirement Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/02-clarity-gate.md)
@@ -171,6 +184,24 @@ v5.5 adds `prompts/05-agent-capability-imitation.md`.
 It is an Agent Capability Imitation Layer that runs alongside the v5.4 execution engine without modifying it.
 
 v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
+
+### Current Version Line
+
+- v5.4: Validation Foundation
+- v5.5: Phase 2A / 2B / 2C, including Long Task Runtime Contracts,
+  Minimal Capability Runtime, Capability Gap Decision Tree,
+  Pre-Execution Cognitive Staging, Specialist Review, and Agent Creation Governance
+- v5.6: Agent Performance Stack + Harness Runtime Control
+- Foundation: 系统建模 / 信息降熵 / 反馈控制
+- Agent Performance Stack: 五层 Agent 表现栈，作为诊断框架，不是新增 runtime
+- Harness Runtime Control: 第二层 Harness 运行控制，是运行纪律定义，不是 runtime implementation
+- Phase 2A: Long Task Runtime Contracts
+- Phase 2B: Minimal Capability Runtime + Capability Gap Decision Tree
+- Phase 2C: Pre-Execution Cognitive Staging + Specialist Review + Agent Creation Governance
+- External References: gstack / OpenSpace
+
+Harness Runtime Control 不授权自动修改 OpenClaw、不自动添加 hook、
+不自动执行工具或修改配置。v5.6 不新增 schema。
 
 ### v5.5 Capabilities
 
@@ -192,6 +223,7 @@ v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
 ### v5.5 Phase 2B Minimal Capability Runtime
 
 - [Minimal Capability Runtime](docs/minimal-capability-runtime.md)
+- [Capability Gap Decision Tree](docs/capability-gap-decision-tree.md)
 
 ### v5.5 Phase 2C Pre-Execution Cognitive Staging
 
@@ -200,6 +232,7 @@ v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
 ### External Capability Packs
 
 - [gstack reference analysis](docs/external-capability-packs-gstack.md)
+- [OpenSpace reference analysis](docs/external-skill-evolution-runtime-openspace.md)
 
 ### v5.5 Eval Cases
 
