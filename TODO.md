@@ -88,6 +88,17 @@
 - [ ] 用户自建代理体检器
 - [ ] PowerShell 核心逻辑逐步迁移 Python
 
+## v5.6.2 — Goal Pursuit Loop (已落地)
+
+- [x] `docs/goal-pursuit-loop.md`：Goal Pursuit Loop / Evidence Ledger / Capability Failure Disclosure / Review Ledger
+
+### Future Engineering
+
+- [ ] 将 Goal Pursuit Loop 抽取为 runtime rules
+- [ ] 设计 ledger schema
+- [ ] 增加 benchmark eval case
+- [ ] 同步到 OpenClaw installed skill
+
 ## 暂不建议
 
 - [ ] 不建议把 `agency-agents` 作为 submodule 引入，除非要锁定具体版本
