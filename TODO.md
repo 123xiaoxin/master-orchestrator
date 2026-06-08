@@ -99,6 +99,19 @@
 - [ ] 增加 benchmark eval case
 - [ ] 同步到 OpenClaw installed skill
 
+## v5.6.3 — Runtime Evidence Source of Truth (已落地)
+
+- [x] `docs/runtime-evidence-source-of-truth.md`：Runtime Evidence Source of Truth / Declared-Observed-Audited Evidence / Final Report Source-of-Truth Gate
+
+### Future Engineering
+
+- [ ] 设计 runtime ledger schema
+- [ ] Harness 自动生成 Evidence Ledger draft
+- [ ] 从 session JSONL 自动提取 `tool-calls.json`
+- [ ] 自动计算 declared/observed diff
+- [ ] 将 B1-B1.4 固化为 benchmark eval cases
+- [ ] 将 Runtime Evidence Source-of-Truth 规则同步回 installed skill 或后续 skill artifact
+
 ## 暂不建议
 
 - [ ] 不建议把 `agency-agents` 作为 submodule 引入，除非要锁定具体版本

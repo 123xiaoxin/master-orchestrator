@@ -27,6 +27,9 @@ schemas, examples, validators, encoding checks, and offline prompt eval cases.
 - Harness Runtime Control: 将关键规则从 Prompt / 文档推进到运行时纪律定义
 - v5.6.2 Goal Pursuit Loop / Harness Layer Supplement: 补充目标锚定、分解、计划、进度、
   动态调整、完成验证，以及 Evidence / Capability Failure / Review 三类审计账本和 Final Report Gate
+- v5.6.3 Runtime Evidence Source of Truth / Harness Layer: 区分 Declared / Observed /
+  Audited Evidence，以 OpenClaw session JSONL、`tool-calls.json` 和 `harness-audit.json`
+  构成可审计事实链，并通过 Final Report Source-of-Truth Gate 收口
 
 v5.6 is a diagnostic framework and Harness discipline definition. It is not a
 runtime implementation, does not add schemas, does not automatically modify
@@ -176,6 +179,9 @@ v5.4 增加发布前可执行检查：
   Goal Anchor / Goal Decomposition / Execution Plan / Progress Ledger /
   Dynamic Adjustment / Completion Verification / Evidence Ledger /
   Capability Failure Disclosure / Review Ledger / Final Report Gate
+- [v5.6.3 Runtime Evidence Source of Truth / Harness Layer](docs/runtime-evidence-source-of-truth.md):
+  Declared Evidence / Observed Evidence / Audited Evidence 三层证据模型；
+  Runtime observed trace 是 tool calls 的事实来源，model-declared Evidence Ledger 不是最终事实
 - [Master Skill v0.1 Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/README.md)
 - [Core Principles](docs/Master-Skill-v0.1-Clarity-Gate/01-core-principles.md)
 - [Requirement Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/02-clarity-gate.md)
@@ -199,6 +205,7 @@ v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
   Pre-Execution Cognitive Staging, Specialist Review, and Agent Creation Governance
 - v5.6: Agent Performance Stack + Harness Runtime Control
 - v5.6.2: Goal Pursuit Loop / Harness Layer Supplement
+- v5.6.3: Runtime Evidence Source of Truth / Harness Layer
 - Foundation: 系统建模 / 信息降熵 / 反馈控制
 - Agent Performance Stack: 五层 Agent 表现栈，作为诊断框架，不是新增 runtime
 - Harness Runtime Control: 第二层 Harness 运行控制，是运行纪律定义，不是 runtime implementation
@@ -211,6 +218,9 @@ Harness Runtime Control 不授权自动修改 OpenClaw、不自动添加 hook、
 不自动执行工具或修改配置。v5.6 不新增 schema。
 
 Goal Pursuit Loop 是 Harness 设计文档，不是 runtime implementation；
+不新增 schema、helper、OpenClaw hooks 或自动执行机制。
+
+Runtime Evidence Source of Truth 是 Harness 设计文档，不是 runtime implementation；
 不新增 schema、helper、OpenClaw hooks 或自动执行机制。
 
 ### v5.5 Capabilities
