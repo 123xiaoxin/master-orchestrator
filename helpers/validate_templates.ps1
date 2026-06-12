@@ -7,6 +7,8 @@
   agent count, dependency references, self-dependencies, and cycles.
 .PARAMETER TemplatesRoot
   Optional templates root. Defaults to repo-root/templates.
+.PARAMETER AgencyRoot
+  Optional expert library root. Defaults to ~/.openclaw/agency-agents.
 .OUTPUTS
   JSON validation summary.
 .EXAMPLE
@@ -15,7 +17,10 @@
 
 param(
     [Parameter(Mandatory = $false)]
-    [string]$TemplatesRoot = ""
+    [string]$TemplatesRoot = "",
+
+    [Parameter(Mandatory = $false)]
+    [string]$AgencyRoot = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -25,16 +30,20 @@ try {
     if ([string]::IsNullOrWhiteSpace($TemplatesRoot)) {
         $TemplatesRoot = Join-Path $repoRoot "templates"
     }
+    if ([string]::IsNullOrWhiteSpace($AgencyRoot)) {
+        $AgencyRoot = Join-Path $env:USERPROFILE ".openclaw\agency-agents"
+    }
 
     $createPack = Join-Path $PSScriptRoot "create_agent_pack.ps1"
     $resolvedRoot = (Resolve-Path -LiteralPath $TemplatesRoot).Path
+    $resolvedAgencyRoot = (Resolve-Path -LiteralPath $AgencyRoot).Path
     $results = New-Object System.Collections.Generic.List[object]
     $failed = 0
 
     Get-ChildItem -LiteralPath $resolvedRoot -Recurse -Filter *.json -File | Sort-Object FullName | ForEach-Object {
         $relative = $_.FullName.Substring($resolvedRoot.Length).TrimStart('\', '/')
         try {
-            $raw = & $createPack -TemplateFile $_.FullName -DryRun
+            $raw = & $createPack -TemplateFile $_.FullName -AgencyRoot $resolvedAgencyRoot -DryRun
             if ($LASTEXITCODE -ne 0) {
                 throw "create_agent_pack.ps1 returned exit code $LASTEXITCODE"
             }
@@ -63,6 +72,7 @@ try {
     $summary = [ordered]@{
         generatedAt = [DateTimeOffset]::UtcNow.ToString("o")
         templatesRoot = $resolvedRoot
+        agencyRoot = $resolvedAgencyRoot
         total = $results.Count
         failed = $failed
         ok = ($failed -eq 0)

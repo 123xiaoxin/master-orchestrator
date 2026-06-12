@@ -21,6 +21,17 @@ Agent Pack 模板用于保存一组可复用的专家组合。模板只引用专
 | `schemas/agent_pack.v1.schema.json` | 模板结构参考 |
 | `schemas/micro_sop.v1.schema.json` | Micro-SOP 结构参考 |
 
+当前模板：
+
+| 模板 | 流程 |
+|------|------|
+| `webapp-build.json` | 产品 -> UI -> 前端 -> 证据 -> 审查 |
+| `content-campaign.json` | 调研 -> 内容 -> SEO -> 分析 |
+| `bug-fix.json` | 复现 -> 修复 -> 审查 |
+| `code-review.json` | 上下文地图 -> 审查 -> 证据核验 |
+| `feature-request.json` | 产品 -> UI -> 开发 -> 验证 -> 审查 |
+| `research-report.json` | 来源调研 -> 分析 -> 报告撰写 |
+
 ## 字段
 
 | 字段 | 说明 |
@@ -87,6 +98,12 @@ Phase 0 先检查环境：
 
 ```powershell
 .\helpers\create_agent_pack.ps1 -TemplateFile .\templates\webapp-build.json -DryRun
+```
+
+隔离测试或 CI 可以显式注入专家库：
+
+```powershell
+.\helpers\validate_templates.ps1 -AgencyRoot .\.ci-stubs\agency-agents
 ```
 
 任务结束后：

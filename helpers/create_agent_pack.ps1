@@ -25,6 +25,8 @@
   Keep already-created agents if a later agent fails to create.
 .PARAMETER DryRun
   Print the planned pack without creating OpenClaw agents or writing a manifest.
+.PARAMETER AgencyRoot
+  Optional expert library root. Defaults to ~/.openclaw/agency-agents.
 .OUTPUTS
   JSON manifest summary.
 .EXAMPLE
@@ -63,10 +65,17 @@ param(
     [switch]$KeepOnFailure,
 
     [Parameter(Mandatory = $false)]
-    [switch]$DryRun
+    [switch]$DryRun,
+
+    [Parameter(Mandatory = $false)]
+    [string]$AgencyRoot = ""
 )
 
 $ErrorActionPreference = "Stop"
+
+if ([string]::IsNullOrWhiteSpace($AgencyRoot)) {
+    $AgencyRoot = Join-Path $env:USERPROFILE ".openclaw\agency-agents"
+}
 
 function ConvertTo-SafeId {
     param([Parameter(Mandatory = $true)][string]$Value)
@@ -178,8 +187,7 @@ function Test-MicroSopSpec {
 
 function Get-ExpertDefinitionPath {
     param([Parameter(Mandatory = $true)][string]$Name)
-    $agencyRoot = Join-Path $env:USERPROFILE ".openclaw\agency-agents"
-    return (Join-Path (Join-Path $agencyRoot $Name) "AGENTS.md")
+    return (Join-Path (Join-Path $AgencyRoot $Name) "AGENTS.md")
 }
 
 function Test-DependencyCycle {
@@ -283,6 +291,7 @@ function Validate-AgentPack {
 }
 
 try {
+    $AgencyRoot = (Resolve-Path -LiteralPath $AgencyRoot).Path
     $resolvedTemplate = (Resolve-Path -LiteralPath $TemplateFile).Path
     $template = Get-Content -Raw -Encoding UTF8 -LiteralPath $resolvedTemplate | ConvertFrom-Json
     $agents = @($template.agents)
@@ -294,7 +303,6 @@ try {
     }
 
     if ($DryRun) {
-        $agencyRoot = Join-Path $env:USERPROFILE ".openclaw\agency-agents"
         $planned = @($agents) | ForEach-Object {
             $expertName = Get-AgentName -AgentSpec $_
             [ordered]@{
@@ -336,19 +344,24 @@ try {
         if ([string]::IsNullOrWhiteSpace($expertName)) {
             throw "Template contains an empty agent name."
         }
+        $expertFile = [string]$validation.expertFiles[$expertName]
 
         $agentModel = $Model
         if ([string]::IsNullOrWhiteSpace($agentModel) -and -not ($agentSpec -is [string]) -and ($agentSpec.PSObject.Properties.Name -contains "model")) {
             $agentModel = [string]$agentSpec.model
         }
 
-        $args = @("-ExpertName", $expertName, "-BatchId", $PackId)
+        $createArgs = @{
+            ExpertName = $expertName
+            ExpertFile = $expertFile
+            BatchId = $PackId
+        }
         if (-not [string]::IsNullOrWhiteSpace($agentModel)) {
-            $args += @("-Model", $agentModel)
+            $createArgs.Model = $agentModel
         }
 
         Write-Host "Creating temporary expert: $expertName"
-        $raw = & $createScript @args
+        $raw = & $createScript @createArgs
         if ($LASTEXITCODE -ne 0) {
             throw "Failed to create expert: $expertName"
         }
@@ -396,7 +409,7 @@ try {
             finalizedAt = ""
         }
         validation = $validation
-        agents = @($created)
+        agents = @($created.ToArray())
     }
 
     $manifestFile = Join-Path $packRoot "manifest.json"
@@ -405,7 +418,7 @@ try {
     $output = [ordered]@{
         packId = $PackId
         manifest = $manifestFile
-        agents = @($created)
+        agents = @($created.ToArray())
     }
     Write-Output ($output | ConvertTo-Json -Depth 8 -Compress)
 } catch {

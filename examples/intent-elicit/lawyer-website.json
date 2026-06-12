@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "intent_elicitation.v1",
+  "userLiteralRequest": "我要做一个专业的律师网站。",
+  "imagery": {
+    "literal": {
+      "status": "concrete",
+      "userWords": ["专业", "律师", "网站"],
+      "userRestated": "严谨但有人情味，让人敢于说出自己的问题。"
+    },
+    "emotional": {
+      "status": "concrete",
+      "desiredFeelings": ["严谨", "有温度"],
+      "feelingsToAvoid": ["夸张", "推销感"]
+    },
+    "scene": {
+      "status": "concrete",
+      "openingMoment": "当事人在晚上独自打开网站寻找离婚法律帮助。",
+      "firstAction": "确认律师处理过类似问题并查看如何预约。"
+    },
+    "value": {
+      "status": "concrete",
+      "whyItMatters": "当事人需要先建立信任才会联系律师。",
+      "whatItEnables": "用户能判断是否适合咨询并安全地发起联系。"
+    }
+  },
+  "metaphorAnchors": [
+    {
+      "metaphor": "person_in_room",
+      "userAnswer": "像说话有分寸、先听完再回答的资深律师。",
+      "confidence": "high"
+    }
+  ],
+  "antiReferences": [
+    {
+      "thing": "满屏成功案例和胜诉数字的网站",
+      "whyItIsWrong": "像在卖课，不像在处理严肃问题。",
+      "extract": "禁止以夸张胜诉率制造承诺。"
+    },
+    {
+      "thing": "竭诚为您提供",
+      "whyItIsWrong": "这句话太模板化。",
+      "extract": "禁止使用“竭诚为您提供”。"
+    }
+  ],
+  "intentShifts": [],
+  "stopCondition": {
+    "trigger": "convergence",
+    "detail": "严谨和温度在人物、场景与反例中反复收敛。"
+  },
+  "executionClarityEstimate": 0.81,
+  "recommendedNextPhase": "phase_minus_1b_clarity_gate",
+  "elicitationMetadata": {
+    "turnCount": 6,
+    "fallbackUsed": false
+  }
+}

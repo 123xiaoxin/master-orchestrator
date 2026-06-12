@@ -36,6 +36,17 @@ Do not add tools, Agents, process, or clarification rounds unless they remove re
 
 When the user lacks domain background, make the missing decision space visible: key variables, constraints, common paths, likely risks, and what the first artifact should prove.
 
+## Optional Intent Elicitation Evidence
+
+For vague, abstract, or non-technical requests, Master may first gather an
+`intent_elicitation.v1` evidence record. Ask one question per turn, preserve the
+user's own words, record intent shifts, and mark missing layers as `partial` or
+`unknown` instead of inventing content.
+
+This optional evidence step does not replace the Requirement Clarity Gate. It
+may only continue elicitation or hand off to Phase -1b. It must not authorize
+execution or enter Phase 0 directly.
+
 ## Requirement Clarity Gate
 
 Judge clarity by execution readiness, not by a fixed number of conversation rounds.

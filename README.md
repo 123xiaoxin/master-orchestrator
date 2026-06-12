@@ -31,6 +31,11 @@ schemas, examples, validators, encoding checks, and offline prompt eval cases.
   Audited Evidence，以 OpenClaw session JSONL、`tool-calls.json` 和 `harness-audit.json`
   构成可审计事实链，并通过 Final Report Source-of-Truth Gate 收口
 
+**v5.7 draft adds two opt-in extension layers without replacing v5.6.3:**
+
+- Optional Phase -1a intent elicitation for vague, abstract, or non-technical requests
+- Portable full-suite validation through Pester, local CI, and GitHub Actions
+
 v5.6 is a diagnostic framework and Harness discipline definition. It is not a
 runtime implementation, does not add schemas, does not automatically modify
 OpenClaw, does not add hooks, and does not execute tools or change configuration.
@@ -54,11 +59,13 @@ master-orchestrator/
 │   ├── 02-agency-dispatch.md
 │   ├── 03-quality-flywheel.md
 │   ├── 04-skillcraft.md
-│   └── 05-agent-capability-imitation.md
+│   ├── 05-agent-capability-imitation.md
+│   └── 06-intent-elicitation.md
 ├── helpers/
 │   ├── check_env.ps1
 │   ├── validate_templates.ps1
 │   ├── validate_task_analysis.ps1
+│   ├── validate_intent_elicitation.ps1
 │   ├── create_temp_expert.ps1
 │   ├── cleanup_temp.ps1
 │   ├── create_agent_pack.ps1
@@ -71,19 +78,28 @@ master-orchestrator/
 │   ├── task_analysis.v1.schema.json
 │   ├── agent_pack.v1.schema.json
 │   ├── micro_sop.v1.schema.json
-│   └── requirement_clarity.v1.schema.json
+│   ├── requirement_clarity.v1.schema.json
+│   └── intent_elicitation.v1.schema.json
 ├── templates/
 │   ├── README.md
 │   ├── webapp-build.json
-│   └── content-campaign.json
+│   ├── content-campaign.json
+│   ├── bug-fix.json
+│   ├── code-review.json
+│   ├── feature-request.json
+│   └── research-report.json
 ├── examples/
 │   ├── web-landing-page.md
 │   ├── task-analysis/
+│   ├── intent-elicit/
 │   └── requirement_clarity.sample.json
 ├── evals/
 │   ├── README.md
 │   ├── run_prompt_evals.ps1
 │   └── cases/
+├── tests/
+├── local-ci.ps1
+├── run-tests.ps1
 └── LICENSE
 ```
 
@@ -93,7 +109,7 @@ master-orchestrator/
 
 | Phase | 名称 | 核心动作 | 产物 / 断点 |
 |-------|------|---------|-------------|
-| -1 | 清晰度闸门 | 以执行清晰度判断澄清、执行或最小雏形验证；不使用固定澄清轮数 | 当前假设快照 / 最小雏形 |
+| -1 | 意图取证 + 清晰度闸门 | 请求模糊时可选执行 Phase -1a，再由 Phase -1b 判断澄清、执行或最小雏形 | `intent_elicitation.v1` / 当前假设快照 / 最小雏形 |
 | 0 | 环境快照 | 只读检查模型、工具权限、专家库、模板、OpenClaw agents | `check_env.ps1` JSON |
 | 1 | 剖面与转码 | 输出 Intent、Deliverables、Constraints、Success Criteria、Non-Goals | `task_analysis.v1` |
 | 2 | 能力匹配 | 在冷专家库硬匹配能力；缺失则降级协商，不捏造专家 | capability mapping |
@@ -102,6 +118,19 @@ master-orchestrator/
 | 5 | 回收与沉淀 | destroy / keep / archive-template；输出 run summary 与质量教训 | cleanup + archive |
 
 ## Data Contracts
+
+### `intent_elicitation.v1`
+
+`schemas/intent_elicitation.v1.schema.json` 描述可选 Phase -1a 的用户意图证据：
+
+- literal / emotional / scene / value 四层意象状态
+- 用户提供的比喻锚点和反例
+- 对话中发生的意图转变
+- 0-1 清晰度估计
+- `continue_elicitation` 或 `phase_minus_1b_clarity_gate`
+
+Phase -1a 不生成执行契约，也不能直接进入 Phase 0。缺失信息必须标记为
+`partial` 或 `unknown`，不能为满足 Schema 而虚构用户内容。
 
 ### `task_analysis.v1`
 
@@ -160,7 +189,10 @@ v5.4 增加发布前可执行检查：
 .\scripts\check_encoding.ps1
 .\helpers\validate_templates.ps1
 .\helpers\validate_task_analysis.ps1 -File .\examples\task-analysis\*.json
+.\helpers\validate_intent_elicitation.ps1 -File .\examples\intent-elicit\*.json
 .\evals\run_prompt_evals.ps1
+.\run-tests.ps1
+.\local-ci.ps1
 ```
 
 这些检查只验证契约、示例和离线 eval case，不调用真实 LLM，不生成自动环境快照，也不启动 Python CLI。
@@ -206,6 +238,7 @@ v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
 - v5.6: Agent Performance Stack + Harness Runtime Control
 - v5.6.2: Goal Pursuit Loop / Harness Layer Supplement
 - v5.6.3: Runtime Evidence Source of Truth / Harness Layer
+- v5.7 draft: Optional Phase -1a Intent Elicitation + Portable Full Validation
 - Foundation: 系统建模 / 信息降熵 / 反馈控制
 - Agent Performance Stack: 五层 Agent 表现栈，作为诊断框架，不是新增 runtime
 - Harness Runtime Control: 第二层 Harness 运行控制，是运行纪律定义，不是 runtime implementation
@@ -260,7 +293,7 @@ Runtime Evidence Source of Truth 是 Harness 设计文档，不是 runtime imple
 .\evals\run_prompt_evals.ps1
 ```
 
-Current offline eval cases: 10 total.
+Current offline eval cases: 14 total.
 
 - `ambiguous-input-clarification`
 - `clarity-gate-minimum-prototype`
@@ -272,6 +305,10 @@ Current offline eval cases: 10 total.
 - `repository-readonly`
 - `user-agent-bypass`
 - `verify-repair-loop`
+- `elicit-bakery-concrete-layers`
+- `elicit-no-default-options`
+- `elicit-intent-shift`
+- `elicit-low-bandwidth-continue`
 
 ## Agent vs Sub-agent
 
@@ -352,6 +389,15 @@ $r = & .\helpers\create_temp_expert.ps1 `
 .\helpers\create_agent_pack.ps1 -TemplateFile .\templates\webapp-build.json -DryRun
 ```
 
+在 CI 或隔离测试环境中可以注入专家库根目录：
+
+```powershell
+.\helpers\create_agent_pack.ps1 `
+  -TemplateFile .\templates\webapp-build.json `
+  -AgencyRoot .\.ci-stubs\agency-agents `
+  -DryRun
+```
+
 创建 1-5 个临时 Agent，并把确认和成功标准写入 manifest：
 
 ```powershell
@@ -387,11 +433,14 @@ $pack | ConvertFrom-Json
 | `helpers/check_env.ps1` | Phase 0 只读环境检查，输出专家、模板、OpenClaw agents 和模型状态 JSON |
 | `helpers/validate_templates.ps1` | 批量 dry-run 校验所有 Agent Pack 模板 |
 | `helpers/validate_task_analysis.ps1` | 校验 `task_analysis.v1` 示例和治理语义 |
+| `helpers/validate_intent_elicitation.ps1` | 校验 `intent_elicitation.v1` 示例和 Phase -1a 交接语义 |
 | `helpers/create_temp_expert.ps1` | 按专家名创建单个临时 Agent |
 | `helpers/cleanup_temp.ps1` | 安全删除单个 `temp-*` Agent、workspace 和 agent state |
 | `helpers/create_agent_pack.ps1` | 按模板创建 1-5 个临时 Agent，并写入执行契约 manifest |
 | `helpers/finalize_agent_pack.ps1` | 对一个 Agent Pack 执行 `destroy`、`keep` 或 `archive-template` 并记录最终状态 |
 | `scripts/check_encoding.ps1` | 检查 UTF-8 无 BOM 和 ASCII prompt 文件名 |
+| `run-tests.ps1` | 运行完整 Pester 测试目录并生成 NUnit XML |
+| `local-ci.ps1` | 运行编码、模板、契约、离线 eval 和完整 Pester 验证 |
 
 Phase 0 推荐先运行：
 
@@ -405,9 +454,23 @@ Phase 0 推荐先运行：
 ```text
 启动 Master Orchestrator。严格执行 Phase -1 到 Phase 3。
 如果需求模糊，先用执行清晰度闸门判断澄清、执行或最小雏形验证；不要机械执行固定澄清轮数。
+如果用户无法表达具体意图，可选加载 Phase -1a；Phase -1a 只能继续澄清或进入 Phase -1b。
 不要默认使用用户自建代理；只在必要时选择 1-5 个临时专家。
 展示 task_analysis、能力匹配和兵力部署表后暂停，等我确认执行模式和收尾策略。
 ```
+
+## CI/CD
+
+本地完整验证：
+
+```powershell
+.\local-ci.ps1
+```
+
+GitHub Actions 使用仓库自带的
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml)，在 Ubuntu 托管运行器
+已有的 `pwsh` 中安装 Pester，然后调用同一套本地 CI 入口。详细说明见
+[`docs/ci-cd.md`](docs/ci-cd.md)。
 
 ## Third-party Dependency
 

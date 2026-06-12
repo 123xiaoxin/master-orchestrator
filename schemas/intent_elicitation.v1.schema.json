@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/intent_elicitation.v1.schema.json",
+  "title": "Master Orchestrator Intent Elicitation v1",
+  "description": "Optional Phase -1a evidence record. It captures user-supplied imagery without authorizing execution or skipping Phase -1b.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "userLiteralRequest",
+    "imagery",
+    "metaphorAnchors",
+    "antiReferences",
+    "intentShifts",
+    "stopCondition",
+    "executionClarityEstimate",
+    "recommendedNextPhase",
+    "elicitationMetadata"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "intent_elicitation.v1"
+    },
+    "userLiteralRequest": {
+      "type": "string",
+      "minLength": 1
+    },
+    "imagery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["literal", "emotional", "scene", "value"],
+      "properties": {
+        "literal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "userWords", "userRestated"],
+          "properties": {
+            "status": {
+              "enum": ["concrete", "partial", "unknown"]
+            },
+            "userWords": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "userRestated": {
+              "type": "string"
+            }
+          }
+        },
+        "emotional": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "desiredFeelings", "feelingsToAvoid"],
+          "properties": {
+            "status": {
+              "enum": ["concrete", "partial", "unknown"]
+            },
+            "desiredFeelings": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "feelingsToAvoid": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "scene": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "openingMoment", "firstAction"],
+          "properties": {
+            "status": {
+              "enum": ["concrete", "partial", "unknown"]
+            },
+            "openingMoment": {
+              "type": "string"
+            },
+            "firstAction": {
+              "type": "string"
+            }
+          }
+        },
+        "value": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "whyItMatters", "whatItEnables"],
+          "properties": {
+            "status": {
+              "enum": ["concrete", "partial", "unknown"]
+            },
+            "whyItMatters": {
+              "type": "string"
+            },
+            "whatItEnables": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "metaphorAnchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metaphor", "userAnswer", "confidence"],
+        "properties": {
+          "metaphor": {
+            "enum": [
+              "person_in_room",
+              "place",
+              "weather_or_season",
+              "animal",
+              "era_or_decade",
+              "meal",
+              "sound_or_music",
+              "fabric_or_texture",
+              "user_supplied"
+            ]
+          },
+          "userAnswer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "confidence": {
+            "enum": ["high", "medium", "low"]
+          }
+        }
+      }
+    },
+    "antiReferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["thing", "whyItIsWrong", "extract"],
+        "properties": {
+          "thing": {
+            "type": "string",
+            "minLength": 1
+          },
+          "whyItIsWrong": {
+            "type": "string",
+            "minLength": 1
+          },
+          "extract": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "intentShifts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to", "userSignal"],
+        "properties": {
+          "from": {
+            "type": "string",
+            "minLength": 1
+          },
+          "to": {
+            "type": "string",
+            "minLength": 1
+          },
+          "userSignal": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "stopCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trigger", "detail"],
+      "properties": {
+        "trigger": {
+          "enum": [
+            "four_layers_concrete",
+            "convergence",
+            "user_signal",
+            "clarity_threshold_met",
+            "turn_budget_exhausted"
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "executionClarityEstimate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "recommendedNextPhase": {
+      "enum": [
+        "continue_elicitation",
+        "phase_minus_1b_clarity_gate"
+      ]
+    },
+    "elicitationMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["turnCount", "fallbackUsed"],
+      "properties": {
+        "turnCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fallbackUsed": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

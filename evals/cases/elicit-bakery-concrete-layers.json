@@ -1,0 +1,17 @@
+{
+  "id": "elicit-bakery-concrete-layers",
+  "input": "我想要一个漂亮的烘焙店网站。",
+  "expectedBehavior": "Use open Socratic questions to obtain literal, emotional, scene, and value evidence before handing the record to Phase -1b.",
+  "mustContain": [
+    "intent_elicitation.v1",
+    "imagery",
+    "metaphorAnchors",
+    "phase_minus_1b_clarity_gate"
+  ],
+  "mustNotContain": [
+    "phase_0_environment_snapshot",
+    "Option A",
+    "Option B",
+    "竭诚为您提供"
+  ]
+}

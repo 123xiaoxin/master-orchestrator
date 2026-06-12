@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "agent_pack.v1",
+  "name": "code-review",
+  "description": "先建立代码上下文，再审查风险，最后独立核验发现的只读代码审查流程。",
+  "maxAgents": 3,
+  "execution": "serial",
+  "cleanupPolicy": "ask",
+  "agents": [
+    {
+      "name": "frontend-developer",
+      "role": "建立代码上下文、模块边界、运行路径和变更范围地图。",
+      "dependsOn": [],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取代码差异、相关模块、配置、测试和项目约定。",
+        "deliverable": "输出变更地图、关键调用路径、受影响契约和验证入口。",
+        "negativeConstraints": ["不要修改源代码", "不要提前给出最终审查结论", "不要忽略项目级约定"],
+        "exitCondition": "审查者能根据上下文地图定位所有相关文件和行为边界。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 20, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "code-reviewer",
+      "role": "审查行为缺陷、回归风险、安全问题和缺失测试。",
+      "dependsOn": ["frontend-developer"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取变更地图、代码差异、相关契约和现有测试。",
+        "deliverable": "输出按严重度排序且带文件位置、触发条件和影响说明的发现。",
+        "negativeConstraints": ["不要把风格偏好列为阻塞缺陷", "不要省略触发条件", "不要修改代码"],
+        "exitCondition": "每项发现都可由第三方根据给出的证据复核。",
+        "budget": { "tokenBudget": null, "maxRounds": 3, "timeoutMinutes": 30, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "evidence-collector",
+      "role": "独立验证审查发现并标记已证实、未证实或需要补充证据。",
+      "dependsOn": ["code-reviewer"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取审查发现、相关文件、测试入口和可执行验证命令。",
+        "deliverable": "输出逐项证据核验表和最终可信发现清单。",
+        "negativeConstraints": ["不要修改业务代码", "不要把审查者权威当作证据", "不要隐藏无法验证的发现"],
+        "exitCondition": "每项发现都有验证状态和对应证据。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 25, "heartbeat": 0 }
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "agent_pack.v1",
+  "name": "feature-request",
+  "description": "从需求边界、界面设计到实现、证据验证和代码审查的功能开发流程。",
+  "maxAgents": 5,
+  "execution": "serial",
+  "cleanupPolicy": "ask",
+  "agents": [
+    {
+      "name": "product-manager",
+      "role": "提炼目标用户、范围、非目标、验收标准和优先级。",
+      "dependsOn": [],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取功能请求、现有产品约束、用户反馈和 Phase -1 执行契约。",
+        "deliverable": "输出简版 PRD、用户路径、nonGoals 和可验证验收标准。",
+        "negativeConstraints": ["不要扩展到未请求功能", "不要指定未经验证的技术实现", "不要遗漏非目标"],
+        "exitCondition": "设计和开发可以在不猜测核心范围的情况下继续。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 20, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "ui-designer",
+      "role": "把需求转成信息架构、界面状态、交互流程和视觉约束。",
+      "dependsOn": ["product-manager"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取 PRD、用户路径、验收标准和现有设计系统。",
+        "deliverable": "输出页面结构、组件状态、关键交互和响应式约束。",
+        "negativeConstraints": ["不要改变产品范围", "不要忽略无障碍状态", "不要使用无法实现的占位交互"],
+        "exitCondition": "开发者可根据设计说明实现全部验收路径。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 25, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "frontend-developer",
+      "role": "根据需求和设计编写测试并实施最小完整功能。",
+      "dependsOn": ["product-manager", "ui-designer"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取 PRD、设计说明、现有代码结构、项目约定和测试入口。",
+        "deliverable": "输出实现代码、测试、变更文件清单和本地验证结果。",
+        "negativeConstraints": ["不要重写无关模块", "不要跳过失败测试验证", "不要引入未使用依赖"],
+        "exitCondition": "功能满足验收标准，相关测试通过且无新增失败。",
+        "budget": { "tokenBudget": null, "maxRounds": 4, "timeoutMinutes": 45, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "evidence-collector",
+      "role": "按验收标准验证功能、边界状态和回归结果。",
+      "dependsOn": ["frontend-developer"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取验收标准、实现说明、运行命令和测试结果。",
+        "deliverable": "输出逐条验收证据、失败日志、截图路径或可复现步骤。",
+        "negativeConstraints": ["不要修改业务代码", "不要只验证 happy path", "不要把实现说明当成运行证据"],
+        "exitCondition": "每条验收标准都有通过、失败或阻塞状态。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 30, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "code-reviewer",
+      "role": "审查实现质量、安全、维护性、测试覆盖和剩余风险。",
+      "dependsOn": ["frontend-developer", "evidence-collector"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取代码差异、验收证据、测试输出和项目约定。",
+        "deliverable": "输出按严重度排序的审查发现和合并建议。",
+        "negativeConstraints": ["不要重复实现功能", "不要忽略验证失败", "不要输出无证据的评分"],
+        "exitCondition": "阻塞问题和剩余风险均已明确。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 20, "heartbeat": 0 }
+      }
+    }
+  ]
+}

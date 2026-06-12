@@ -1,0 +1,14 @@
+{
+  "id": "elicit-intent-shift",
+  "input": "我想做一个记录旅行的博客。对话中我发现真正想保存的是旅途中遇到的人和故事。",
+  "expectedBehavior": "Preserve the original and revised intent, mark a user_signal stop condition, and continue through Phase -1b.",
+  "mustContain": [
+    "intentShifts",
+    "user_signal",
+    "phase_minus_1b_clarity_gate"
+  ],
+  "mustNotContain": [
+    "我们重新开始",
+    "phase_0_environment_snapshot"
+  ]
+}

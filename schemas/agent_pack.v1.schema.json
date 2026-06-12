@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/agent_pack.v1.schema.json",
   "title": "Master Orchestrator Agent Pack v1",
+  "description": "Reusable 1-5 expert composition with dependency order, lifecycle policy, and per-agent Micro-SOP contracts.",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -72,5 +73,35 @@
         }
       }
     }
-  }
+  },
+  "examples": [
+    {
+      "schemaVersion": "agent_pack.v1",
+      "name": "review-pack",
+      "description": "Map code context, review findings, and verify evidence.",
+      "maxAgents": 3,
+      "execution": "serial",
+      "cleanupPolicy": "ask",
+      "agents": [
+        {
+          "name": "code-reviewer",
+          "role": "Review code behavior and regression risk.",
+          "dependsOn": [],
+          "microSop": {
+            "schemaVersion": "micro_sop.v1",
+            "context": "Read the diff, related code, and tests.",
+            "deliverable": "Produce evidence-based review findings.",
+            "negativeConstraints": ["Do not modify source code."],
+            "exitCondition": "Every blocking finding has a file location and trigger.",
+            "budget": {
+              "tokenBudget": null,
+              "maxRounds": 2,
+              "timeoutMinutes": 20,
+              "heartbeat": 0
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

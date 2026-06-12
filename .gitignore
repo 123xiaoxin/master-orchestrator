@@ -1,2 +1,5 @@
 .local/
 evals/results/
+.ci-stubs/
+local-ci-report.json
+test-results.xml

@@ -89,6 +89,17 @@ v5.4 将治理规则固化为可执行契约：Schema、示例、校验器、编
 
 ### Phase -1：清晰度闸门（Clarity Gate）
 
+#### Phase -1a：可选意图取证（Optional Intent Elicitation）
+
+当用户请求宽泛、抽象、非技术化，或用户明确要求帮助形成意图时，按需加载
+`prompts/06-intent-elicitation.md`。Phase -1a 只生成
+`intent_elicitation.v1` 用户意图证据，不生成执行契约、不创建 Agent、不授权执行。
+
+Phase -1a 只有两个合法出口：继续澄清，或进入 Phase -1b。严禁从 Phase -1a
+直接进入 Phase 0。请求已具体时快速确认“不适用”，直接进入 Phase -1b。
+
+#### Phase -1b：清晰度闸门判断（Requirement Clarity Gate）
+
 当用户请求宽泛、模糊或战略性较强时，Master 不直接做任务分析，也不创建 Agent。
 
 Master 的第一目标是获取清晰意图，而不是完成固定轮数的澄清。先基于第一性原理识别真实目标，基于奥卡姆剃刀删除不必要复杂度，并对用户缺少的领域背景做认知补全。
