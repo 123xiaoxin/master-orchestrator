@@ -31,7 +31,7 @@ schemas, examples, validators, encoding checks, and offline prompt eval cases.
   Audited Evidence，以 OpenClaw session JSONL、`tool-calls.json` 和 `harness-audit.json`
   构成可审计事实链，并通过 Final Report Source-of-Truth Gate 收口
 
-**v5.7 draft adds two opt-in extension layers without replacing v5.6.3:**
+**v5.7 draft adds two extension layers without replacing v5.6.3:**
 
 - Optional Phase -1a intent elicitation for vague, abstract, or non-technical requests
 - Portable full-suite validation through Pester, local CI, and GitHub Actions
