@@ -1,6 +1,8 @@
 # Master Orchestrator (v5.6)
 
-> 为 OpenClaw 打造的微内核运行时治理器。它不是多 Agent 群聊系统，而是把模糊用户意图编译成安全、可执行、可追溯调度蓝图的 Master 主控层。
+> Master Orchestrator is a governance specification, execution contract, and validation framework for Agent Runtime workflows.
+>
+> 它不是已经接管 OpenClaw 生命周期的运行时实现，而是把模糊用户意图编译成可执行、可验证、可审计契约的 Master 治理层。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-2.1+-blue.svg)](https://github.com/openclaw/openclaw)
@@ -8,6 +10,8 @@
 ## Current Positioning
 
 Master Orchestrator 的现行阶段目标是建立调度纪律，而不是追求 Agent 数量。
+
+See [Implementation Status](docs/implementation-status.md) for current implementation boundaries.
 
 **v5.4 turns Master Orchestrator's governance rules into enforceable contracts:**
 schemas, examples, validators, encoding checks, and offline prompt eval cases.
@@ -36,9 +40,11 @@ schemas, examples, validators, encoding checks, and offline prompt eval cases.
 - Optional Phase -1a intent elicitation for vague, abstract, or non-technical requests
 - Portable full-suite validation through Pester, local CI, and GitHub Actions
 
-v5.6 is a diagnostic framework and Harness discipline definition. It is not a
-runtime implementation, does not add schemas, does not automatically modify
-OpenClaw, does not add hooks, and does not execute tools or change configuration.
+The current repository is a governance specification, execution contract, and
+validation framework. Harness Runtime Control is a discipline definition, not a
+live runtime implementation. This repository does not automatically modify
+OpenClaw, add runtime hooks, intercept tools, execute real LLM behavior, or
+implement runtime adapters.
 
 **v5.4 将 Master Orchestrator 的治理规则固化为可执行契约：Schema、示例、校验器、编码检查和离线 Prompt 评估用例。**
 
