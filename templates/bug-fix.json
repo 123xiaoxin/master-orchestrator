@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "agent_pack.v1",
+  "name": "bug-fix",
+  "description": "从稳定复现到最小修复和独立代码审查的 Bug 修复流程。",
+  "maxAgents": 3,
+  "execution": "serial",
+  "cleanupPolicy": "ask",
+  "agents": [
+    {
+      "name": "evidence-collector",
+      "role": "复现问题并收集环境、日志、输入和可重复步骤。",
+      "dependsOn": [],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取 Bug 报告、相关日志、运行命令和验收标准。",
+        "deliverable": "输出最小复现步骤、实际结果、期望结果和影响范围。",
+        "negativeConstraints": ["不要修改业务代码", "不要把推测写成根因", "不要遗漏无法复现的条件"],
+        "exitCondition": "问题可稳定复现，或已明确记录无法复现的证据与缺失条件。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 20, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "frontend-developer",
+      "role": "定位根因，编写回归测试，并实施最小范围修复。",
+      "dependsOn": ["evidence-collector"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取复现报告、相关代码、项目约束和现有测试。",
+        "deliverable": "输出根因、失败测试、最小修复、变更文件和本地验证结果。",
+        "negativeConstraints": ["不要重构无关代码", "不要删除既有测试", "不要用扩大超时掩盖根因"],
+        "exitCondition": "回归测试先失败后通过，相关测试无新增失败。",
+        "budget": { "tokenBudget": null, "maxRounds": 4, "timeoutMinutes": 40, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "code-reviewer",
+      "role": "审查修复正确性、回归风险、测试覆盖和最小改动边界。",
+      "dependsOn": ["frontend-developer"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取复现报告、代码差异、回归测试和验证输出。",
+        "deliverable": "输出按严重度排序的审查发现、剩余风险和是否可合并的结论。",
+        "negativeConstraints": ["不要代替实现者重写功能", "不要接受缺少回归测试的修复", "不要输出无文件位置的泛泛建议"],
+        "exitCondition": "所有阻塞问题都有证据、位置和处理建议。",
+        "budget": { "tokenBudget": null, "maxRounds": 2, "timeoutMinutes": 20, "heartbeat": 0 }
+      }
+    }
+  ]
+}

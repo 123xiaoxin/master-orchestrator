@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "intent_elicitation.v1",
+  "userLiteralRequest": "我想做一个让小店老板能看自己每天卖了多少的系统。",
+  "imagery": {
+    "literal": {
+      "status": "concrete",
+      "userWords": ["小店老板", "每天", "卖了多少"],
+      "userRestated": "让不懂电脑的小店老板一眼看到今天卖了多少钱。"
+    },
+    "emotional": {
+      "status": "concrete",
+      "desiredFeelings": ["简单", "放心"],
+      "feelingsToAvoid": ["复杂", "花里胡哨"]
+    },
+    "scene": {
+      "status": "concrete",
+      "openingMoment": "五十多岁的花店老板早上打开手机。",
+      "firstAction": "看一眼今天的销售数字，再和昨天比较。"
+    },
+    "value": {
+      "status": "concrete",
+      "whyItMatters": "纸质账本容易算错。",
+      "whatItEnables": "不用自己计算就知道当天经营情况。"
+    }
+  },
+  "metaphorAnchors": [
+    {
+      "metaphor": "person_in_room",
+      "userAnswer": "像我五十多岁、开花店、不懂电脑的表姐。",
+      "confidence": "high"
+    }
+  ],
+  "antiReferences": [
+    {
+      "thing": "打开就是一堆图表的系统",
+      "whyItIsWrong": "字小而且看不懂。",
+      "extract": "首页只显示大字号核心数字；禁止密集图表。"
+    }
+  ],
+  "intentShifts": [],
+  "stopCondition": {
+    "trigger": "clarity_threshold_met",
+    "detail": "具体用户、使用场景、硬约束和结果均已明确。"
+  },
+  "executionClarityEstimate": 0.84,
+  "recommendedNextPhase": "phase_minus_1b_clarity_gate",
+  "elicitationMetadata": {
+    "turnCount": 5,
+    "fallbackUsed": false
+  }
+}

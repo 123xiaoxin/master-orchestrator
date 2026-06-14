@@ -1,0 +1,17 @@
+{
+  "id": "elicit-no-default-options",
+  "input": "我要做一个专业的律师网站。",
+  "expectedBehavior": "Anchor the word professional in user-supplied imagery without leading with a near-target option list.",
+  "mustContain": [
+    "intent_elicitation.v1",
+    "desiredFeelings",
+    "antiReferences"
+  ],
+  "mustNotContain": [
+    "请选择 A",
+    "请选择 B",
+    "Option A",
+    "Option B",
+    "phase_0_environment_snapshot"
+  ]
+}

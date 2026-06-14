@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/task_analysis.v1.schema.json",
   "title": "Master Orchestrator Task Analysis v1",
+  "description": "Compiled task profile containing intent, goal, non-goals, deliverables, constraints, success criteria, environment evidence, capability mapping, and routing.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -160,5 +161,36 @@
         "$ref": "micro_sop.v1.schema.json"
       }
     }
-  }
+  },
+  "examples": [
+    {
+      "schemaVersion": "task_analysis.v1",
+      "intent": "Validate a documentation-only change.",
+      "goal": "Confirm links, encoding, and documented commands remain correct.",
+      "nonGoals": ["Do not modify runtime behavior."],
+      "deliverables": ["Validation report."],
+      "constraints": ["Read-only validation."],
+      "successCriteria": ["Encoding and link checks pass."],
+      "environmentSnapshot": {
+        "maxSpawnDepth": 2,
+        "maxChildrenPerAgent": 5,
+        "availableModels": [],
+        "expertLibraryAvailable": true,
+        "userAgentsBypassed": true
+      },
+      "capabilityMapping": [
+        {
+          "capability": "documentation-validation",
+          "required": true,
+          "matchedBy": "",
+          "fallback": "master_only"
+        }
+      ],
+      "routingDecision": {
+        "mode": "master_only",
+        "reason": "The task is small, read-only, and directly verifiable.",
+        "agentCount": 0
+      }
+    }
+  ]
 }

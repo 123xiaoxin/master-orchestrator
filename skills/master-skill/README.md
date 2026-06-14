@@ -14,6 +14,7 @@ This folder packages Master Skill v0.1 as an OpenClaw-installable skill workspac
 The skill only covers:
 
 - obtaining clear intent
+- optional pre-gate intent elicitation evidence for users who cannot yet express a concrete request
 - generating a minimum prototype
 - dynamic recalibration
 - first principles
@@ -25,6 +26,9 @@ The skill only covers:
 - execution contract before execution
 
 It does not include industry-specific cases, platform-specific workflows, or content-form-specific implementation logic.
+
+Optional intent elicitation is evidence collection only. The Requirement
+Clarity Gate still decides `clarify`, `prototype`, or `execute`.
 
 ## Install
 

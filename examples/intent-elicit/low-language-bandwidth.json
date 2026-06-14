@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "intent_elicitation.v1",
+  "userLiteralRequest": "我……我不知道怎么说。反正就是想要一个东西。",
+  "imagery": {
+    "literal": {
+      "status": "partial",
+      "userWords": ["不知道怎么说", "一个东西"],
+      "userRestated": "想做一个东西，但现在还说不清用途。"
+    },
+    "emotional": {
+      "status": "partial",
+      "desiredFeelings": ["轻松"],
+      "feelingsToAvoid": []
+    },
+    "scene": {
+      "status": "unknown",
+      "openingMoment": "",
+      "firstAction": ""
+    },
+    "value": {
+      "status": "unknown",
+      "whyItMatters": "",
+      "whatItEnables": ""
+    }
+  },
+  "metaphorAnchors": [
+    {
+      "metaphor": "user_supplied",
+      "userAnswer": "更像能让我把脑子里的东西放下来的地方。",
+      "confidence": "low"
+    }
+  ],
+  "antiReferences": [],
+  "intentShifts": [],
+  "stopCondition": {
+    "trigger": "turn_budget_exhausted",
+    "detail": "场景和价值仍未知，不能生成 Phase -1b 输入。"
+  },
+  "executionClarityEstimate": 0.48,
+  "recommendedNextPhase": "continue_elicitation",
+  "elicitationMetadata": {
+    "turnCount": 8,
+    "fallbackUsed": true
+  }
+}

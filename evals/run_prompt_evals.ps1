@@ -78,6 +78,7 @@ try {
         hasAmbiguousClarification = [bool](@($files | Where-Object { $_.BaseName -match "ambiguous" }).Count -gt 0)
         hasHeartbeatGuardrail = [bool](@($files | Where-Object { $_.BaseName -match "heartbeat" }).Count -gt 0)
         hasUserAgentBypass = [bool](@($files | Where-Object { $_.BaseName -match "user-agent" }).Count -gt 0)
+        hasIntentElicitation = [bool](@($files | Where-Object { $_.BaseName -match "^elicit-" }).Count -ge 4)
     }
 
     $coverageIssues = New-Object System.Collections.Generic.List[string]
@@ -92,6 +93,9 @@ try {
     }
     if (-not $coverage.hasUserAgentBypass) {
         Add-Issue -Issues $coverageIssues -Message "Missing user-created agent bypass case."
+    }
+    if (-not $coverage.hasIntentElicitation) {
+        Add-Issue -Issues $coverageIssues -Message "At least 4 intent elicitation cases are required."
     }
 
     $ok = ($failed.Count -eq 0 -and $coverageIssues.Count -eq 0)

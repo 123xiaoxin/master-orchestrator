@@ -29,9 +29,9 @@
 
 ## 下一步建议
 
-- [ ] 为 helper 脚本添加 Pester 单元测试，mock `openclaw`
-- [ ] 添加 GitHub Actions：PowerShell 语法检查、JSON 模板校验、README 路径一致性检查
-- [ ] 增加 `templates/code-review.json` 和 `templates/research-report.json`
+- [x] 为可移植 Agent Pack 校验、CI、Phase -1a 和模板角色添加 Pester 测试
+- [x] 添加 GitHub Actions 和统一的本地完整验证入口
+- [x] 增加 `templates/code-review.json` 和 `templates/research-report.json`
 - [ ] 补充 `CONTRIBUTING.md`
 - [ ] 为 `schemas/*.json` 添加 CI 校验
 - [ ] 为用户自建 Agent 设计 `agent_spec.v1` 和胜任力评分机制
@@ -111,6 +111,23 @@
 - [ ] 自动计算 declared/observed diff
 - [ ] 将 B1-B1.4 固化为 benchmark eval cases
 - [ ] 将 Runtime Evidence Source-of-Truth 规则同步回 installed skill 或后续 skill artifact
+
+## v5.7 draft — Merge Optimization (已落地)
+
+- [x] `AgencyRoot` 可注入，模板校验不依赖固定机器路径
+- [x] `run-tests.ps1` 运行完整 Pester 测试目录
+- [x] `local-ci.ps1` 和 GitHub Actions 使用同一验证入口
+- [x] 新增可选 Phase -1a `intent_elicitation.v1`
+- [x] Phase -1a 只能继续澄清或进入 Phase -1b，不能直接进入 Phase 0
+- [x] 新增 5 个意图取证示例和 4 个离线行为契约
+- [x] 新增 bug-fix / code-review / feature-request / research-report 模板
+- [x] 四个核心 Schema 增加说明和示例，不改变验证语义
+
+### Future Engineering
+
+- [ ] 使用真实 LLM eval 验证 Phase -1a 对话行为
+- [ ] 将 Phase -1a 同步到正式 installed skill artifact
+- [ ] 在 GitHub 分支上验证远程 Actions 运行结果
 
 ## 暂不建议
 

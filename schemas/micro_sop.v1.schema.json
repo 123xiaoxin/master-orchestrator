@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/micro_sop.v1.schema.json",
   "title": "Master Orchestrator Micro SOP v1",
+  "description": "Per-agent dispatch contract defining grounded context, concrete deliverables, negative constraints, exit conditions, and bounded runtime.",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -69,5 +70,20 @@
         }
       }
     }
-  }
+  },
+  "examples": [
+    {
+      "schemaVersion": "micro_sop.v1",
+      "context": "Read the accepted requirements and relevant files.",
+      "deliverable": "Return the requested artifact and verification evidence.",
+      "negativeConstraints": ["Do not modify unrelated files."],
+      "exitCondition": "The deliverable satisfies every success criterion.",
+      "budget": {
+        "tokenBudget": null,
+        "maxRounds": 2,
+        "timeoutMinutes": 20,
+        "heartbeat": 0
+      }
+    }
+  ]
 }

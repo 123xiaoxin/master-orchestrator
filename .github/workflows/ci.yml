@@ -1,0 +1,62 @@
+name: ci
+
+on:
+  push:
+    branches: [main, "feature/**", "upgrade/**"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  CI_STUB_AGENCY_ROOT: ${{ github.workspace }}/.ci-stubs/agency-agents
+
+jobs:
+  validate:
+    name: Full repository validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show PowerShell version
+        shell: pwsh
+        run: $PSVersionTable.PSVersion
+
+      - name: Install Pester
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module Pester -Scope CurrentUser -Force -RequiredVersion 5.4.1
+
+      - name: Create expert-library stubs
+        shell: pwsh
+        run: |
+          $root = $env:CI_STUB_AGENCY_ROOT
+          New-Item -ItemType Directory -Force -Path $root | Out-Null
+          $experts = Get-ChildItem ./templates/*.json -File |
+            ForEach-Object { Get-Content -Raw -Encoding UTF8 $_.FullName | ConvertFrom-Json } |
+            ForEach-Object { $_.agents } |
+            ForEach-Object { $_.name } |
+            Sort-Object -Unique
+          foreach ($name in $experts) {
+            $dir = Join-Path $root $name
+            New-Item -ItemType Directory -Force -Path $dir | Out-Null
+            Set-Content -LiteralPath (Join-Path $dir "AGENTS.md") -Encoding utf8 -Value "# CI stub for $name"
+          }
+
+      - name: Run complete validation
+        shell: pwsh
+        run: ./local-ci.ps1 -AgencyRoot $env:CI_STUB_AGENCY_ROOT -OutputReport
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-reports
+          path: |
+            local-ci-report.json
+            test-results.xml
+          if-no-files-found: ignore

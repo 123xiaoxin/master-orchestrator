@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/requirement_clarity.v1.schema.json",
   "title": "Master Skill Requirement Clarity v1",
+  "description": "Phase -1b clarity decision containing the real goal, missing variables, minimum prototype, execution readiness, and execution contract boundaries.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -193,5 +194,37 @@
         "minLength": 1
       }
     }
-  }
+  },
+  "examples": [
+    {
+      "schemaVersion": "requirement_clarity.v1",
+      "surface_request": "Build a simple project site.",
+      "real_goal": "Publish a clear project overview and contact path.",
+      "domain_direction": "Static responsive website.",
+      "key_variables": ["target audience", "primary action"],
+      "missing_critical_info": [],
+      "unnecessary_complexity": ["authentication", "database"],
+      "positive_outcomes": ["visitors understand the project", "visitors can make contact"],
+      "negative_risks": ["scope expansion", "unclear call to action"],
+      "minimum_prototype": {
+        "type": "ui_sketch",
+        "description": "A one-page structure with hero, proof, and contact sections."
+      },
+      "minimum_action": "Confirm the one-page structure.",
+      "execution_readiness_score": 80,
+      "decision": "prototype",
+      "assumptions": ["No backend is required."],
+      "execution_contract": {
+        "real_goal": "Publish a clear project overview and contact path.",
+        "task_boundaries": ["one responsive page"],
+        "allowed_actions": ["create frontend files"],
+        "forbidden_actions": ["add authentication", "add a database"],
+        "minimum_prototype": "One-page UI sketch.",
+        "validation_metrics": ["desktop and mobile layouts have no overflow"],
+        "risk_boundaries": ["no sensitive data collection"]
+      },
+      "validation_points": ["confirm structure", "verify responsive layout"],
+      "risk_boundaries": ["no production deployment without confirmation"]
+    }
+  ]
 }

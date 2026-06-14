@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "agent_pack.v1",
+  "name": "research-report",
+  "description": "从来源收集、证据分析到结构化报告撰写的研究工作流。",
+  "maxAgents": 3,
+  "execution": "serial",
+  "cleanupPolicy": "ask",
+  "agents": [
+    {
+      "name": "trend-researcher",
+      "role": "收集资料来源并评估时效、可信度、相关性和证据缺口。",
+      "dependsOn": [],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取研究问题、时间范围、地域范围、受众和交付格式。",
+        "deliverable": "输出带来源、日期、可信度和相关性说明的资料清单。",
+        "negativeConstraints": ["不要编造来源", "不要把搜索摘要当作完整证据", "不要隐藏反面资料"],
+        "exitCondition": "主要观点均有来源，关键证据缺口已明确。",
+        "budget": { "tokenBudget": null, "maxRounds": 3, "timeoutMinutes": 35, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "analytics-reporter",
+      "role": "分析资料、区分事实与推断，并提炼趋势、分歧和可操作结论。",
+      "dependsOn": ["trend-researcher"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取资料清单、原始证据、研究问题和成功标准。",
+        "deliverable": "输出证据矩阵、关键发现、反面证据、推断标记和结论边界。",
+        "negativeConstraints": ["不要过度外推", "不要混淆相关与因果", "不要删除与结论冲突的证据"],
+        "exitCondition": "每项主要结论都能追溯到证据或明确标记为推断。",
+        "budget": { "tokenBudget": null, "maxRounds": 3, "timeoutMinutes": 30, "heartbeat": 0 }
+      }
+    },
+    {
+      "name": "content-creator",
+      "role": "根据证据矩阵撰写结构清晰、引用完整、面向目标受众的报告。",
+      "dependsOn": ["analytics-reporter"],
+      "microSop": {
+        "schemaVersion": "micro_sop.v1",
+        "context": "读取证据矩阵、结论边界、受众说明和交付格式。",
+        "deliverable": "输出摘要、方法、发现、限制、建议和来源列表完整的研究报告。",
+        "negativeConstraints": ["不要新增无来源事实", "不要省略研究限制", "不要改变分析结论的置信度"],
+        "exitCondition": "报告中的事实可追溯、推断有标记、结构满足交付要求。",
+        "budget": { "tokenBudget": null, "maxRounds": 3, "timeoutMinutes": 30, "heartbeat": 0 }
+      }
+    }
+  ]
+}

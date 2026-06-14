@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "intent_elicitation.v1",
+  "userLiteralRequest": "我想做一个简单的博客，记录我的旅行。",
+  "imagery": {
+    "literal": {
+      "status": "concrete",
+      "userWords": ["简单", "博客", "旅行", "故事"],
+      "userRestated": "不是按日期记行程，而是写旅行中让我记住的人和故事。"
+    },
+    "emotional": {
+      "status": "concrete",
+      "desiredFeelings": ["真实", "安静", "有余味"],
+      "feelingsToAvoid": ["攻略感", "打卡感"]
+    },
+    "scene": {
+      "status": "concrete",
+      "openingMoment": "读者先看到一张照片和一段发生在当地的小故事。",
+      "firstAction": "继续读完这个人与这次相遇。"
+    },
+    "value": {
+      "status": "concrete",
+      "whyItMatters": "用户不想让旅行记忆只剩地点清单。",
+      "whatItEnables": "多年以后仍能记住旅途中具体的人和感受。"
+    }
+  },
+  "metaphorAnchors": [
+    {
+      "metaphor": "user_supplied",
+      "userAnswer": "像一本夹着车票和手写纸条的旧笔记本。",
+      "confidence": "high"
+    }
+  ],
+  "antiReferences": [
+    {
+      "thing": "按日期列景点的流水账",
+      "whyItIsWrong": "没有真正想保存的人和感受。",
+      "extract": "禁止按日期和地点堆叠内容；每篇围绕一个故事。"
+    }
+  ],
+  "intentShifts": [
+    {
+      "from": "记录旅行行程的简单博客",
+      "to": "保存旅途中人物与故事的叙事博客",
+      "userSignal": "用户明确说“我发现我想写的不是去了哪里，而是遇到了谁”。"
+    }
+  ],
+  "stopCondition": {
+    "trigger": "user_signal",
+    "detail": "用户主动修正了原始目标，新的目标已经具备四层具体证据。"
+  },
+  "executionClarityEstimate": 0.79,
+  "recommendedNextPhase": "phase_minus_1b_clarity_gate",
+  "elicitationMetadata": {
+    "turnCount": 7,
+    "fallbackUsed": false
+  }
+}

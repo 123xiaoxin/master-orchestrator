@@ -1,0 +1,15 @@
+{
+  "id": "elicit-low-bandwidth-continue",
+  "input": "我不知道怎么说，反正就是想要一个东西。",
+  "expectedBehavior": "Use the distant-reference fallback only when needed, preserve unknown layers, and continue elicitation instead of inventing a prototype.",
+  "mustContain": [
+    "continue_elicitation",
+    "unknown",
+    "fallbackUsed"
+  ],
+  "mustNotContain": [
+    "phase_0_environment_snapshot",
+    "phase_minus_1b_clarity_gate",
+    "我现在就做"
+  ]
+}

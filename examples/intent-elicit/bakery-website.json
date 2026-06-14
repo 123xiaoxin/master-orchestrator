@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "intent_elicitation.v1",
+  "userLiteralRequest": "我想要一个漂亮的烘焙店网站。",
+  "imagery": {
+    "literal": {
+      "status": "concrete",
+      "userWords": ["漂亮", "烘焙店", "网站"],
+      "userRestated": "像每天早上六点刚开门的老烘焙店，不像连锁品牌官网。"
+    },
+    "emotional": {
+      "status": "concrete",
+      "desiredFeelings": ["温暖", "熟悉", "可信"],
+      "feelingsToAvoid": ["冷冰冰", "千篇一律"]
+    },
+    "scene": {
+      "status": "concrete",
+      "openingMoment": "熟客早上打开网站，先看到当天刚出炉的面包。",
+      "firstAction": "查看今天能预订什么。"
+    },
+    "value": {
+      "status": "concrete",
+      "whyItMatters": "这家店是家里经营多年的老店。",
+      "whatItEnables": "熟客不用打电话就能提前预订。"
+    }
+  },
+  "metaphorAnchors": [
+    {
+      "metaphor": "person_in_room",
+      "userAnswer": "像穿围裙、手上有面粉的奶奶。",
+      "confidence": "high"
+    },
+    {
+      "metaphor": "place",
+      "userAnswer": "像早上六点还很安静的厨房。",
+      "confidence": "high"
+    }
+  ],
+  "antiReferences": [
+    {
+      "thing": "到处是素材图的连锁烘焙网站",
+      "whyItIsWrong": "看不出这家店自己的历史。",
+      "extract": "禁止通用库存烘焙图片和连锁品牌式模板。"
+    }
+  ],
+  "intentShifts": [],
+  "stopCondition": {
+    "trigger": "four_layers_concrete",
+    "detail": "四层意象都有用户提供的具体参照物。"
+  },
+  "executionClarityEstimate": 0.82,
+  "recommendedNextPhase": "phase_minus_1b_clarity_gate",
+  "elicitationMetadata": {
+    "turnCount": 6,
+    "fallbackUsed": false
+  }
+}
