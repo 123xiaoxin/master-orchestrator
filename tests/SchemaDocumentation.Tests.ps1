@@ -7,9 +7,13 @@ BeforeAll {
 Describe "core schema documentation" {
     $schemaNames = @(
         "agent_pack.v1.schema.json",
+        "intent_elicitation.v1.schema.json",
+        "master_output_contract.v1.schema.json",
         "micro_sop.v1.schema.json",
         "requirement_clarity.v1.schema.json",
-        "task_analysis.v1.schema.json"
+        "state_machine.v1.schema.json",
+        "task_analysis.v1.schema.json",
+        "verify_repair_loop.v1.schema.json"
     )
 
     $cases = @($schemaNames | ForEach-Object { @{ SchemaName = $_ } })

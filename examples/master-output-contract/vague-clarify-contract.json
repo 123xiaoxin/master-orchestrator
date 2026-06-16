@@ -1,0 +1,35 @@
+{
+  "version": "master_output_contract.v1",
+  "decision": "clarify",
+  "phase": "phase_minus_1b",
+  "realGoal": "Unknown - user request is too vague to determine a concrete goal.",
+  "nonGoals": [
+    "Do not guess the user's intent.",
+    "Do not start execution without clarity."
+  ],
+  "executionClarity": {
+    "score": 25,
+    "rationale": "The user request lacks a concrete goal, deliverables, and success criteria. Multiple interpretations are possible."
+  },
+  "minimumPrototype": null,
+  "executionContract": {
+    "allowedActions": [
+      "Ask targeted clarification questions"
+    ],
+    "forbiddenActions": [
+      "Start any execution",
+      "Create Agents",
+      "Assume a specific industry or platform"
+    ],
+    "riskBoundaries": [
+      "Cannot proceed without user input",
+      "Must not over-interpret vague language"
+    ],
+    "validationPlan": [
+      "User provides at least one concrete deliverable",
+      "User confirms the real goal"
+    ]
+  },
+  "shouldCreateAgent": false,
+  "nextAction": "Ask the user to specify: what they want to achieve, for whom, and what a successful outcome looks like."
+}

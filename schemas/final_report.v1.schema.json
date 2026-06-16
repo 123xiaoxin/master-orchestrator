@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/final_report.v1.schema.json",
+  "title": "Final Report v1",
+  "description": "The closing report for a complex task execution. Records completed work, verification results, risks, unfinished items, deposition candidates, and next actions. Based on docs/harness-runtime-control.md Section 9 and docs/goal-pursuit-loop.md Section 16.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "taskId",
+    "completed",
+    "verificationResults",
+    "risks",
+    "unfinishedItems",
+    "skillDepositionCandidate",
+    "depositionTarget",
+    "nextActions",
+    "finalStatus",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "final_report.v1"
+    },
+    "taskId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "completed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "verificationResults": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["check", "result"],
+        "properties": {
+          "check": {
+            "type": "string",
+            "minLength": 1
+          },
+          "result": {
+            "enum": ["passed", "failed", "skipped"]
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "unfinishedItems": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "skillDepositionCandidate": {
+      "type": "boolean"
+    },
+    "depositionTarget": {
+      "enum": ["", "prompt", "harness", "skill", "rag_memory", "model_selection_note"]
+    },
+    "nextActions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "finalStatus": {
+      "enum": ["completed", "partial", "blocked", "failed"]
+    },
+    "sourceOfTruthGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "declaredEvidenceMatchesObservedEvidence": {
+          "type": "boolean"
+        },
+        "unaccountedToolCalls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "inventedToolCalls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "phaseAttributionMismatch": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "counterAgentTruthMismatch": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "asyncBoundaryIncomplete": {
+          "type": "boolean"
+        },
+        "ledgerUnverified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": "final_report.v1",
+      "taskId": "docs-refresh-task",
+      "completed": [
+        "Environment snapshot collected",
+        "Encoding check executed and passed",
+        "Template validation executed and passed"
+      ],
+      "verificationResults": [
+        {
+          "check": "Encoding check",
+          "result": "passed"
+        },
+        {
+          "check": "Template validation",
+          "result": "passed"
+        }
+      ],
+      "risks": [],
+      "unfinishedItems": [],
+      "skillDepositionCandidate": false,
+      "depositionTarget": "",
+      "nextActions": [],
+      "finalStatus": "completed",
+      "updatedAt": "2026-06-17T10:30:00Z"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "final-report-gate-required",
+  "version": 1,
+  "description": "Complex tasks must end with a Final Report that records completed work, verification results, risks, unfinished items, deposition candidates, and next actions. Without a Final Report, the task is not considered complete.",
+  "triggerCondition": "A complex task reaches the end of Phase 4 or Phase 5.",
+  "expectedBehavior": [
+    "Master must produce a final_report.v1 record.",
+    "The report must list completed items, verification results, risks, and unfinished items.",
+    "The report must state whether a skill deposition candidate was produced.",
+    "The report must state the deposition target layer if applicable.",
+    "finalStatus must be one of: completed, partial, blocked, failed.",
+    "If verification failed or capability failures were not disclosed, finalStatus must not be completed."
+  ],
+  "forbiddenBehavior": [
+    "Ending a complex task without a Final Report.",
+    "Setting finalStatus to completed when verification results include failures.",
+    "Omitting unfinished items from the report.",
+    "Claiming deposition is not needed without assessment."
+  ],
+  "coverage": "final_report"
+}

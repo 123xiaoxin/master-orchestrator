@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "goal_pursuit_ledger.v1",
+  "taskId": "docs-refresh-task",
+  "goalAnchor": {
+    "trueGoal": "Validate repository encoding and documentation links.",
+    "userValue": "Ensure the repository passes all automated checks before merge.",
+    "nonGoals": ["Do not modify runtime behavior."],
+    "successCriteria": ["Encoding check passes", "Template validation passes"],
+    "riskBoundary": "No write operations allowed."
+  },
+  "progressLedger": {
+    "currentPhase": "phase_4",
+    "completed": ["Environment snapshot collected"],
+    "inProgress": ["Running encoding check"],
+    "blocked": [],
+    "nextAction": "Run check_encoding.ps1",
+    "deviation": "",
+    "risk": "",
+    "lastVerification": "Environment snapshot verified"
+  },
+  "evidenceLedger": {
+    "readFiles": ["schemas/task_analysis.v1.schema.json"],
+    "toolCalls": ["check_env.ps1"],
+    "assumptions": [],
+    "unavailableEvidence": [],
+    "finalReportConsistencyCheck": "not_checked"
+  },
+  "capabilityFailureDisclosure": {
+    "failedTools": [],
+    "unavailableCapabilities": [],
+    "degradedCapabilities": [],
+    "whetherDisclosedInFinalReport": false
+  },
+  "reviewLedger": {
+    "requiredReview": ["internal_checklist"],
+    "reviewMode": "internal_checklist",
+    "counterAgentUsed": false,
+    "humanConfirmationNeeded": false
+  },
+  "completionVerification": {
+    "goalAchieved": false,
+    "verificationPassed": false,
+    "finalStatus": "partial"
+  },
+  "updatedAt": "2026-06-17T10:00:00Z"
+}

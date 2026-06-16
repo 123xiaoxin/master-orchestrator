@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "final_report.v1",
+  "taskId": "landing-page-build",
+  "completed": [
+    "HTML prototype generated",
+    "Hero section and CTA rendered"
+  ],
+  "verificationResults": [
+    {
+      "check": "HTML structure validation",
+      "result": "passed"
+    },
+    {
+      "check": "Visual screenshot verification",
+      "result": "skipped",
+      "detail": "No screenshot tool available. Capability gap routed to degrade."
+    }
+  ],
+  "risks": [
+    "Visual rendering not verified automatically",
+    "Mobile layout not tested"
+  ],
+  "unfinishedItems": [
+    "Mobile responsiveness verification",
+    "Cross-browser testing"
+  ],
+  "skillDepositionCandidate": true,
+  "depositionTarget": "skill",
+  "nextActions": [
+    "User should visually verify the rendered page in a browser",
+    "Consider adding a screenshot verification tool for future tasks"
+  ],
+  "finalStatus": "partial",
+  "sourceOfTruthGate": {
+    "declaredEvidenceMatchesObservedEvidence": true,
+    "unaccountedToolCalls": [],
+    "inventedToolCalls": [],
+    "phaseAttributionMismatch": [],
+    "counterAgentTruthMismatch": [],
+    "asyncBoundaryIncomplete": false,
+    "ledgerUnverified": false
+  },
+  "updatedAt": "2026-06-17T11:00:00Z"
+}

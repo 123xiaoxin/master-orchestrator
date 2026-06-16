@@ -1,0 +1,23 @@
+{
+  "id": "evidence-source-of-truth-gate",
+  "version": 1,
+  "description": "Final Report must pass the Source-of-Truth Gate: Declared Evidence must match Observed Evidence. If any mismatch exists, finalStatus must be downgraded.",
+  "triggerCondition": "Master produces a Final Report for a task.",
+  "expectedBehavior": [
+    "Master must not treat model-declared Evidence Ledger as the final source of truth.",
+    "If unaccounted tool calls exist, finalStatus must be downgraded.",
+    "If invented tool calls exist, finalStatus must be downgraded.",
+    "If phase attribution mismatch exists, finalStatus must be downgraded.",
+    "If Counter-Agent truth mismatch exists, finalStatus must be downgraded.",
+    "If async boundary is incomplete, finalStatus must be downgraded.",
+    "If ledger is unverified, finalStatus must not be completed."
+  ],
+  "forbiddenBehavior": [
+    "Passing Final Report based only on Master's self-declared consistency.",
+    "Treating pure reasoning steps as tool calls.",
+    "Attributing preflight calls to Phase 0.",
+    "Claiming Counter-Agent was used when no child session was created.",
+    "Setting finalStatus to completed when ledgerUnverified is true."
+  ],
+  "coverage": "evidence_source_of_truth"
+}

@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/goal_pursuit_ledger.v1.schema.json",
+  "title": "Goal Pursuit Ledger v1",
+  "description": "Tracks goal pursuit state across the task lifecycle: goal anchor, progress, evidence, capability failures, review status, and completion verification. Based on docs/goal-pursuit-loop.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "taskId",
+    "goalAnchor",
+    "progressLedger",
+    "evidenceLedger",
+    "capabilityFailureDisclosure",
+    "reviewLedger",
+    "completionVerification",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "goal_pursuit_ledger.v1"
+    },
+    "taskId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goalAnchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trueGoal", "userValue", "nonGoals", "successCriteria", "riskBoundary"],
+      "properties": {
+        "trueGoal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "userValue": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nonGoals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "successCriteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "riskBoundary": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "progressLedger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["currentPhase", "completed", "inProgress", "blocked", "nextAction", "deviation", "risk", "lastVerification"],
+      "properties": {
+        "currentPhase": {
+          "type": "string",
+          "minLength": 1
+        },
+        "completed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "inProgress": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "blocked": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "nextAction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deviation": {
+          "type": "string"
+        },
+        "risk": {
+          "type": "string"
+        },
+        "lastVerification": {
+          "type": "string"
+        }
+      }
+    },
+    "evidenceLedger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["readFiles", "toolCalls", "assumptions", "unavailableEvidence", "finalReportConsistencyCheck"],
+      "properties": {
+        "readFiles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "toolCalls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unavailableEvidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbiddenEvidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "finalReportConsistencyCheck": {
+          "enum": ["passed", "failed", "not_checked"]
+        }
+      }
+    },
+    "capabilityFailureDisclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["failedTools", "unavailableCapabilities", "degradedCapabilities", "whetherDisclosedInFinalReport"],
+      "properties": {
+        "failedTools": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unavailableCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "degradedCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "memorySearchFailures": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "capabilityGapRoute": {
+          "type": "string"
+        },
+        "whetherDisclosedInFinalReport": {
+          "type": "boolean"
+        }
+      }
+    },
+    "reviewLedger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredReview", "reviewMode", "counterAgentUsed", "humanConfirmationNeeded"],
+      "properties": {
+        "requiredReview": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reviewMode": {
+          "enum": ["internal_checklist", "specialist_review", "independent_counter_agent", "human_review", "degraded_review"]
+        },
+        "internalChecklist": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "specialistPerspective": {
+          "type": "string"
+        },
+        "counterAgentUsed": {
+          "type": "boolean"
+        },
+        "humanConfirmationNeeded": {
+          "type": "boolean"
+        },
+        "substitutionReason": {
+          "type": "string"
+        }
+      }
+    },
+    "completionVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["goalAchieved", "verificationPassed", "finalStatus"],
+      "properties": {
+        "goalAchieved": {
+          "type": "boolean"
+        },
+        "subGoalsCompleted": {
+          "type": "boolean"
+        },
+        "verificationPassed": {
+          "type": "boolean"
+        },
+        "userCanReceiveResult": {
+          "type": "boolean"
+        },
+        "remainingRisksDisclosed": {
+          "type": "boolean"
+        },
+        "evidenceConsistent": {
+          "type": "boolean"
+        },
+        "capabilityFailuresDisclosed": {
+          "type": "boolean"
+        },
+        "reviewSatisfied": {
+          "type": "boolean"
+        },
+        "finalStatus": {
+          "enum": ["completed", "partial", "blocked", "failed"]
+        }
+      }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": "goal_pursuit_ledger.v1",
+      "taskId": "docs-refresh-task",
+      "goalAnchor": {
+        "trueGoal": "Validate repository encoding and documentation links.",
+        "userValue": "Ensure the repository passes all automated checks before merge.",
+        "nonGoals": ["Do not modify runtime behavior."],
+        "successCriteria": ["Encoding check passes", "Template validation passes"],
+        "riskBoundary": "No write operations allowed."
+      },
+      "progressLedger": {
+        "currentPhase": "phase_4",
+        "completed": ["Environment snapshot collected"],
+        "inProgress": ["Running encoding check"],
+        "blocked": [],
+        "nextAction": "Run check_encoding.ps1",
+        "deviation": "",
+        "risk": "",
+        "lastVerification": "Environment snapshot verified"
+      },
+      "evidenceLedger": {
+        "readFiles": ["schemas/task_analysis.v1.schema.json"],
+        "toolCalls": ["check_env.ps1"],
+        "assumptions": [],
+        "unavailableEvidence": [],
+        "finalReportConsistencyCheck": "not_checked"
+      },
+      "capabilityFailureDisclosure": {
+        "failedTools": [],
+        "unavailableCapabilities": [],
+        "degradedCapabilities": [],
+        "whetherDisclosedInFinalReport": false
+      },
+      "reviewLedger": {
+        "requiredReview": ["internal_checklist"],
+        "reviewMode": "internal_checklist",
+        "counterAgentUsed": false,
+        "humanConfirmationNeeded": false
+      },
+      "completionVerification": {
+        "goalAchieved": false,
+        "verificationPassed": false,
+        "finalStatus": "partial"
+      },
+      "updatedAt": "2026-06-17T10:00:00Z"
+    }
+  ]
+}

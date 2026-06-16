@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/five_layer_snapshot.v1.schema.json",
+  "title": "Five-Layer Runtime Snapshot v1",
+  "description": "A lightweight diagnostic snapshot of the Agent Performance Stack before complex execution. Covers Model, Harness, Prompt, Skill, and RAG/Memory layers. Based on docs/agent-performance-stack.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "modelLayer",
+    "harnessLayer",
+    "promptLayer",
+    "skillLayer",
+    "ragMemoryLayer"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "five_layer_snapshot.v1"
+    },
+    "modelLayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fit"],
+      "properties": {
+        "fit": {
+          "enum": ["sufficient", "partial", "weak", "unknown"]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "harnessLayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fit"],
+      "properties": {
+        "fit": {
+          "enum": ["sufficient", "partial", "weak", "unknown"]
+        },
+        "requiredControls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "promptLayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fit"],
+      "properties": {
+        "fit": {
+          "enum": ["sufficient", "partial", "weak", "unknown"]
+        },
+        "requiredViews": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "skillLayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fit"],
+      "properties": {
+        "fit": {
+          "enum": ["sufficient", "partial", "weak", "unknown"]
+        },
+        "availableTools": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "missingTools": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "ragMemoryLayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fit"],
+      "properties": {
+        "fit": {
+          "enum": ["sufficient", "partial", "weak", "unknown"]
+        },
+        "requiredContext": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "missingContext": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": "five_layer_snapshot.v1",
+      "modelLayer": {
+        "fit": "sufficient",
+        "notes": [
+          "The model can reason about UI structure and frontend planning."
+        ]
+      },
+      "harnessLayer": {
+        "fit": "partial",
+        "requiredControls": [
+          "Clarity Gate",
+          "Final Report"
+        ]
+      },
+      "promptLayer": {
+        "fit": "partial",
+        "requiredViews": [
+          "Product goal",
+          "UX",
+          "Frontend implementation"
+        ]
+      },
+      "skillLayer": {
+        "fit": "partial",
+        "availableTools": [
+          "repository read",
+          "frontend file editing"
+        ],
+        "missingTools": [
+          "visual screenshot verification"
+        ]
+      },
+      "ragMemoryLayer": {
+        "fit": "unknown",
+        "requiredContext": [
+          "existing design system",
+          "target users"
+        ],
+        "missingContext": [
+          "brand constraints"
+        ]
+      }
+    }
+  ]
+}

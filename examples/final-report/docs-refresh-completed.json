@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "final_report.v1",
+  "taskId": "docs-refresh-task",
+  "completed": [
+    "Environment snapshot collected",
+    "Encoding check executed and passed",
+    "Template validation executed and passed"
+  ],
+  "verificationResults": [
+    {
+      "check": "Encoding check",
+      "result": "passed"
+    },
+    {
+      "check": "Template validation",
+      "result": "passed"
+    }
+  ],
+  "risks": [],
+  "unfinishedItems": [],
+  "skillDepositionCandidate": false,
+  "depositionTarget": "",
+  "nextActions": [],
+  "finalStatus": "completed",
+  "updatedAt": "2026-06-17T10:30:00Z"
+}

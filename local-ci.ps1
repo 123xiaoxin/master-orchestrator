@@ -98,6 +98,57 @@ Invoke-CiCheck -Name "intent-elicitation" -Action {
     return "Validated $($check.total) intent_elicitation examples."
 }
 
+Invoke-CiCheck -Name "state-machine" -Action {
+    $validator = Join-Path $repoRoot "helpers\validate_state_machine.ps1"
+    $files = @(Get-ChildItem -LiteralPath (Join-Path $repoRoot "examples\state-machine") -Filter *.json -File)
+    if (-not (Test-Path -LiteralPath $validator -PathType Leaf)) {
+        throw "State machine validator is missing."
+    }
+    if ($files.Count -lt 1) {
+        throw "No state_machine examples found."
+    }
+    $output = & $validator -File $files.FullName -Json
+    $check = ($output | Select-Object -Last 1) | ConvertFrom-Json
+    if (-not $check.ok) {
+        throw ($check.results | Where-Object { -not $_.ok } | ConvertTo-Json -Depth 8 -Compress)
+    }
+    return "Validated $($check.total) state_machine examples."
+}
+
+Invoke-CiCheck -Name "verify-repair-loop" -Action {
+    $validator = Join-Path $repoRoot "helpers\validate_verify_repair_loop.ps1"
+    $files = @(Get-ChildItem -LiteralPath (Join-Path $repoRoot "examples\verify-repair") -Filter *.json -File)
+    if (-not (Test-Path -LiteralPath $validator -PathType Leaf)) {
+        throw "Verify/repair loop validator is missing."
+    }
+    if ($files.Count -lt 1) {
+        throw "No verify_repair_loop examples found."
+    }
+    $output = & $validator -File $files.FullName -Json
+    $check = ($output | Select-Object -Last 1) | ConvertFrom-Json
+    if (-not $check.ok) {
+        throw ($check.results | Where-Object { -not $_.ok } | ConvertTo-Json -Depth 8 -Compress)
+    }
+    return "Validated $($check.total) verify_repair_loop examples."
+}
+
+Invoke-CiCheck -Name "master-output-contract" -Action {
+    $validator = Join-Path $repoRoot "helpers\validate_master_output_contract.ps1"
+    $files = @(Get-ChildItem -LiteralPath (Join-Path $repoRoot "examples\master-output-contract") -Filter *.json -File)
+    if (-not (Test-Path -LiteralPath $validator -PathType Leaf)) {
+        throw "Master output contract validator is missing."
+    }
+    if ($files.Count -lt 1) {
+        throw "No master_output_contract examples found."
+    }
+    $output = & $validator -File $files.FullName -Json
+    $check = ($output | Select-Object -Last 1) | ConvertFrom-Json
+    if (-not $check.ok) {
+        throw ($check.results | Where-Object { -not $_.ok } | ConvertTo-Json -Depth 8 -Compress)
+    }
+    return "Validated $($check.total) master_output_contract examples."
+}
+
 Invoke-CiCheck -Name "offline-prompt-evals" -Action {
     $output = & (Join-Path $repoRoot "evals\run_prompt_evals.ps1") -Json
     $check = ($output | Select-Object -Last 1) | ConvertFrom-Json

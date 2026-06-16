@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/state_machine.v1.schema.json",
   "title": "Long Task Phase 4 State Machine v1",
+  "description": "Tracks long-task execution state during Phase 4: subtask status, transitions, repair budget, and resume coordinates. Used by the Harness Layer to recover from interruption without restarting decomposition.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -231,5 +232,49 @@
       "type": "string",
       "format": "date-time"
     }
-  }
+  },
+  "examples": [
+    {
+      "schemaVersion": "state_machine.v1",
+      "taskId": "docs-refresh-task",
+      "phase": "phase_4",
+      "status": "in_progress",
+      "currentSubtaskId": "A",
+      "resumeFrom": {
+        "subtaskId": "A",
+        "instruction": "Resume from subtask A: collect repository state and verify encoding.",
+        "requiredArtifacts": [
+          "git status output",
+          "check_encoding.ps1 output"
+        ]
+      },
+      "summary": {
+        "goal": "Complete Phase 4 execution for a documentation maintenance task.",
+        "completed": [],
+        "remaining": [
+          "Collect repository state",
+          "Apply formatting repair",
+          "Prepare final engineering report"
+        ],
+        "risks": [
+          "Subtask B must not start until A is verified"
+        ],
+        "nextAction": "Execute subtask A"
+      },
+      "repairCount": 0,
+      "subtasks": [
+        {
+          "id": "A",
+          "title": "Collect current repository state",
+          "status": "in_progress",
+          "dependsOn": [],
+          "repairCount": 0,
+          "artifacts": [],
+          "notes": "Starting repository state collection."
+        }
+      ],
+      "transitions": [],
+      "updatedAt": "2026-06-17T10:00:00Z"
+    }
+  ]
 }

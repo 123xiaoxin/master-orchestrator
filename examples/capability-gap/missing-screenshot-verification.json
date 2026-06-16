@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "capability_gap.v1",
+  "missingCapability": "Visual screenshot verification for UI implementation",
+  "impact": "Cannot automatically verify that the rendered UI matches the design specification.",
+  "candidateRoutes": [
+    {
+      "route": "degrade",
+      "reason": "Deliver structural outline and component description instead of screenshots.",
+      "riskLevel": "L1",
+      "requiresUserAuthorization": false
+    },
+    {
+      "route": "manual_handoff",
+      "reason": "User can manually verify the rendered output in a browser.",
+      "riskLevel": "L1",
+      "requiresUserAuthorization": false
+    }
+  ],
+  "selectedRoute": "degrade",
+  "riskLevel": "L1",
+  "requiresUserAuthorization": false,
+  "verificationPlan": "Deliver HTML structure and component hierarchy. User visually confirms in browser.",
+  "fallback": "manual_handoff if degraded output is insufficient."
+}
