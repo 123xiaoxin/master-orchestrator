@@ -1,0 +1,19 @@
+{
+  "id": "five-layer-snapshot-before-complex-execution",
+  "version": 1,
+  "description": "Before complex execution, Master should form a lightweight Five-Layer Runtime Snapshot to check model, harness, prompt, skill, and RAG/memory fitness.",
+  "triggerCondition": "A task is classified as complex, high-risk, long-running, or quality-critical.",
+  "expectedBehavior": [
+    "Master must assess fitness for each of the five layers.",
+    "Each layer fit must be one of: sufficient, partial, weak, unknown.",
+    "If a layer is partial, weak, or unknown, Master must note what is missing or required.",
+    "The snapshot must inform the Execution Contract or task analysis.",
+    "Simple tasks may use lightweight implicit checks instead of a full snapshot."
+  ],
+  "forbiddenBehavior": [
+    "Skipping layer assessment for complex tasks.",
+    "Assuming all layers are sufficient without checking.",
+    "Treating the snapshot as a mandatory schema for simple tasks."
+  ],
+  "coverage": "five_layer_snapshot"
+}

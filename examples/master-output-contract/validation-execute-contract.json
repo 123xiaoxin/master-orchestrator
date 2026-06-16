@@ -1,0 +1,37 @@
+{
+  "version": "master_output_contract.v1",
+  "decision": "execute",
+  "phase": "phase_1",
+  "realGoal": "Validate that repository encoding and documentation links are correct.",
+  "nonGoals": [
+    "Do not modify runtime behavior.",
+    "Do not add new features."
+  ],
+  "executionClarity": {
+    "score": 85,
+    "rationale": "Goal, boundaries, and validation plan are clear. Read-only task with no ambiguity."
+  },
+  "minimumPrototype": null,
+  "executionContract": {
+    "allowedActions": [
+      "Run check_encoding.ps1",
+      "Run validate_templates.ps1",
+      "Read repository files"
+    ],
+    "forbiddenActions": [
+      "Write to any file",
+      "Install dependencies",
+      "Create Agents"
+    ],
+    "riskBoundaries": [
+      "No write operations allowed",
+      "No external network calls"
+    ],
+    "validationPlan": [
+      "Encoding check passes",
+      "Template validation passes"
+    ]
+  },
+  "shouldCreateAgent": false,
+  "nextAction": "Proceed with Phase 0 environment snapshot and then execute validation."
+}

@@ -1,4 +1,4 @@
-# Master Orchestrator (v5.6)
+# Master Orchestrator (v5.8 draft)
 
 > Master Orchestrator is a governance specification, execution contract, and validation framework for Agent Runtime workflows.
 >
@@ -39,6 +39,12 @@ schemas, examples, validators, encoding checks, and offline prompt eval cases.
 
 - Optional Phase -1a intent elicitation for vague, abstract, or non-technical requests
 - Portable full-suite validation through Pester, local CI, and GitHub Actions
+
+**v5.8 draft extends contract validation without adding runtime implementation:**
+
+- Harness Runtime Control and Goal Pursuit/Evidence prompt modules
+- Master Output, Capability Gap, Final Report, Five-Layer Snapshot, and Goal Pursuit Ledger contracts
+- State Machine and Verify/Repair validators included in local CI
 
 The current repository is a governance specification, execution contract, and
 validation framework. Harness Runtime Control is a discipline definition, not a
@@ -220,6 +226,10 @@ v5.4 增加发布前可执行检查：
 - [v5.6.3 Runtime Evidence Source of Truth / Harness Layer](docs/runtime-evidence-source-of-truth.md):
   Declared Evidence / Observed Evidence / Audited Evidence 三层证据模型；
   Runtime observed trace 是 tool calls 的事实来源，model-declared Evidence Ledger 不是最终事实
+- [Harness Runtime Control Prompt Module](prompts/07-harness-runtime-control.md):
+  将 Harness 规则固化为可加载纪律定义，不实现 runtime hooks
+- [Goal Pursuit and Evidence Prompt Module](prompts/08-goal-pursuit-and-evidence.md):
+  将目标账本、证据账本和 Source-of-Truth Gate 固化为可加载纪律定义
 - [Master Skill v0.1 Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/README.md)
 - [Core Principles](docs/Master-Skill-v0.1-Clarity-Gate/01-core-principles.md)
 - [Requirement Clarity Gate](docs/Master-Skill-v0.1-Clarity-Gate/02-clarity-gate.md)
@@ -245,6 +255,7 @@ v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
 - v5.6.2: Goal Pursuit Loop / Harness Layer Supplement
 - v5.6.3: Runtime Evidence Source of Truth / Harness Layer
 - v5.7 draft: Optional Phase -1a Intent Elicitation + Portable Full Validation
+- v5.8 draft: Contract Validation Expansion for Harness, Evidence, Output, and Final Report boundaries
 - Foundation: 系统建模 / 信息降熵 / 反馈控制
 - Agent Performance Stack: 五层 Agent 表现栈，作为诊断框架，不是新增 runtime
 - Harness Runtime Control: 第二层 Harness 运行控制，是运行纪律定义，不是 runtime implementation
@@ -260,7 +271,7 @@ Goal Pursuit Loop 是 Harness 设计文档，不是 runtime implementation；
 不新增 schema、helper、OpenClaw hooks 或自动执行机制。
 
 Runtime Evidence Source of Truth 是 Harness 设计文档，不是 runtime implementation；
-不新增 schema、helper、OpenClaw hooks 或自动执行机制。
+不新增 OpenClaw hooks 或自动执行机制。v5.8 新增的 schema、helper 和 tests 只验证契约与示例，不提供 runtime adapter。
 
 ### v5.5 Capabilities
 
@@ -299,7 +310,7 @@ Runtime Evidence Source of Truth 是 Harness 设计文档，不是 runtime imple
 .\evals\run_prompt_evals.ps1
 ```
 
-Current offline eval cases: 14 total.
+Current offline eval cases: 19 total.
 
 - `ambiguous-input-clarification`
 - `clarity-gate-minimum-prototype`
@@ -315,6 +326,11 @@ Current offline eval cases: 14 total.
 - `elicit-no-default-options`
 - `elicit-intent-shift`
 - `elicit-low-bandwidth-continue`
+- `capability-gap-requires-routing`
+- `evidence-source-of-truth-gate`
+- `final-report-gate-required`
+- `five-layer-snapshot-before-complex-execution`
+- `goal-pursuit-ledger-required`
 
 ## Agent vs Sub-agent
 
@@ -440,6 +456,9 @@ $pack | ConvertFrom-Json
 | `helpers/validate_templates.ps1` | 批量 dry-run 校验所有 Agent Pack 模板 |
 | `helpers/validate_task_analysis.ps1` | 校验 `task_analysis.v1` 示例和治理语义 |
 | `helpers/validate_intent_elicitation.ps1` | 校验 `intent_elicitation.v1` 示例和 Phase -1a 交接语义 |
+| `helpers/validate_state_machine.ps1` | 校验 `state_machine.v1` 长任务状态示例 |
+| `helpers/validate_verify_repair_loop.ps1` | 校验 `verify_repair_loop.v1` 有界修复示例 |
+| `helpers/validate_master_output_contract.ps1` | 校验 `master_output_contract.v1` 输出契约示例 |
 | `helpers/create_temp_expert.ps1` | 按专家名创建单个临时 Agent |
 | `helpers/cleanup_temp.ps1` | 安全删除单个 `temp-*` Agent、workspace 和 agent state |
 | `helpers/create_agent_pack.ps1` | 按模板创建 1-5 个临时 Agent，并写入执行契约 manifest |

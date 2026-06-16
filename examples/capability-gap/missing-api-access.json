@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "capability_gap.v1",
+  "missingCapability": "External API access for data validation",
+  "impact": "Cannot verify that the generated mock data matches the real API response format.",
+  "candidateRoutes": [
+    {
+      "route": "substitute",
+      "reason": "Use local JSON schema validation against the documented API specification.",
+      "riskLevel": "L2",
+      "requiresUserAuthorization": false
+    },
+    {
+      "route": "install_or_enable",
+      "reason": "Request user authorization to install the API client library and configure credentials.",
+      "riskLevel": "L3",
+      "requiresUserAuthorization": true
+    },
+    {
+      "route": "manual_handoff",
+      "reason": "User manually tests the API integration after code generation.",
+      "riskLevel": "L2",
+      "requiresUserAuthorization": false
+    }
+  ],
+  "selectedRoute": "substitute",
+  "riskLevel": "L2",
+  "requiresUserAuthorization": false,
+  "verificationPlan": "Validate generated code against the documented API schema using local JSON Schema validation.",
+  "fallback": "install_or_enable if the API specification is outdated or incomplete."
+}

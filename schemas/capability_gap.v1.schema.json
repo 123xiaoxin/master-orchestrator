@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/capability_gap.v1.schema.json",
+  "title": "Capability Gap Decision v1",
+  "description": "Records the decision when Master detects a missing capability. Routes through degrade, substitute, install_or_enable, generate_temporary_capability, or manual_handoff. Based on the Capability Gap Decision Tree defined in docs/capability-gap-decision-tree.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "missingCapability",
+    "impact",
+    "candidateRoutes",
+    "selectedRoute",
+    "riskLevel",
+    "requiresUserAuthorization",
+    "verificationPlan",
+    "fallback"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "capability_gap.v1"
+    },
+    "missingCapability": {
+      "type": "string",
+      "minLength": 1
+    },
+    "impact": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candidateRoutes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["route", "reason", "riskLevel", "requiresUserAuthorization"],
+        "properties": {
+          "route": {
+            "enum": [
+              "degrade",
+              "substitute",
+              "install_or_enable",
+              "generate_temporary_capability",
+              "manual_handoff"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "riskLevel": {
+            "enum": ["L0", "L1", "L2", "L3", "L4", "L5"]
+          },
+          "requiresUserAuthorization": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "selectedRoute": {
+      "enum": [
+        "degrade",
+        "substitute",
+        "install_or_enable",
+        "generate_temporary_capability",
+        "manual_handoff"
+      ]
+    },
+    "riskLevel": {
+      "enum": ["L0", "L1", "L2", "L3", "L4", "L5"]
+    },
+    "requiresUserAuthorization": {
+      "type": "boolean"
+    },
+    "verificationPlan": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fallback": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": "capability_gap.v1",
+      "missingCapability": "Visual screenshot verification for UI implementation",
+      "impact": "Cannot automatically verify that the rendered UI matches the design specification.",
+      "candidateRoutes": [
+        {
+          "route": "degrade",
+          "reason": "Deliver structural outline and component description instead of screenshots.",
+          "riskLevel": "L1",
+          "requiresUserAuthorization": false
+        },
+        {
+          "route": "manual_handoff",
+          "reason": "User can manually verify the rendered output in a browser.",
+          "riskLevel": "L1",
+          "requiresUserAuthorization": false
+        }
+      ],
+      "selectedRoute": "degrade",
+      "riskLevel": "L1",
+      "requiresUserAuthorization": false,
+      "verificationPlan": "Deliver HTML structure and component hierarchy. User visually confirms in browser.",
+      "fallback": "manual_handoff if degraded output is insufficient."
+    }
+  ]
+}

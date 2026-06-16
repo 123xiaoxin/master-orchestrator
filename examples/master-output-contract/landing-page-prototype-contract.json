@@ -1,0 +1,37 @@
+{
+  "version": "master_output_contract.v1",
+  "decision": "prototype",
+  "phase": "phase_minus_1b",
+  "realGoal": "Build a landing page that conveys a calm, professional brand presence.",
+  "nonGoals": [
+    "Do not build a full multi-page site.",
+    "Do not implement backend logic."
+  ],
+  "executionClarity": {
+    "score": 72,
+    "rationale": "Direction is clear but the user should confirm layout and content structure before full build."
+  },
+  "minimumPrototype": "Static HTML outline with hero section, value proposition, and CTA placeholder.",
+  "executionContract": {
+    "allowedActions": [
+      "Generate a single-page HTML prototype",
+      "Use placeholder images and text"
+    ],
+    "forbiddenActions": [
+      "Deploy to production",
+      "Install npm packages",
+      "Create Agents"
+    ],
+    "riskBoundaries": [
+      "Prototype is for direction confirmation only",
+      "No production deployment without user confirmation"
+    ],
+    "validationPlan": [
+      "User confirms layout direction",
+      "Hero section and CTA are visible",
+      "Mobile viewport renders without errors"
+    ]
+  },
+  "shouldCreateAgent": false,
+  "nextAction": "Generate minimum prototype and present to user for direction confirmation."
+}

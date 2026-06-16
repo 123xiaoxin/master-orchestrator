@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/master_output_contract.v1.schema.json",
   "title": "Master Output Contract v1",
+  "description": "The runtime validation output contract produced by Master after the Clarity Gate. Encodes the decision (execute, clarify, prototype, degrade, or block), the execution contract with allowed/forbidden actions and risk boundaries, and the next action. Consumed by execution layers instead of raw user requests.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -117,5 +118,44 @@
       "type": "string",
       "minLength": 1
     }
-  }
+  },
+  "examples": [
+    {
+      "version": "master_output_contract.v1",
+      "decision": "execute",
+      "phase": "phase_1",
+      "realGoal": "Validate that repository encoding and documentation links are correct.",
+      "nonGoals": [
+        "Do not modify runtime behavior.",
+        "Do not add new features."
+      ],
+      "executionClarity": {
+        "score": 85,
+        "rationale": "Goal, boundaries, and validation plan are clear. Read-only task with no ambiguity."
+      },
+      "minimumPrototype": null,
+      "executionContract": {
+        "allowedActions": [
+          "Run check_encoding.ps1",
+          "Run validate_templates.ps1",
+          "Read repository files"
+        ],
+        "forbiddenActions": [
+          "Write to any file",
+          "Install dependencies",
+          "Create Agents"
+        ],
+        "riskBoundaries": [
+          "No write operations allowed",
+          "No external network calls"
+        ],
+        "validationPlan": [
+          "Encoding check passes",
+          "Template validation passes"
+        ]
+      },
+      "shouldCreateAgent": false,
+      "nextAction": "Proceed with Phase 0 environment snapshot and then execute validation."
+    }
+  ]
 }
