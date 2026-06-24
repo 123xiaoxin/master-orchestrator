@@ -149,6 +149,74 @@ Invoke-CiCheck -Name "master-output-contract" -Action {
     return "Validated $($check.total) master_output_contract examples."
 }
 
+Invoke-CiCheck -Name "five-layer-snapshot" -Action {
+    $validator = Join-Path $repoRoot "helpers\validate_five_layer_snapshot.ps1"
+    $files = @(Get-ChildItem -LiteralPath (Join-Path $repoRoot "examples\five-layer-snapshot") -Filter *.json -File)
+    if (-not (Test-Path -LiteralPath $validator -PathType Leaf)) {
+        throw "Five-layer snapshot validator is missing."
+    }
+    if ($files.Count -lt 1) {
+        throw "No five_layer_snapshot examples found."
+    }
+    $output = & $validator -File $files.FullName -Json
+    $check = ($output | Select-Object -Last 1) | ConvertFrom-Json
+    if (-not $check.ok) {
+        throw ($check.results | Where-Object { -not $_.ok } | ConvertTo-Json -Depth 8 -Compress)
+    }
+    return "Validated $($check.total) five_layer_snapshot examples."
+}
+
+Invoke-CiCheck -Name "final-report" -Action {
+    $validator = Join-Path $repoRoot "helpers\validate_final_report.ps1"
+    $files = @(Get-ChildItem -LiteralPath (Join-Path $repoRoot "examples\final-report") -Filter *.json -File)
+    if (-not (Test-Path -LiteralPath $validator -PathType Leaf)) {
+        throw "Final report validator is missing."
+    }
+    if ($files.Count -lt 1) {
+        throw "No final_report examples found."
+    }
+    $output = & $validator -File $files.FullName -Json
+    $check = ($output | Select-Object -Last 1) | ConvertFrom-Json
+    if (-not $check.ok) {
+        throw ($check.results | Where-Object { -not $_.ok } | ConvertTo-Json -Depth 8 -Compress)
+    }
+    return "Validated $($check.total) final_report examples."
+}
+
+Invoke-CiCheck -Name "capability-gap" -Action {
+    $validator = Join-Path $repoRoot "helpers\validate_capability_gap.ps1"
+    $files = @(Get-ChildItem -LiteralPath (Join-Path $repoRoot "examples\capability-gap") -Filter *.json -File)
+    if (-not (Test-Path -LiteralPath $validator -PathType Leaf)) {
+        throw "Capability gap validator is missing."
+    }
+    if ($files.Count -lt 1) {
+        throw "No capability_gap examples found."
+    }
+    $output = & $validator -File $files.FullName -Json
+    $check = ($output | Select-Object -Last 1) | ConvertFrom-Json
+    if (-not $check.ok) {
+        throw ($check.results | Where-Object { -not $_.ok } | ConvertTo-Json -Depth 8 -Compress)
+    }
+    return "Validated $($check.total) capability_gap examples."
+}
+
+Invoke-CiCheck -Name "goal-pursuit-ledger" -Action {
+    $validator = Join-Path $repoRoot "helpers\validate_goal_pursuit_ledger.ps1"
+    $files = @(Get-ChildItem -LiteralPath (Join-Path $repoRoot "examples\goal-pursuit-ledger") -Filter *.json -File)
+    if (-not (Test-Path -LiteralPath $validator -PathType Leaf)) {
+        throw "Goal pursuit ledger validator is missing."
+    }
+    if ($files.Count -lt 1) {
+        throw "No goal_pursuit_ledger examples found."
+    }
+    $output = & $validator -File $files.FullName -Json
+    $check = ($output | Select-Object -Last 1) | ConvertFrom-Json
+    if (-not $check.ok) {
+        throw ($check.results | Where-Object { -not $_.ok } | ConvertTo-Json -Depth 8 -Compress)
+    }
+    return "Validated $($check.total) goal_pursuit_ledger examples."
+}
+
 Invoke-CiCheck -Name "offline-prompt-evals" -Action {
     $output = & (Join-Path $repoRoot "evals\run_prompt_evals.ps1") -Json
     $check = ($output | Select-Object -Last 1) | ConvertFrom-Json

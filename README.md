@@ -44,7 +44,8 @@ schemas, examples, validators, encoding checks, and offline prompt eval cases.
 
 - Harness Runtime Control and Goal Pursuit/Evidence prompt modules
 - Master Output, Capability Gap, Final Report, Five-Layer Snapshot, and Goal Pursuit Ledger contracts
-- State Machine and Verify/Repair validators included in local CI
+- Validators for State Machine, Verify/Repair, Master Output Contract, Five-Layer Snapshot, Final Report, Capability Gap, and Goal Pursuit Ledger
+- All v5.8 validators are included in local CI with example coverage
 
 The current repository is a governance specification, execution contract, and
 validation framework. Harness Runtime Control is a discipline definition, not a
@@ -452,6 +453,7 @@ $pack | ConvertFrom-Json
 
 | 脚本 | 用途 |
 |------|------|
+| `helpers/Common.ps1` | Shared helper functions for validator scripts |
 | `helpers/check_env.ps1` | Phase 0 只读环境检查，输出专家、模板、OpenClaw agents 和模型状态 JSON |
 | `helpers/validate_templates.ps1` | 批量 dry-run 校验所有 Agent Pack 模板 |
 | `helpers/validate_task_analysis.ps1` | 校验 `task_analysis.v1` 示例和治理语义 |
@@ -459,6 +461,10 @@ $pack | ConvertFrom-Json
 | `helpers/validate_state_machine.ps1` | 校验 `state_machine.v1` 长任务状态示例 |
 | `helpers/validate_verify_repair_loop.ps1` | 校验 `verify_repair_loop.v1` 有界修复示例 |
 | `helpers/validate_master_output_contract.ps1` | 校验 `master_output_contract.v1` 输出契约示例 |
+| `helpers/validate_five_layer_snapshot.ps1` | Validate `five_layer_snapshot.v1` examples |
+| `helpers/validate_final_report.ps1` | Validate `final_report.v1` examples and Source-of-Truth Gate semantics |
+| `helpers/validate_capability_gap.ps1` | Validate `capability_gap.v1` examples and selected-route consistency |
+| `helpers/validate_goal_pursuit_ledger.ps1` | Validate `goal_pursuit_ledger.v1` examples and completion consistency |
 | `helpers/create_temp_expert.ps1` | 按专家名创建单个临时 Agent |
 | `helpers/cleanup_temp.ps1` | 安全删除单个 `temp-*` Agent、workspace 和 agent state |
 | `helpers/create_agent_pack.ps1` | 按模板创建 1-5 个临时 Agent，并写入执行契约 manifest |
