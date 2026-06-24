@@ -133,3 +133,12 @@
 
 - [ ] 不建议把 `agency-agents` 作为 submodule 引入，除非要锁定具体版本
 - [ ] 不建议默认保留运行实例，长期复用应优先沉淀模板
+
+## v5.8 validator coverage cleanup
+
+- [x] Add shared validator helper functions in `helpers/Common.ps1`.
+- [x] Add validators for `five_layer_snapshot.v1`, `final_report.v1`, `capability_gap.v1`, and `goal_pursuit_ledger.v1`.
+- [x] Include all v5.8 validators in `local-ci.ps1`.
+- [x] Expand schema documentation tests to cover all v5.8 schemas.
+- [x] Add Pester coverage for shared helper behavior and v5.8 validator guardrails.
+- [ ] Keep Runtime adapter, OpenClaw lifecycle control, workflow runtime, memory runtime, and background task systems out of this repository line.
