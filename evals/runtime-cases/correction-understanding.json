@@ -1,0 +1,21 @@
+{
+  "id": "correction-understanding",
+  "split": "validation",
+  "input": "此前把减少预约遗漏理解为营销获客。用户明确纠正：只处理现有预约，不做营销。先重新确认任务模型。",
+  "mustContain": [],
+  "mustNotContain": [],
+  "requireJson": true,
+  "behaviorChecks": [
+    {
+      "path": "decision",
+      "op": "equals",
+      "value": "clarify"
+    },
+    {
+      "path": "shouldCreateAgent",
+      "op": "equals",
+      "value": false
+    }
+  ],
+  "limitations": "Decision/dispatch fields only. Goal correctness, permission provenance, repair history and actual evidence require manual or independent semantic/runtime review."
+}

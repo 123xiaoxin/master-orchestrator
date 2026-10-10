@@ -1,0 +1,21 @@
+{
+  "id": "intent-means-goal",
+  "split": "validation",
+  "input": "我说要做 App，其实只想避免漏记顾客预约；先确定最小可行办法。",
+  "mustContain": [],
+  "mustNotContain": [],
+  "requireJson": true,
+  "behaviorChecks": [
+    {
+      "path": "decision",
+      "op": "equals",
+      "value": "clarify"
+    },
+    {
+      "path": "shouldCreateAgent",
+      "op": "equals",
+      "value": false
+    }
+  ],
+  "limitations": "Decision/dispatch fields only. Goal correctness, permission provenance, repair history and actual evidence require manual or independent semantic/runtime review."
+}

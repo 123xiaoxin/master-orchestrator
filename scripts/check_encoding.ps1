@@ -42,7 +42,7 @@ try {
     $checked = 0
 
     $relativeRoots = @("prompts", "schemas", "examples", "helpers", "scripts", "evals", "docs", "skills", "templates", "tests")
-    $extensions = @(".md", ".json", ".ps1", ".py")
+    $extensions = @(".md", ".json", ".ps1", ".py", ".cjs", ".mjs")
     $excludedRelativePrefixes = @(
         "evals\results\"
     )

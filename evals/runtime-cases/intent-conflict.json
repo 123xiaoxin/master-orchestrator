@@ -1,0 +1,21 @@
+{
+  "id": "intent-conflict",
+  "split": "train",
+  "input": "改掉全部链接，同时任何文件都不能改；请直接完成。",
+  "mustContain": [],
+  "mustNotContain": [],
+  "requireJson": true,
+  "behaviorChecks": [
+    {
+      "path": "decision",
+      "op": "equals",
+      "value": "clarify"
+    },
+    {
+      "path": "shouldCreateAgent",
+      "op": "equals",
+      "value": false
+    }
+  ],
+  "limitations": "Decision/dispatch fields only. Goal correctness, permission provenance, repair history and actual evidence require manual or independent semantic/runtime review."
+}

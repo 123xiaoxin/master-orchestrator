@@ -1,0 +1,21 @@
+{
+  "id": "intent-vague",
+  "split": "validation",
+  "input": "帮我把业务做起来，交付形式和成功标准都还没有确定。",
+  "mustContain": [],
+  "mustNotContain": [],
+  "requireJson": true,
+  "behaviorChecks": [
+    {
+      "path": "decision",
+      "op": "equals",
+      "value": "clarify"
+    },
+    {
+      "path": "shouldCreateAgent",
+      "op": "equals",
+      "value": false
+    }
+  ],
+  "limitations": "Decision/dispatch fields only. Goal correctness, permission provenance, repair history and actual evidence require manual or independent semantic/runtime review."
+}

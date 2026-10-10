@@ -21,8 +21,8 @@
 .PARAMETER ApiKeyEnv
   Environment variable name containing the API key. Defaults to MASTER_EVAL_API_KEY.
 .PARAMETER RequireJson
-  Require every model output to parse as JSON. A case can also set
-  "requireJson": true to opt in per-case.
+  Retained for CLI compatibility. Every output now requires structural JSON
+  contract validation, even when this switch is absent.
 .PARAMETER Json
   Emit a machine-readable JSON summary to stdout.
 #>
@@ -59,10 +59,15 @@ param(
     [switch]$RequireJson,
 
     [Parameter(Mandatory = $false)]
-    [switch]$Json
+    [switch]$Json,
+
+    [ValidateSet("train", "validation", "test")]
+    [string]$Split = "train"
 )
 
 $ErrorActionPreference = "Stop"
+. "$PSScriptRoot/EvaluateOutput.ps1"
+$contractSchema = Join-Path (Split-Path -Parent $PSScriptRoot) "schemas/master_output_contract.v1.schema.json"
 
 function Has-Property {
     param(
@@ -105,7 +110,7 @@ function Get-StringArray {
 
 function Test-ContainsText {
     param(
-        [Parameter(Mandatory = $true)][string]$Haystack,
+        [Parameter(Mandatory = $true)][AllowEmptyString()][string]$Haystack,
         [Parameter(Mandatory = $true)][string]$Needle
     )
     return ($Haystack.IndexOf($Needle, [System.StringComparison]::OrdinalIgnoreCase) -ge 0)
@@ -129,48 +134,6 @@ function Get-CandidateGroups {
         }
     }
     return @($groups.ToArray())
-}
-
-function Test-JsonOutput {
-    param(
-        [Parameter(Mandatory = $true)][string]$Text
-    )
-
-    try {
-        $Text | ConvertFrom-Json | Out-Null
-        return [ordered]@{
-            ok = $true
-            mode = "direct"
-            error = ""
-        }
-    } catch {
-        $directError = $_.Exception.Message
-    }
-
-    $match = [regex]::Match($Text, '(?is)```\s*(?:json)?\s*(.*?)\s*```')
-    if ($match.Success) {
-        $candidate = [string]$match.Groups[1].Value
-        try {
-            $candidate | ConvertFrom-Json | Out-Null
-            return [ordered]@{
-                ok = $true
-                mode = "extracted"
-                error = ""
-            }
-        } catch {
-            return [ordered]@{
-                ok = $false
-                mode = "failed"
-                error = "Direct parse failed: $directError; extracted parse failed: $($_.Exception.Message)"
-            }
-        }
-    }
-
-    return [ordered]@{
-        ok = $false
-        mode = "failed"
-        error = $directError
-    }
 }
 
 function Invoke-ChatCompletion {
@@ -296,14 +259,17 @@ Runtime Validation Eval Instruction:
 "@
 
     $endpoint = ($BaseUrl.TrimEnd("/")) + "/chat/completions"
-    $runId = (Get-Date).ToString("yyyyMMdd-HHmmss")
+    $runId = (Get-Date).ToString("yyyyMMdd-HHmmss") + "-" + [guid]::NewGuid().ToString("N").Substring(0,8)
     $runDir = Join-Path $ResultsDir $runId
     New-Item -ItemType Directory -Force -Path $runDir | Out-Null
     if ($null -ne $sourceLock) {
         Copy-Item -LiteralPath $sourceLockPath -Destination (Join-Path $runDir "source-lock.json")
     }
 
-    $files = @(Get-ChildItem -LiteralPath $resolvedCasesDir -Filter *.json -File | Sort-Object Name)
+    $files = @(Get-ChildItem -LiteralPath $resolvedCasesDir -Filter *.json -File | Sort-Object Name | Where-Object {
+        $definition = Get-Content -Raw -Encoding UTF8 -LiteralPath $_.FullName | ConvertFrom-Json
+        if (Has-Property -Object $definition -Name "split") { $definition.split -eq $Split } else { $Split -eq "train" }
+    })
     if ($files.Count -lt 1) {
         throw "No eval case JSON files found in $resolvedCasesDir."
     }
@@ -315,6 +281,9 @@ Runtime Validation Eval Instruction:
         $caseId = $file.BaseName
         $outputPath = ""
         $outputText = ""
+        $finishReason = ""
+        $usage = $null
+        $evaluation = $null
 
         try {
             $case = Get-Content -Raw -Encoding UTF8 -LiteralPath $file.FullName | ConvertFrom-Json
@@ -346,10 +315,12 @@ Runtime Validation Eval Instruction:
                     -TemperatureValue $Temperature `
                     -TimeoutSeconds $TimeoutSec
 
+                if (Has-Property -Object $response -Name "usage") { $usage = $response.usage }
                 if ($null -eq $response.choices -or @($response.choices).Count -lt 1) {
                     Add-Issue -Issues $issues -Message "API response did not include choices."
                 } else {
                     $outputText = [string]$response.choices[0].message.content
+                    $finishReason = [string]$response.choices[0].finish_reason
                 }
             }
 
@@ -358,9 +329,15 @@ Runtime Validation Eval Instruction:
             Set-Content -LiteralPath $outputPath -Encoding UTF8 -Value $outputText
 
             if ($issues.Count -eq 0) {
+                $checks = @()
+                if (Has-Property -Object $case -Name "behaviorChecks") { $checks = @($case.behaviorChecks) }
+                $evaluation = Test-MasterEvalOutput -Text $outputText -FinishReason $finishReason -SchemaFile $contractSchema -Checks $checks
+                foreach ($code in $evaluation.codes) { Add-Issue -Issues $issues -Message $code }
+            }
+            if ($issues.Count -eq 0) {
                 foreach ($needle in (Get-StringArray -Object $case -Name "mustContain")) {
                     if (-not (Test-ContainsText -Haystack $outputText -Needle $needle)) {
-                        Add-Issue -Issues $issues -Message "Missing required text: $needle"
+                        Add-Issue -Issues $issues -Message "legacy_required_text_missing"
                     }
                 }
                 foreach ($group in (Get-CandidateGroups -Object $case -Name "mustContainAny")) {
@@ -372,25 +349,16 @@ Runtime Validation Eval Instruction:
                         }
                     }
                     if (-not $matched) {
-                        Add-Issue -Issues $issues -Message "Missing required text group: $(@($group) -join ' | ')"
+                        Add-Issue -Issues $issues -Message "legacy_text_group_missing"
                     }
                 }
                 foreach ($needle in (Get-StringArray -Object $case -Name "mustNotContain")) {
                     if (Test-ContainsText -Haystack $outputText -Needle $needle) {
-                        Add-Issue -Issues $issues -Message "Forbidden text present: $needle"
+                        Add-Issue -Issues $issues -Message "legacy_forbidden_text_present"
                     }
                 }
 
-                $caseRequiresJson = $false
-                if ((Has-Property -Object $case -Name "requireJson") -and [bool]$case.requireJson) {
-                    $caseRequiresJson = $true
-                }
-                if ($RequireJson -or $caseRequiresJson) {
-                    $jsonCheck = Test-JsonOutput -Text $outputText
-                    if (-not $jsonCheck.ok) {
-                        Add-Issue -Issues $issues -Message "Output is not valid JSON: $($jsonCheck.error)"
-                    }
-                }
+
             }
         } catch {
             Add-Issue -Issues $issues -Message $_.Exception.Message
@@ -407,6 +375,12 @@ Runtime Validation Eval Instruction:
             ok = ($issues.Count -eq 0)
             issues = @($issues.ToArray())
             outputPath = $outputPath
+            finishReason = $finishReason
+            finishReasonAvailable = (-not [string]::IsNullOrWhiteSpace($finishReason))
+            usage = $usage
+            evaluation = $evaluation
+            behaviorRuleChecksPassed = ($issues.Count -eq 0 -and $null -ne $evaluation -and $evaluation.behaviorCheckCount -gt 0)
+            semanticBehaviorVerified = $false
         }) | Out-Null
     }
 
@@ -415,6 +389,8 @@ Runtime Validation Eval Instruction:
         ok = ($failed.Count -eq 0)
         total = $files.Count
         failed = $failed.Count
+        split = $Split
+        evaluationLimit = "Structural/rule checks and legacy text diagnostics; independent semantic review required."
         model = $Model
         baseUrl = $BaseUrl
         promptFile = $resolvedPromptFile

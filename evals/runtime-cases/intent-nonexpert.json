@@ -1,0 +1,21 @@
+{
+  "id": "intent-nonexpert",
+  "split": "test",
+  "input": "我是不会编程的店主，想让预约少出错，但不知道该做网站还是改流程。",
+  "mustContain": [],
+  "mustNotContain": [],
+  "requireJson": true,
+  "behaviorChecks": [
+    {
+      "path": "decision",
+      "op": "equals",
+      "value": "clarify"
+    },
+    {
+      "path": "shouldCreateAgent",
+      "op": "equals",
+      "value": false
+    }
+  ],
+  "limitations": "Decision/dispatch fields only. Goal correctness, permission provenance, repair history and actual evidence require manual or independent semantic/runtime review."
+}

@@ -15,7 +15,7 @@ Describe "LLM eval source provenance without paid calls" {
         $script:Cases = Join-Path $script:Sandbox "cases"
         Write-Utf8NoBom -Path (Join-Path $script:Cases "source-test.json") -Content '{"id":"source-test","input":"A vague task","mustContain":["clarify"],"mustNotContain":["invented_call"],"requireJson":true}'
         $script:Results = Join-Path $script:Sandbox "results"
-        Mock Invoke-RestMethod { return @{ choices = @(@{ message = @{ content = '{"decision":"clarify"}' } }) } }
+        Mock Invoke-RestMethod { return @{ choices = @(@{ finish_reason = 'stop'; message = @{ content = '{"version":"master_output_contract.v1","decision":"clarify","phase":"phase_minus_1b","realGoal":"Clarify the requested outcome","nonGoals":[],"executionClarity":{"score":30,"rationale":"Critical requirements missing"},"minimumPrototype":null,"executionContract":{"allowedActions":[],"forbiddenActions":["execute"],"riskBoundaries":["No actions"],"validationPlan":["Confirm outcome"]},"shouldCreateAgent":false,"nextAction":"Ask one critical question"}' } }) } }
     }
 
     AfterEach {

@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "counts": {
+    "train": 4,
+    "validation": 4,
+    "test": 4
+  },
+  "cases": [
+    {
+      "id": "intent-clear",
+      "split": "train",
+      "inputSha256": "25db74b1163a254c9b17289fc25509a2623823bce7fc84b1295259cfea3d7695"
+    },
+    {
+      "id": "intent-vague",
+      "split": "validation",
+      "inputSha256": "b7b5bbaba13fc5260094903fd23fb6878c8b03aa178d8d1b7b68a174ba452b42"
+    },
+    {
+      "id": "intent-nonexpert",
+      "split": "test",
+      "inputSha256": "a5f22120b4b39d5840999413211dce0963c26ebb9da55f7b7dc3eaf670d0111b"
+    },
+    {
+      "id": "intent-conflict",
+      "split": "train",
+      "inputSha256": "740a793907db213e49208ca2959811f828dc2658f741ac0b55f53e15f3668e13"
+    },
+    {
+      "id": "intent-means-goal",
+      "split": "validation",
+      "inputSha256": "bef04e1c29e9f34b989f1efe134374180afa2c60cc0f8ff0d2fadf25310b87e0"
+    },
+    {
+      "id": "intent-update",
+      "split": "test",
+      "inputSha256": "765a2dffeca31a4b75a0bad45b609306ac317258612fa6872478f529c8fc032d"
+    },
+    {
+      "id": "correction-agent-failed",
+      "split": "train",
+      "inputSha256": "38bcf5413d59309ff36e4bdca3f8dbadc7dacc2b70d96504c8ceec21b0954dec"
+    },
+    {
+      "id": "correction-tool-error",
+      "split": "validation",
+      "inputSha256": "c1cf7a90ef9e6e8fa1765f32536804746e1b6931fb14ab70107af4428ecc08fe"
+    },
+    {
+      "id": "correction-wrong-goal",
+      "split": "test",
+      "inputSha256": "dbf465c0e5e6e87a62f39776594f28a079ab479f4d9e67cd6fc660614e8283a8"
+    },
+    {
+      "id": "correction-scope",
+      "split": "train",
+      "inputSha256": "dae503ac079e2f86c2776ece180d8da88b39e99084657ce2af3457d88d11cbcb"
+    },
+    {
+      "id": "correction-understanding",
+      "split": "validation",
+      "inputSha256": "852ba587a393d54a3676b1973589c50b245605419463ec41912a85761c829c9f"
+    },
+    {
+      "id": "correction-budget",
+      "split": "test",
+      "inputSha256": "6f650f260758d3f70f744ce1696ad56d80f5f8c367e17f57d81bb9f4b89890a4"
+    }
+  ],
+  "optimizerVisibleSplits": [
+    "train"
+  ],
+  "promotionOnly": [
+    "validation",
+    "test"
+  ],
+  "modelBehaviorResults": "not_run"
+}

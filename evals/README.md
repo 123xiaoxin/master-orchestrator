@@ -98,7 +98,7 @@ DeepSeek-compatible example:
 $env:MASTER_EVAL_API_KEY = "<redacted>"
 $env:MASTER_EVAL_BASE_URL = "https://api.deepseek.com/v1"
 $env:MASTER_EVAL_MODEL = "deepseek-chat"
-.\evals\run_llm_evals.ps1
+.\evals\run_llm_evals.ps1 -PromptFile .\.local\runtime-verification\skillopt-baseline\master-prompt.md
 ```
 
 Useful options:
@@ -122,3 +122,24 @@ Safety boundaries:
 - The runner never creates real Agents.
 - The runner never calls OpenClaw actions.
 - Real API keys must come from environment variables, not source files.
+
+## Runtime preflight (2026-10-10)
+
+All model outputs must satisfy the actual v1 JSON Schema; JSON syntax alone is
+insufficient. Empty output, finish_reason truncation, malformed JSON, schema
+errors and structured field failures are separate categories. The runner stores
+provider usage/finish metadata when available. Legacy keyword checks remain
+diagnostics and cannot establish semantic correctness.
+
+Twelve pilot definitions in runtime-cases are disjoint train/validation/test
+splits of four. Use -CasesDir evals/runtime-cases -Split train (or validation or
+test for independent review), always with an explicit governed -PromptFile.
+Only case input is sent to the target, never behaviorChecks. Per-case held-out
+results, detailed outputs and expected answers must not reach an optimizer.
+No optimizer has been integrated or run; file-level isolation still needs proof.
+
+EvaluateOutput.ps1 checks parsed fields rather than keyword positions and
+returns generic failure codes. Semantic judgment and real runtime enforcement
+remain separate, unperformed checks. See
+[verification report](../docs/reports/master-runtime-integration-verification.md)
+and [disabled preflight plan](skillopt-preflight.json).

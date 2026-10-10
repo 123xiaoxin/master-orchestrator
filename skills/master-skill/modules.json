@@ -111,7 +111,6 @@
     "scripts/check_encoding.ps1"
   ],
   "skillopt": {
-    "baselineSha": "a6c2d0c48fb22f1bf8e9522c3e27270049c95267",
     "modules": [
       "06"
     ],
@@ -136,6 +135,8 @@
       "Final Report Gate",
       "Module dependencies",
       "Production entrypoint"
-    ]
+    ],
+    "upstreamBaselineSha": "a6c2d0c48fb22f1bf8e9522c3e27270049c95267",
+    "acceptedIntegrationSha": "032aa7fa123e5ae50262033cbad7af173e45e14e"
   }
 }

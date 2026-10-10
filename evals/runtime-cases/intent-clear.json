@@ -1,0 +1,21 @@
+{
+  "id": "intent-clear",
+  "split": "train",
+  "input": "仅检查本仓库 Markdown 链接，不改文件、不联网；目标、范围和验收已明确授权。",
+  "mustContain": [],
+  "mustNotContain": [],
+  "requireJson": true,
+  "behaviorChecks": [
+    {
+      "path": "decision",
+      "op": "equals",
+      "value": "execute"
+    },
+    {
+      "path": "shouldCreateAgent",
+      "op": "equals",
+      "value": false
+    }
+  ],
+  "limitations": "Decision/dispatch fields only. Goal correctness, permission provenance, repair history and actual evidence require manual or independent semantic/runtime review."
+}

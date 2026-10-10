@@ -1,0 +1,35 @@
+{
+  "format": "planning-only.v1",
+  "enabled": false,
+  "skilloptImplementationVerified": false,
+  "targetModel": null,
+  "optimizerModel": null,
+  "modelSelection": "Confirm exact provider/model IDs and account availability before any paid call. Target should match intended DSH deployment; optimizer independently configured.",
+  "dataset": "runtime-splits.json",
+  "optimizerVisibleSplit": "train",
+  "trainCases": 4,
+  "validationCases": 4,
+  "testCases": 4,
+  "sampleSuitability": "pilot only; no statistically supported promotion",
+  "sourceModules": [
+    "01",
+    "05",
+    "07",
+    "08",
+    "06"
+  ],
+  "suggestedOutputTokenCap": 4096,
+  "suggestedMaximumOptimizationSteps": 2,
+  "authorizedMonetaryBudget": null,
+  "stopConditions": [
+    "no budget authorization: do not start",
+    "stop before exceeding explicit monetary/token caps",
+    "do not retry truncation as a semantic failure",
+    "stop if protected fields or source hashes change",
+    "reject any contract/evidence/authorization regression",
+    "no held-out failures or expected answers returned to optimizer"
+  ],
+  "candidateRoot": ".local/skillopt-candidates/<experiment>/<step>",
+  "evaluationLogs": "evals/results/<unique-run-id>",
+  "promotionAllowed": false
+}
