@@ -1,0 +1,51 @@
+{
+  "goalConfirmation": {
+    "goal": "实现并验证 Master v1 与 DSH v2.1 之间的受控执行契约适配层。",
+    "status": "confirmed"
+  },
+  "authorization": {
+    "contractSha256": "29c652ba9dcb2c31ed38b001e4a440c405a7f460094a4beba7d033692aca4f0c",
+    "allowedActions": [
+      "读取 Master 仓库和本机 DSH 已安装的契约定义。",
+      "创建独立 Adapter 及测试。",
+      "修改必要的仓库内配套文件。",
+      "运行本地静态、Schema、Mock 和离线集成测试。",
+      "在通过审查与验证后创建本地 Git Commit。"
+    ],
+    "forbiddenActions": [
+      "修改 `~/.dsh` 中任何正在使用的文件。",
+      "覆盖现有 Master 安装。",
+      "修改 DSH 原生 Schema 来适配 Master。",
+      "随意修改 Master 现有 Schema。",
+      "修改 Master 的宏阶段生命周期。",
+      "自动调用真实 Agent 执行任务。",
+      "自动安装外部依赖。",
+      "使用付费模型进行测试。",
+      "启动 SkillOpt。",
+      "自动 Push、Merge、Release 或强制修改 Git 历史。"
+    ],
+    "riskBoundaries": [
+      "修改 `~/.dsh` 中任何正在使用的文件。",
+      "覆盖现有 Master 安装。",
+      "修改 DSH 原生 Schema 来适配 Master。",
+      "随意修改 Master 现有 Schema。",
+      "修改 Master 的宏阶段生命周期。",
+      "自动调用真实 Agent 执行任务。",
+      "自动安装外部依赖。",
+      "使用付费模型进行测试。",
+      "启动 SkillOpt。",
+      "自动 Push、Merge、Release 或强制修改 Git 历史。"
+    ],
+    "shouldCreateAgent": false
+  },
+  "assumptionConfirmations": [],
+  "provenance": {
+    "kind": "host_projection_of_actual_user_request",
+    "originalAttachmentSha256": "64b3260a0801cb3445cd5caae1669475b9dfb30ab498afe5dba7b928382d3326",
+    "originalAttachmentPath": "C:\\Users\\tongk\\.codex\\attachments\\43f54bbd-b068-4275-8405-e0969586a6e7\\已粘贴的文本.txt",
+    "goalQuote": "**本轮唯一目标：实现并验证 Master v1 与 DSH v2.1 之间的受控执行契约适配层。**",
+    "authorizationQuote": "\r\n\r\n- 读取 Master 仓库和本机 DSH 已安装的契约定义。\r\n- 创建独立 Adapter 及测试。\r\n- 修改必要的仓库内配套文件。\r\n- 运行本地静态、Schema、Mock 和离线集成测试。\r\n- 在通过审查与验证后创建本地 Git Commit。\r\n\r\n",
+    "prohibitionQuote": "\r\n\r\n- 修改 `~/.dsh` 中任何正在使用的文件。\r\n- 覆盖现有 Master 安装。\r\n- 修改 DSH 原生 Schema 来适配 Master。\r\n- 随意修改 Master 现有 Schema。\r\n- 修改 Master 的宏阶段生命周期。\r\n- 自动调用真实 Agent 执行任务。\r\n- 自动安装外部依赖。\r\n- 使用付费模型进行测试。\r\n- 启动 SkillOpt。\r\n- 自动 Push、Merge、Release 或强制修改 Git 历史。\r\n\r\n",
+    "transformation": "Literal goal and bullet extraction, no invented user reply. Boolean no-agent reflects the explicit prohibition on automatic real Agent invocation; validation applies only to this offline adapter task."
+  }
+}

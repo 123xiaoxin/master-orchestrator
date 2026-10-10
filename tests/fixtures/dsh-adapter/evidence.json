@@ -1,0 +1,80 @@
+{
+  "version": "master_dsh_evidence.v1",
+  "masterSha256": "29c652ba9dcb2c31ed38b001e4a440c405a7f460094a4beba7d033692aca4f0c",
+  "sources": [
+    {
+      "id": "user",
+      "path": "user-authority.json",
+      "sha256": "19a8f7749e221a9ac02ab1f7e96b833821e5b34c3138ebe9158484ed0f49d60e",
+      "kind": "user"
+    },
+    {
+      "id": "agent",
+      "path": "agent-record.json",
+      "sha256": "2fd4ea0ee8b0b3ad4ae7955cdb80d16431ba661eb812fd96df3ba5b0b958a083",
+      "kind": "agent"
+    }
+  ],
+  "fieldRefs": [
+    {
+      "field": "goalConfirmation",
+      "sourceId": "user",
+      "pointer": "/goalConfirmation"
+    },
+    {
+      "field": "authorization",
+      "sourceId": "user",
+      "pointer": "/authorization"
+    },
+    {
+      "field": "userDecisions",
+      "sourceId": "agent",
+      "pointer": "/userDecisions"
+    },
+    {
+      "field": "agentDecisions",
+      "sourceId": "agent",
+      "pointer": "/agentDecisions"
+    },
+    {
+      "field": "assumptions",
+      "sourceId": "agent",
+      "pointer": "/assumptions"
+    },
+    {
+      "field": "assumptionConfirmations",
+      "sourceId": "user",
+      "pointer": "/assumptionConfirmations"
+    },
+    {
+      "field": "minimumTaskModel",
+      "sourceId": "agent",
+      "pointer": "/minimumTaskModel"
+    },
+    {
+      "field": "minimumPrototype",
+      "sourceId": "agent",
+      "pointer": "/minimumPrototype"
+    },
+    {
+      "field": "definitions",
+      "sourceId": "agent",
+      "pointer": "/definitions"
+    },
+    {
+      "field": "verificationRequired",
+      "sourceId": "agent",
+      "pointer": "/verificationRequired"
+    },
+    {
+      "field": "blockReason",
+      "sourceId": "agent",
+      "pointer": "/blockReason"
+    },
+    {
+      "field": "degradePlan",
+      "sourceId": "agent",
+      "pointer": "/degradePlan"
+    }
+  ]
+}

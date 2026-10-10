@@ -1,0 +1,63 @@
+{
+  "userDecisions": [],
+  "agentDecisions": [
+    {
+      "decision": "使用已有 Node 与原生 Validator 进行离线适配",
+      "rationale": "用户允许创建独立 Adapter，要求优先复用现有技术栈且不安装依赖。"
+    }
+  ],
+  "assumptions": [],
+  "minimumTaskModel": {
+    "type": "contract_adapter",
+    "description": "仅将有来源的 Master v1 契约转换为 DSH v2.1；缺项/冲突/原生拒绝均非 READY，不执行候选。"
+  },
+  "minimumPrototype": {
+    "type": "contract_outline",
+    "description": "Master v1 + 有来源的额外证据 → 输入/证据校验 → 映射或缺项阻断 → DSH 原生结构与治理检查 → 候选或诊断。"
+  },
+  "definitions": {
+    "correct": "原始 v1 通过结构校验，关键字段完整保留，转换结果通过原生 L1 与 L2，缺项与冲突可阻断。",
+    "usable": "独立 CLI 接收来源绑定的输入并输出稳定诊断，可在隔离目录重复运行，无需改 DSH 配置。",
+    "done": "correct 与 usable 均满足，正反例全部通过，原生安装哈希不变，审计记录与本地提交可追踪，未启动模型、Agent 或 SkillOpt。"
+  },
+  "verificationRequired": [
+    {
+      "item": "Master v1 输入通过原生结构校验。",
+      "howToVerify": "使用适配器正反例测试、原生 L1/L2 返回、文件哈希及 Git Diff 对照；此定义是待验证标准，不是已经完成的声明。"
+    },
+    {
+      "item": "Adapter 不擅自补造用户确认与授权。",
+      "howToVerify": "使用适配器正反例测试、原生 L1/L2 返回、文件哈希及 Git Diff 对照；此定义是待验证标准，不是已经完成的声明。"
+    },
+    {
+      "item": "关键目标、范围及风险信息没有静默丢失。",
+      "howToVerify": "使用适配器正反例测试、原生 L1/L2 返回、文件哈希及 Git Diff 对照；此定义是待验证标准，不是已经完成的声明。"
+    },
+    {
+      "item": "必需的额外证据有明确来源。",
+      "howToVerify": "使用适配器正反例测试、原生 L1/L2 返回、文件哈希及 Git Diff 对照；此定义是待验证标准，不是已经完成的声明。"
+    },
+    {
+      "item": "转换后契约通过 DSH v2.1 原生验证器。",
+      "howToVerify": "使用适配器正反例测试、原生 L1/L2 返回、文件哈希及 Git Diff 对照；此定义是待验证标准，不是已经完成的声明。"
+    },
+    {
+      "item": "缺项和冲突能正确阻断。",
+      "howToVerify": "使用适配器正反例测试、原生 L1/L2 返回、文件哈希及 Git Diff 对照；此定义是待验证标准，不是已经完成的声明。"
+    },
+    {
+      "item": "测试可重复运行。",
+      "howToVerify": "使用适配器正反例测试、原生 L1/L2 返回、文件哈希及 Git Diff 对照；此定义是待验证标准，不是已经完成的声明。"
+    },
+    {
+      "item": "没有修改现有 DSH 安装。",
+      "howToVerify": "使用适配器正反例测试、原生 L1/L2 返回、文件哈希及 Git Diff 对照；此定义是待验证标准，不是已经完成的声明。"
+    }
+  ],
+  "blockReason": null,
+  "degradePlan": null,
+  "provenance": {
+    "kind": "agent_authored_task_model_and_acceptance_plan",
+    "purpose": "Offline task fixture derived from explicit current task; not an independent execution trace or a fabricated user confirmation."
+  }
+}

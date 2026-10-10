@@ -1,0 +1,39 @@
+{
+  "targetContract": "master_execution_contract.v2.1",
+  "frameworkVersion": "1.8",
+  "semanticsVersion": "0.2",
+  "observedAt": "2026-10-10",
+  "files": {
+    "master_execution_contract.v2.1.schema.json": {
+      "sha256": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
+      "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json",
+      "vendored": true
+    },
+    "validate-contract.mjs": {
+      "sha256": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
+      "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs",
+      "vendored": true
+    },
+    "schema-validate.mjs": {
+      "sha256": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
+      "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs",
+      "vendored": true
+    },
+    "MASTER-EXECUTION-FRAMEWORK.md": {
+      "sha256": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
+      "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md",
+      "vendored": false
+    },
+    "SEMANTIC-DEFINITIONS.md": {
+      "sha256": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
+      "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md",
+      "vendored": false
+    },
+    "example-contract.v2.1.json": {
+      "sha256": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
+      "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json",
+      "vendored": false
+    }
+  },
+  "masterSchemaSha256": "876883d88ffd2708046d2afe3d63950b3752df10fd57cf6fbd1216b127ce1313"
+}

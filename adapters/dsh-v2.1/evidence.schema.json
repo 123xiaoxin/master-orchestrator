@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adapter evidence references v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "masterSha256",
+    "sources",
+    "fieldRefs"
+  ],
+  "properties": {
+    "version": {
+      "const": "master_dsh_evidence.v1"
+    },
+    "masterSha256": {
+      "type": "string",
+      "minLength": 64
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "path",
+          "sha256",
+          "kind"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "minLength": 64
+          },
+          "kind": {
+            "enum": [
+              "user",
+              "agent",
+              "verification"
+            ]
+          }
+        }
+      }
+    },
+    "fieldRefs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "sourceId",
+          "pointer"
+        ],
+        "properties": {
+          "field": {
+            "enum": [
+              "goalConfirmation",
+              "authorization",
+              "userDecisions",
+              "agentDecisions",
+              "assumptions",
+              "assumptionConfirmations",
+              "minimumTaskModel",
+              "minimumPrototype",
+              "definitions",
+              "verificationRequired",
+              "blockReason",
+              "degradePlan"
+            ]
+          },
+          "sourceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pointer": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

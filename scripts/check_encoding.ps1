@@ -41,7 +41,7 @@ try {
     $issues = New-Object System.Collections.Generic.List[object]
     $checked = 0
 
-    $relativeRoots = @("prompts", "schemas", "examples", "helpers", "scripts", "evals", "docs", "skills", "templates", "tests")
+    $relativeRoots = @("prompts", "schemas", "examples", "helpers", "scripts", "evals", "docs", "skills", "templates", "tests", "adapters")
     $extensions = @(".md", ".json", ".ps1", ".py", ".cjs", ".mjs")
     $excludedRelativePrefixes = @(
         "evals\results\"

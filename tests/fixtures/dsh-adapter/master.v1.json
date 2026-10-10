@@ -1,0 +1,59 @@
+{
+  "version": "master_output_contract.v1",
+  "decision": "execute",
+  "phase": "phase_3",
+  "realGoal": "实现并验证 Master v1 与 DSH v2.1 之间的受控执行契约适配层。",
+  "nonGoals": [
+    "不增加 Master 功能，不重新设计 Skill 架构，不启动 SkillOpt。"
+  ],
+  "executionClarity": {
+    "score": 85,
+    "rationale": "本轮用户明确指定接口目标、允许动作、禁止事项和离线验收标准。评分不提供权限。"
+  },
+  "minimumPrototype": "Master v1 + 有来源的额外证据 → 输入/证据校验 → 映射或缺项阻断 → DSH 原生结构与治理检查 → 候选或诊断。",
+  "executionContract": {
+    "allowedActions": [
+      "读取 Master 仓库和本机 DSH 已安装的契约定义。",
+      "创建独立 Adapter 及测试。",
+      "修改必要的仓库内配套文件。",
+      "运行本地静态、Schema、Mock 和离线集成测试。",
+      "在通过审查与验证后创建本地 Git Commit。"
+    ],
+    "forbiddenActions": [
+      "修改 `~/.dsh` 中任何正在使用的文件。",
+      "覆盖现有 Master 安装。",
+      "修改 DSH 原生 Schema 来适配 Master。",
+      "随意修改 Master 现有 Schema。",
+      "修改 Master 的宏阶段生命周期。",
+      "自动调用真实 Agent 执行任务。",
+      "自动安装外部依赖。",
+      "使用付费模型进行测试。",
+      "启动 SkillOpt。",
+      "自动 Push、Merge、Release 或强制修改 Git 历史。"
+    ],
+    "riskBoundaries": [
+      "修改 `~/.dsh` 中任何正在使用的文件。",
+      "覆盖现有 Master 安装。",
+      "修改 DSH 原生 Schema 来适配 Master。",
+      "随意修改 Master 现有 Schema。",
+      "修改 Master 的宏阶段生命周期。",
+      "自动调用真实 Agent 执行任务。",
+      "自动安装外部依赖。",
+      "使用付费模型进行测试。",
+      "启动 SkillOpt。",
+      "自动 Push、Merge、Release 或强制修改 Git 历史。"
+    ],
+    "validationPlan": [
+      "Master v1 输入通过原生结构校验。",
+      "Adapter 不擅自补造用户确认与授权。",
+      "关键目标、范围及风险信息没有静默丢失。",
+      "必需的额外证据有明确来源。",
+      "转换后契约通过 DSH v2.1 原生验证器。",
+      "缺项和冲突能正确阻断。",
+      "测试可重复运行。",
+      "没有修改现有 DSH 安装。"
+    ]
+  },
+  "shouldCreateAgent": false,
+  "nextAction": "仅进行离线契约转换并调用原生 Validator；不调用真实 Agent 或执行候选任务。"
+}

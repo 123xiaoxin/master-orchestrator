@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/123xiaoxin/master-orchestrator/schemas/master_execution_contract.v2.1.schema.json",
+  "title": "Master Execution Contract v2.1",
+  "description": "Single source of truth for contract STRUCTURE. v2.1 adds governance-consistency fields requested by review: goalStatus (working vs confirmed), blockReason, degradePlan, assumptions[].confirmed. Semantic/governance rules live in the Layer 2 validator, never duplicated here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "decision",
+    "phase",
+    "goal",
+    "goalStatus",
+    "nonGoals",
+    "constraints",
+    "taskScope",
+    "userDecisions",
+    "agentDecisions",
+    "verificationRequired",
+    "risks",
+    "assumptions",
+    "minimumTaskModel",
+    "minimumPrototype",
+    "definitions",
+    "validationCriteria",
+    "executionClarity",
+    "blockReason",
+    "degradePlan",
+    "shouldCreateAgent",
+    "nextAction"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "master_execution_contract.v2.1"
+    },
+    "decision": {
+      "enum": ["clarify", "prototype", "execute", "degrade", "block"]
+    },
+    "phase": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Current best understanding of the goal. During clarify it is a WORKING statement, not a confirmed user goal; goalStatus says which."
+    },
+    "goalStatus": {
+      "enum": ["working", "confirmed"],
+      "description": "working = Master's current best understanding; confirmed = user-confirmed goal. execute requires confirmed."
+    },
+    "nonGoals": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "taskScope": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "userDecisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["question", "whyUser", "impactIfUnknown"],
+        "properties": {
+          "question": { "type": "string", "minLength": 1 },
+          "whyUser": { "type": "string", "minLength": 1 },
+          "impactIfUnknown": { "enum": ["high", "medium", "low"] }
+        }
+      }
+    },
+    "agentDecisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["decision", "rationale"],
+        "properties": {
+          "decision": { "type": "string", "minLength": 1 },
+          "rationale": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "verificationRequired": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item", "howToVerify"],
+        "properties": {
+          "item": { "type": "string", "minLength": 1 },
+          "howToVerify": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["assumption", "reason", "impact", "reversible", "confirmed", "validation"],
+        "properties": {
+          "assumption": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 },
+          "impact": { "enum": ["high", "medium", "low"] },
+          "reversible": { "type": "boolean" },
+          "confirmed": { "type": "boolean", "description": "True only after the user explicitly confirmed this assumption." },
+          "validation": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "minimumTaskModel": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["type", "description"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 }
+      }
+    },
+    "minimumPrototype": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["type", "description"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 }
+      }
+    },
+    "definitions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["correct", "usable", "done"],
+      "properties": {
+        "correct": { "type": ["string", "null"] },
+        "usable": { "type": ["string", "null"] },
+        "done": { "type": ["string", "null"] }
+      }
+    },
+    "validationCriteria": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "executionClarity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "rationale"],
+      "properties": {
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Decision aid for relative comparison only. NOT a probability, NOT a measurement, NOT a hard threshold."
+        },
+        "rationale": { "type": "string", "minLength": 1 }
+      }
+    },
+    "blockReason": {
+      "type": ["string", "null"],
+      "description": "Required (non-null) when decision=block: why execution is blocked and what condition would unblock it."
+    },
+    "degradePlan": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["goal", "loss", "rationale"],
+      "description": "Required (non-null) when decision=degrade: degraded goal, what is given up, and why degrading is acceptable.",
+      "properties": {
+        "goal": { "type": "string", "minLength": 1 },
+        "loss": { "type": "string", "minLength": 1 },
+        "rationale": { "type": "string", "minLength": 1 }
+      }
+    },
+    "shouldCreateAgent": {
+      "type": "boolean"
+    },
+    "nextAction": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intentEvidence": {
+      "type": ["object", "null"],
+      "description": "Evidence sub-structure only. Module may add evidence; only Master Contract defines final state."
+    }
+  }
+}

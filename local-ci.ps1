@@ -236,6 +236,12 @@ Invoke-CiCheck -Name "skill-entrypoint" -Action {
     return "Entrypoint, dependency closure, references, packaging and source locks verified."
 }
 
+Invoke-CiCheck -Name "dsh-contract-adapter" -Action {
+    $testOutput = & node --test (Join-Path $repoRoot "tests/dsh_adapter.test.mjs") 2>&1
+    if (-not $?) { throw "DSH contract Adapter tests failed: $testOutput" }
+    return "Adapter positive/negative tests passed against hash-locked unmodified DSH native sources; offline only."
+}
+
 Invoke-CiCheck -Name "pester" -Action {
     $testResult = & (Join-Path $repoRoot "run-tests.ps1") -PassThru
     if ($testResult.FailedCount -gt 0) {
