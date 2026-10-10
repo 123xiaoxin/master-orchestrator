@@ -98,7 +98,7 @@ DeepSeek-compatible example:
 $env:MASTER_EVAL_API_KEY = "<redacted>"
 $env:MASTER_EVAL_BASE_URL = "https://api.deepseek.com/v1"
 $env:MASTER_EVAL_MODEL = "deepseek-chat"
-.\evals\run_llm_evals.ps1 -PromptFile .\.local\runtime-verification\skillopt-baseline\master-prompt.md
+.\evals\run_llm_evals.ps1 -PromptFile .\.local\runtime-verification-final\skillopt-baseline\master-prompt.md
 ```
 
 Useful options:
@@ -143,3 +143,8 @@ returns generic failure codes. Semantic judgment and real runtime enforcement
 remain separate, unperformed checks. See
 [verification report](../docs/reports/master-runtime-integration-verification.md)
 and [disabled preflight plan](skillopt-preflight.json).
+
+`legacy-case-audit.json` records all 19 historical definitions: five are static
+only, four require an intent record incompatible with the v1-only runner, and
+ten are legacy textual diagnostics. Unsupported cases are rejected before
+model calls. The old fixed branch-name assertion has been removed.

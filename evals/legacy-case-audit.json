@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-10",
+  "totalDefinitions": 19,
+  "exactDuplicateInputs": [],
+  "scope": [
+    {
+      "id": "ambiguous-input-clarification",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "capability-gap-requires-routing",
+      "classification": "static_definition_only",
+      "reason": "No runnable input or text assertion contract; use dedicated semantic/runtime evaluation.",
+      "stringsSensitiveToWording": false
+    },
+    {
+      "id": "clarity-gate-minimum-prototype",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "conservative-edit",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "elicit-bakery-concrete-layers",
+      "classification": "incompatible_with_v1_only_runner",
+      "reason": "Expected intent_elicitation.v1 fields are not v1 top-level output fields; historical keyword checks do not establish serialized intent evidence.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "elicit-intent-shift",
+      "classification": "incompatible_with_v1_only_runner",
+      "reason": "Expected intent_elicitation.v1 fields are not v1 top-level output fields; historical keyword checks do not establish serialized intent evidence.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "elicit-low-bandwidth-continue",
+      "classification": "incompatible_with_v1_only_runner",
+      "reason": "Expected intent_elicitation.v1 fields are not v1 top-level output fields; historical keyword checks do not establish serialized intent evidence.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "elicit-no-default-options",
+      "classification": "incompatible_with_v1_only_runner",
+      "reason": "Expected intent_elicitation.v1 fields are not v1 top-level output fields; historical keyword checks do not establish serialized intent evidence.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "evidence-source-of-truth-gate",
+      "classification": "static_definition_only",
+      "reason": "No runnable input or text assertion contract; use dedicated semantic/runtime evaluation.",
+      "stringsSensitiveToWording": false
+    },
+    {
+      "id": "execution-contract-required",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "final-report-gate-required",
+      "classification": "static_definition_only",
+      "reason": "No runnable input or text assertion contract; use dedicated semantic/runtime evaluation.",
+      "stringsSensitiveToWording": false
+    },
+    {
+      "id": "five-layer-snapshot-before-complex-execution",
+      "classification": "static_definition_only",
+      "reason": "No runnable input or text assertion contract; use dedicated semantic/runtime evaluation.",
+      "stringsSensitiveToWording": false
+    },
+    {
+      "id": "goal-pursuit-ledger-required",
+      "classification": "static_definition_only",
+      "reason": "No runnable input or text assertion contract; use dedicated semantic/runtime evaluation.",
+      "stringsSensitiveToWording": false
+    },
+    {
+      "id": "heartbeat-guardrail",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "long-task-resume",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "no-fixed-clarification-rounds",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "repository-readonly",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "user-agent-bypass",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    },
+    {
+      "id": "verify-repair-loop",
+      "classification": "legacy_text_diagnostics",
+      "reason": "JSON schema plus keyword diagnostics; needs structured and independent semantic review for governance verdict.",
+      "stringsSensitiveToWording": true
+    }
+  ],
+  "repairedAssertion": "repository-readonly no longer requires historic fixed branch name",
+  "independentSemanticJudge": "not_implemented"
+}

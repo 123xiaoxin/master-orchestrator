@@ -80,11 +80,11 @@
 
 `scripts/test_dsh_loader.cjs` 使用 DSH 自带 Electron Node 主机及实际 FileSystemSkillProvider，设置 `includeDefaultRoots:false`、明确 customSkillDirs、`watch:false`。实际发现一个 `master-skill`，加载其 SKILL 正文及 resourceBase，探针再按 manifest 读取 01/05/07/08/06，全部哈希可核对，没有 YAML 警告。它是实际加载组件 + 隔离宿主 Mock，不是完整 Cordis agent 会话，也不是模型主动读取模块的行为证据。
 
-初次探针包标为开发快照；最终交付重新从清洁提交构建 `.local/runtime-verification/skills/master-skill/`，导出 `.local/runtime-verification/skillopt-baseline/`，再次对最终包运行加载探针。报告机器证据见 `runtime-verification-evidence.json`；完整锁、外部快照及探针日志在 `.local`，不入 Git。
+初次探针包标为开发快照；最终交付重新从清洁提交构建 `.local/runtime-verification-final/skills/master-skill/`，导出 `.local/runtime-verification-final/skillopt-baseline/`，再次对最终包运行加载探针。报告机器证据见 `runtime-verification-evidence.json`；完整锁、外部快照及探针日志在 `.local`，不入 Git。
 
 ## 6. 十二个行为案例与证据层
 
-新增案例不替换历史 19 案例。train/validation/test 各 4，输入 SHA-256 唯一，12 个 ID 唯一，集合不相交；四项 Pester 检查证明定义/拆分及结构断言完整。下表**均为案例准备及静态检查通过，模型/真实 DSH 行为未运行**，不是 12/12 行为通过。
+新增案例不替换历史 19 案例。`evals/legacy-case-audit.json` 逐项审计了旧案例：5 个只含静态规范，4 个意图记录不是 v1 输出协议，10 个仍为措辞敏感的历史文本诊断；14 个有输入的旧案例无完全重复输入。删除 repository-readonly 对固定 v5.4 分支名的过期要求，其他历史断言保留。runner 在模型调用前拒绝四个不兼容意图用例；五个定义用例因缺少 input 等既有必需字段也不会调用模型。train/validation/test 各 4，输入 SHA-256 唯一，12 个 ID 唯一，集合不相交；四项 Pester 检查证明定义/拆分及结构断言完整。下表**均为案例准备及静态检查通过，模型/真实 DSH 行为未运行**，不是 12/12 行为通过。
 
 | 能力 | 案例 | split | 仍需验证的真实行为 |
 |---|---|---|---|
@@ -118,13 +118,13 @@ runner `-Split train|validation|test` 只运行选定集；默认 train，旧未
 | 检查 | 实际命令 | 本轮结果 / 上轮 |
 |---|---|---|
 | 全部 CI | `pwsh -NoProfile -File local-ci.ps1 -AgencyRoot .ci-stubs/agency-agents -OutputReport` | 14/14；不新增 CI 总项，只扩展自动发现测试 |
-| Pester | `pwsh -NoProfile -File run-tests.ps1`，也由 CI 调用 | 74/74；上轮 62/62，新增 8 个 evaluator + 4 个 split 测试 |
+| Pester | `pwsh -NoProfile -File run-tests.ps1`，也由 CI 调用 | 75/75；上轮 62/62，新增 8 个 evaluator + 4 个 split + 1 个不兼容用例调用前拒绝测试 |
 | Python 整合 | `python tests/test_master_skill.py`，CI 内执行 | 10/10，与上轮相同 |
 | 全 Schema | `python -X utf8 ../validate_all_schemas.py` | 12 Schema / 38 示例；与上轮相同；外部辅助文件此前已保留 |
 | 入口/编码/Prompt | `python scripts/master_skill.py check`、CI encoding/offline-prompt-evals | 通过；历史定义仍 19/19，新增 12 不混入旧计数 |
 | DSH 原生契约/trace | `python -X utf8 scripts/verify_dsh_candidate.py --dsh-home C:/Users/tongk/.dsh --output .local/dsh-contract-verification` | 5/5；其中插件是 Mock，v1 拒绝为预期差异证明 |
-| Skill 包/闭包 | `python scripts/master_skill.py build --output .local/runtime-verification/skills/master-skill`；`export --modules 06 --output .local/runtime-verification/skillopt-baseline` | 自包含引用、闭包和新来源锁检查 |
-| DSH 实际加载器 | DSH Electron 主机 `--expose-internals scripts/test_dsh_loader.cjs <实际 provider 文件> .local/runtime-verification/skills .local/runtime-verification/loader-verification.json` | 实际 provider，隔离组件；无模型 |
+| Skill 包/闭包 | `python scripts/master_skill.py build --output .local/runtime-verification-final/skills/master-skill`；`export --modules 06 --output .local/runtime-verification-final/skillopt-baseline` | 自包含引用、闭包和新来源锁检查 |
+| DSH 实际加载器 | DSH Electron 主机 `--expose-internals scripts/test_dsh_loader.cjs <实际 provider 文件> .local/runtime-verification-final/skills .local/runtime-verification-final/loader-verification.json` | 实际 provider，隔离组件；无模型 |
 | Git | `git diff --check`、`git diff --cached --check`、`git fsck --full` | 通过；最后工作区 clean；无远程写入 |
 
 最初误用不存在的 `scripts/run-tests.ps1`，返回找不到文件；改用仓库根目录现有 `run-tests.ps1`，没有新增重复 runner。Pester Mock 和 UTF-8/换行问题见第 2 节。修复均针对实现/测试 fixture，没有放宽安全或契约断言。

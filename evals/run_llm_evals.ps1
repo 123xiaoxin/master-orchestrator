@@ -291,6 +291,10 @@ Runtime Validation Eval Instruction:
                 $caseId = [string]$case.id
             }
 
+            if ($caseId -in @("elicit-bakery-concrete-layers", "elicit-intent-shift", "elicit-low-bandwidth-continue", "elicit-no-default-options")) {
+                Add-Issue -Issues $issues -Message "unsupported_output_contract_for_v1_runner"
+            }
+
             foreach ($field in @("input", "mustContain", "mustNotContain")) {
                 if (-not (Has-Property -Object $case -Name $field)) {
                     Add-Issue -Issues $issues -Message "$field must be present."

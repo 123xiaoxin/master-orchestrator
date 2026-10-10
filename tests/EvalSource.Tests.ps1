@@ -46,4 +46,13 @@ Describe "LLM eval source provenance without paid calls" {
         (Join-Path $summary.runDir "source-lock.json") | Should -Exist
         Should -Invoke Invoke-RestMethod -Times 1 -Exactly
     }
+
+    It "rejects incompatible intent records before a model request" {
+        Write-Utf8NoBom -Path (Join-Path $script:Cases "source-test.json") -Content '{"id":"elicit-no-default-options","input":"Vague intent","mustContain":["intent_elicitation.v1"],"mustNotContain":[]}'
+        $output = & $script:Runner -PromptFile $script:Prompt -CasesDir $script:Cases -ResultsDir $script:Results -Model mock -ApiKeyEnv MASTER_INTEGRATION_TEST_KEY -BaseUrl https://example.invalid -TimeoutSec 1 -Json
+        $summary = ($output | Select-Object -Last 1) | ConvertFrom-Json
+        $summary.ok | Should -BeFalse
+        $summary.results[0].issues | Should -Contain 'unsupported_output_contract_for_v1_runner'
+        Should -Invoke Invoke-RestMethod -Times 0 -Exactly
+    }
 }
