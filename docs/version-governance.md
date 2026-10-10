@@ -14,9 +14,10 @@ entrypoint is [SKILL.md](../skills/master-skill/SKILL.md).
 | Source Commit | `git rev-parse HEAD` | Exact committed base; uncommitted work also requires file hashes |
 | SkillOpt experiment | User-assigned experiment ID | Not a project release or prompt version; no new experiment started here |
 
-Current base SHA: `a6c2d0c48fb22f1bf8e9522c3e27270049c95267` (origin/main
-observed during audit). Integration changes are uncommitted; the SHA alone
-does **not** identify their content. Each build/export records `sourceCommit`,
+Upstream baseline SHA: `a6c2d0c48fb22f1bf8e9522c3e27270049c95267`.
+Accepted integration commit: `032aa7fa123e5ae50262033cbad7af173e45e14e`.
+Later evaluator/verification commits are identified by the actual build lock;
+the upstream SHA does **not** identify the integrated content. Each build/export records `sourceCommit`,
 `sourceBranch`, `workingTreeDirty`, selected modules, source SHA-256 hashes and
 artifact hashes in `source-lock.json`. Keep that lock with the artifact. An
 accepted subsequent commit establishes the new committed integration baseline;

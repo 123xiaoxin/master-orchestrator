@@ -59,7 +59,7 @@ write-back to `skills/master-skill/SKILL.md` or installed skills.
 
 1. Review this integration and capture its accepted commit plus source hashes.
    Current committed base is `a6c2d0c48fb22f1bf8e9522c3e27270049c95267`; it does
-   not include this uncommitted integration. Do not present it as the integrated
+   not include the accepted integration. Do not present it as the integrated
    release SHA.
 2. Prevent scoring leakage: keep held-out cases, judge instructions and expected
    answers out of training/candidate generation. The repository's static string
@@ -96,3 +96,23 @@ optimization retries.
 **Source preparation is available; the next experiment's full startup conditions
 are not yet met.** Runtime authority, held-out evaluation design, truncation
 handling and paid-run authorization must be established first.
+
+## Runtime verification follow-up (2026-10-10)
+
+The accepted integration is `032aa7fa123e5ae50262033cbad7af173e45e14e`.
+The manifest distinguishes upstreamBaselineSha and acceptedIntegrationSha.
+Always regenerate the artifact from the final clean commit; its source-lock
+records the actual sourceCommit, including subsequent evaluator changes.
+
+See [runtime verification report](reports/master-runtime-integration-verification.md)
+for measured DSH component loading and remaining protocol gaps.
+The runner now rejects empty, truncated, malformed and schema-invalid output,
+and supports parsed field checks. This is not an independent semantic judge.
+Twelve pilot cases are disjoint train/validation/test groups of four. Only train
+is optimizer-visible; do not pass held-out inputs, checks, per-case failures or
+outputs to candidate generation. Four samples per split cannot support reliable
+improvement claims. No model evaluation or training has been run.
+
+`evals/skillopt-preflight.json` (repository planning record, not packaged runtime resource) is a disabled planning
+record, not a configuration proven against an installed SkillOpt API. Resolve
+model IDs, authorization, monetary cap and independent judging before use.
