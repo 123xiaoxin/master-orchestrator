@@ -1,0 +1,448 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "6681ce92879e1c5ca4d003e447457d636ac25209",
+  "implementationCommit": "07fdcf346f0616d9c6c04fac904a0992b1ce2132",
+  "ci": {
+    "generatedAt": "2026-10-10T12:50:42.7413289+00:00",
+    "ok": true,
+    "total": 15,
+    "failed": 0,
+    "results": [
+      {
+        "name": "encoding",
+        "ok": true,
+        "message": "Encoding check passed for 171 files.",
+        "durationMs": 148
+      },
+      {
+        "name": "templates",
+        "ok": true,
+        "message": "Validated 6 Agent Pack templates.",
+        "durationMs": 171
+      },
+      {
+        "name": "task-analysis",
+        "ok": true,
+        "message": "Validated 4 task_analysis examples.",
+        "durationMs": 78
+      },
+      {
+        "name": "intent-elicitation",
+        "ok": true,
+        "message": "Validated 5 intent_elicitation examples.",
+        "durationMs": 78
+      },
+      {
+        "name": "state-machine",
+        "ok": true,
+        "message": "Validated 1 state_machine examples.",
+        "durationMs": 29
+      },
+      {
+        "name": "verify-repair-loop",
+        "ok": true,
+        "message": "Validated 1 verify_repair_loop examples.",
+        "durationMs": 34
+      },
+      {
+        "name": "master-output-contract",
+        "ok": true,
+        "message": "Validated 3 master_output_contract examples.",
+        "durationMs": 24
+      },
+      {
+        "name": "five-layer-snapshot",
+        "ok": true,
+        "message": "Validated 1 five_layer_snapshot examples.",
+        "durationMs": 33
+      },
+      {
+        "name": "final-report",
+        "ok": true,
+        "message": "Validated 2 final_report examples.",
+        "durationMs": 37
+      },
+      {
+        "name": "capability-gap",
+        "ok": true,
+        "message": "Validated 2 capability_gap examples.",
+        "durationMs": 46
+      },
+      {
+        "name": "goal-pursuit-ledger",
+        "ok": true,
+        "message": "Validated 1 goal_pursuit_ledger examples.",
+        "durationMs": 44
+      },
+      {
+        "name": "offline-prompt-evals",
+        "ok": true,
+        "message": "Validated 19 offline prompt eval definitions.",
+        "durationMs": 81
+      },
+      {
+        "name": "skill-entrypoint",
+        "ok": true,
+        "message": "Entrypoint, dependency closure, references, packaging and source locks verified.",
+        "durationMs": 1975
+      },
+      {
+        "name": "dsh-contract-adapter",
+        "ok": true,
+        "message": "Adapter positive/negative tests passed against hash-locked unmodified DSH native sources; offline only.",
+        "durationMs": 629
+      },
+      {
+        "name": "pester",
+        "ok": true,
+        "message": "75 Pester tests passed.",
+        "durationMs": 4357
+      }
+    ]
+  },
+  "adapterTests": {
+    "total": 37,
+    "passed": 37,
+    "failed": 0,
+    "snapshotAndInstalledNative": true,
+    "installedLog": ".local/dsh-adapter/installed-native-tests.tap",
+    "fixtureNature": "actual current-task user projection + agent-authored model; negative mutations are synthetic"
+  },
+  "fullSchemaVerification": {
+    "ok": true,
+    "fullDraft202012SchemasValidated": 3,
+    "installedNativeSourcesUnchanged": true,
+    "userAttachmentAndLiteralQuotesMatched": true,
+    "candidateStatus": "READY",
+    "nativeStructure": {
+      "status": "passed",
+      "errors": []
+    },
+    "nativeGovernance": {
+      "status": "passed",
+      "errors": [],
+      "warnings": []
+    },
+    "sourceHashes": {
+      "targetContract": "master_execution_contract.v2.1",
+      "frameworkVersion": "1.8",
+      "semanticsVersion": "0.2",
+      "observedAt": "2026-10-10",
+      "files": {
+        "master_execution_contract.v2.1.schema.json": {
+          "sha256": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
+          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json",
+          "vendored": true
+        },
+        "validate-contract.mjs": {
+          "sha256": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
+          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs",
+          "vendored": true
+        },
+        "schema-validate.mjs": {
+          "sha256": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
+          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs",
+          "vendored": true
+        },
+        "MASTER-EXECUTION-FRAMEWORK.md": {
+          "sha256": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
+          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md",
+          "vendored": false
+        },
+        "SEMANTIC-DEFINITIONS.md": {
+          "sha256": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
+          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md",
+          "vendored": false
+        },
+        "example-contract.v2.1.json": {
+          "sha256": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
+          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json",
+          "vendored": false
+        }
+      },
+      "masterSchemaSha256": "876883d88ffd2708046d2afe3d63950b3752df10fd57cf6fbd1216b127ce1313"
+    },
+    "toolExecutionFromAdapter": false,
+    "runtimeSessionTested": false
+  },
+  "nativeCandidate": {
+    "status": "READY",
+    "validation": {
+      "masterStructure": {
+        "status": "passed",
+        "errors": [],
+        "engine": "native + Schema-driven own-key guard"
+      },
+      "evidenceStructure": {
+        "status": "passed",
+        "errors": []
+      },
+      "nativeStructure": {
+        "status": "passed",
+        "errors": []
+      },
+      "nativeGovernance": {
+        "status": "passed",
+        "errors": [],
+        "warnings": []
+      },
+      "mappedOwnKeys": {
+        "status": "passed",
+        "errors": []
+      }
+    },
+    "provenance": {
+      "adapterVersion": "1.0.0-draft",
+      "native": {
+        "directory": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework",
+        "sourceHashes": {
+          "master_execution_contract.v2.1.schema.json": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
+          "validate-contract.mjs": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
+          "schema-validate.mjs": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54"
+        },
+        "frameworkVersion": "1.8",
+        "contract": "master_execution_contract.v2.1"
+      },
+      "masterSchemaSha256": "876883d88ffd2708046d2afe3d63950b3752df10fd57cf6fbd1216b127ce1313",
+      "adapterSha256": "eb561e67ae7295d93d65eeb5a5b83bf0efbc79d124f2a94260f469932cd55bc2",
+      "nativeSourceLockSha256": "933efb3107ad9038392c038951324775068a4789b5b6622d663621d4cbfc9141",
+      "masterSha256": "29c652ba9dcb2c31ed38b001e4a440c405a7f460094a4beba7d033692aca4f0c",
+      "evidenceSha256": "c17cfc4c02294bc6e1d7b8eef38e2d65d1e0ce3d1cdfcb612b516cff22588321",
+      "evidenceSources": [
+        {
+          "id": "user",
+          "sha256": "19a8f7749e221a9ac02ab1f7e96b833821e5b34c3138ebe9158484ed0f49d60e",
+          "path": "user-authority.json",
+          "kind": "user"
+        },
+        {
+          "id": "agent",
+          "sha256": "2fd4ea0ee8b0b3ad4ae7955cdb80d16431ba661eb812fd96df3ba5b0b958a083",
+          "path": "agent-record.json",
+          "kind": "agent"
+        }
+      ],
+      "candidateSha256": "569e39509bcfacb603c0f82377af9fa23de58a3f40386aeb2bf5b39af5d40ea8"
+    },
+    "executionAuthorized": false,
+    "executionPerformed": false,
+    "goalCompleted": false
+  },
+  "existingSchemaRecords": {
+    "ok": true,
+    "schemaCount": 12,
+    "validatedRecordCount": 38,
+    "failures": [],
+    "records": [
+      {
+        "record": "schemas/agent_pack.v1.schema.json#examples/0",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/capability_gap.v1.schema.json#examples/0",
+        "schema": "capability_gap.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/final_report.v1.schema.json#examples/0",
+        "schema": "final_report.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/five_layer_snapshot.v1.schema.json#examples/0",
+        "schema": "five_layer_snapshot.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/goal_pursuit_ledger.v1.schema.json#examples/0",
+        "schema": "goal_pursuit_ledger.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/master_output_contract.v1.schema.json#examples/0",
+        "schema": "master_output_contract.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/micro_sop.v1.schema.json#examples/0",
+        "schema": "micro_sop.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/requirement_clarity.v1.schema.json#examples/0",
+        "schema": "requirement_clarity.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/state_machine.v1.schema.json#examples/0",
+        "schema": "state_machine.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/task_analysis.v1.schema.json#examples/0",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/verify_repair_loop.v1.schema.json#examples/0",
+        "schema": "verify_repair_loop.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/capability-gap/missing-api-access.json",
+        "schema": "capability_gap.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/capability-gap/missing-screenshot-verification.json",
+        "schema": "capability_gap.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/final-report/docs-refresh-completed.json",
+        "schema": "final_report.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/final-report/landing-page-partial.json",
+        "schema": "final_report.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/five-layer-snapshot/ui-design-task-snapshot.json",
+        "schema": "five_layer_snapshot.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/goal-pursuit-ledger/docs-refresh-in-progress.json",
+        "schema": "goal_pursuit_ledger.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/bakery-website.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/lawyer-website.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/low-language-bandwidth.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/shop-owner-dashboard.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/travel-story-intent-shift.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/master-output-contract/landing-page-prototype-contract.json",
+        "schema": "master_output_contract.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/master-output-contract/vague-clarify-contract.json",
+        "schema": "master_output_contract.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/master-output-contract/validation-execute-contract.json",
+        "schema": "master_output_contract.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/requirement_clarity.sample.json",
+        "schema": "requirement_clarity.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/state-machine/long-task-phase4-state-machine.json",
+        "schema": "state_machine.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/task-analysis/failure-downgrade.json",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/task-analysis/master-only-simple-task-analysis.json",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/task-analysis/openclaw-windows-task-analysis.json",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/task-analysis/webapp-agent-pack-task-analysis.json",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/verify-repair/encoding-check-repair-loop.json",
+        "schema": "verify_repair_loop.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/bug-fix.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/code-review.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/content-campaign.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/feature-request.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/research-report.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/webapp-build.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      }
+    ]
+  },
+  "commandFailure": {
+    "type": "observed_command_failure_summary",
+    "command": "node --test --test-reporter=json tests/dsh_adapter.test.mjs",
+    "exitCode": 7,
+    "errorCode": "ERR_MODULE_NOT_FOUND",
+    "reason": "json is not a built-in Node test reporter; Node tried to import a package named json",
+    "remediation": "Use built-in tap; no external dependency installed",
+    "scope": "Report command only, not a failed Adapter test assertion"
+  },
+  "protectedSourcesDiffEmpty": true,
+  "credentialPatternScan": {
+    "filesScanned": 17,
+    "findings": [],
+    "exhaustive": false
+  },
+  "modelCalls": 0,
+  "realAgentCalls": 0,
+  "installedFilesModified": false,
+  "readiness": "offline_adapter_accepted_not_runtime_execution"
+}
