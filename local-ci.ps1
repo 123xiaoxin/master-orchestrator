@@ -242,6 +242,12 @@ Invoke-CiCheck -Name "dsh-contract-adapter" -Action {
     return "Adapter positive/negative tests passed against hash-locked unmodified DSH native sources; offline only."
 }
 
+Invoke-CiCheck -Name "dsh-runtime-offline" -Action {
+    $testOutput = & node --test (Join-Path $repoRoot "tests/dsh_runtime.test.mjs") 2>&1
+    if (-not $?) { throw "DSH offline runtime tests failed: $testOutput" }
+    return "Bound host admission, execution gates, trace correlation, independent acceptance and deterministic A-E scenarios passed; no model session claimed."
+}
+
 Invoke-CiCheck -Name "pester" -Action {
     $testResult = & (Join-Path $repoRoot "run-tests.ps1") -PassThru
     if ($testResult.FailedCount -gt 0) {

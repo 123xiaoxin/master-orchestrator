@@ -34,7 +34,8 @@ The pipeline runs:
 7. Offline prompt eval definition validation.
 8. Skill entrypoint/version/dependency/reference validation and package/export tests.
 9. Offline DSH Contract Adapter tests using hash-locked unmodified native snapshots.
-10. The complete Pester test directory through `run-tests.ps1`.
+10. Offline runtime sidecar tests: host receipts, scope gates, correlated traces, two-repair stop and independent acceptance; A–E use deterministic Mock tools.
+11. The complete Pester test directory through `run-tests.ps1`.
 
 `local-ci.ps1` does not run a smoke-test subset. Any Pester failure makes the
 whole pipeline fail.
