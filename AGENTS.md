@@ -9,7 +9,8 @@
 - **项目名称**：master-orchestrator / Master Skill / Master Orchestrator
 - **类型**：OpenClaw Master Orchestrator 技能包
 - **仓库**：`https://github.com/123xiaoxin/master-orchestrator`
-- **工作分支**：`upgrade/v5.4-validation-foundation`
+- **工作分支**：以实际 `git branch --show-current` 为准；整合工作使用独立非主分支。
+- **类型边界**：仓库治理规范、契约和验证框架；规范性 Skill 入口为 `skills/master-skill/SKILL.md`，不自动实现 Runtime。
 
 ---
 
@@ -32,7 +33,7 @@
 - 不做无关重构
 - 不破坏现有 v5.4 结构
 - 不破坏以下目录的现有约定：`prompts/` `schemas/` `templates/` `examples/` `evals/` `helpers/` `scripts/`
-- 新增 v5.5 内容时优先作为**扩展层**，不要推翻 v5.4
+- 保留 Phase -1 到 Phase 5 和既有契约；新增治理内容按统一入口及模块依赖处理，不因版本号机械覆盖。
 
 ---
 
@@ -59,7 +60,7 @@
 | 项目 | 内容 |
 |------|------|
 | **完成情况** | 简要说明 |
-| **当前分支** | `upgrade/v5.4-validation-foundation` |
+| **当前分支** | 实际分支名 |
 | **修改文件** | 列出所有被修改的文件 |
 | **核心变更** | 一句话描述 |
 | **验证命令** | 实际运行了哪些脚本 |

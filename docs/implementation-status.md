@@ -18,6 +18,13 @@ Runtime implementation.
 - validation scripts
 - CI checks
 - portable Pester tests
+- a unified developer Skill entrypoint, dependency manifest, package builder,
+  and provenance-locked evaluation export (no model/runtime actions)
+
+The normative entrypoint is `skills/master-skill/SKILL.md`; package construction
+proves reference availability, not actual runtime loading or behavior. See
+[version governance](version-governance.md) and
+[integration audit](reports/master-integration-audit.md).
 
 These assets define expected behavior, structured contracts, validation
 criteria, and release checks. They can be consumed by a runtime or adapter, but

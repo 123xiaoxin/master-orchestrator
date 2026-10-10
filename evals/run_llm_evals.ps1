@@ -11,7 +11,8 @@
 .PARAMETER ResultsDir
   Directory where model outputs and summary reports are written.
 .PARAMETER PromptFile
-  Master prompt file to use as the system prompt.
+  Explicit exported Master source snapshot, or a deliberately selected legacy prompt.
+  There is no implicit 01-only default.
 .PARAMETER BaseUrl
   OpenAI-compatible API base URL. Defaults to MASTER_EVAL_BASE_URL, then
   OPENAI_BASE_URL, then OPENAI_API_BASE, then https://api.openai.com/v1.
@@ -229,7 +230,7 @@ try {
         $ResultsDir = Join-Path $PSScriptRoot "results"
     }
     if ([string]::IsNullOrWhiteSpace($PromptFile)) {
-        $PromptFile = Join-Path (Split-Path -Parent $PSScriptRoot) "prompts\01-core-master-framework.md"
+        throw "An explicit -PromptFile is required. Export the governed baseline with scripts/master_skill.py export --modules 06 --output .local/skillopt-baseline, then pass .local/skillopt-baseline/master-prompt.md. No implicit 01-only default is used."
     }
     if ([string]::IsNullOrWhiteSpace($BaseUrl)) {
         $BaseUrl = [Environment]::GetEnvironmentVariable("MASTER_EVAL_BASE_URL")
@@ -261,6 +262,17 @@ try {
     $resolvedCasesDir = (Resolve-Path -LiteralPath $CasesDir).Path
     $resolvedPromptFile = (Resolve-Path -LiteralPath $PromptFile).Path
     $promptText = Get-Content -Raw -Encoding UTF8 -LiteralPath $resolvedPromptFile
+    $promptSha256 = (Get-FileHash -LiteralPath $resolvedPromptFile -Algorithm SHA256).Hash.ToLowerInvariant()
+    $sourceLockPath = Join-Path (Split-Path -Parent $resolvedPromptFile) "source-lock.json"
+    $sourceLock = $null
+    if (Test-Path -LiteralPath $sourceLockPath -PathType Leaf) {
+        $sourceLock = Get-Content -Raw -Encoding UTF8 -LiteralPath $sourceLockPath | ConvertFrom-Json
+        $artifactName = Split-Path -Leaf $resolvedPromptFile
+        if (-not (Has-Property -Object $sourceLock.artifacts -Name $artifactName) -or
+            [string]$sourceLock.artifacts.$artifactName -ne $promptSha256) {
+            throw "Prompt source lock does not match the actual artifact. Regenerate the candidate export instead of reusing a stale baseline lock."
+        }
+    }
     $systemPrompt = @"
 $promptText
 
@@ -287,6 +299,9 @@ Runtime Validation Eval Instruction:
     $runId = (Get-Date).ToString("yyyyMMdd-HHmmss")
     $runDir = Join-Path $ResultsDir $runId
     New-Item -ItemType Directory -Force -Path $runDir | Out-Null
+    if ($null -ne $sourceLock) {
+        Copy-Item -LiteralPath $sourceLockPath -Destination (Join-Path $runDir "source-lock.json")
+    }
 
     $files = @(Get-ChildItem -LiteralPath $resolvedCasesDir -Filter *.json -File | Sort-Object Name)
     if ($files.Count -lt 1) {
@@ -403,6 +418,8 @@ Runtime Validation Eval Instruction:
         model = $Model
         baseUrl = $BaseUrl
         promptFile = $resolvedPromptFile
+        promptSha256 = $promptSha256
+        sourceLockAvailable = ($null -ne $sourceLock)
         runDir = $runDir
         results = @($results.ToArray())
     }

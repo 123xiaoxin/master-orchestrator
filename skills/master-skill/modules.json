@@ -1,0 +1,141 @@
+{
+  "manifestVersion": 1,
+  "projectVersion": "5.8-draft",
+  "packageVersion": "0.2.0-draft",
+  "entrypoint": "skills/master-skill/SKILL.md",
+  "modules": [
+    {
+      "id": "01",
+      "layer": "Core/Intent/Contract",
+      "path": "prompts/01-core-master-framework.md",
+      "revision": "5.4-draft+integration.1",
+      "required": true,
+      "dependsOn": [],
+      "condition": "Always; macro lifecycle and clarity gate.",
+      "introducedCommit": "000665706324f87535aeeb14ccd091ed9b4844d8"
+    },
+    {
+      "id": "05",
+      "layer": "Correction",
+      "path": "prompts/05-agent-capability-imitation.md",
+      "revision": "5.5-phase-1+integration.1",
+      "required": true,
+      "dependsOn": [
+        "01"
+      ],
+      "condition": "Always read; repository/state-machine detail applies when relevant.",
+      "introducedCommit": "c7d3bdb1570019016d712c9e43079882c2fb663f"
+    },
+    {
+      "id": "07",
+      "layer": "Contract/Correction",
+      "path": "prompts/07-harness-runtime-control.md",
+      "revision": "5.6+integration.1",
+      "required": true,
+      "dependsOn": [
+        "01",
+        "05"
+      ],
+      "condition": "Always read; full harness records apply to complex or long tasks.",
+      "introducedCommit": "041a5075673a91c89a1e7b9e5e1a2351efb24eb6"
+    },
+    {
+      "id": "08",
+      "layer": "Correction",
+      "path": "prompts/08-goal-pursuit-and-evidence.md",
+      "revision": "5.6.2-5.6.3+integration.1",
+      "required": true,
+      "dependsOn": [
+        "07"
+      ],
+      "condition": "Always; evidence integrity and drift detection also apply to simple tasks.",
+      "introducedCommit": "041a5075673a91c89a1e7b9e5e1a2351efb24eb6"
+    },
+    {
+      "id": "06",
+      "layer": "Intent",
+      "path": "prompts/06-intent-elicitation.md",
+      "revision": "5.7-draft+integration.1",
+      "required": false,
+      "dependsOn": [
+        "01"
+      ],
+      "condition": "Vague/abstract/non-technical request, intent discovery, or intent shift.",
+      "introducedCommit": "c05e3010ac7e19e44541f19ecd5b9fe775f9cb98"
+    },
+    {
+      "id": "02",
+      "layer": "Extensions",
+      "path": "prompts/02-agency-dispatch.md",
+      "revision": "2.4-draft+integration.1",
+      "required": false,
+      "dependsOn": [
+        "01",
+        "07"
+      ],
+      "condition": "Necessary specialist dispatch with confirmed capability and authorization.",
+      "introducedCommit": "000665706324f87535aeeb14ccd091ed9b4844d8"
+    },
+    {
+      "id": "03",
+      "layer": "Extensions",
+      "path": "prompts/03-quality-flywheel.md",
+      "revision": "1.1+integration.1",
+      "required": false,
+      "dependsOn": [
+        "01",
+        "08"
+      ],
+      "condition": "User requests quality review/trends; retrospective in Phase 5.",
+      "introducedCommit": "000665706324f87535aeeb14ccd091ed9b4844d8"
+    },
+    {
+      "id": "04",
+      "layer": "Extensions",
+      "path": "prompts/04-skillcraft.md",
+      "revision": "1.1+integration.1",
+      "required": false,
+      "dependsOn": [
+        "01",
+        "08"
+      ],
+      "condition": "Verified reusable pattern; deposition in Phase 5 within authorization.",
+      "introducedCommit": "000665706324f87535aeeb14ccd091ed9b4844d8"
+    }
+  ],
+  "resources": [
+    "schemas",
+    "helpers",
+    "templates",
+    "docs",
+    "scripts/check_encoding.ps1"
+  ],
+  "skillopt": {
+    "baselineSha": "a6c2d0c48fb22f1bf8e9522c3e27270049c95267",
+    "modules": [
+      "06"
+    ],
+    "editableSections": {
+      "01": [
+        "Phase -1b: clarity phrasing and prototype guidance"
+      ],
+      "06": [
+        "Question wording and evidence collection strategy"
+      ],
+      "08": [
+        "Dynamic Adjustment: drift detection and bounded correction strategy"
+      ]
+    },
+    "protected": [
+      "Authorization",
+      "Phase order",
+      "Intent evidence/handoff semantics",
+      "Schema contracts",
+      "Repair limit 2",
+      "Observed evidence truth",
+      "Final Report Gate",
+      "Module dependencies",
+      "Production entrypoint"
+    ]
+  }
+}

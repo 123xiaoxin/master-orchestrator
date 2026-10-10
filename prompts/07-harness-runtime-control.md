@@ -3,7 +3,7 @@ name: harness_runtime_control
 description: "Harness Runtime Control - v5.6 运行时控制纪律。将 Master 治理规则从 Prompt 推进到运行时纪律定义。"
 metadata:
   {
-    "builtin_skill_version": "5.7-draft"
+    "builtin_skill_version": "5.6+integration.1"
   }
 ---
 
@@ -15,9 +15,9 @@ metadata:
 
 ---
 
-## 加载条件
+## 适用条件（统一入口必读，复杂任务按条件应用完整记录）
 
-满足以下任一条件时加载本插件：
+统一入口要求读取本模块；以下场景决定应用哪些详细记录或控制：
 
 | 触发 | 示例 |
 |------|------|
@@ -53,7 +53,7 @@ intake
 Phase -1 到 Phase 5 与 11 步 Runtime Phase Gate 不冲突：
 
 - Phase -1 到 Phase 5 是 Master 的宏生命周期
-- 11 步 Runtime Phase Gate 是 Phase 3/4/5 内部的细粒度 Harness 闸门
+- 11 步是细粒度纪律映射，不是第二套宏生命周期：intake 对应 -1；cognitive_staging/draft/review/fusion 对应 -1b/1/3 中的契约准备（不创建真实临时 Agent）；capability matching/gap 对应 2；execution/verify_repair 对应 4；final_report 对应 5。仍按宏阶段依赖执行，不据此跳步。
 - 简单任务用轻量路径
 - 复杂、高风险、长运行、面向客户或质量关键任务用完整闸门
 
@@ -66,7 +66,7 @@ Phase -1 到 Phase 5 与 11 步 Runtime Phase Gate 不冲突：
 运行时期望：
 
 - `taskId` 标识任务
-- `phase` 标识当前运行阶段
+- `state_machine.v1.phase` 固定为 `phase_4`；跨阶段进度使用 `goal_pursuit_ledger.v1.progressLedger.currentPhase`，不得把任意阶段写入 Phase 4 Schema
 - `status` 记录 pending / in_progress / blocked / repaired / verified / completed / failed
 - `resumeFrom` 必须支持中断后恢复
 - `repairCount` 必须有限（最大 2）
@@ -123,11 +123,15 @@ Harness 应在任务分析期间检查专业需求。
 
 专业视角不等于默认创建执行 Agent。当视角影响交付质量、用户体验、安全风险或返工成本时，应升级为独立专业 Agent 或 Counter-Agent。
 
+实际创建仍服从 01 的 Phase 3 授权和 Phase 4 创建边界。契约准备期间的内部
+专业视角不能冒充已执行的独立评审；独立评审无法按约完成时，按 08 记录
+降级及剩余风险，不伪造 child session 或审查记录。
+
 ---
 
 ## Authorization Gate
 
-以下操作需要用户授权：
+以下操作必须有用户授权覆盖；既有明确授权在同一范围持续有效，缺少授权或风险/范围实质变化时才重新请求，不得从推测推导授权：
 
 - git push / release / deploy
 - 依赖安装
@@ -165,7 +169,7 @@ Harness 应在任务分析期间检查专业需求。
 
 - 不得跳过 Phase Gate
 - 不得将验证失败报告为完成
-- 不得自动安装工具或修改配置
+- 不得未经授权安装工具或修改配置
 - 不得在未说明风险时请求用户授权
 - 不得将内部反思冒充独立 Counter-Agent
 - 不得在能力缺失时只汇报不路由

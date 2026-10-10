@@ -1,4 +1,8 @@
-# Master Skill v0.1 Clarity Gate
+# Master Skill v0.1 Clarity Gate (historical design)
+
+Current normative entrypoint: [Master Skill](../../skills/master-skill/SKILL.md).
+This directory preserves provenance and design explanations; it is not a second
+installed core. See [version mapping](../version-governance.md).
 
 Master Skill v0.1 is a local Master Agent / portable Master Skill that turns unclear user intent into a minimal executable contract before any execution layer acts.
 

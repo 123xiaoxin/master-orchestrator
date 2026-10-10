@@ -4,7 +4,8 @@ The repository uses one validation pipeline locally and in GitHub Actions.
 
 ## Local Validation
 
-Prerequisite:
+Prerequisites: PowerShell 7, Python 3.10+ (standard library), and Pester 5.4.1+.
+No model calls or SkillOpt training are part of this pipeline.
 
 ```powershell
 Install-Module Pester -Scope CurrentUser -RequiredVersion 5.4.1
@@ -28,8 +29,11 @@ The pipeline runs:
 2. Agent Pack validation against the configured expert library.
 3. `task_analysis.v1` example validation.
 4. `intent_elicitation.v1` example and Phase -1a handoff validation.
-5. Offline prompt eval definition validation.
-6. The complete Pester test directory through `run-tests.ps1`.
+5. State machine, Verify/Repair and Master output contract validation.
+6. Five-layer snapshot, Final Report, Capability Gap and Goal Pursuit validation.
+7. Offline prompt eval definition validation.
+8. Skill entrypoint/version/dependency/reference validation and package/export tests.
+9. The complete Pester test directory through `run-tests.ps1`.
 
 `local-ci.ps1` does not run a smoke-test subset. Any Pester failure makes the
 whole pipeline fail.
@@ -57,6 +61,7 @@ expert existence checks.
 
 - GitHub-hosted runners already provide `pwsh`.
 - The workflow installs Pester 5.4.1.
+- Python 3.12 is selected explicitly for Skill package checks.
 - Expert stubs are generated from the actual template files.
 - The workflow calls `local-ci.ps1`, so local and remote checks stay aligned.
 - NUnit and local CI reports are uploaded even when validation fails.

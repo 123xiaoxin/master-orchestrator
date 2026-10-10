@@ -3,7 +3,7 @@ name: intent_elicitation
 description: "Optional Phase -1a Socratic intent elicitation for vague, abstract, or non-technical requests."
 metadata:
   {
-    "builtin_skill_version": "5.7-draft",
+    "builtin_skill_version": "5.7-draft+integration.1",
     "extends": "01-core-master-framework",
     "phase": "Phase -1a"
   }
@@ -89,6 +89,13 @@ Produce one `intent_elicitation.v1` record. Its
 
 Use `phase_minus_1b_clarity_gate` only when all four layer statuses are
 `concrete` and `executionClarityEstimate >= 0.75`.
+
+The 0.75 + four-concrete-layer guard is specific to this evidence-record
+handoff, not a universal execution threshold. Budget exhaustion or user signals
+with partial evidence do not satisfy that guard: record continue_elicitation and
+the stop reason, do not invent missing layers or authorize execution. A newly
+concrete user request can be assessed separately by Core Phase -1b while keeping
+the previous partial record intact.
 
 Phase -1b remains responsible for clarity judgment, minimum prototype choice,
 execution contract generation, and any later Phase 0 transition.

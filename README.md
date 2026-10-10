@@ -13,6 +13,27 @@ Master Orchestrator 的现行阶段目标是建立调度纪律，而不是追求
 
 See [Implementation Status](docs/implementation-status.md) for current implementation boundaries.
 
+## Unified developer Skill (Draft)
+
+唯一规范性入口为 [skills/master-skill/SKILL.md](skills/master-skill/SKILL.md)。
+项目 `5.8-draft`、Skill 包 `0.2.0-draft`、Prompt 修订和 `.v1` 契约分别治理；
+历史数字不是互相竞争的当前版本。必读 01/05/07/08，06/02/03/04 条件读取。
+这以显式文件读取为加载方式，不声称存在动态加载器或 Runtime enforcement。
+
+安装前构建完整包；仅复制源 Skill 目录会缺失模块（Python 3.10+，标准库）：
+
+```powershell
+python scripts/master_skill.py check
+python scripts/master_skill.py build --output .local/master-skill-package
+python scripts/master_skill.py export --modules 06 --output .local/skillopt-baseline
+```
+
+构建输出必须为新的 `.local/` 子目录，现有安装需先备份和核对，不自动覆盖。
+详见 [安装说明](skills/master-skill/README.md)、
+[版本对应](docs/version-governance.md)、[SkillOpt 基准](docs/skillopt-baseline.md) 和
+[工程审计](docs/reports/master-integration-audit.md)。当前改动未发布、未提交；
+导出的 source lock 同时记录 Git 基线 SHA、工作区状态和文件哈希。
+
 **v5.4 turns Master Orchestrator's governance rules into enforceable contracts:**
 schemas, examples, validators, encoding checks, and offline prompt eval cases.
 
@@ -72,7 +93,9 @@ master-orchestrator/
 │   ├── 03-quality-flywheel.md
 │   ├── 04-skillcraft.md
 │   ├── 05-agent-capability-imitation.md
-│   └── 06-intent-elicitation.md
+│   ├── 06-intent-elicitation.md
+│   ├── 07-harness-runtime-control.md
+│   └── 08-goal-pursuit-and-evidence.md
 ├── helpers/
 │   ├── check_env.ps1
 │   ├── validate_templates.ps1
@@ -125,8 +148,8 @@ master-orchestrator/
 | 0 | 环境快照 | 只读检查模型、工具权限、专家库、模板、OpenClaw agents | `check_env.ps1` JSON |
 | 1 | 剖面与转码 | 输出 Intent、Deliverables、Constraints、Success Criteria、Non-Goals | `task_analysis.v1` |
 | 2 | 能力匹配 | 在冷专家库硬匹配能力；缺失则降级协商，不捏造专家 | capability mapping |
-| 3 | 契约确认 | 输出路由决策和兵力部署表，等待用户确认模式 | 执行断点 |
-| 4 | 调度执行 | Master Only / Temp Agent / Sub-agent / Agent Pack；下发 Micro-SOP | runtime manifest |
+| 3 | 契约确认 | 输出路由和部署表，核对当前契约授权；缺少授权或范围/风险变化时等待确认 | 授权闸门 |
+| 4 | 调度执行 | Master Only / Temp Agent / Sub-agent / Agent Pack；执行中验证、最多两轮修复与偏移检测 | execution records |
 | 5 | 回收与沉淀 | destroy / keep / archive-template；输出 run summary 与质量教训 | cleanup + archive |
 
 ## Data Contracts
@@ -209,9 +232,9 @@ v5.4 增加发布前可执行检查：
 
 这些检查只验证契约、示例和离线 eval case，不调用真实 LLM，不生成自动环境快照，也不启动 Python CLI。
 
-## Master Skill v0.1 Clarity Gate
+## Historical Master Skill v0.1 Clarity Gate
 
-新增行业无关的 Master Skill v0.1 清晰度闸门文档：
+以下为历史设计来源；核心原则已纳入统一入口和 Core，不再是单独的当前安装入口：
 
 - [Master Skill Foundation](docs/master-skill-foundation.md):
   系统建模 / 信息降熵 / 反馈控制
@@ -243,7 +266,7 @@ v5.4 增加发布前可执行检查：
 v5.5 adds `prompts/05-agent-capability-imitation.md`.
 It is an Agent Capability Imitation Layer that runs alongside the v5.4 execution engine without modifying it.
 
-v5.5 extension content is separate from Master Skill v0.1 Clarity Gate.
+v5.5 内容保留为独立源模块，由统一 Skill 入口与清晰度层共同选入；不另立核心。
 
 ### Current Version Line
 

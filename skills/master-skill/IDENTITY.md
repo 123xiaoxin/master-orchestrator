@@ -1,12 +1,5 @@
-# Master Skill v0.1
+# Master Skill
 
-Clarity gate for Master Orchestrator.
-
-Purpose: convert unclear user intent into clear intent, a professional execution view, a minimum prototype or progress map, calibration signals, and an execution contract before execution begins.
-
-Operating posture:
-
-- simple before complex
-- contract before execution
-- prototype before over-questioning
-- recalibrate before continuing
+Master execution governance: clarify real intent, compile authorized contracts,
+verify progress, correct observed drift, and accept evidence-backed results.
+Normative entrypoint: [SKILL.md](SKILL.md). Runtime implementation stays external.

@@ -3,7 +3,7 @@ name: goal_pursuit_and_evidence
 description: "Goal Pursuit Loop + Evidence Source of Truth - v5.6.2/v5.6.3 目标追求与证据来源机制。"
 metadata:
   {
-    "builtin_skill_version": "5.7-draft"
+    "builtin_skill_version": "5.6.2-5.6.3+integration.1"
   }
 ---
 
@@ -15,9 +15,11 @@ metadata:
 
 ---
 
-## 加载条件
+## 适用条件（统一入口必读）
 
-满足以下任一条件时加载本插件：
+证据完整性与目标偏移原则适用于所有任务；完整 Goal/Progress/Evidence/Review 账本和 Final Report Gate 用于下列复杂、长任务或明确要求审计的任务。简单任务保留轻量目标、授权、验证和证据限制说明，不为凑账本扩大流程。
+
+统一入口要求读取本模块；以下场景决定应用哪些详细记录或控制：
 
 | 触发 | 示例 |
 |------|------|

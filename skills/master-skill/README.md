@@ -1,54 +1,50 @@
-# Master Skill v0.1 Clarity Gate
+# Master Skill developer package (Draft)
 
-This folder packages Master Skill v0.1 as an OpenClaw-installable skill workspace.
+Project: `5.8-draft`; package: `0.2.0-draft`. Module revisions and `.v1`
+contracts retain separate identities. See [version governance](../../docs/version-governance.md).
 
-## Files
+[SKILL.md](SKILL.md) is the single normative entrypoint. `AGENTS.md` and
+`IDENTITY.md` are adapter pointers. [modules.json](modules.json) records required
+01/05/07/08 and conditional 06/02/03/04 dependencies.
 
-- `SKILL.md`: skill metadata and core operating rules.
-- `AGENTS.md`: execution instructions for the Master Skill agent.
-- `IDENTITY.md`: compact identity and posture.
-- `README.md`: installation and usage notes.
+## Build before installing
 
-## Core Scope
-
-The skill only covers:
-
-- obtaining clear intent
-- optional pre-gate intent elicitation evidence for users who cannot yet express a concrete request
-- generating a minimum prototype
-- dynamic recalibration
-- first principles
-- Occam's razor
-- cognitive completion
-- requirement clarity gate
-- professional execution view selection
-- HTML Progress Map as a user-visible minimum visual execution contract
-- execution contract before execution
-
-It does not include industry-specific cases, platform-specific workflows, or content-form-specific implementation logic.
-
-Optional intent elicitation is evidence collection only. The Requirement
-Clarity Gate still decides `clarify`, `prototype`, or `execute`.
-
-## Install
-
-From the repository root:
+From the repository root, with Python 3.10+ (standard library only):
 
 ```powershell
-$source = ".\skills\master-skill"
-$target = "$env:USERPROFILE\.openclaw\skills\master-skill"
-New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
-Copy-Item -Recurse -Force -LiteralPath $source -Destination $target
+python scripts/master_skill.py check
+python scripts/master_skill.py build --output .local/master-skill-package
 ```
 
-If your OpenClaw runtime expects skill workspaces under a different local directory, copy the entire `skills/master-skill` folder there without changing file names.
+The output is self-contained: relative links, prompt modules, contracts,
+reference helpers/templates, documentation and `source-lock.json` with actual
+Git HEAD, dirty status and source hashes. The builder refuses an existing output
+directory. Copy the generated package to a **new** skill directory supported by
+the host. Back up and reconcile existing installations before replacement;
+do not force-copy over an unknown installed version. The source folder alone
+is not a distributable package.
 
-## Use
+## Loading and environment limits
 
-Use this skill when a request is unclear, broad, or likely to be overbuilt. The expected output is a clarity decision:
+The host must expose the entrypoint and a file reader. Read all required modules
+and applicable conditional modules explicitly. No dynamic loading implementation
+is claimed. Required reading does not force complex-task records on simple tasks.
 
-- `clarify`
-- `prototype`
-- `execute`
+OpenClaw reference helpers require the matching environment and authorization.
+DSH uses its own tools; do not run OpenClaw lifecycle helpers there. The local
+DSH Framework v1.8 / contract v2.1 is an external variant with unresolved
+protocol differences, not a repository adapter. This task does not replace
+installed skills or modify runtime configuration.
 
-Before any execution layer acts, Master must produce an execution contract with real goal, boundaries, allowed actions, forbidden actions, minimum prototype, validation metrics, and risk boundaries.
+Verify package construction, model behavior, and runtime enforcement separately.
+A successful build establishes resource availability only.
+
+## SkillOpt preparation
+
+```powershell
+python scripts/master_skill.py export --modules 06 --output .local/skillopt-baseline
+```
+
+This exports the entrypoint plus required dependency closure and 06, with a
+source lock. It performs no model call or training. Read
+[SkillOpt boundaries](../../docs/skillopt-baseline.md) before making a candidate.

@@ -1,0 +1,94 @@
+{
+  "remoteMain": "a6c2d0c48fb22f1bf8e9522c3e27270049c95267",
+  "branches": {
+    "main": "a6c2d0c48fb22f1bf8e9522c3e27270049c95267",
+    "upgrade/v5.7-merge-optimization": "52258dfd72a6557a5561911df2e1541873b18f15",
+    "upgrade/v5.8-contract-validation": "041a5075673a91c89a1e7b9e5e1a2351efb24eb6",
+    "upgrade/v5.8-validator-coverage": "d88ef43a4c9cbb5b79e5089bb0cf4f3741a6e43f"
+  },
+  "tags": [],
+  "releases": [],
+  "mainCommitCount": 48,
+  "localVariants": {
+    "DSH": {
+      "entrypointSha256": "ae8a43e937242dc2ef06a71d696d12f797b5896184806030798f719bc8c37d51",
+      "modules": {
+        "01-core-master-framework.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "02-agency-dispatch.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "03-quality-flywheel.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "04-skillcraft.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "05-agent-capability-imitation.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "06-intent-elicitation.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "07-harness-runtime-control.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "08-goal-pursuit-and-evidence.md": {
+          "present": true,
+          "matchesOriginMain": true
+        }
+      },
+      "frameworkPresent": true
+    },
+    "OpenClaw": {
+      "entrypointSha256": "f60a0994b074b315727b61ec91a84a4c9f3c62b0376f2a91a618b3fa3950e553",
+      "modules": {
+        "01-core-master-framework.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "02-agency-dispatch.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "03-quality-flywheel.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "04-skillcraft.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "05-agent-capability-imitation.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "06-intent-elicitation.md": {
+          "present": true,
+          "matchesOriginMain": true
+        },
+        "07-harness-runtime-control.md": {
+          "present": false,
+          "matchesOriginMain": false
+        },
+        "08-goal-pursuit-and-evidence.md": {
+          "present": false,
+          "matchesOriginMain": false
+        }
+      },
+      "frameworkPresent": false
+    }
+  },
+  "recoveredCommitCount": 49,
+  "retrieval": "Git transport failed; original objects recovered from GitHub API metadata and SHA-addressed codeload archives; every original commit and tree SHA verified, git fsck --full passed.",
+  "mainRecheckedClientDate": "2026-10-10",
+  "mainRecheckedSha": "a6c2d0c48fb22f1bf8e9522c3e27270049c95267"
+}

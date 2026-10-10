@@ -7,6 +7,10 @@ BeforeAll {
 Describe "core schema documentation" {
     $schemaNames = @(
         "agent_pack.v1.schema.json",
+        "capability_gap.v1.schema.json",
+        "final_report.v1.schema.json",
+        "five_layer_snapshot.v1.schema.json",
+        "goal_pursuit_ledger.v1.schema.json",
         "intent_elicitation.v1.schema.json",
         "master_output_contract.v1.schema.json",
         "micro_sop.v1.schema.json",

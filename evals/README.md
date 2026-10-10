@@ -19,6 +19,20 @@ Run:
 
 ## LLM Behavior Eval Runner
 
+There is no implicit 01-only Prompt default. First export the required governance
+closure plus optional intent module, then explicitly select that snapshot:
+
+```powershell
+python scripts/master_skill.py export --modules 06 --output .local/skillopt-baseline
+# A model call requires separate authorization and populated credentials:
+.\evals\run_llm_evals.ps1 -PromptFile .\.local\skillopt-baseline\master-prompt.md
+```
+
+The runner verifies an adjacent `source-lock.json` against the actual Prompt hash
+and preserves it with the run. An explicit legacy `-PromptFile` remains
+available for reproduction, but a single 01 module is not the unified source.
+See [SkillOpt preconditions](../docs/skillopt-baseline.md); no training is started.
+
 `run_llm_evals.ps1` calls an OpenAI-compatible chat completions endpoint and
 checks the generated output against each case's `mustContain`, `mustContainAny`,
 and `mustNotContain` assertions. It does not replace `run_prompt_evals.ps1`;
@@ -75,7 +89,7 @@ Run:
 $env:MASTER_EVAL_API_KEY = "<redacted>"
 $env:MASTER_EVAL_MODEL = "your-model"
 $env:MASTER_EVAL_BASE_URL = "https://api.openai.com/v1"
-.\evals\run_llm_evals.ps1
+.\evals\run_llm_evals.ps1 -PromptFile .\.local\skillopt-baseline\master-prompt.md
 ```
 
 DeepSeek-compatible example:

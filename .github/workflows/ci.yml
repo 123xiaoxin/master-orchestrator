@@ -25,6 +25,11 @@ jobs:
         shell: pwsh
         run: $PSVersionTable.PSVersion
 
+      - name: Set up Python for Skill packaging checks
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Install Pester
         shell: pwsh
         run: |

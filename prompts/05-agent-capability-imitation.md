@@ -1,14 +1,14 @@
 # Agent Capability Imitation Layer
 
-> **Version**: v5.5-phase-1 | **定位**：v5.4 扩展层，需搭配 01-core 使用
+> **Version**: v5.5-phase-1+integration.1 | **定位**：v5.4 扩展层，需搭配 01-core 使用
 > **前置**：🧠 01-core 主控框架 + Phase -1 到 Phase 5 执行引擎
 > **核心目标**：固化成熟 Agent 的工程执行习惯，让 Master 在调度时能复现这些习惯
 
 ---
 
-## 加载条件
+## 适用条件（统一入口必读，具体记录按任务适用）
 
-满足以下任一条件时加载本插件：
+统一入口要求读取本模块；以下场景决定应用哪些详细记录或控制：
 
 | 触发 | 示例 |
 |------|------|
@@ -153,7 +153,7 @@ git status --short：[status]
 | `in_progress` | 正在执行 |
 | `verified` | 验证通过 |
 | `failed` | 执行或验证失败，需要 Repair |
-| `repaired` | 修复后重新验证通过 |
+| `repaired` | 修复已应用，等待重新验证；不是完成证据 |
 | `blocked` | 等待依赖项完成 |
 | `completed` | 所有状态已resolved，任务可以推进 |
 
@@ -162,11 +162,11 @@ git status --short：[status]
 | 当前状态 | 事件 | 下一状态 |
 |----------|------|----------|
 | `pending` | 开始执行 | `in_progress` |
-| `in_progress` | 子任务完成 | `verified` |
+| `in_progress` | 子任务结果通过实际验证 | `verified` |
 | `in_progress` | 验证失败 | `failed` |
 | `in_progress` | 等待依赖 | `blocked` |
 | `blocked` | 依赖完成 | `in_progress` |
-| `failed` | 修复成功 | `repaired` |
+| `failed` | 修复已应用，待重新验证 | `repaired` |
 | `repaired` | 重新验证通过 | `verified` |
 | `verified` | 所有依赖完成 | `completed` |
 
@@ -240,15 +240,15 @@ git status --short：[status]
 
 ## 与 v5.4 的关系
 
-本插件作为 v5.5 第一阶段扩展层，**不修改** v5.4 的任何已有文件和结构：
+本模块源于 v5.5 第一阶段扩展层；统一入口保留 v5.4 宏生命周期和契约结构，并明确 Phase 4 内验证、Phase 5 总评的关系：
 
 - ✅ 加载到 01-core 之上，不替换核心框架
-- ✅ 不修改已有 prompts（01-04）
+- ✅ 与 01/03/04 的执行中验证表述一致，整体总评仍在 Phase 5
 - ✅ 不修改已有 schemas
 - ✅ 不修改已有 helpers 和 scripts
 - ✅ 不破坏 v5.4 的 Phase -1 到 Phase 5 执行引擎
 
-**新增内容作为扩展层，不推翻 v5.4 的任何已有约定。**
+**扩展不改变宏阶段顺序；执行中验证不是 Phase 5 的经验总评。**
 
 ---
 
@@ -257,7 +257,7 @@ git status --short：[status]
 | 项目 | 内容 |
 |------|------|
 | **完成情况** | 简要说明 |
-| **当前分支** | `upgrade/v5.4-validation-foundation` |
+| **当前分支** | 实际 `git branch --show-current` 结果 |
 | **修改文件** | 列出所有被修改/新增的文件 |
 | **核心变更** | 一句话描述 |
 | **验证命令** | 实际运行了哪些脚本 |

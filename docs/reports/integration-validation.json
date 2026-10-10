@@ -1,0 +1,302 @@
+{
+  "kind": "static_and_mock_validation_only",
+  "localCi": {
+    "generatedAt": "2026-10-10T00:32:19.6457776+00:00",
+    "ok": true,
+    "total": 14,
+    "failed": 0,
+    "results": [
+      {
+        "name": "encoding",
+        "ok": true,
+        "message": "Encoding check passed for 136 files.",
+        "durationMs": 157
+      },
+      {
+        "name": "templates",
+        "ok": true,
+        "message": "Validated 6 Agent Pack templates.",
+        "durationMs": 201
+      },
+      {
+        "name": "task-analysis",
+        "ok": true,
+        "message": "Validated 4 task_analysis examples.",
+        "durationMs": 98
+      },
+      {
+        "name": "intent-elicitation",
+        "ok": true,
+        "message": "Validated 5 intent_elicitation examples.",
+        "durationMs": 74
+      },
+      {
+        "name": "state-machine",
+        "ok": true,
+        "message": "Validated 1 state_machine examples.",
+        "durationMs": 33
+      },
+      {
+        "name": "verify-repair-loop",
+        "ok": true,
+        "message": "Validated 1 verify_repair_loop examples.",
+        "durationMs": 34
+      },
+      {
+        "name": "master-output-contract",
+        "ok": true,
+        "message": "Validated 3 master_output_contract examples.",
+        "durationMs": 24
+      },
+      {
+        "name": "five-layer-snapshot",
+        "ok": true,
+        "message": "Validated 1 five_layer_snapshot examples.",
+        "durationMs": 33
+      },
+      {
+        "name": "final-report",
+        "ok": true,
+        "message": "Validated 2 final_report examples.",
+        "durationMs": 38
+      },
+      {
+        "name": "capability-gap",
+        "ok": true,
+        "message": "Validated 2 capability_gap examples.",
+        "durationMs": 29
+      },
+      {
+        "name": "goal-pursuit-ledger",
+        "ok": true,
+        "message": "Validated 1 goal_pursuit_ledger examples.",
+        "durationMs": 65
+      },
+      {
+        "name": "offline-prompt-evals",
+        "ok": true,
+        "message": "Validated 19 offline prompt eval definitions.",
+        "durationMs": 83
+      },
+      {
+        "name": "skill-entrypoint",
+        "ok": true,
+        "message": "Entrypoint, dependency closure, references, packaging and source locks verified.",
+        "durationMs": 1816
+      },
+      {
+        "name": "pester",
+        "ok": true,
+        "message": "62 Pester tests passed.",
+        "durationMs": 3873
+      }
+    ]
+  },
+  "schemaValidation": {
+    "ok": true,
+    "schemaCount": 12,
+    "validatedRecordCount": 38,
+    "failures": [],
+    "records": [
+      {
+        "record": "schemas/agent_pack.v1.schema.json#examples/0",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/capability_gap.v1.schema.json#examples/0",
+        "schema": "capability_gap.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/final_report.v1.schema.json#examples/0",
+        "schema": "final_report.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/five_layer_snapshot.v1.schema.json#examples/0",
+        "schema": "five_layer_snapshot.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/goal_pursuit_ledger.v1.schema.json#examples/0",
+        "schema": "goal_pursuit_ledger.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/master_output_contract.v1.schema.json#examples/0",
+        "schema": "master_output_contract.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/micro_sop.v1.schema.json#examples/0",
+        "schema": "micro_sop.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/requirement_clarity.v1.schema.json#examples/0",
+        "schema": "requirement_clarity.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/state_machine.v1.schema.json#examples/0",
+        "schema": "state_machine.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/task_analysis.v1.schema.json#examples/0",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "schemas/verify_repair_loop.v1.schema.json#examples/0",
+        "schema": "verify_repair_loop.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/capability-gap/missing-api-access.json",
+        "schema": "capability_gap.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/capability-gap/missing-screenshot-verification.json",
+        "schema": "capability_gap.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/final-report/docs-refresh-completed.json",
+        "schema": "final_report.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/final-report/landing-page-partial.json",
+        "schema": "final_report.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/five-layer-snapshot/ui-design-task-snapshot.json",
+        "schema": "five_layer_snapshot.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/goal-pursuit-ledger/docs-refresh-in-progress.json",
+        "schema": "goal_pursuit_ledger.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/bakery-website.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/lawyer-website.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/low-language-bandwidth.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/shop-owner-dashboard.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/intent-elicit/travel-story-intent-shift.json",
+        "schema": "intent_elicitation.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/master-output-contract/landing-page-prototype-contract.json",
+        "schema": "master_output_contract.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/master-output-contract/vague-clarify-contract.json",
+        "schema": "master_output_contract.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/master-output-contract/validation-execute-contract.json",
+        "schema": "master_output_contract.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/requirement_clarity.sample.json",
+        "schema": "requirement_clarity.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/state-machine/long-task-phase4-state-machine.json",
+        "schema": "state_machine.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/task-analysis/failure-downgrade.json",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/task-analysis/master-only-simple-task-analysis.json",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/task-analysis/openclaw-windows-task-analysis.json",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/task-analysis/webapp-agent-pack-task-analysis.json",
+        "schema": "task_analysis.v1",
+        "ok": true
+      },
+      {
+        "record": "examples/verify-repair/encoding-check-repair-loop.json",
+        "schema": "verify_repair_loop.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/bug-fix.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/code-review.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/content-campaign.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/feature-request.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/research-report.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      },
+      {
+        "record": "templates/webapp-build.json",
+        "schema": "agent_pack.v1",
+        "ok": true
+      }
+    ]
+  },
+  "entrypointTests": {
+    "passed": 10,
+    "failed": 0
+  },
+  "skillMetadataValidation": "passed",
+  "gitDiffCheck": "passed_after_LF_normalization",
+  "modelBehaviorTested": false,
+  "liveRuntimeEnforcementTested": false,
+  "paidModelCalls": 0
+}
