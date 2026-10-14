@@ -1,0 +1,605 @@
+{
+  "version": "master_dsh_runtime_verification.v1",
+  "verifiedAt": "2026-10-14",
+  "branch": "codex/master-integration",
+  "baseCommit": "c88a85566e6f31079804383fd020ccbb11f7de55",
+  "implementationCommit": "0790027604686e70367f6294ce90613792256a74",
+  "reportCommit": "See final Git HEAD; report commit SHA cannot be embedded in its own content.",
+  "levels": {
+    "level1": "PASS",
+    "level2": "BLOCKED",
+    "level3": "BLOCKED"
+  },
+  "modelCalls": 0,
+  "realMasterSessions": 0,
+  "realDshModelToolExecutions": 0,
+  "protectedSourcesUnchanged": true,
+  "globalInstalledIntegrity": {
+    "verifiedAt": "2026-10-14",
+    "allTenUnchanged": true,
+    "runtimePackageSourcesUnchanged": true,
+    "files": [
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json",
+        "sha256": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
+        "unchangedFromPreviousStage": true
+      },
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs",
+        "sha256": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
+        "unchangedFromPreviousStage": true
+      },
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs",
+        "sha256": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
+        "unchangedFromPreviousStage": true
+      },
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json",
+        "sha256": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
+        "unchangedFromPreviousStage": true
+      },
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md",
+        "sha256": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
+        "unchangedFromPreviousStage": true
+      },
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md",
+        "sha256": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
+        "unchangedFromPreviousStage": true
+      },
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\runtime-trace-plugin.mjs",
+        "sha256": "2851b1846bb7682fff25d0feb5da4f1ebd3d687cd39c4b833b1e7453e6043237",
+        "unchangedFromPreviousStage": true
+      },
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\trace-ledger.mjs",
+        "sha256": "998f58f48c9e136a4ff24bf1da8d7250a609c5f6cf7510402026a407d3b36a3d",
+        "unchangedFromPreviousStage": true
+      },
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\agent.cordis.yml",
+        "sha256": "6d94de67ada14b2692cf2cc16ff66069d37c7e76dd71fc2de06acf4be9d080fe",
+        "unchangedFromPreviousStage": true
+      },
+      {
+        "path": "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\preset.yml",
+        "sha256": "7b65159d04011d89cb3750245d67930c8bcfcd2cabf7fffd560b556abca0db2a",
+        "unchangedFromPreviousStage": true
+      }
+    ]
+  },
+  "actualComponentProbe": {
+    "evidenceLevel": "Actual isolated DSH components; controller-injected events",
+    "modelCalls": 0,
+    "fullDshSession": false,
+    "masterModelBehaviorObserved": false,
+    "toolExecuted": false,
+    "checks": {
+      "actualCordisMounted": true,
+      "actualSessionPublication": true,
+      "forgedEventRejected": true,
+      "actualToolGuardDenies": true,
+      "actualCallResultShapeMatched": true,
+      "awaitedTraceWritten": true
+    },
+    "sessionFormat": 4,
+    "sources": {
+      "dsh-desktop-host": {
+        "version": "0.2.0-rc.2",
+        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-desktop-host\\lib\\index.js",
+        "sha256": "6c6182cbd9ff7df144145065885fbc5873e9a9db9651c5152e785c84a55689d6"
+      },
+      "dsh-headless": {
+        "version": "0.2.0-rc.2",
+        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-headless\\lib\\index.js",
+        "sha256": "31a4caa307b6a3bc0133e01d765c9449ff808725058639e32ebf0d020524e267"
+      },
+      "dsh-session": {
+        "version": "0.2.0-rc.2",
+        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session\\lib\\index.js",
+        "sha256": "87ea85e2fb5318bf1f826db9a1c88c1b26d3ea328027a7f32b211880c4d62b9d"
+      },
+      "dsh-agent-loop": {
+        "version": "0.2.0-rc.2",
+        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent-loop\\lib\\index.js",
+        "sha256": "00c4814d63f3d1e2754eb09144832d19b30499d6ea444730473f740b587948c2"
+      },
+      "dsh-tools": {
+        "version": "0.2.0-rc.2",
+        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-tools\\lib\\index.js",
+        "sha256": "40f47709337c3c205d4e09e647f8588f4977e66f6d52f019b3cc7ef81159d84f"
+      },
+      "dsh-skill-filesystem": {
+        "version": "0.2.0-rc.2",
+        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-skill-filesystem\\lib\\index.js",
+        "sha256": "244e92e032ef15e96cb60c9e2cfddf5d89e167eb171fcbfd83e9415b0455a0d7"
+      },
+      "dsh-agent-preset": {
+        "version": "0.2.0-rc.2",
+        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent-preset\\lib\\index.js",
+        "sha256": "23cd2dd62ac3b27522a2d377e14b5a93f80c2189e733937dcdd02b73a6d3d1da"
+      }
+    },
+    "traceSha256": "0591cdd71308ff524172835a21e79b9a387f2149446aa83131dd5bfc13b66d1b",
+    "executionAuthorized": false
+  },
+  "componentEventOrigin": "test-controller injection, not actual model/user execution",
+  "offlineCases": [
+    {
+      "case": "A",
+      "actualExecution": true,
+      "runtime": "deterministic Node file controller, not DSH",
+      "masterBehavior": "Mock plan: clear goal; zero questions",
+      "acceptance": {
+        "status": "accepted",
+        "executionSuccess": true,
+        "verificationSuccess": true,
+        "executionRecovered": true,
+        "operationsInScope": true,
+        "goalCompleted": true,
+        "evidenceLevel": "Mock",
+        "repairs": 0,
+        "criteria": [
+          {
+            "criterion": "bytes:hello.txt:69dbb50b83e6a77a160a0be0de765aa1d6dd4ce3629d99e84afdc00672ce106a",
+            "file": "hello.txt",
+            "observedSha256": "69dbb50b83e6a77a160a0be0de765aa1d6dd4ce3629d99e84afdc00672ce106a",
+            "passed": true
+          }
+        ],
+        "limitations": [
+          "No Master model behavior proven; deterministic/component evidence only."
+        ]
+      }
+    },
+    {
+      "case": "B",
+      "actualExecution": true,
+      "runtime": "Mock",
+      "question": "你希望优化后达到什么可验证的结果？",
+      "questionCount": 1,
+      "anchoredMenu": false,
+      "initialWriteDenied": true,
+      "clarificationCandidateDecision": "clarify",
+      "clarificationContractHash": "a99e26d1b3f26a68baa160c880809ed29b3df2d7f230cfb8e3c9faa39d35627e",
+      "subsequentConfirmationSeq": 2,
+      "subsequentContractHash": "0430cf49dca070dc615f44e0e102619e3f8c5739c352b946d9dfd570288e29bd",
+      "masterBehavior": "Scripted clarification only; real intent interpretation unverified",
+      "acceptance": {
+        "status": "accepted",
+        "executionSuccess": true,
+        "verificationSuccess": true,
+        "executionRecovered": true,
+        "operationsInScope": true,
+        "goalCompleted": true,
+        "evidenceLevel": "Mock",
+        "repairs": 0,
+        "criteria": [
+          {
+            "criterion": "bytes:hello.txt:69dbb50b83e6a77a160a0be0de765aa1d6dd4ce3629d99e84afdc00672ce106a",
+            "file": "hello.txt",
+            "observedSha256": "69dbb50b83e6a77a160a0be0de765aa1d6dd4ce3629d99e84afdc00672ce106a",
+            "passed": true
+          }
+        ],
+        "limitations": [
+          "No Master model behavior proven; deterministic/component evidence only."
+        ]
+      }
+    },
+    {
+      "case": "C",
+      "actualExecution": true,
+      "runtime": "Mock",
+      "driftOrigin": "controller injected wrong-file proposal",
+      "wrongProposalDenied": true,
+      "observedTargetMismatch": true,
+      "unchangedB": true,
+      "repairRound": 1,
+      "masterBehavior": "Independent deterministic verifier detected target mismatch; Master model did not observe or correct anything",
+      "acceptance": {
+        "status": "accepted",
+        "executionSuccess": true,
+        "verificationSuccess": true,
+        "executionRecovered": true,
+        "operationsInScope": true,
+        "goalCompleted": true,
+        "evidenceLevel": "Mock",
+        "repairs": 1,
+        "criteria": [
+          {
+            "criterion": "enabled:config-a.json:true",
+            "file": "config-a.json",
+            "observedSha256": "26b3426b2593763c96d0890b4a77a0bbf66d13fc512b0c6b138a23c290f30a2a",
+            "passed": true
+          }
+        ],
+        "limitations": [
+          "No Master model behavior proven; deterministic/component evidence only."
+        ]
+      }
+    },
+    {
+      "case": "D",
+      "actualExecution": true,
+      "runtime": "Mock controlled failing tool",
+      "repairs": [
+        {
+          "round": 1,
+          "beforePassed": false,
+          "afterPassed": false
+        },
+        {
+          "round": 2,
+          "beforePassed": false,
+          "afterPassed": false
+        }
+      ],
+      "stoppedAtLimit": true,
+      "masterBehavior": "Deterministic controller; no model repair decisions",
+      "acceptance": {
+        "status": "rejected",
+        "executionSuccess": false,
+        "verificationSuccess": false,
+        "executionRecovered": false,
+        "operationsInScope": true,
+        "goalCompleted": false,
+        "evidenceLevel": "Mock",
+        "repairs": 2,
+        "criteria": [
+          {
+            "criterion": "bytes:hello.txt:69dbb50b83e6a77a160a0be0de765aa1d6dd4ce3629d99e84afdc00672ce106a",
+            "file": "hello.txt",
+            "passed": false,
+            "error": "ENOENT: no such file or directory, lstat 'C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-runtime-entry-mJhrir\\mock\\D\\workspace\\hello.txt'"
+          }
+        ],
+        "limitations": [
+          "No Master model behavior proven; deterministic/component evidence only."
+        ]
+      }
+    },
+    {
+      "case": "E",
+      "actualExecution": true,
+      "runtime": "Mock",
+      "missing": "tool result deliberately omitted; no record synthesized",
+      "masterBehavior": "Evidence guard blocks completed claim",
+      "acceptance": {
+        "status": "unverifiable",
+        "executionSuccess": false,
+        "verificationSuccess": true,
+        "executionRecovered": false,
+        "operationsInScope": true,
+        "goalCompleted": false,
+        "evidenceLevel": "Mock",
+        "repairs": 0,
+        "criteria": [
+          {
+            "criterion": "bytes:hello.txt:69dbb50b83e6a77a160a0be0de765aa1d6dd4ce3629d99e84afdc00672ce106a",
+            "file": "hello.txt",
+            "observedSha256": "69dbb50b83e6a77a160a0be0de765aa1d6dd4ce3629d99e84afdc00672ce106a",
+            "passed": true
+          }
+        ],
+        "limitations": [
+          "No Master model behavior proven; deterministic/component evidence only."
+        ]
+      }
+    }
+  ],
+  "offlineEvidenceOrigin": "Mock host confirmations and deterministic Node file controller",
+  "regression": {
+    "localCi": {
+      "generatedAt": "2026-10-14T12:02:06.9657877+00:00",
+      "ok": true,
+      "total": 16,
+      "failed": 0,
+      "results": [
+        {
+          "name": "encoding",
+          "ok": true,
+          "message": "Encoding check passed for 181 files.",
+          "durationMs": 1397
+        },
+        {
+          "name": "templates",
+          "ok": true,
+          "message": "Validated 6 Agent Pack templates.",
+          "durationMs": 339
+        },
+        {
+          "name": "task-analysis",
+          "ok": true,
+          "message": "Validated 4 task_analysis examples.",
+          "durationMs": 148
+        },
+        {
+          "name": "intent-elicitation",
+          "ok": true,
+          "message": "Validated 5 intent_elicitation examples.",
+          "durationMs": 126
+        },
+        {
+          "name": "state-machine",
+          "ok": true,
+          "message": "Validated 1 state_machine examples.",
+          "durationMs": 61
+        },
+        {
+          "name": "verify-repair-loop",
+          "ok": true,
+          "message": "Validated 1 verify_repair_loop examples.",
+          "durationMs": 57
+        },
+        {
+          "name": "master-output-contract",
+          "ok": true,
+          "message": "Validated 3 master_output_contract examples.",
+          "durationMs": 47
+        },
+        {
+          "name": "five-layer-snapshot",
+          "ok": true,
+          "message": "Validated 1 five_layer_snapshot examples.",
+          "durationMs": 67
+        },
+        {
+          "name": "final-report",
+          "ok": true,
+          "message": "Validated 2 final_report examples.",
+          "durationMs": 73
+        },
+        {
+          "name": "capability-gap",
+          "ok": true,
+          "message": "Validated 2 capability_gap examples.",
+          "durationMs": 81
+        },
+        {
+          "name": "goal-pursuit-ledger",
+          "ok": true,
+          "message": "Validated 1 goal_pursuit_ledger examples.",
+          "durationMs": 69
+        },
+        {
+          "name": "offline-prompt-evals",
+          "ok": true,
+          "message": "Validated 19 offline prompt eval definitions.",
+          "durationMs": 203
+        },
+        {
+          "name": "skill-entrypoint",
+          "ok": true,
+          "message": "Entrypoint, dependency closure, references, packaging and source locks verified.",
+          "durationMs": 2233
+        },
+        {
+          "name": "dsh-contract-adapter",
+          "ok": true,
+          "message": "Adapter positive/negative tests passed against hash-locked unmodified DSH native sources; offline only.",
+          "durationMs": 696
+        },
+        {
+          "name": "dsh-runtime-offline",
+          "ok": true,
+          "message": "Bound host admission, execution gates, trace correlation, independent acceptance and deterministic A-E scenarios passed; no model session claimed.",
+          "durationMs": 389
+        },
+        {
+          "name": "pester",
+          "ok": true,
+          "message": "75 Pester tests passed.",
+          "durationMs": 6241
+        }
+      ]
+    },
+    "adapterTests": {
+      "passed": 37,
+      "failed": 0
+    },
+    "runtimeTests": {
+      "passed": 30,
+      "failed": 0
+    },
+    "installedNativeCombinedTests": {
+      "passed": 67,
+      "failed": 0
+    },
+    "pester": {
+      "passed": 75,
+      "failed": 0
+    },
+    "pythonSkill": {
+      "passed": 10,
+      "failed": 0
+    },
+    "originalSchemaExamples": {
+      "schemas": 12,
+      "records": 38,
+      "passed": true
+    },
+    "independentNewSchemas": {
+      "ok": true,
+      "engine": "jsonschema 4.26.0",
+      "records": 18,
+      "validated": [
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\A\\evidence\\adapter-result.json",
+          "schema": "master"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\A\\evidence\\adapter-result.json",
+          "schema": "evidence"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\A\\evidence\\adapter-result.json",
+          "schema": "candidate"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\B-clarification\\adapter-result.json",
+          "schema": "master"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\B-clarification\\adapter-result.json",
+          "schema": "evidence"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\B-clarification\\adapter-result.json",
+          "schema": "candidate"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\B-confirmed\\evidence\\adapter-result.json",
+          "schema": "master"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\B-confirmed\\evidence\\adapter-result.json",
+          "schema": "evidence"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\B-confirmed\\evidence\\adapter-result.json",
+          "schema": "candidate"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\C\\evidence\\adapter-result.json",
+          "schema": "master"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\C\\evidence\\adapter-result.json",
+          "schema": "evidence"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\C\\evidence\\adapter-result.json",
+          "schema": "candidate"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\D\\evidence\\adapter-result.json",
+          "schema": "master"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\D\\evidence\\adapter-result.json",
+          "schema": "evidence"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\D\\evidence\\adapter-result.json",
+          "schema": "candidate"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\E\\evidence\\adapter-result.json",
+          "schema": "master"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\E\\evidence\\adapter-result.json",
+          "schema": "evidence"
+        },
+        {
+          "file": ".local\\dsh-runtime-entry-mJhrir\\mock\\E\\evidence\\adapter-result.json",
+          "schema": "candidate"
+        }
+      ]
+    }
+  },
+  "realSessionPreflight": {
+    "status": "BLOCKED",
+    "reasons": [
+      "userModelAuthorization",
+      "modelAvailabilityConfirmed",
+      "isolatedProfile",
+      "scopedTools",
+      "logsReady",
+      "stopConditionsReady",
+      "noSensitiveData",
+      "hostRoutingVerified",
+      "hardBudgetEnforced",
+      "maxTokens",
+      "maxSessions",
+      "maxSteps",
+      "model"
+    ],
+    "modelCalls": 0,
+    "executionPerformed": false
+  },
+  "repairAudit": {
+    "engineeringRepairRounds": 2,
+    "failures": [
+      {
+        "stage": "initial component probe",
+        "reason": "Output parent equality rejected valid .local child",
+        "log": ".local/dsh-runtime-investigation/component.stderr"
+      },
+      {
+        "stage": "component probe repair 1",
+        "reason": "Cordis ctx.start absent; inspected installed source and used await plugin fiber lifecycle",
+        "log": ".local/dsh-runtime-investigation/component-round1.stderr"
+      }
+    ],
+    "repair2Passed": true,
+    "resumedProbePassed": true,
+    "scenarioMaximumRepairs": 2
+  },
+  "sourceFiles": {
+    "adapters/dsh-runtime/README.md": "18cf4294dfab9a406076579aacff8be341a517993eff10da725a2d1acb81f010",
+    "adapters/dsh-runtime/bridge.mjs": "27fd077f5646ec7e9252823ffee9c46957562811920d643a61d3d001d400d6a7",
+    "adapters/dsh-runtime/mock-workflow.mjs": "37785ba7f097fb4e860f42e36c159e5164c873967cb023887534fd4bf74ed32e",
+    "adapters/dsh-runtime/observer-plugin.mjs": "6052c802e96bc5b5845a710c8d7ee5bcda393f082902c0004fa8e89e182d469e",
+    "docs/ci-cd.md": "fb235685018326eef5c7daea001c71f625f489a07f6621813ad2d62ac56b91a9",
+    "local-ci.ps1": "5716ff9536542411d08d123cf01d309f625d78722cfee43002f4c8d7b4e9e45d",
+    "scripts/dsh_runtime_entry.mjs": "82462db20a4e709d328c0c301c7bcf385d20a1537195b3f8b2ca26bc306495c5",
+    "scripts/probe_dsh_runtime.cjs": "343cf0ce0eff579747faf69ceb9771ebe4c7ba79dc51b37ab16e3bcba36e73ce",
+    "tests/dsh_runtime.test.mjs": "6ea93ce1b3c7b2b81c5d25075f2842bdc5c873a02e479a9253ef8a5099eb833b"
+  },
+  "artifactHashes": {
+    ".local/dsh-runtime-entry-mJhrir/mock/results.json": "f84e9696167bf367d337f4352633eb93d9ee19f8ccd28085eb821e1b37639cbc",
+    ".local/dsh-runtime-entry-1oQazy/real-session-preflight.json": "1d2c0e4158fb9fb8f2fbf8a7e848fde835881f50e3f562e9f9c79b9acdeec958",
+    ".local/dsh-runtime-component-20261014/probe.json": "5a5548e403ccd1941c0dc30e135e8803c029465419b9451aa4abc13d3d9bd0fd",
+    ".local/dsh-runtime-component-20261014/component-trace.json": "0591cdd71308ff524172835a21e79b9a387f2149446aa83131dd5bfc13b66d1b",
+    ".local/dsh-runtime-investigation/resumed-installed-native.tap": "d203c937e8643135baf37f7396cde4afb38030289b89dfa3fca056f8254c3462",
+    ".local/dsh-runtime-investigation/resumed-local-ci.log": "1f802e4ddca3a707c051fbcb1b92943a496eb5dc09c54f21ea3a2606c2681ea4",
+    ".local/dsh-runtime-investigation/independent-schema-validation.json": "3868856e0cd0dc58beae53e9d695968aedf96ff67cbe246c9c7a00744c5902cc",
+    ".local/dsh-runtime-investigation/installed-source-integrity.json": "97d8d81220e7c95b46f6a926111929627ccd6fd60f388bd232ea17767574d9d4",
+    ".local/schema-validation.json": "1a12623bcb19f9d3b55f68b36586d6630abf4ac31a581a2604b5142faff7d874",
+    ".local/dsh-runtime-entry-mJhrir/mock/A/trace.json": "23b8c3d3fee6f9854c2b1bfe97a7f2287e5863f78da0d074c36d6c346e53134f",
+    ".local/dsh-runtime-entry-mJhrir/mock/A/acceptance.json": "9538903897e0d2d32ce5a900a32b58d346d6f095d835f1470b4f38f2f1b700c4",
+    ".local/dsh-runtime-entry-mJhrir/mock/A/evidence/adapter-result.json": "43b79b27d5ac2456701c0db14a1dd0a566e99c7780a22fc1c3828d02ae298b2b",
+    ".local/dsh-runtime-entry-mJhrir/mock/A/evidence/host-user.json": "858fb2cffc40b068d635a7a1fc10fd16a3b1a001932c67b0ea746968d6e31cd2",
+    ".local/dsh-runtime-entry-mJhrir/mock/A/evidence/agent.json": "2ac823b1efeb4d75367ad870a057e2bc36ab5d7363ce583455d194d08aa1372e",
+    ".local/dsh-runtime-entry-mJhrir/mock/B-confirmed/trace.json": "d02fbf5e1424043253aa7f8b24b33144751fe41b20809aa6fac40bdfe233322a",
+    ".local/dsh-runtime-entry-mJhrir/mock/B-confirmed/acceptance.json": "9538903897e0d2d32ce5a900a32b58d346d6f095d835f1470b4f38f2f1b700c4",
+    ".local/dsh-runtime-entry-mJhrir/mock/B-confirmed/evidence/adapter-result.json": "b3b5003e960e645a72f49b8b502e28e7f7576b1834933dd8d99a766d0587c56d",
+    ".local/dsh-runtime-entry-mJhrir/mock/B-confirmed/evidence/host-user.json": "8b966d65df465a94bae17840b37b4bd77d2801e58fc295852dcb8c3725125a68",
+    ".local/dsh-runtime-entry-mJhrir/mock/B-confirmed/evidence/agent.json": "2ac823b1efeb4d75367ad870a057e2bc36ab5d7363ce583455d194d08aa1372e",
+    ".local/dsh-runtime-entry-mJhrir/mock/C/trace.json": "d1087221803aa63792c6d86a6945ced3281e0722da71ffe6f39a13d72bfbe0d3",
+    ".local/dsh-runtime-entry-mJhrir/mock/C/acceptance.json": "477a49985864e279dcacf07d1e6dc07f8d3c279b6703798619b6f761618c3c19",
+    ".local/dsh-runtime-entry-mJhrir/mock/C/evidence/adapter-result.json": "d6eaad9ace6b88bbae85c005b52f918d9cb6615dd45a6dd4f8bca46ff4d17a43",
+    ".local/dsh-runtime-entry-mJhrir/mock/C/evidence/host-user.json": "eacb3ebfd6faaf00b2e100f94cfc0727f8625b5756f3dd3ed9bc51b40653cb05",
+    ".local/dsh-runtime-entry-mJhrir/mock/C/evidence/agent.json": "3d22737944d9e5b3d5bbded45938dff0c459dbfe5d683798ff789748f6548196",
+    ".local/dsh-runtime-entry-mJhrir/mock/D/trace.json": "cdba6072747b4c10b8bc98511b05a6bb10f316b2dc2f9bea5ffeb3c9ef720d61",
+    ".local/dsh-runtime-entry-mJhrir/mock/D/acceptance.json": "b7a6e160d336d2adc615280b3a9d6d077acb8c56cdfa7248cc32ccabbe09a1a4",
+    ".local/dsh-runtime-entry-mJhrir/mock/D/evidence/adapter-result.json": "b78cea9c0c233991c00b8e5878083141d7b93c97ddf931c1519d6e23cbf0a001",
+    ".local/dsh-runtime-entry-mJhrir/mock/D/evidence/host-user.json": "cba4ff53d4719ba605e63e52fedd3da4b4ea73edb32b467baf6cc0393684b509",
+    ".local/dsh-runtime-entry-mJhrir/mock/D/evidence/agent.json": "2ac823b1efeb4d75367ad870a057e2bc36ab5d7363ce583455d194d08aa1372e",
+    ".local/dsh-runtime-entry-mJhrir/mock/E/trace.json": "44c963cfc54bd9502a138c7d38159e3fb33940463450c0c015071e0b71eadfe0",
+    ".local/dsh-runtime-entry-mJhrir/mock/E/acceptance.json": "a135b430495df93698b9746ab41790d806139f62e739e6688c107cf4c62325e5",
+    ".local/dsh-runtime-entry-mJhrir/mock/E/evidence/adapter-result.json": "faabc641653d9e144281c7a5906d629b9f96603c78d3110262a4280f4735fdae",
+    ".local/dsh-runtime-entry-mJhrir/mock/E/evidence/host-user.json": "71068dafec128adc31b0e15584440c62b62d5db60b6bae56d6196ad4375dc6d9",
+    ".local/dsh-runtime-entry-mJhrir/mock/E/evidence/agent.json": "2ac823b1efeb4d75367ad870a057e2bc36ab5d7363ce583455d194d08aa1372e"
+  },
+  "skillOpt": {
+    "status": "NOT_READY",
+    "trainingStarted": false,
+    "missing": [
+      "real correction loop",
+      "independent semantic judge",
+      "training isolation acceptance",
+      "optimizer frozen-area enforcement",
+      "sample size",
+      "model/cost authorization"
+    ]
+  },
+  "noPush": true,
+  "noMerge": true,
+  "noRelease": true
+}
