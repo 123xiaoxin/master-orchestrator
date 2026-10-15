@@ -1,0 +1,927 @@
+{
+  "version": "master_dsh_wiring_evidence.v1",
+  "verifiedAtUtc": "2026-10-15T00:59:23.615671+00:00",
+  "branch": "codex/master-integration",
+  "baselineCommit": "dfe3f1b3d2d04569dede637f3021d993ad6d79e9",
+  "implementationCommit": "eb6f42c80867de8c18ef31ee7532538f64c17902",
+  "readiness": "BLOCKED",
+  "level2": "BLOCKED",
+  "level3": "BLOCKED",
+  "engineeringMissing": [
+    "Reviewed real-provider preparation, token/price upper-bound, usage and cancellation route",
+    "Validated production filesystem confinement on Windows"
+  ],
+  "tests": {
+    "adapter": 37,
+    "runtime": 30,
+    "sessionHost": 44,
+    "jointPass": 111,
+    "jointFail": 0,
+    "localCI": {
+      "generatedAt": "2026-10-15T00:57:58.7451273+00:00",
+      "ok": true,
+      "total": 17,
+      "failed": 0,
+      "results": [
+        {
+          "name": "encoding",
+          "ok": true,
+          "message": "Encoding check passed for 191 files.",
+          "durationMs": 3404
+        },
+        {
+          "name": "templates",
+          "ok": true,
+          "message": "Validated 6 Agent Pack templates.",
+          "durationMs": 503
+        },
+        {
+          "name": "task-analysis",
+          "ok": true,
+          "message": "Validated 4 task_analysis examples.",
+          "durationMs": 236
+        },
+        {
+          "name": "intent-elicitation",
+          "ok": true,
+          "message": "Validated 5 intent_elicitation examples.",
+          "durationMs": 227
+        },
+        {
+          "name": "state-machine",
+          "ok": true,
+          "message": "Validated 1 state_machine examples.",
+          "durationMs": 104
+        },
+        {
+          "name": "verify-repair-loop",
+          "ok": true,
+          "message": "Validated 1 verify_repair_loop examples.",
+          "durationMs": 151
+        },
+        {
+          "name": "master-output-contract",
+          "ok": true,
+          "message": "Validated 3 master_output_contract examples.",
+          "durationMs": 131
+        },
+        {
+          "name": "five-layer-snapshot",
+          "ok": true,
+          "message": "Validated 1 five_layer_snapshot examples.",
+          "durationMs": 179
+        },
+        {
+          "name": "final-report",
+          "ok": true,
+          "message": "Validated 2 final_report examples.",
+          "durationMs": 197
+        },
+        {
+          "name": "capability-gap",
+          "ok": true,
+          "message": "Validated 2 capability_gap examples.",
+          "durationMs": 115
+        },
+        {
+          "name": "goal-pursuit-ledger",
+          "ok": true,
+          "message": "Validated 1 goal_pursuit_ledger examples.",
+          "durationMs": 189
+        },
+        {
+          "name": "offline-prompt-evals",
+          "ok": true,
+          "message": "Validated 19 offline prompt eval definitions.",
+          "durationMs": 443
+        },
+        {
+          "name": "skill-entrypoint",
+          "ok": true,
+          "message": "Entrypoint, dependency closure, references, packaging and source locks verified.",
+          "durationMs": 3638
+        },
+        {
+          "name": "dsh-contract-adapter",
+          "ok": true,
+          "message": "Adapter positive/negative tests passed against hash-locked unmodified DSH native sources; offline only.",
+          "durationMs": 805
+        },
+        {
+          "name": "dsh-runtime-offline",
+          "ok": true,
+          "message": "Bound host admission, execution gates, trace correlation, independent acceptance and deterministic A-E scenarios passed; no model session claimed.",
+          "durationMs": 459
+        },
+        {
+          "name": "dsh-session-host",
+          "ok": true,
+          "message": "Host authorization lifecycle, cumulative budget reservations and confined test-file tools passed; actual DSH assembly is a separate local component check.",
+          "durationMs": 463
+        },
+        {
+          "name": "pester",
+          "ok": true,
+          "message": "75 Pester tests passed.",
+          "durationMs": 7765
+        }
+      ]
+    },
+    "pesterPass": 75,
+    "pythonSkillPass": 10,
+    "schema": {
+      "ok": true,
+      "schemaCount": 12,
+      "validatedRecordCount": 38,
+      "failures": [],
+      "records": [
+        {
+          "record": "schemas/agent_pack.v1.schema.json#examples/0",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/capability_gap.v1.schema.json#examples/0",
+          "schema": "capability_gap.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/final_report.v1.schema.json#examples/0",
+          "schema": "final_report.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/five_layer_snapshot.v1.schema.json#examples/0",
+          "schema": "five_layer_snapshot.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/goal_pursuit_ledger.v1.schema.json#examples/0",
+          "schema": "goal_pursuit_ledger.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/master_output_contract.v1.schema.json#examples/0",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/micro_sop.v1.schema.json#examples/0",
+          "schema": "micro_sop.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/requirement_clarity.v1.schema.json#examples/0",
+          "schema": "requirement_clarity.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/state_machine.v1.schema.json#examples/0",
+          "schema": "state_machine.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/task_analysis.v1.schema.json#examples/0",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/verify_repair_loop.v1.schema.json#examples/0",
+          "schema": "verify_repair_loop.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/capability-gap/missing-api-access.json",
+          "schema": "capability_gap.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/capability-gap/missing-screenshot-verification.json",
+          "schema": "capability_gap.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/final-report/docs-refresh-completed.json",
+          "schema": "final_report.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/final-report/landing-page-partial.json",
+          "schema": "final_report.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/five-layer-snapshot/ui-design-task-snapshot.json",
+          "schema": "five_layer_snapshot.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/goal-pursuit-ledger/docs-refresh-in-progress.json",
+          "schema": "goal_pursuit_ledger.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/bakery-website.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/lawyer-website.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/low-language-bandwidth.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/shop-owner-dashboard.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/travel-story-intent-shift.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/master-output-contract/landing-page-prototype-contract.json",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/master-output-contract/vague-clarify-contract.json",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/master-output-contract/validation-execute-contract.json",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/requirement_clarity.sample.json",
+          "schema": "requirement_clarity.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/state-machine/long-task-phase4-state-machine.json",
+          "schema": "state_machine.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/failure-downgrade.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/master-only-simple-task-analysis.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/openclaw-windows-task-analysis.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/webapp-agent-pack-task-analysis.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/verify-repair/encoding-check-repair-loop.json",
+          "schema": "verify_repair_loop.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/bug-fix.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/code-review.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/content-campaign.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/feature-request.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/research-report.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/webapp-build.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        }
+      ]
+    },
+    "nativePreparePass": 8,
+    "nativeComponentPass": 21,
+    "implementationRepairRounds": 1
+  },
+  "cases": {
+    "prepare": {
+      "evidenceLevel": "Actual DSH Agent assembly; no model",
+      "sessionId": "master-wiring-dsh-session-delivery-20261015-prepare",
+      "sessionFormat": 4,
+      "checks": {
+        "actualAgentSessionCreated": true,
+        "unauthorizedFollowupBlocked": true,
+        "requiredRulesAssembled": true,
+        "directLlmBypassDenied": true,
+        "noGrantToolDenied": true,
+        "forgedHostIngressDenied": true,
+        "awaitedNativeFlush": true,
+        "actualToolResultsReconciled": true
+      },
+      "runtimeSources": {
+        "cordis": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\cordis\\lib\\index.js",
+          "sha256": "6a9394c0877ff45218818c6e815edd038f8057e1a1deb390a8d43ec81c57691e",
+          "version": "4.0.4"
+        },
+        "dsh-system-prompt": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-system-prompt\\lib\\index.js",
+          "sha256": "ff422afac6ba85f89afa985d921aed0b603feb354a05a549c48eae04cf0d2f57",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-session": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session\\lib\\index.js",
+          "sha256": "87ea85e2fb5318bf1f826db9a1c88c1b26d3ea328027a7f32b211880c4d62b9d",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-session-projection": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session-projection\\lib\\index.js",
+          "sha256": "022f1d13e25aeb3c18e10407d84c69e018c1c05a65c9ee36ed14d89b185a4fa8",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-tools": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-tools\\lib\\index.js",
+          "sha256": "40f47709337c3c205d4e09e647f8588f4977e66f6d52f019b3cc7ef81159d84f",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-llm": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm\\lib\\index.js",
+          "sha256": "9132c8a8053ee82b9fb1ded4f98c85cf557f288a15a85c552c6b1fb319ead120",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-agent": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent\\lib\\index.js",
+          "sha256": "7b9aa39474de83115cf890dd7f8904cf0d59df0811cb335ab85565a04f1aac93",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-agent-loop": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent-loop\\lib\\index.js",
+          "sha256": "00c4814d63f3d1e2754eb09144832d19b30499d6ea444730473f740b587948c2",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-skill-filesystem": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-skill-filesystem\\lib\\index.js",
+          "sha256": "244e92e032ef15e96cb60c9e2cfddf5d89e167eb171fcbfd83e9415b0455a0d7",
+          "version": "0.2.0-rc.2"
+        }
+      },
+      "ruleRecords": [
+        {
+          "id": "entry",
+          "sha256": "f627f7a2c5ad79fba3d28f9dea9b0dc735456dd2c749fafda00bc87911e8531e"
+        },
+        {
+          "id": "01",
+          "sha256": "f7b9fd94126eef26997b67a3de36313c27594c42d1eac783e009b58218452a9a"
+        },
+        {
+          "id": "05",
+          "sha256": "5895663a959ed1b3afcf4768c4bfc0c2f60c0c537786e362e3763ebb568fe4cd"
+        },
+        {
+          "id": "07",
+          "sha256": "745f296c9a642e67605afee4c04bcaabfd7a2db77d128ed1c4b08b1672de5088"
+        },
+        {
+          "id": "08",
+          "sha256": "468c124e05cd20efa2b2cc0df792ce4c86a1a0772302cc08d018b36afc46e450"
+        }
+      ],
+      "reconciliation": {
+        "complete": true,
+        "requested": 1,
+        "observedResults": 1,
+        "violations": [],
+        "goalAcceptance": "not_evaluated"
+      },
+      "router": [],
+      "authorization": [
+        {
+          "type": "session_closed",
+          "sessionId": "master-wiring-dsh-session-delivery-20261015-prepare"
+        }
+      ],
+      "ingress": {
+        "address": "http://127.0.0.1:59383/operator",
+        "operatorEnrolled": false,
+        "audit": [
+          {
+            "type": "denied",
+            "reason": "authentication_or_transport",
+            "source": "actual loopback request"
+          }
+        ]
+      },
+      "budget": {
+        "calls": 0,
+        "sessions": 0,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": null,
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": null,
+        "remainingOutput": null,
+        "remainingCostMicros": null,
+        "stopped": "host_closed",
+        "events": [
+          {
+            "sequence": 1,
+            "type": "stopped",
+            "reason": "host_closed"
+          }
+        ]
+      },
+      "readiness": {
+        "status": "BLOCKED",
+        "engineeringMissing": [
+          "No reviewed real-provider preparation/usage/price-bound route",
+          "Production filesystem isolation admission not verified"
+        ],
+        "operatorEnrollmentPending": true,
+        "actualUserConfirmationObserved": false,
+        "modelCalls": 0,
+        "realModelSession": false,
+        "completeAgentCreated": true
+      },
+      "modelCalls": 0,
+      "paidProviderRequests": 0,
+      "actualPaidCost": "0 (no provider I/O)",
+      "masterModelBehaviorVerified": false,
+      "limitations": [
+        "Component confirmation is controller-authored, not authenticated external-user authorization",
+        "Real tool operations are host-driven; no model proposed them",
+        "Rule assembly does not prove model compliance",
+        "Native JSONL resume backend not mounted; sidecar flush listener used"
+      ],
+      "assemblyHashes": [
+        "30d77a509647cc52bdfbef4b8176dff9229d0a066bbd541369f44f7a8b406d88"
+      ],
+      "actualNativeEventCount": 4,
+      "actualToolResults": [
+        {
+          "callId": "without-user-grant",
+          "tool": "write",
+          "isError": true,
+          "source": "actual DSH ToolRuntime result; caller is host controller"
+        }
+      ]
+    },
+    "component-test": {
+      "evidenceLevel": "Actual DSH Agent assembly + actual host-driven ToolRuntime IO + Mock local LLM adapter",
+      "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test",
+      "sessionFormat": 4,
+      "checks": {
+        "actualAgentSessionCreated": true,
+        "unauthorizedFollowupBlocked": true,
+        "requiredRulesAssembled": true,
+        "directLlmBypassDenied": true,
+        "noGrantToolDenied": true,
+        "forgedHostIngressDenied": true,
+        "adapterAndNativeReady": true,
+        "readyDidNotGrantProduction": true,
+        "authenticatedControllerIngress": true,
+        "initialBudgetGrantsNoExecution": true,
+        "budgetOnlyDispatchDenied": true,
+        "realScopedToolWriteSucceeded": true,
+        "realScopedToolReadSucceeded": true,
+        "overwriteDenied": true,
+        "traversalDenied": true,
+        "unknownToolDenied": true,
+        "independentVerificationReturned": true,
+        "mockRequestReservedAndSettled": true,
+        "revokedAuthorizationDenied": true,
+        "awaitedNativeFlush": true,
+        "actualToolResultsReconciled": true
+      },
+      "runtimeSources": {
+        "cordis": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\cordis\\lib\\index.js",
+          "sha256": "6a9394c0877ff45218818c6e815edd038f8057e1a1deb390a8d43ec81c57691e",
+          "version": "4.0.4"
+        },
+        "dsh-system-prompt": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-system-prompt\\lib\\index.js",
+          "sha256": "ff422afac6ba85f89afa985d921aed0b603feb354a05a549c48eae04cf0d2f57",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-session": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session\\lib\\index.js",
+          "sha256": "87ea85e2fb5318bf1f826db9a1c88c1b26d3ea328027a7f32b211880c4d62b9d",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-session-projection": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session-projection\\lib\\index.js",
+          "sha256": "022f1d13e25aeb3c18e10407d84c69e018c1c05a65c9ee36ed14d89b185a4fa8",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-tools": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-tools\\lib\\index.js",
+          "sha256": "40f47709337c3c205d4e09e647f8588f4977e66f6d52f019b3cc7ef81159d84f",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-llm": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm\\lib\\index.js",
+          "sha256": "9132c8a8053ee82b9fb1ded4f98c85cf557f288a15a85c552c6b1fb319ead120",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-agent": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent\\lib\\index.js",
+          "sha256": "7b9aa39474de83115cf890dd7f8904cf0d59df0811cb335ab85565a04f1aac93",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-agent-loop": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent-loop\\lib\\index.js",
+          "sha256": "00c4814d63f3d1e2754eb09144832d19b30499d6ea444730473f740b587948c2",
+          "version": "0.2.0-rc.2"
+        },
+        "dsh-skill-filesystem": {
+          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-skill-filesystem\\lib\\index.js",
+          "sha256": "244e92e032ef15e96cb60c9e2cfddf5d89e167eb171fcbfd83e9415b0455a0d7",
+          "version": "0.2.0-rc.2"
+        }
+      },
+      "ruleRecords": [
+        {
+          "id": "entry",
+          "sha256": "f627f7a2c5ad79fba3d28f9dea9b0dc735456dd2c749fafda00bc87911e8531e"
+        },
+        {
+          "id": "01",
+          "sha256": "f7b9fd94126eef26997b67a3de36313c27594c42d1eac783e009b58218452a9a"
+        },
+        {
+          "id": "05",
+          "sha256": "5895663a959ed1b3afcf4768c4bfc0c2f60c0c537786e362e3763ebb568fe4cd"
+        },
+        {
+          "id": "07",
+          "sha256": "745f296c9a642e67605afee4c04bcaabfd7a2db77d128ed1c4b08b1672de5088"
+        },
+        {
+          "id": "08",
+          "sha256": "468c124e05cd20efa2b2cc0df792ce4c86a1a0772302cc08d018b36afc46e450"
+        }
+      ],
+      "reconciliation": {
+        "complete": true,
+        "requested": 8,
+        "observedResults": 8,
+        "violations": [],
+        "goalAcceptance": "not_evaluated"
+      },
+      "router": [
+        {
+          "type": "adapter_consumed",
+          "masterHash": "fbe0506634468bec1b56a10b726518e0ea0ce59c6f288f585fb9108f30e77e91",
+          "status": "READY",
+          "source": "admitted host projection/component-test",
+          "nativeL1": "passed",
+          "nativeL2": "passed"
+        },
+        {
+          "type": "verification_returned",
+          "passed": true,
+          "source": "host independent verification, not model declaration"
+        }
+      ],
+      "authorization": [
+        {
+          "type": "model_budget_approved",
+          "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test",
+          "taskId": "hello-pilot",
+          "provider": "local-offline-probe",
+          "model": "fixture",
+          "source": "authenticated-loopback/component-test",
+          "budgetHash": "b6f0a001766457899219702d0ff993dad230ec3083ee90f98d08e9a839575ff2",
+          "executionPermission": false
+        },
+        {
+          "type": "confirmed",
+          "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test",
+          "taskId": "hello-pilot",
+          "requestId": "component-confirmation",
+          "masterHash": "fbe0506634468bec1b56a10b726518e0ea0ce59c6f288f585fb9108f30e77e91",
+          "expiresAt": 1792025928227,
+          "source": "authenticated-loopback/component-test"
+        },
+        {
+          "type": "revoked",
+          "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test",
+          "generation": 1
+        },
+        {
+          "type": "session_closed",
+          "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test"
+        }
+      ],
+      "ingress": {
+        "address": "http://127.0.0.1:59385/operator",
+        "operatorEnrolled": false,
+        "audit": [
+          {
+            "type": "denied",
+            "reason": "authentication_or_transport",
+            "source": "actual loopback request"
+          },
+          {
+            "type": "authenticated",
+            "action": "budget",
+            "requestId": "component-budget",
+            "origin": "component-test",
+            "principalHash": "6b5bf494b15782234f14dd4caa444d1e26ed9592aaf93e86532f9fd24098c8da",
+            "source": "actual loopback request"
+          },
+          {
+            "type": "authenticated",
+            "action": "confirm",
+            "requestId": "component-confirmation",
+            "origin": "component-test",
+            "principalHash": "6b5bf494b15782234f14dd4caa444d1e26ed9592aaf93e86532f9fd24098c8da",
+            "source": "actual loopback request"
+          }
+        ]
+      },
+      "budget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 3,
+        "chargedInputUpperBound": 1,
+        "chargedOutputUpperBound": 1,
+        "observedInputTokens": 1,
+        "observedOutputTokens": 1,
+        "chargedCostUpperBoundMicros": "2",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 199,
+        "remainingOutput": 199,
+        "remainingCostMicros": "998",
+        "stopped": "host_closed",
+        "events": [
+          {
+            "sequence": 1,
+            "type": "session_opened",
+            "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test"
+          },
+          {
+            "sequence": 2,
+            "type": "step_admitted",
+            "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test",
+            "step": 1
+          },
+          {
+            "sequence": 3,
+            "type": "step_admitted",
+            "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test",
+            "step": 2
+          },
+          {
+            "sequence": 4,
+            "type": "step_admitted",
+            "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test",
+            "step": 3
+          },
+          {
+            "sequence": 5,
+            "type": "request_reserved",
+            "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test",
+            "call": 1,
+            "inputUpperBound": 10,
+            "outputUpperBound": 10,
+            "costUpperBoundMicros": "20"
+          },
+          {
+            "sequence": 6,
+            "type": "request_settled",
+            "sessionId": "master-wiring-dsh-session-delivery-20261015-component-test",
+            "inputTokens": 1,
+            "outputTokens": 1,
+            "costBasis": "approved conservative upper rate, not an invoice"
+          },
+          {
+            "sequence": 7,
+            "type": "stopped",
+            "reason": "host_closed"
+          }
+        ]
+      },
+      "readiness": {
+        "status": "BLOCKED",
+        "engineeringMissing": [
+          "No reviewed real-provider preparation/usage/price-bound route",
+          "Production filesystem isolation admission not verified"
+        ],
+        "operatorEnrollmentPending": true,
+        "actualUserConfirmationObserved": false,
+        "modelCalls": 0,
+        "realModelSession": false,
+        "completeAgentCreated": true
+      },
+      "modelCalls": 0,
+      "paidProviderRequests": 0,
+      "actualPaidCost": "0 (no provider I/O)",
+      "masterModelBehaviorVerified": false,
+      "limitations": [
+        "Component confirmation is controller-authored, not authenticated external-user authorization",
+        "Real tool operations are host-driven; no model proposed them",
+        "Rule assembly does not prove model compliance",
+        "Native JSONL resume backend not mounted; sidecar flush listener used"
+      ],
+      "assemblyHashes": [
+        "30d77a509647cc52bdfbef4b8176dff9229d0a066bbd541369f44f7a8b406d88",
+        "30d77a509647cc52bdfbef4b8176dff9229d0a066bbd541369f44f7a8b406d88"
+      ],
+      "actualNativeEventCount": 8,
+      "actualToolResults": [
+        {
+          "callId": "without-user-grant",
+          "tool": "write",
+          "isError": true,
+          "source": "actual DSH ToolRuntime result; caller is host controller"
+        },
+        {
+          "callId": "budget-without-execution-permission",
+          "tool": "write",
+          "isError": true,
+          "source": "actual DSH ToolRuntime result; caller is host controller"
+        },
+        {
+          "callId": "actual-scoped-write",
+          "tool": "write",
+          "isError": false,
+          "source": "actual DSH ToolRuntime result; caller is host controller"
+        },
+        {
+          "callId": "actual-scoped-read",
+          "tool": "read",
+          "isError": false,
+          "source": "actual DSH ToolRuntime result; caller is host controller"
+        },
+        {
+          "callId": "repeat-write",
+          "tool": "write",
+          "isError": true,
+          "source": "actual DSH ToolRuntime result; caller is host controller"
+        },
+        {
+          "callId": "path-traversal",
+          "tool": "read",
+          "isError": true,
+          "source": "actual DSH ToolRuntime result; caller is host controller"
+        },
+        {
+          "callId": "unknown-shell",
+          "tool": "pwsh",
+          "isError": true,
+          "source": "actual DSH ToolRuntime result; caller is host controller"
+        },
+        {
+          "callId": "revoked-read",
+          "tool": "read",
+          "isError": true,
+          "source": "actual DSH ToolRuntime result; caller is host controller"
+        }
+      ]
+    }
+  },
+  "externalSourcesUnchanged": {
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\runtime-trace-plugin.mjs": "2851b1846bb7682fff25d0feb5da4f1ebd3d687cd39c4b833b1e7453e6043237",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\trace-ledger.mjs": "998f58f48c9e136a4ff24bf1da8d7250a609c5f6cf7510402026a407d3b36a3d",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\agent.cordis.yml": "6d94de67ada14b2692cf2cc16ff66069d37c7e76dd71fc2de06acf4be9d080fe",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\preset.yml": "7b65159d04011d89cb3750245d67930c8bcfcd2cabf7fffd560b556abca0db2a"
+  },
+  "implementationFiles": {
+    "adapters/dsh-runtime/bridge.mjs": "c5b026611c76bd759e8f1e8ea8e781329963ceb91990153687e30025981b71aa",
+    "adapters/dsh-session/README.md": "1393602b6550ee56e169a8aea2c4cd551603c8062977793221b071a84a23e781",
+    "adapters/dsh-session/authority.mjs": "ffc8d0284a62a1a714568f10110c2b027495dd23c9e49e405e802c263533241f",
+    "adapters/dsh-session/budget.mjs": "5a02e7330b77c3764ebbcc79907bae948f62cac2b2d8d935a01b2c347770086d",
+    "adapters/dsh-session/file-tools.mjs": "abf2456c30af212e24fe5254af5e17c554c90b429e1a3733ef76b29d6f43d796",
+    "adapters/dsh-session/ingress.mjs": "3d7368a7263ed2df35042135de3325eef881593765c803bdd299c174ccb4013a",
+    "adapters/dsh-session/native-host.mjs": "50ee76c2de7ec313fa71ccb1c13ebfa216c982110fcf1dfd9c36e2f2d842d5e2",
+    "adapters/dsh-session/native-runtime-source-lock.json": "2bc15883622d108f7564df4a7ac39c1aaac605d6e1cec7e5f1d4fcf9b8365281",
+    "adapters/dsh-session/router.mjs": "883d41b2319869dde9a835e58f3631169bf8aafdd91ccd1c774b705aabd8d10b",
+    "docs/ci-cd.md": "f8497c11df5ea6a93347cabe2a2f905e4d7791f4ddf3f27e90df5f3e7439082c",
+    "local-ci.ps1": "80d8e04d70b2f4b4f178b5c5b6ca84cf71a7ce6b72936c1cd063f58502ad9529",
+    "scripts/dsh_session_wiring.cjs": "58e869ee2b453b0f2993a66c1b24c6a318df4f8f886d3e78f743c6c67386d794",
+    "tests/dsh_session.test.mjs": "8db67af798fc3766a833c1093c0347cb3c7090bae622ba584ef122a70bee35ab"
+  },
+  "artifacts": [
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-prepare\\session-flush-1.json",
+      "sha256": "cd5f9d7a35204064fe1e8d59c20d02d96ac2b90c14630b9aef8975eaa45f22b1",
+      "kind": "actual-session-sidecar"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-prepare\\session-flush-2.json",
+      "sha256": "cd5f9d7a35204064fe1e8d59c20d02d96ac2b90c14630b9aef8975eaa45f22b1",
+      "kind": "actual-session-sidecar"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-prepare\\session-final-sidecar.json",
+      "sha256": "201f01f976460a5cbd0238bfec6ef674e544b9672ecc1e591cbe994a02617aa6",
+      "kind": "actual-session-sidecar"
+    },
+    {
+      "path": ".local/dsh-session-delivery-20261015-prepare/verification.json",
+      "sha256": "1c954905b45d8ba13cd64790d31e752e33e88b8d317c66c35ecaa49f5ec4e06c",
+      "kind": "native-probe-report"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-component-test\\session-flush-1.json",
+      "sha256": "2f5c5571d5a13a4dc17d72ac1736cc655b61c860c7cc328520a4145cb6f52e2d",
+      "kind": "actual-session-sidecar"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-component-test\\session-flush-2.json",
+      "sha256": "2f5c5571d5a13a4dc17d72ac1736cc655b61c860c7cc328520a4145cb6f52e2d",
+      "kind": "actual-session-sidecar"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-component-test\\session-final-sidecar.json",
+      "sha256": "96de42787dbdbbdb5e336f5a77d69eec708cce09dc2a92922ebba9cf9b87dbee",
+      "kind": "actual-session-sidecar"
+    },
+    {
+      "path": ".local/dsh-session-delivery-20261015-component-test/verification.json",
+      "sha256": "b2647495a639dcf3b69f4720529bb3b789b3d3ecdd44c465212a1d31b9fcd5e0",
+      "kind": "native-probe-report"
+    },
+    {
+      "path": ".local/dsh-session-wiring-investigation/final-unit.tap",
+      "sha256": "7a837d881e992a9783f1c74cf05cb95d56fd5e2ebcd0dcefb836053b577173f7"
+    },
+    {
+      "path": ".local/dsh-session-wiring-investigation/final-ci.log",
+      "sha256": "14a70065a9ded87b6b927822508f29ed127714aea0127737a0baead2fc7a463e"
+    },
+    {
+      "path": "local-ci-report.json",
+      "sha256": "43f0dd318eaeb97d88426242858ef3c2566ebb532f8e8ec90f3c15eaf159d2b6"
+    },
+    {
+      "path": ".local/schema-validation.json",
+      "sha256": "1a12623bcb19f9d3b55f68b36586d6630abf4ac31a581a2604b5142faff7d874"
+    }
+  ],
+  "actualModelCalls": 0,
+  "paidProviderRequests": 0,
+  "actualPaidCost": "0; no provider I/O",
+  "localFixtureUsage": {
+    "model": false,
+    "calls": 1,
+    "inputTokens": 1,
+    "outputTokens": 1,
+    "currency": "TEST",
+    "upperBoundChargeMicros": "2",
+    "actualBilledCost": null
+  },
+  "productionWritesEnabled": false,
+  "actualHumanConfirmationTested": false,
+  "nativeJsonlResumeTested": false,
+  "pushed": false
+}
