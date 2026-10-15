@@ -254,6 +254,12 @@ Invoke-CiCheck -Name "dsh-session-host" -Action {
     return "Host authorization lifecycle, cumulative budget reservations and confined test-file tools passed; actual DSH assembly is a separate local component check."
 }
 
+Invoke-CiCheck -Name "dsh-provider-offline" -Action {
+    $testOutput = & node --test (Join-Path $repoRoot "tests/dsh_provider.test.mjs") 2>&1
+    if (-not $?) { throw "DSH controlled provider tests failed: $testOutput" }
+    return "Controlled adapter preflight, private approval, cumulative budgets, conservative failure settlement and cancellation passed with an offline fixture; installed DSH is checked separately."
+}
+
 Invoke-CiCheck -Name "pester" -Action {
     $testResult = & (Join-Path $repoRoot "run-tests.ps1") -PassThru
     if ($testResult.FailedCount -gt 0) {

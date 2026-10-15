@@ -8,6 +8,7 @@ import { HostAuthority } from './authority.mjs'
 import { IsolatedFiles } from './file-tools.mjs'
 import { ContractRouter } from './router.mjs'
 import { createIngress, ingressProof } from './ingress.mjs'
+import { controlledProvider } from './controlled-provider.mjs'
 
 const require=createRequire(import.meta.url)
 const HERE=dirname(fileURLToPath(import.meta.url))
@@ -44,10 +45,11 @@ export async function assembleHost({packageRoot,profileFile,skillRoot,workspace,
   const ctx=new Context()
   const observed=[],toolFacts=[],toolRequests=[],gateFacts=[],assemblies=[],flushes=[],toolViolations=[]
   const pendingTools=new Map()
-  let agent,handle,router,grant,master,authority,channel,files,budget,bounds,probeAdapter,ingress,lastAdapterResult,grantTimer,modelGrant,budgetBinding
+  let agent,handle,router,grant,master,authority,channel,files,budget,bounds,probeAdapter,ingress,lastAdapterResult,grantTimer,modelGrant,budgetBinding,controlledRoute
   // Actual native LLM waterfall interception. Never forwards to a provider in
   // this no-authorization build, including direct calls bypassing Agent hooks.
   ctx.on('llm/stream',async function*(request,next){
+    if(componentTest && controlledRoute && request.provider===controlledRoute.provider) {yield* await next();return}
     if(!componentTest || request.provider!=='local-offline-probe' || !budget || !bounds) {
       gateFacts.push({type:'llm_dispatch_denied',source:'native llm/stream waterfall'})
       throw new Error('Real provider route and cost authorization are not admitted')
@@ -60,7 +62,14 @@ export async function assembleHost({packageRoot,profileFile,skillRoot,workspace,
       for await(const chunk of stream){budget.signal.throwIfAborted();if(chunk.type==='usage')usage=chunk.usage;yield chunk}
     }finally{budget.settle(reservation,usage)}
   })
-  ctx.on('agent/pre-step',()=>{gateFacts.push({type:'agent_step_denied',source:'native agent/pre-step waterfall'});return {kind:'reject'}},{global:true})
+  ctx.on('agent/pre-step',(_request,next)=>{
+    if(componentTest&&controlledRoute&&budget.allowTool().allowed)return next()
+    gateFacts.push({type:'agent_step_denied',source:'native agent/pre-step waterfall'});return {kind:'reject'}
+  },{global:true})
+  ctx.on('agent/request',async(_position,next)=>{
+    const proposal=await next()
+    return componentTest&&controlledRoute?{provider:controlledRoute.provider,model:controlledRoute.model,maxTokens:controlledRoute.outputUpperBound}:proposal
+  },{global:true})
   ctx.on('session/event',(session,event)=>{
     if(session.id===profile.sessionId && ctx.sessions.get(session.id)===session && session.eventAt(event.seq)===event)
       {observed.push(structuredClone(event));if(event.type==='assistant/message'&&router?.captureModelContract(event))master=router.capturedMaster}
@@ -219,6 +228,16 @@ export async function assembleHost({packageRoot,profileFile,skillRoot,workspace,
         return structuredClone(lastAdapterResult)
       },
       tool:trackedTool,
+      mountControlledFixture:({delegate,policy,audit})=>{
+        if(!componentTest||controlledRoute||policy.transport!=='offline-fixture'||policy.networkAllowed!==false)throw new Error('Only one explicitly controlled offline component route allowed')
+        const adapter=controlledProvider({LlmAdapter:native['dsh-llm'].LlmAdapter,delegate,policy,audit,sessionId:agent.id,
+          getBudget:()=>budget,getBudgetConfig:()=>budgetBinding?.budgetConfig??{},
+          authorize:({provider,model,policyHash})=>!!(budgetBinding&&budgetBinding.provider===provider&&budgetBinding.model===model&&
+            budgetBinding.budgetConfig.providerPolicyHash===policyHash&&authority.liveModelBudget(modelGrant,agent.session,budgetBinding))})
+        ctx.llm.registerAdapter([policy.provider],adapter)
+        controlledRoute=structuredClone(policy)
+        return adapter
+      },
       reconciliation:()=>({complete:toolRequests.length>0&&toolRequests.length===toolFacts.length&&toolViolations.length===0,
         requested:toolRequests.length,observedResults:toolFacts.length,violations:[...toolViolations],goalAcceptance:'not_evaluated'}),
       localBudgetProbe:async()=>{for await(const _ of ctx.llm.stream({provider:'local-offline-probe',model:'fixture',messages:[],tools:[],maxTokens:bounds?.output??1,signal:budget.signal})){};return probeAdapter?.calls??0},

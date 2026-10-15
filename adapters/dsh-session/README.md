@@ -5,6 +5,21 @@ Master v1 Adapter and execution sidecar. It is not a new Agent loop, a second
 contract standard, or the DSH headless/Preset loader. Real providers and
 production file execution are deliberately **BLOCKED**.
 
+`controlled-provider.mjs` now decorates the native LlmAdapter boundary. It uses
+local metadata for preparation, then checks the entire request and reserves the
+existing BudgetLedger before touching even the delegate's preparation method.
+Only an explicitly approved `offline-fixture` protocol is admitted; a network
+transport cannot be enabled by setting a JSON flag. Its byte/framing input bound
+is specific to that fixture, not a claim about a real tokenizer. Provider policy
+hash and price provenance are bound into the private budget approval.
+
+`scripts/dsh_provider_probe.cjs` takes the same three paths as the session script
+without a mode argument. It runs the shared Provider cases through the actual
+installed LlmRuntime, then a fully composed Agent, using an in-memory delegate.
+`tests/dsh_provider.test.mjs` runs the portable decorator unit harness in CI.
+Cancellation is observed by the fixture; real service cancellation, account
+limits, billing and production filesystem confinement still need acceptance.
+
 ## Components and entry
 
 `native-host.mjs` verifies nine installed entry-file hashes in

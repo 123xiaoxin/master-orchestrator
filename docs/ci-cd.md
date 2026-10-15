@@ -36,7 +36,12 @@ The pipeline runs:
 9. Offline DSH Contract Adapter tests using hash-locked unmodified native snapshots.
 10. Offline runtime sidecar tests: host receipts, scope gates, correlated traces, two-repair stop and independent acceptance; A–E use deterministic Mock tools.
 11. Host authorization lifecycle, concurrent cumulative budgets and confined-file capability tests.
-12. The complete Pester test directory through `run-tests.ps1`.
+12. Controlled Provider preflight, pricing, budget, cancellation and conservative failure settlement with a no-network fixture.
+13. The complete Pester test directory through `run-tests.ps1`.
+
+`scripts/dsh_provider_probe.cjs` separately runs the Provider cases through the
+actual installed DSH LlmRuntime and a fully assembled Agent. These local
+component checks use an in-memory Provider, not real model or billing services.
 
 `local-ci.ps1` does not run a smoke-test subset. Any Pester failure makes the
 whole pipeline fail.
