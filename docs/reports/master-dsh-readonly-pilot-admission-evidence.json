@@ -1,0 +1,1003 @@
+{
+  "version": "master_dsh_pilot_admission_evidence.v1",
+  "verifiedAtUtc": "2026-10-15T14:25:24.882429+00:00",
+  "branch": "codex/master-integration",
+  "baselineCommit": "f080104a649d9f4109acd9ae49925099408458f7",
+  "implementationCommit": "17308b2be14c8c146ef642667bcbb69df2481a7b",
+  "verdict": "PARTIAL",
+  "realPilotAdmission": "BLOCKED",
+  "remainingEngineering": [
+    "Executable full Messages input-budget basis, not a character heuristic",
+    "Raw Usage mapping bound to reviewed production transport evidence"
+  ],
+  "target": {
+    "provider": "deepseek-official",
+    "model": "deepseek-flash",
+    "modelVersionObserved": "DeepSeek-V4.1-Flash",
+    "baseURL": "https://api.deepseek.com/anthropic",
+    "contextWindow": 1048576,
+    "maxOutputTokens": 393216,
+    "thinking": "disabled"
+  },
+  "tests": {
+    "adapter": 37,
+    "runtime": 30,
+    "session": 44,
+    "provider": 38,
+    "readonly": 25,
+    "pilotAudit": 22,
+    "jointPass": 196,
+    "failed": 0,
+    "localCI": {
+      "generatedAt": "2026-10-15T14:21:26.5209042+00:00",
+      "ok": true,
+      "total": 20,
+      "failed": 0,
+      "results": [
+        {
+          "name": "encoding",
+          "ok": true,
+          "message": "Encoding check passed for 212 files.",
+          "durationMs": 173
+        },
+        {
+          "name": "templates",
+          "ok": true,
+          "message": "Validated 6 Agent Pack templates.",
+          "durationMs": 212
+        },
+        {
+          "name": "task-analysis",
+          "ok": true,
+          "message": "Validated 4 task_analysis examples.",
+          "durationMs": 88
+        },
+        {
+          "name": "intent-elicitation",
+          "ok": true,
+          "message": "Validated 5 intent_elicitation examples.",
+          "durationMs": 97
+        },
+        {
+          "name": "state-machine",
+          "ok": true,
+          "message": "Validated 1 state_machine examples.",
+          "durationMs": 35
+        },
+        {
+          "name": "verify-repair-loop",
+          "ok": true,
+          "message": "Validated 1 verify_repair_loop examples.",
+          "durationMs": 62
+        },
+        {
+          "name": "master-output-contract",
+          "ok": true,
+          "message": "Validated 3 master_output_contract examples.",
+          "durationMs": 27
+        },
+        {
+          "name": "five-layer-snapshot",
+          "ok": true,
+          "message": "Validated 1 five_layer_snapshot examples.",
+          "durationMs": 38
+        },
+        {
+          "name": "final-report",
+          "ok": true,
+          "message": "Validated 2 final_report examples.",
+          "durationMs": 43
+        },
+        {
+          "name": "capability-gap",
+          "ok": true,
+          "message": "Validated 2 capability_gap examples.",
+          "durationMs": 55
+        },
+        {
+          "name": "goal-pursuit-ledger",
+          "ok": true,
+          "message": "Validated 1 goal_pursuit_ledger examples.",
+          "durationMs": 64
+        },
+        {
+          "name": "offline-prompt-evals",
+          "ok": true,
+          "message": "Validated 19 offline prompt eval definitions.",
+          "durationMs": 99
+        },
+        {
+          "name": "skill-entrypoint",
+          "ok": true,
+          "message": "Entrypoint, dependency closure, references, packaging and source locks verified.",
+          "durationMs": 2736
+        },
+        {
+          "name": "dsh-contract-adapter",
+          "ok": true,
+          "message": "Adapter positive/negative tests passed against hash-locked unmodified DSH native sources; offline only.",
+          "durationMs": 735
+        },
+        {
+          "name": "dsh-runtime-offline",
+          "ok": true,
+          "message": "Bound host admission, execution gates, trace correlation, independent acceptance and deterministic A-E scenarios passed; no model session claimed.",
+          "durationMs": 446
+        },
+        {
+          "name": "dsh-session-host",
+          "ok": true,
+          "message": "Host authorization lifecycle, cumulative budget reservations and confined test-file tools passed; actual DSH assembly is a separate local component check.",
+          "durationMs": 417
+        },
+        {
+          "name": "dsh-provider-offline",
+          "ok": true,
+          "message": "Controlled adapter preflight, private approval, cumulative budgets, conservative failure settlement and cancellation passed with an offline fixture; installed DSH is checked separately.",
+          "durationMs": 562
+        },
+        {
+          "name": "dsh-readonly-intent",
+          "ok": true,
+          "message": "Single-model closed-network admission, text-only boundary, split isolation and evidence-bound human review interface passed; no real model behavior claimed.",
+          "durationMs": 134
+        },
+        {
+          "name": "dsh-pilot-admission",
+          "ok": true,
+          "message": "Exact serialized request audits, raw cache inclusion hypotheses, conservative unknown usage and decimal balance attribution passed offline; no approval or real network authority granted.",
+          "durationMs": 157
+        },
+        {
+          "name": "pester",
+          "ok": true,
+          "message": "75 Pester tests passed.",
+          "durationMs": 4061
+        }
+      ]
+    },
+    "pester": 75,
+    "python": 10,
+    "schema": {
+      "ok": true,
+      "schemaCount": 12,
+      "validatedRecordCount": 38,
+      "failures": [],
+      "records": [
+        {
+          "record": "schemas/agent_pack.v1.schema.json#examples/0",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/capability_gap.v1.schema.json#examples/0",
+          "schema": "capability_gap.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/final_report.v1.schema.json#examples/0",
+          "schema": "final_report.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/five_layer_snapshot.v1.schema.json#examples/0",
+          "schema": "five_layer_snapshot.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/goal_pursuit_ledger.v1.schema.json#examples/0",
+          "schema": "goal_pursuit_ledger.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/master_output_contract.v1.schema.json#examples/0",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/micro_sop.v1.schema.json#examples/0",
+          "schema": "micro_sop.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/requirement_clarity.v1.schema.json#examples/0",
+          "schema": "requirement_clarity.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/state_machine.v1.schema.json#examples/0",
+          "schema": "state_machine.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/task_analysis.v1.schema.json#examples/0",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/verify_repair_loop.v1.schema.json#examples/0",
+          "schema": "verify_repair_loop.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/capability-gap/missing-api-access.json",
+          "schema": "capability_gap.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/capability-gap/missing-screenshot-verification.json",
+          "schema": "capability_gap.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/final-report/docs-refresh-completed.json",
+          "schema": "final_report.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/final-report/landing-page-partial.json",
+          "schema": "final_report.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/five-layer-snapshot/ui-design-task-snapshot.json",
+          "schema": "five_layer_snapshot.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/goal-pursuit-ledger/docs-refresh-in-progress.json",
+          "schema": "goal_pursuit_ledger.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/bakery-website.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/lawyer-website.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/low-language-bandwidth.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/shop-owner-dashboard.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/travel-story-intent-shift.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/master-output-contract/landing-page-prototype-contract.json",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/master-output-contract/vague-clarify-contract.json",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/master-output-contract/validation-execute-contract.json",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/requirement_clarity.sample.json",
+          "schema": "requirement_clarity.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/state-machine/long-task-phase4-state-machine.json",
+          "schema": "state_machine.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/failure-downgrade.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/master-only-simple-task-analysis.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/openclaw-windows-task-analysis.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/webapp-agent-pack-task-analysis.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/verify-repair/encoding-check-repair-loop.json",
+          "schema": "verify_repair_loop.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/bug-fix.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/code-review.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/content-campaign.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/feature-request.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/research-report.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/webapp-build.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        }
+      ]
+    },
+    "nativeReadonlyChecks": {
+      "uncertifiedRealTokenBoundBlocked": true,
+      "noApprovalNoProviderContact": true,
+      "nativeTwoTurnProviderCalls": true,
+      "rulesIncludingIntent06": true,
+      "nativeSystemPromptIncludes06": true,
+      "fullRulesReachSerializedRequest": true,
+      "noToolSchemas": true,
+      "exactSerializedBodiesAudited": true,
+      "secondTurnHistoryPreserved": true,
+      "systemNotRepeated": true,
+      "unknownRawSemanticsRetainOccupancy": true,
+      "toolDenied:read": true,
+      "toolDenied:write": true,
+      "toolDenied:pwsh": true,
+      "toolDenied:browser": true,
+      "toolDenied:web_search": true,
+      "toolDenied:spawn_agent": true,
+      "toolDenied:mcp": true,
+      "noWorkspaceFiles": true,
+      "budgetCallsMatch": true,
+      "actualSessionReplies": true,
+      "awaitedFlush": true
+    },
+    "nativeRegression": {
+      "provider": {
+        "passed": 38,
+        "fullAgent": true
+      },
+      "prepare": {
+        "passed": 8,
+        "checks": {
+          "actualAgentSessionCreated": true,
+          "unauthorizedFollowupBlocked": true,
+          "requiredRulesAssembled": true,
+          "directLlmBypassDenied": true,
+          "noGrantToolDenied": true,
+          "forgedHostIngressDenied": true,
+          "awaitedNativeFlush": true,
+          "actualToolResultsReconciled": true
+        }
+      },
+      "component-test": {
+        "passed": 21,
+        "checks": {
+          "actualAgentSessionCreated": true,
+          "unauthorizedFollowupBlocked": true,
+          "requiredRulesAssembled": true,
+          "directLlmBypassDenied": true,
+          "noGrantToolDenied": true,
+          "forgedHostIngressDenied": true,
+          "adapterAndNativeReady": true,
+          "readyDidNotGrantProduction": true,
+          "authenticatedControllerIngress": true,
+          "initialBudgetGrantsNoExecution": true,
+          "budgetOnlyDispatchDenied": true,
+          "realScopedToolWriteSucceeded": true,
+          "realScopedToolReadSucceeded": true,
+          "overwriteDenied": true,
+          "traversalDenied": true,
+          "unknownToolDenied": true,
+          "independentVerificationReturned": true,
+          "mockRequestReservedAndSettled": true,
+          "revokedAuthorizationDenied": true,
+          "awaitedNativeFlush": true,
+          "actualToolResultsReconciled": true
+        }
+      }
+    },
+    "repairRounds": 0
+  },
+  "nativeSource": {
+    "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm-deepseek\\lib\\index.js",
+    "sha256": "226e2047b843f954d8478207613f3e44448671c6f98f8edee77008d0fe005484"
+  },
+  "wireAudit": [
+    {
+      "requestAudit": {
+        "bodySha256": "9c5d5f36262d8ac76a809e78ae9d9722b427bacd71cb28b58f5a53a577dee114",
+        "serializedUtf8Bytes": 46273,
+        "systemSha256": "83f3ac65e18b216106fdb7f68eda33ba9214a64b6d998d87e65214696d194970",
+        "systemUtf8Bytes": 44683,
+        "roles": [
+          "user"
+        ],
+        "messageCount": 1,
+        "messageHistorySha256": "37ddd4f0524adcfe1e555a98f3259973a0db4f767b1808ef56256f648b1ba232",
+        "controls": {
+          "model": "deepseek-flash",
+          "maxTokens": 256,
+          "thinking": {
+            "type": "disabled"
+          },
+          "stream": true
+        },
+        "textEstimate": {
+          "asciiCharacters": 22339,
+          "hanCharacters": 6707,
+          "unmodelledCharacters": 752,
+          "approximateTextTokens": 10726,
+          "source": "https://api-docs.deepseek.com/quick_start/token_usage/",
+          "covers": "text only; no server role/template/special-token guarantee",
+          "safetyMarginTokens": null,
+          "strictUpperBound": null
+        },
+        "inputBudgetExceeded": null,
+        "structurePassed": true,
+        "issues": [],
+        "liveAdmission": "BLOCKED",
+        "reason": "No certified full Messages token bound; approximation is audit data only"
+      },
+      "rawUsageAudit": {
+        "rawFields": {
+          "input_tokens": 10,
+          "cache_read_input_tokens": 2,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 5
+        },
+        "presentFields": [
+          "input_tokens",
+          "cache_read_input_tokens",
+          "cache_creation_input_tokens",
+          "output_tokens"
+        ],
+        "updates": [
+          {
+            "field": "input_tokens",
+            "previous": null,
+            "value": 10
+          },
+          {
+            "field": "cache_read_input_tokens",
+            "previous": null,
+            "value": 2
+          },
+          {
+            "field": "cache_creation_input_tokens",
+            "previous": null,
+            "value": 0
+          },
+          {
+            "field": "output_tokens",
+            "previous": null,
+            "value": 5
+          }
+        ],
+        "relation": "unknown",
+        "fixtureEvidence": false,
+        "error": "cache_inclusion_unverified",
+        "ledgerUsage": null,
+        "actualBilledCost": null,
+        "settlement": "retain_reserved_upper_bound"
+      },
+      "offlineHypothesisMapping": {
+        "rawFields": {
+          "input_tokens": 10,
+          "cache_read_input_tokens": 2,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 5
+        },
+        "presentFields": [
+          "input_tokens",
+          "cache_read_input_tokens",
+          "cache_creation_input_tokens",
+          "output_tokens"
+        ],
+        "updates": [
+          {
+            "field": "input_tokens",
+            "previous": null,
+            "value": 10
+          },
+          {
+            "field": "cache_read_input_tokens",
+            "previous": null,
+            "value": 2
+          },
+          {
+            "field": "cache_creation_input_tokens",
+            "previous": null,
+            "value": 0
+          },
+          {
+            "field": "output_tokens",
+            "previous": null,
+            "value": 5
+          }
+        ],
+        "relation": "disjoint",
+        "fixtureEvidence": true,
+        "error": null,
+        "ledgerUsage": {
+          "inputTokens": 10,
+          "outputTokens": 5,
+          "cacheReadTokens": 2,
+          "cacheWriteTokens": 0,
+          "totalTokens": 17
+        },
+        "actualBilledCost": null,
+        "settlement": "offline_fixture_mapping_only"
+      }
+    },
+    {
+      "requestAudit": {
+        "bodySha256": "4211ca46b104a27ebddc58632cd3161fe16b8c75ec12fdee35eae11b544aa2a3",
+        "serializedUtf8Bytes": 46480,
+        "systemSha256": "83f3ac65e18b216106fdb7f68eda33ba9214a64b6d998d87e65214696d194970",
+        "systemUtf8Bytes": 44683,
+        "roles": [
+          "user",
+          "assistant",
+          "user"
+        ],
+        "messageCount": 3,
+        "messageHistorySha256": "23f5d1c9010f4855a955a17d8437e377b39f6266801fa8ba957af8f970a60a95",
+        "controls": {
+          "model": "deepseek-flash",
+          "maxTokens": 256,
+          "thinking": {
+            "type": "disabled"
+          },
+          "stream": true
+        },
+        "textEstimate": {
+          "asciiCharacters": 22346,
+          "hanCharacters": 6733,
+          "unmodelledCharacters": 755,
+          "approximateTextTokens": 10744,
+          "source": "https://api-docs.deepseek.com/quick_start/token_usage/",
+          "covers": "text only; no server role/template/special-token guarantee",
+          "safetyMarginTokens": null,
+          "strictUpperBound": null
+        },
+        "inputBudgetExceeded": null,
+        "structurePassed": true,
+        "issues": [],
+        "liveAdmission": "BLOCKED",
+        "reason": "No certified full Messages token bound; approximation is audit data only"
+      },
+      "rawUsageAudit": {
+        "rawFields": {
+          "input_tokens": 10,
+          "cache_read_input_tokens": 2,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 5
+        },
+        "presentFields": [
+          "input_tokens",
+          "cache_read_input_tokens",
+          "cache_creation_input_tokens",
+          "output_tokens"
+        ],
+        "updates": [
+          {
+            "field": "input_tokens",
+            "previous": null,
+            "value": 10
+          },
+          {
+            "field": "cache_read_input_tokens",
+            "previous": null,
+            "value": 2
+          },
+          {
+            "field": "cache_creation_input_tokens",
+            "previous": null,
+            "value": 0
+          },
+          {
+            "field": "output_tokens",
+            "previous": null,
+            "value": 5
+          }
+        ],
+        "relation": "unknown",
+        "fixtureEvidence": false,
+        "error": "cache_inclusion_unverified",
+        "ledgerUsage": null,
+        "actualBilledCost": null,
+        "settlement": "retain_reserved_upper_bound"
+      },
+      "offlineHypothesisMapping": {
+        "rawFields": {
+          "input_tokens": 10,
+          "cache_read_input_tokens": 2,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 5
+        },
+        "presentFields": [
+          "input_tokens",
+          "cache_read_input_tokens",
+          "cache_creation_input_tokens",
+          "output_tokens"
+        ],
+        "updates": [
+          {
+            "field": "input_tokens",
+            "previous": null,
+            "value": 10
+          },
+          {
+            "field": "cache_read_input_tokens",
+            "previous": null,
+            "value": 2
+          },
+          {
+            "field": "cache_creation_input_tokens",
+            "previous": null,
+            "value": 0
+          },
+          {
+            "field": "output_tokens",
+            "previous": null,
+            "value": 5
+          }
+        ],
+        "relation": "disjoint",
+        "fixtureEvidence": true,
+        "error": null,
+        "ledgerUsage": {
+          "inputTokens": 10,
+          "outputTokens": 5,
+          "cacheReadTokens": 2,
+          "cacheWriteTokens": 0,
+          "totalTokens": 17
+        },
+        "actualBilledCost": null,
+        "settlement": "offline_fixture_mapping_only"
+      }
+    }
+  ],
+  "tokenizerReference": {
+    "source": "https://cdn.deepseek.com/api-docs/deepseek_v4_tokenizer.zip",
+    "downloadedAt": "2026-10-15",
+    "archiveSha256": "e7310d1dafe0a86d8a5629fe78a7c763760f651db9b8682718a1781dcd6fe495",
+    "archiveBytes": 1911504,
+    "files": [
+      {
+        "name": "deepseek_v4_tokenizer/deepseek_tokenizer.py",
+        "bytes": 277,
+        "sha256": "4ab78a66b76bb70fb462c6b240c8721abd4e02219a5fffb2d746bf1d3568c24e"
+      },
+      {
+        "name": "deepseek_v4_tokenizer/tokenizer_config.json",
+        "bytes": 3128,
+        "sha256": "841f8cf146e3f0ad1082594a31f68ecf7608c20467ef355081333d85bbaeb1cb"
+      },
+      {
+        "name": "deepseek_v4_tokenizer/tokenizer.json",
+        "bytes": 6367096,
+        "sha256": "89085f12ef79460ac5f66d1119325ddfc694b4ab209d80bbd81d35f081dc9614"
+      }
+    ],
+    "executed": false,
+    "dependenciesInstalled": false
+  },
+  "tokenizerStructure": {
+    "pythonDependenciesPresent": {
+      "transformers": false,
+      "tokenizers": false
+    },
+    "modelType": "BPE",
+    "vocabSize": 128000,
+    "normalizer": {
+      "type": "Sequence",
+      "normalizers": []
+    },
+    "preTokenizer": {
+      "type": "Sequence",
+      "pretokenizers": [
+        {
+          "type": "Split",
+          "pattern": {
+            "Regex": "\\p{N}{1,3}"
+          },
+          "behavior": "Isolated",
+          "invert": false
+        },
+        {
+          "type": "Split",
+          "pattern": {
+            "Regex": "[一-龥぀-ゟ゠-ヿ]+"
+          },
+          "behavior": "Isolated",
+          "invert": false
+        },
+        {
+          "type": "Split",
+          "pattern": {
+            "Regex": "[!\"#$%&'()*+,\\-./:;<=>?@\\[\\\\\\]^_`{|}~][A-Za-z]+|[^\r\n\\p{L}\\p{P}\\p{S}]?[\\p{L}\\p{M}]+| ?[\\p{P}\\p{S}]+[\r\n]*|\\s*[\r\n]+|\\s+(?!\\S)|\\s+"
+          },
+          "behavior": "Isolated",
+          "invert": false
+        },
+        {
+          "type": "ByteLevel",
+          "add_prefix_space": false,
+          "trim_offsets": true,
+          "use_regex": false
+        }
+      ]
+    },
+    "postProcessor": {
+      "type": "ByteLevel",
+      "add_prefix_space": true,
+      "trim_offsets": false,
+      "use_regex": true
+    },
+    "decoder": {
+      "type": "ByteLevel",
+      "add_prefix_space": true,
+      "trim_offsets": true,
+      "use_regex": true
+    }
+  },
+  "rules": [
+    {
+      "id": "entry",
+      "sha256": "f627f7a2c5ad79fba3d28f9dea9b0dc735456dd2c749fafda00bc87911e8531e"
+    },
+    {
+      "id": "01",
+      "sha256": "f7b9fd94126eef26997b67a3de36313c27594c42d1eac783e009b58218452a9a"
+    },
+    {
+      "id": "05",
+      "sha256": "5895663a959ed1b3afcf4768c4bfc0c2f60c0c537786e362e3763ebb568fe4cd"
+    },
+    {
+      "id": "07",
+      "sha256": "745f296c9a642e67605afee4c04bcaabfd7a2db77d128ed1c4b08b1672de5088"
+    },
+    {
+      "id": "08",
+      "sha256": "468c124e05cd20efa2b2cc0df792ce4c86a1a0772302cc08d018b36afc46e450"
+    },
+    {
+      "id": "06",
+      "sha256": "675d218437f218b943b70ee58fb18ec13d9b66260a4dbeefe93cf5249589fbf3"
+    }
+  ],
+  "finalMockBudget": {
+    "calls": 2,
+    "sessions": 1,
+    "steps": 2,
+    "chargedInputUpperBound": 24,
+    "chargedOutputUpperBound": 10,
+    "observedInputTokens": 24,
+    "observedOutputTokens": 10,
+    "chargedCostUpperBoundMicros": "44",
+    "actualBilledCost": null,
+    "currency": "USD",
+    "reservedInput": 0,
+    "reservedOutput": 0,
+    "reservedCostMicros": "0",
+    "pendingRequests": 0,
+    "remainingInput": 599976,
+    "remainingOutput": 758,
+    "remainingCostMicros": "601492",
+    "stopped": "host_closed",
+    "events": [
+      {
+        "sequence": 1,
+        "type": "session_opened",
+        "sessionId": "readonly-offline-session"
+      },
+      {
+        "sequence": 2,
+        "type": "step_admitted",
+        "sessionId": "readonly-offline-session",
+        "step": 1
+      },
+      {
+        "sequence": 3,
+        "type": "request_reserved",
+        "sessionId": "readonly-offline-session",
+        "call": 1,
+        "inputUpperBound": 200000,
+        "outputUpperBound": 256,
+        "costUpperBoundMicros": "200512"
+      },
+      {
+        "sequence": 4,
+        "type": "request_settled",
+        "sessionId": "readonly-offline-session",
+        "inputTokens": 12,
+        "outputTokens": 5,
+        "costBasis": "approved conservative upper rate, not an invoice"
+      },
+      {
+        "sequence": 5,
+        "type": "step_admitted",
+        "sessionId": "readonly-offline-session",
+        "step": 2
+      },
+      {
+        "sequence": 6,
+        "type": "request_reserved",
+        "sessionId": "readonly-offline-session",
+        "call": 2,
+        "inputUpperBound": 200000,
+        "outputUpperBound": 256,
+        "costUpperBoundMicros": "200512"
+      },
+      {
+        "sequence": 7,
+        "type": "request_settled",
+        "sessionId": "readonly-offline-session",
+        "inputTokens": 12,
+        "outputTokens": 5,
+        "costBasis": "approved conservative upper rate, not an invoice"
+      },
+      {
+        "sequence": 8,
+        "type": "stopped",
+        "reason": "host_closed"
+      }
+    ]
+  },
+  "rawMappingCertifiedForRealProvider": false,
+  "textEstimatesAreNotUpperBounds": true,
+  "authorizationTemplateApproved": false,
+  "actualOperatorEnrolled": false,
+  "balanceApiQueried": false,
+  "balanceAttribution": "Offline decimal tests only; actualBilledCost unknown",
+  "realProviderRequests": 0,
+  "realModelCalls": 0,
+  "actualPaidCost": 0,
+  "mockTransportCalls": 2,
+  "networkGateEnabled": false,
+  "skilloptStarted": false,
+  "vmConfigured": false,
+  "dependenciesInstalled": false,
+  "samplesUnchangedSha256": "1cbf4e42d136a2ff0d1438e7b91859922ffa8e97fa8ec9e5c1c32230c5c18fae",
+  "officialSources": [
+    {
+      "url": "https://api-docs.deepseek.com/quick_start/token_usage/",
+      "observedAt": "2026-10-15"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "observedAt": "2026-10-15"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/guides/kv_cache/",
+      "observedAt": "2026-10-15"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/guides/anthropic_api/",
+      "observedAt": "2026-10-15"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/api/get-user-balance/",
+      "observedAt": "2026-10-15"
+    }
+  ],
+  "implementationFiles": {
+    "adapters/dsh-session/README.md": "8f9f6a9defa389d29d6b4d50bcdeb232ab4eb49896fe32020829d9a635f138f0",
+    "adapters/dsh-session/pilot-audit.mjs": "4dcc1d16bc9a4192243f49f0efe88fbe6f63c226e3bd6537a6b3344e523e0c57",
+    "adapters/dsh-session/pilot-authorization.template.json": "ad93fd189dc6050c43442d8dbc37f5d1a35ee5dad074b3a15b87e581c3e23c94",
+    "docs/ci-cd.md": "ae76deac1c826af6853081aca9362b1d14f75552153a21c869f23b117d1fd8a9",
+    "local-ci.ps1": "7167e75b0700f839dd10f8753ebc711bc8b49b57dbca9cc37c94376452bb27c8",
+    "scripts/dsh_readonly_probe.cjs": "bebee3dc290f26a9679cf2c650a6e269c5c8f851e4a7b8c2c5522f25a2bbb8b3",
+    "tests/dsh_pilot_admission.test.mjs": "ab13357882b4c334b22e17444d3fc4027a777a1d8f9f33e2bdc7422b8e359722"
+  },
+  "externalSourcesUnchanged": {
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\runtime-trace-plugin.mjs": "2851b1846bb7682fff25d0feb5da4f1ebd3d687cd39c4b833b1e7453e6043237",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\trace-ledger.mjs": "998f58f48c9e136a4ff24bf1da8d7250a609c5f6cf7510402026a407d3b36a3d",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\agent.cordis.yml": "6d94de67ada14b2692cf2cc16ff66069d37c7e76dd71fc2de06acf4be9d080fe",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\preset.yml": "7b65159d04011d89cb3750245d67930c8bcfcd2cabf7fffd560b556abca0db2a"
+  },
+  "artifacts": [
+    {
+      "path": ".local/dsh-admission-native-first/verification.json",
+      "sha256": "17ec1ef09047e2b4777fe516113db6939bb5d2609d53011b79d99edb1499b71d"
+    },
+    {
+      "path": ".local/dsh-admission-investigation/joint-final.tap",
+      "sha256": "a487e0c259892aa0e73af6791c88083ce693dbf2b0fbe6ce80082d571e9ecbde"
+    },
+    {
+      "path": ".local/dsh-admission-investigation/ci-final.log",
+      "sha256": "e65aecb62657dc3a1fc63c28903499142d9dd498cde7f290ed8032ef8d3adc5c"
+    },
+    {
+      "path": ".local/dsh-admission-investigation/unit-first.tap",
+      "sha256": "61f71430fea1d2eca19988e0810bcd9b57fb162d7c4dba01367b5d1d467ca907"
+    },
+    {
+      "path": ".local/dsh-admission-investigation/tokenizer-audit.json",
+      "sha256": "7779ab041e5db7f0c0f9bf22842e2f6f486369fead41947dba2c2eff164cdb3f"
+    },
+    {
+      "path": ".local/dsh-admission-investigation/tokenizer-structure.json",
+      "sha256": "07b60827263e1a80a0e8ecd8cb6e6733c1cf73b2b7abedf41b054c101db756b5"
+    },
+    {
+      "path": ".local/dsh-admission-investigation/deepseek_v4_tokenizer.zip",
+      "sha256": "e7310d1dafe0a86d8a5629fe78a7c763760f651db9b8682718a1781dcd6fe495"
+    },
+    {
+      "path": ".local/dsh-admission-investigation/token-usage.html",
+      "sha256": "08bf766935b9ff92aee592c70bdac0908e3f44f1e3e52e93dd7aeafc9925fd1a"
+    },
+    {
+      "path": "local-ci-report.json",
+      "sha256": "4f88ada4b859c397bebb0c4c43ee0e84a39b57c1996dba3cb62ba7db5ba0fa19"
+    },
+    {
+      "path": ".local/schema-validation.json",
+      "sha256": "1a12623bcb19f9d3b55f68b36586d6630abf4ac31a581a2604b5142faff7d874"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-admission-native-first\\session-flush-1.json",
+      "sha256": "76d776fcc74593ac668bfa8dfed255ddacd6a7053e7d204559280e7d3a393f06"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-admission-native-first\\session-flush-2.json",
+      "sha256": "76d776fcc74593ac668bfa8dfed255ddacd6a7053e7d204559280e7d3a393f06"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-admission-native-first\\session-final-sidecar.json",
+      "sha256": "d15a3d820536ef25900c555d312feabc2ff105229fd19c9990bb0fca5586db6e"
+    },
+    {
+      "path": ".local/dsh-admission-regression-20261015-provider/verification.json",
+      "sha256": "e140152c965e342dcb4823e59d2b211759a91e5ff20e30965470637834f8b20b"
+    },
+    {
+      "path": ".local/dsh-admission-regression-20261015-prepare/verification.json",
+      "sha256": "29bea815c0214fd096a81d915e43c0116abf879e8b6bb107270a10d4318cbf2b"
+    },
+    {
+      "path": ".local/dsh-admission-regression-20261015-component-test/verification.json",
+      "sha256": "e903123ded3403f2a49fa12f05f91d7316dbe6719d27f9f36dc228c7991ab7cb"
+    }
+  ],
+  "pushed": false
+}
