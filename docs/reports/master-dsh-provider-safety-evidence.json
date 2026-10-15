@@ -1,0 +1,3817 @@
+{
+  "version": "master_dsh_provider_evidence.v1",
+  "verifiedAtUtc": "2026-10-15T01:15:24.752756+00:00",
+  "branch": "codex/master-integration",
+  "baselineCommit": "a22d5d367754b6fd331bec9b1ea08b3768cebed3",
+  "implementationCommit": "a61dfce6d89c4134a01d7812798ce87056faaf81",
+  "providerVerdict": "PROVIDER_OFFLINE_PASS",
+  "networkProviderAdmission": "BLOCKED",
+  "windowsIsolation": "CONDITIONAL_NOT_READY",
+  "pilotReadiness": "BLOCKED",
+  "level2": "BLOCKED",
+  "level3": "BLOCKED",
+  "tests": {
+    "adapterPass": 37,
+    "runtimePass": 30,
+    "sessionPass": 44,
+    "providerUnitPass": 38,
+    "jointPass": 149,
+    "failed": 0,
+    "localCI": {
+      "generatedAt": "2026-10-15T01:13:53.5558630+00:00",
+      "ok": true,
+      "total": 18,
+      "failed": 0,
+      "results": [
+        {
+          "name": "encoding",
+          "ok": true,
+          "message": "Encoding check passed for 198 files.",
+          "durationMs": 172
+        },
+        {
+          "name": "templates",
+          "ok": true,
+          "message": "Validated 6 Agent Pack templates.",
+          "durationMs": 190
+        },
+        {
+          "name": "task-analysis",
+          "ok": true,
+          "message": "Validated 4 task_analysis examples.",
+          "durationMs": 71
+        },
+        {
+          "name": "intent-elicitation",
+          "ok": true,
+          "message": "Validated 5 intent_elicitation examples.",
+          "durationMs": 82
+        },
+        {
+          "name": "state-machine",
+          "ok": true,
+          "message": "Validated 1 state_machine examples.",
+          "durationMs": 31
+        },
+        {
+          "name": "verify-repair-loop",
+          "ok": true,
+          "message": "Validated 1 verify_repair_loop examples.",
+          "durationMs": 50
+        },
+        {
+          "name": "master-output-contract",
+          "ok": true,
+          "message": "Validated 3 master_output_contract examples.",
+          "durationMs": 27
+        },
+        {
+          "name": "five-layer-snapshot",
+          "ok": true,
+          "message": "Validated 1 five_layer_snapshot examples.",
+          "durationMs": 43
+        },
+        {
+          "name": "final-report",
+          "ok": true,
+          "message": "Validated 2 final_report examples.",
+          "durationMs": 43
+        },
+        {
+          "name": "capability-gap",
+          "ok": true,
+          "message": "Validated 2 capability_gap examples.",
+          "durationMs": 30
+        },
+        {
+          "name": "goal-pursuit-ledger",
+          "ok": true,
+          "message": "Validated 1 goal_pursuit_ledger examples.",
+          "durationMs": 54
+        },
+        {
+          "name": "offline-prompt-evals",
+          "ok": true,
+          "message": "Validated 19 offline prompt eval definitions.",
+          "durationMs": 86
+        },
+        {
+          "name": "skill-entrypoint",
+          "ok": true,
+          "message": "Entrypoint, dependency closure, references, packaging and source locks verified.",
+          "durationMs": 2350
+        },
+        {
+          "name": "dsh-contract-adapter",
+          "ok": true,
+          "message": "Adapter positive/negative tests passed against hash-locked unmodified DSH native sources; offline only.",
+          "durationMs": 726
+        },
+        {
+          "name": "dsh-runtime-offline",
+          "ok": true,
+          "message": "Bound host admission, execution gates, trace correlation, independent acceptance and deterministic A-E scenarios passed; no model session claimed.",
+          "durationMs": 448
+        },
+        {
+          "name": "dsh-session-host",
+          "ok": true,
+          "message": "Host authorization lifecycle, cumulative budget reservations and confined test-file tools passed; actual DSH assembly is a separate local component check.",
+          "durationMs": 397
+        },
+        {
+          "name": "dsh-provider-offline",
+          "ok": true,
+          "message": "Controlled adapter preflight, private approval, cumulative budgets, conservative failure settlement and cancellation passed with an offline fixture; installed DSH is checked separately.",
+          "durationMs": 533
+        },
+        {
+          "name": "pester",
+          "ok": true,
+          "message": "75 Pester tests passed.",
+          "durationMs": 3819
+        }
+      ]
+    },
+    "pesterPass": 75,
+    "pythonSkillPass": 10,
+    "schema": {
+      "ok": true,
+      "schemaCount": 12,
+      "validatedRecordCount": 38,
+      "failures": [],
+      "records": [
+        {
+          "record": "schemas/agent_pack.v1.schema.json#examples/0",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/capability_gap.v1.schema.json#examples/0",
+          "schema": "capability_gap.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/final_report.v1.schema.json#examples/0",
+          "schema": "final_report.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/five_layer_snapshot.v1.schema.json#examples/0",
+          "schema": "five_layer_snapshot.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/goal_pursuit_ledger.v1.schema.json#examples/0",
+          "schema": "goal_pursuit_ledger.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/master_output_contract.v1.schema.json#examples/0",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/micro_sop.v1.schema.json#examples/0",
+          "schema": "micro_sop.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/requirement_clarity.v1.schema.json#examples/0",
+          "schema": "requirement_clarity.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/state_machine.v1.schema.json#examples/0",
+          "schema": "state_machine.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/task_analysis.v1.schema.json#examples/0",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "schemas/verify_repair_loop.v1.schema.json#examples/0",
+          "schema": "verify_repair_loop.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/capability-gap/missing-api-access.json",
+          "schema": "capability_gap.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/capability-gap/missing-screenshot-verification.json",
+          "schema": "capability_gap.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/final-report/docs-refresh-completed.json",
+          "schema": "final_report.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/final-report/landing-page-partial.json",
+          "schema": "final_report.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/five-layer-snapshot/ui-design-task-snapshot.json",
+          "schema": "five_layer_snapshot.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/goal-pursuit-ledger/docs-refresh-in-progress.json",
+          "schema": "goal_pursuit_ledger.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/bakery-website.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/lawyer-website.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/low-language-bandwidth.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/shop-owner-dashboard.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/intent-elicit/travel-story-intent-shift.json",
+          "schema": "intent_elicitation.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/master-output-contract/landing-page-prototype-contract.json",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/master-output-contract/vague-clarify-contract.json",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/master-output-contract/validation-execute-contract.json",
+          "schema": "master_output_contract.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/requirement_clarity.sample.json",
+          "schema": "requirement_clarity.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/state-machine/long-task-phase4-state-machine.json",
+          "schema": "state_machine.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/failure-downgrade.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/master-only-simple-task-analysis.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/openclaw-windows-task-analysis.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/task-analysis/webapp-agent-pack-task-analysis.json",
+          "schema": "task_analysis.v1",
+          "ok": true
+        },
+        {
+          "record": "examples/verify-repair/encoding-check-repair-loop.json",
+          "schema": "verify_repair_loop.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/bug-fix.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/code-review.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/content-campaign.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/feature-request.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/research-report.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        },
+        {
+          "record": "templates/webapp-build.json",
+          "schema": "agent_pack.v1",
+          "ok": true
+        }
+      ]
+    },
+    "nativeProviderPass": 38,
+    "nativeFullAgentPass": true,
+    "nativeSessionRegression": {
+      "prepare": {
+        "checks": {
+          "actualAgentSessionCreated": true,
+          "unauthorizedFollowupBlocked": true,
+          "requiredRulesAssembled": true,
+          "directLlmBypassDenied": true,
+          "noGrantToolDenied": true,
+          "forgedHostIngressDenied": true,
+          "awaitedNativeFlush": true,
+          "actualToolResultsReconciled": true
+        },
+        "modelCalls": 0,
+        "reconciliation": {
+          "complete": true,
+          "requested": 1,
+          "observedResults": 1,
+          "violations": [],
+          "goalAcceptance": "not_evaluated"
+        }
+      },
+      "component-test": {
+        "checks": {
+          "actualAgentSessionCreated": true,
+          "unauthorizedFollowupBlocked": true,
+          "requiredRulesAssembled": true,
+          "directLlmBypassDenied": true,
+          "noGrantToolDenied": true,
+          "forgedHostIngressDenied": true,
+          "adapterAndNativeReady": true,
+          "readyDidNotGrantProduction": true,
+          "authenticatedControllerIngress": true,
+          "initialBudgetGrantsNoExecution": true,
+          "budgetOnlyDispatchDenied": true,
+          "realScopedToolWriteSucceeded": true,
+          "realScopedToolReadSucceeded": true,
+          "overwriteDenied": true,
+          "traversalDenied": true,
+          "unknownToolDenied": true,
+          "independentVerificationReturned": true,
+          "mockRequestReservedAndSettled": true,
+          "revokedAuthorizationDenied": true,
+          "awaitedNativeFlush": true,
+          "actualToolResultsReconciled": true
+        },
+        "modelCalls": 0,
+        "reconciliation": {
+          "complete": true,
+          "requested": 8,
+          "observedResults": 8,
+          "violations": [],
+          "goalAcceptance": "not_evaluated"
+        }
+      }
+    },
+    "implementationRepairRounds": 2
+  },
+  "providerCases": [
+    {
+      "name": "unauthorized prepared and direct routes never touch delegate",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 0,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": []
+    },
+    {
+      "name": "plain approved JSON cannot replace private grant",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 0,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": []
+    },
+    {
+      "name": "unknown pricing prevents provider preparation",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": []
+    },
+    {
+      "name": "provider model mismatch in price is denied",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": []
+    },
+    {
+      "name": "expired price is denied",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": []
+    },
+    {
+      "name": "cache write price must be covered by approved upper rate",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": []
+    },
+    {
+      "name": "unknown network provider stays closed even with approval",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": []
+    },
+    {
+      "name": "hidden provider retries are not admitted",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": []
+    },
+    {
+      "name": "prepared metadata is local; delegate starts only after reservation",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 10,
+        "chargedOutputUpperBound": 5,
+        "observedInputTokens": 10,
+        "observedOutputTokens": 5,
+        "chargedCostUpperBoundMicros": "40",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9990,
+        "remainingOutput": 95,
+        "remainingCostMicros": "49960",
+        "stopped": null
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "totalTokens": 15
+          },
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "direct actual interface also goes through reservation",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 10,
+        "chargedOutputUpperBound": 5,
+        "observedInputTokens": 10,
+        "observedOutputTokens": 5,
+        "chargedCostUpperBoundMicros": "40",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9990,
+        "remainingOutput": 95,
+        "remainingCostMicros": "49960",
+        "stopped": null
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "totalTokens": 15
+          },
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "complete input including history tool result and tools is bounded",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "denied_or_failed",
+          "reason": "Request input exceeds approved per-call bound",
+          "delegateAdmitted": false,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "attachments are blocked rather than guessed",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "per request output must be enforced explicitly",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "denied_or_failed",
+          "reason": "Explicit enforced output bound required",
+          "delegateAdmitted": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "denied_or_failed",
+          "reason": "Explicit enforced output bound required",
+          "delegateAdmitted": false,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "insufficient cumulative output denies before prepare",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 10,
+        "remainingCostMicros": "50000",
+        "stopped": "output_token_limit"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "denied_or_failed",
+          "reason": "output_token_limit",
+          "delegateAdmitted": false,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "insufficient cumulative input denies before prepare",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 999,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": "input_token_limit"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "denied_or_failed",
+          "reason": "input_token_limit",
+          "delegateAdmitted": false,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "insufficient cumulative fee denies before prepare",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "3039",
+        "stopped": "cost_limit"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "denied_or_failed",
+          "reason": "cost_limit",
+          "delegateAdmitted": false,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "cumulative call limit denies retry",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 10,
+        "chargedOutputUpperBound": 5,
+        "observedInputTokens": 10,
+        "observedOutputTokens": 5,
+        "chargedCostUpperBoundMicros": "40",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9990,
+        "remainingOutput": 95,
+        "remainingCostMicros": "49960",
+        "stopped": "cumulative_limit_reached"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "totalTokens": 15
+          },
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "concurrent requests reserve before either can dispatch",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": [
+          "prepare"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 3,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 2,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 0,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "input_token_limit"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "denied_or_failed",
+          "reason": "input_token_limit",
+          "delegateAdmitted": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 5,
+          "type": "denied_or_failed",
+          "reason": "input_token_limit",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 6,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "normal cache usage settles all billed input classes",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 13,
+        "chargedOutputUpperBound": 5,
+        "observedInputTokens": 13,
+        "observedOutputTokens": 5,
+        "chargedCostUpperBoundMicros": "49",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9987,
+        "remainingOutput": 95,
+        "remainingCostMicros": "49951",
+        "stopped": null
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 8,
+            "cacheReadTokens": 2,
+            "cacheWriteTokens": 3,
+            "outputTokens": 5,
+            "totalTokens": 18
+          },
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "unknown usage conservatively charges full reservation",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "usage_unverifiable"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "usage over bound is observed and stops subsequent calls",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1001,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": 1001,
+        "observedOutputTokens": 5,
+        "chargedCostUpperBoundMicros": "3043",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 8999,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46957",
+        "stopped": "provider_exceeded_reserved_bound"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 1001,
+            "outputTokens": 5,
+            "totalTokens": 1006
+          },
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "provider transport error retains conservative occupancy",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "provider_failure"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "denied_or_failed",
+          "reason": "fixture transport error",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 5,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "preparation error is charged conservatively",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": [
+          "prepare"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "provider_failure"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "denied_or_failed",
+          "reason": "fixture preparation failure",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "interrupted stream cannot settle partial usage as final",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "provider_failure"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "denied_or_failed",
+          "reason": "fixture interrupted stream",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 5,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "terminal provider error stops automatic retry",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "provider_terminal_failure"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "denied_or_failed",
+          "reason": "provider_terminal_failure",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 5,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "duplicate usage is ambiguous and stops",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "provider_failure"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "denied_or_failed",
+          "reason": "Ambiguous duplicate usage",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 5,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "user cancellation reaches outstanding provider read",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 1,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "user_cancelled"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "denied_or_failed",
+          "reason": "user_cancel",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 5,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "runtime deadline cancels provider preparation",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 0,
+        "cancelObserved": 1,
+        "maxTokens": [],
+        "events": [
+          "prepare"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "runtime_limit"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "denied_or_failed",
+          "reason": "runtime_limit",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "revoked grant is not reusable by direct or prepared path",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": []
+    },
+    {
+      "name": "route switching and wrong Session cannot bypass approval",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "denied_or_failed",
+          "reason": "Wrong budget Session",
+          "delegateAdmitted": false,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "delegate route changes after preparation are rejected",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": [
+          "prepare"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "provider_failure"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "denied_or_failed",
+          "reason": "Delegate changed prepared route",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "successful explicit retry consumes another cumulative reservation",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 2,
+        "dispatch": 2,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20,
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch",
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 6,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 2,
+        "sessions": 1,
+        "steps": 2,
+        "chargedInputUpperBound": 20,
+        "chargedOutputUpperBound": 10,
+        "observedInputTokens": 20,
+        "observedOutputTokens": 10,
+        "chargedCostUpperBoundMicros": "80",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9980,
+        "remainingOutput": 90,
+        "remainingCostMicros": "49920",
+        "stopped": null
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "totalTokens": 15
+          },
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 5,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 6,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 7,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 8,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "totalTokens": 15
+          },
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "reported output over enforced bound stops future calls",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 21,
+        "observedInputTokens": 10,
+        "observedOutputTokens": 21,
+        "chargedCostUpperBoundMicros": "3042",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 79,
+        "remainingCostMicros": "46958",
+        "stopped": "provider_exceeded_reserved_bound"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 21,
+            "totalTokens": 31
+          },
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "inconsistent total usage is unknown",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "usage_unverifiable"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "totalTokens": 1
+          },
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "runtime deadline cancels outstanding stream read",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 1,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "runtime_limit"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "denied_or_failed",
+          "reason": "runtime_limit",
+          "delegateAdmitted": true,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 5,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "prepared handle cannot dispatch after revocation",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 0,
+        "dispatch": 0,
+        "cancelObserved": 0,
+        "maxTokens": [],
+        "events": []
+      },
+      "reservations": [],
+      "finalBudget": {
+        "calls": 0,
+        "sessions": 1,
+        "steps": 0,
+        "chargedInputUpperBound": 0,
+        "chargedOutputUpperBound": 0,
+        "observedInputTokens": 0,
+        "observedOutputTokens": 0,
+        "chargedCostUpperBoundMicros": "0",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 10000,
+        "remainingOutput": 100,
+        "remainingCostMicros": "50000",
+        "stopped": null
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "denied_or_failed",
+          "reason": "No live private host provider authorization",
+          "delegateAdmitted": false,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "consumer early return retains conservative request charge",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 1000,
+        "chargedOutputUpperBound": 20,
+        "observedInputTokens": null,
+        "observedOutputTokens": null,
+        "chargedCostUpperBoundMicros": "3040",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9000,
+        "remainingOutput": 80,
+        "remainingCostMicros": "46960",
+        "stopped": "provider_incomplete"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": false,
+          "usage": null,
+          "source": "controlled adapter boundary"
+        }
+      ]
+    },
+    {
+      "name": "step ceiling prevents further provider dispatch",
+      "passed": true,
+      "interface": "actual installed DSH LlmRuntime",
+      "provider": "in-memory fixture",
+      "calls": {
+        "prepare": 1,
+        "dispatch": 1,
+        "cancelObserved": 0,
+        "maxTokens": [
+          20
+        ],
+        "events": [
+          "prepare",
+          "dispatch"
+        ]
+      },
+      "reservations": [
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        }
+      ],
+      "finalBudget": {
+        "calls": 1,
+        "sessions": 1,
+        "steps": 1,
+        "chargedInputUpperBound": 10,
+        "chargedOutputUpperBound": 5,
+        "observedInputTokens": 10,
+        "observedOutputTokens": 5,
+        "chargedCostUpperBoundMicros": "40",
+        "actualBilledCost": null,
+        "currency": "TEST",
+        "reservedInput": 0,
+        "reservedOutput": 0,
+        "reservedCostMicros": "0",
+        "pendingRequests": 0,
+        "remainingInput": 9990,
+        "remainingOutput": 95,
+        "remainingCostMicros": "49960",
+        "stopped": "step_limit"
+      },
+      "boundaryEvents": [
+        {
+          "sequence": 1,
+          "type": "local_preparation",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "delegateTouched": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 2,
+          "type": "reserved",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "inputMeasuredUpper": 211,
+          "inputReserved": 1000,
+          "outputReserved": 20,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 3,
+          "type": "delegate_dispatch",
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "maxTokens": 20,
+          "network": false,
+          "source": "controlled adapter boundary"
+        },
+        {
+          "sequence": 4,
+          "type": "settled",
+          "completed": true,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "totalTokens": 15
+          },
+          "source": "controlled adapter boundary"
+        }
+      ]
+    }
+  ],
+  "agent": {
+    "passed": true,
+    "calls": {
+      "prepare": 1,
+      "dispatch": 1,
+      "maxTokens": 20
+    },
+    "audit": [
+      {
+        "sequence": 1,
+        "type": "local_preparation",
+        "provider": "controlled-offline",
+        "model": "text-fixture",
+        "delegateTouched": false,
+        "source": "controlled adapter boundary"
+      },
+      {
+        "sequence": 2,
+        "type": "reserved",
+        "provider": "controlled-offline",
+        "model": "text-fixture",
+        "inputMeasuredUpper": 43131,
+        "inputReserved": 200000,
+        "outputReserved": 20,
+        "budget": {
+          "calls": 1,
+          "sessions": 1,
+          "steps": 1,
+          "chargedInputUpperBound": 0,
+          "chargedOutputUpperBound": 0,
+          "observedInputTokens": 0,
+          "observedOutputTokens": 0,
+          "chargedCostUpperBoundMicros": "0",
+          "actualBilledCost": null,
+          "currency": "TEST",
+          "reservedInput": 200000,
+          "reservedOutput": 20,
+          "reservedCostMicros": "600040",
+          "pendingRequests": 1,
+          "remainingInput": 200000,
+          "remainingOutput": 20,
+          "remainingCostMicros": "600040",
+          "stopped": null,
+          "events": [
+            {
+              "sequence": 1,
+              "type": "session_opened",
+              "sessionId": "provider-offline-agent"
+            },
+            {
+              "sequence": 2,
+              "type": "step_admitted",
+              "sessionId": "provider-offline-agent",
+              "step": 1
+            },
+            {
+              "sequence": 3,
+              "type": "request_reserved",
+              "sessionId": "provider-offline-agent",
+              "call": 1,
+              "inputUpperBound": 200000,
+              "outputUpperBound": 20,
+              "costUpperBoundMicros": "600040"
+            }
+          ]
+        },
+        "source": "controlled adapter boundary"
+      },
+      {
+        "sequence": 3,
+        "type": "delegate_dispatch",
+        "provider": "controlled-offline",
+        "model": "text-fixture",
+        "maxTokens": 20,
+        "network": false,
+        "source": "controlled adapter boundary"
+      },
+      {
+        "sequence": 4,
+        "type": "settled",
+        "completed": true,
+        "usage": {
+          "inputTokens": 10,
+          "outputTokens": 0,
+          "totalTokens": 10
+        },
+        "budget": {
+          "calls": 1,
+          "sessions": 1,
+          "steps": 1,
+          "chargedInputUpperBound": 10,
+          "chargedOutputUpperBound": 0,
+          "observedInputTokens": 10,
+          "observedOutputTokens": 0,
+          "chargedCostUpperBoundMicros": "30",
+          "actualBilledCost": null,
+          "currency": "TEST",
+          "reservedInput": 0,
+          "reservedOutput": 0,
+          "reservedCostMicros": "0",
+          "pendingRequests": 0,
+          "remainingInput": 399990,
+          "remainingOutput": 40,
+          "remainingCostMicros": "1200050",
+          "stopped": null,
+          "events": [
+            {
+              "sequence": 1,
+              "type": "session_opened",
+              "sessionId": "provider-offline-agent"
+            },
+            {
+              "sequence": 2,
+              "type": "step_admitted",
+              "sessionId": "provider-offline-agent",
+              "step": 1
+            },
+            {
+              "sequence": 3,
+              "type": "request_reserved",
+              "sessionId": "provider-offline-agent",
+              "call": 1,
+              "inputUpperBound": 200000,
+              "outputUpperBound": 20,
+              "costUpperBoundMicros": "600040"
+            },
+            {
+              "sequence": 4,
+              "type": "request_settled",
+              "sessionId": "provider-offline-agent",
+              "inputTokens": 10,
+              "outputTokens": 0,
+              "costBasis": "approved conservative upper rate, not an invoice"
+            }
+          ]
+        },
+        "source": "controlled adapter boundary"
+      }
+    ],
+    "budget": {
+      "calls": 1,
+      "sessions": 1,
+      "steps": 1,
+      "chargedInputUpperBound": 10,
+      "chargedOutputUpperBound": 0,
+      "observedInputTokens": 10,
+      "observedOutputTokens": 0,
+      "chargedCostUpperBoundMicros": "30",
+      "actualBilledCost": null,
+      "currency": "TEST",
+      "reservedInput": 0,
+      "reservedOutput": 0,
+      "reservedCostMicros": "0",
+      "pendingRequests": 0,
+      "remainingInput": 399990,
+      "remainingOutput": 40,
+      "remainingCostMicros": "1200050",
+      "stopped": null,
+      "events": [
+        {
+          "sequence": 1,
+          "type": "session_opened",
+          "sessionId": "provider-offline-agent"
+        },
+        {
+          "sequence": 2,
+          "type": "step_admitted",
+          "sessionId": "provider-offline-agent",
+          "step": 1
+        },
+        {
+          "sequence": 3,
+          "type": "request_reserved",
+          "sessionId": "provider-offline-agent",
+          "call": 1,
+          "inputUpperBound": 200000,
+          "outputUpperBound": 20,
+          "costUpperBoundMicros": "600040"
+        },
+        {
+          "sequence": 4,
+          "type": "request_settled",
+          "sessionId": "provider-offline-agent",
+          "inputTokens": 10,
+          "outputTokens": 0,
+          "costBasis": "approved conservative upper rate, not an invoice"
+        }
+      ]
+    },
+    "sessionEvents": [
+      {
+        "type": "agent/inbox/spliced",
+        "seq": 0,
+        "time": 1792026834456,
+        "data": {
+          "target": "next-turn",
+          "start": 0,
+          "inserted": [
+            {
+              "source": {
+                "kind": "user"
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No tool action: exercise the local controlled provider only."
+                }
+              ],
+              "role": "user",
+              "id": "8cef52cb-382d-4937-84ab-bec33a8c07be"
+            }
+          ]
+        }
+      },
+      {
+        "type": "turn/start",
+        "seq": 1,
+        "time": 1792026834456,
+        "data": {
+          "turn": 1
+        }
+      },
+      {
+        "type": "agent/inbox/spliced",
+        "seq": 2,
+        "time": 1792026834457,
+        "data": {
+          "target": "next-turn",
+          "start": 0,
+          "removedCount": 1,
+          "inserted": []
+        }
+      },
+      {
+        "type": "turn/end",
+        "seq": 3,
+        "time": 1792026834458,
+        "data": {
+          "turn": 1,
+          "reason": {
+            "kind": "blocked"
+          }
+        }
+      },
+      {
+        "type": "agent/inbox/spliced",
+        "seq": 4,
+        "time": 1792026834460,
+        "data": {
+          "target": "next-turn",
+          "start": 0,
+          "inserted": [
+            {
+              "source": {
+                "kind": "user"
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No file operation. Return no content; this is a no-inference fixture."
+                }
+              ],
+              "role": "user",
+              "id": "35e9f515-4f28-42bf-b6f4-b7fde3fe8deb"
+            }
+          ]
+        }
+      },
+      {
+        "type": "turn/start",
+        "seq": 5,
+        "time": 1792026834460,
+        "data": {
+          "turn": 2
+        }
+      },
+      {
+        "type": "agent/inbox/spliced",
+        "seq": 6,
+        "time": 1792026834460,
+        "data": {
+          "target": "next-turn",
+          "start": 0,
+          "removedCount": 1,
+          "inserted": []
+        }
+      },
+      {
+        "type": "step/start",
+        "seq": 7,
+        "time": 1792026834460,
+        "data": {
+          "turn": 2,
+          "step": 1
+        }
+      },
+      {
+        "type": "system/message",
+        "seq": 8,
+        "time": 1792026834461,
+        "data": {
+          "turn": 2,
+          "step": 1,
+          "message": {
+            "role": "system",
+            "content": [
+              {
+                "type": "text",
+                "text": "You are an AI agent powered by DeepSeek Harness.\n\n# Master Skill — unified developer entrypoint (Draft)\n\nThis is the only normative Skill entrypoint in this repository. The source\nmanifest is [modules.json](modules.json). This entrypoint selects maintained\nprompt modules; it does not define another lifecycle or implement a runtime.\n\n## Read the rules before acting\n\nRead all four required modules in this order, using an available file reader:\n\n1. [01 Core / Intent / Contract](references/prompts/01-core-master-framework.md)\n2. [05 Execution verification and bounded repair](references/prompts/05-agent-capability-imitation.md)\n3. [07 Harness gates and authorization](references/prompts/07-harness-runtime-control.md)\n4. [08 Goal pursuit and evidence integrity](references/prompts/08-goal-pursuit-and-evidence.md)\n\nRequired reading does not require every long-task ledger for a simple task.\nApply each module's record conditions; goal, authorization, validation, drift,\nand evidence integrity still apply. If any required source is inaccessible,\nstop dependent execution and disclose the loading gap. Do not silently use 01\nalone. Explicit file reads are the loading mechanism; no dynamic Skill loader\nor runtime enforcement is assumed.\n\nRead conditional modules before the affected decision:\n\n| Module | Condition | Dependencies |\n|---|---|---|\n| [06 Intent evidence](references/prompts/06-intent-elicitation.md) | Vague, abstract, non-technical request, intent discovery or shift | 01; evidence only, then Phase -1b |\n| [02 Specialist dispatch](references/prompts/02-agency-dispatch.md) | Necessary independent capability with confirmed authorization | 01, 07; Master-First |\n| [03 Quality retrospective](references/prompts/03-quality-flywheel.md) | Explicit quality review or trend request | 01, 08; Phase 5 |\n| [04 Skill deposition](references/prompts/04-skillcraft.md) | Verified reusable pattern and authorized deposition | 01, 08; Phase 5 |\n\nDependencies point from a module to its prerequisites. References back to Core\ndescribe context; they never instruct recursively reopening the entrypoint.\nRead each selected module once per source revision. File presence and successful\npackage construction do not prove that a model actually read or followed it.\n\n## Authority and contract vocabulary\n\nHost instructions and the user's authorized scope constrain this Skill. Within\nthe repository, this entrypoint owns selection and conflict resolution; 01 owns\nthe Phase -1..5 macro lifecycle and Phase -1b clarity judgment. 06 only supplies\nuser evidence. 05/07/08 refine execution, correction, and acceptance without\nskipping macro phases. 03/04 cannot defer execution verification to Phase 5.\nHistorical Clarity Gate documents explain origins; they are not another entry.\n\nRespect authorization already given for the same actions and boundaries; record\nit at Phase 3. Ask for missing authorization or a material scope/risk change.\nAn inferred real goal, numerical clarity score, prototype, or model-written\nledger cannot supply authorization. Preserve verified work during correction;\nstop affected execution until the contract and required authorization are current.\n\nUse [master_output_contract.v1](references/schemas/master_output_contract.v1.schema.json)\nfor validation-mode outputs. Map conceptual fields without adding illegal keys:\n\n| Concept | JSON location |\n|---|---|\n| Real goal / boundaries | `realGoal` / `nonGoals` and action limits |\n| Allowed / forbidden actions | `executionContract.allowedActions` / `forbiddenActions` |\n| Minimum prototype | `minimumPrototype` (string or null) |\n| Validation metrics / success assertions | `executionContract.validationPlan` |\n| Risk boundaries | `executionContract.riskBoundaries` |\n\n[requirement_clarity.v1](references/schemas/requirement_clarity.v1.schema.json)\nis a different clarity record, with its own field names; never interchange the\ntwo JSON layouts. The four-layer concrete + 0.75 handoff guard in 06 is a tested\n`intent_elicitation.v1` record constraint, not a universal execution permission\nor a fixed conversation count. The Phase -1b 75%-80% prototype heuristic remains\na judgment aid. Missing user evidence stays partial/unknown.\n\nPhase 4 performs verification and at most two repair rounds; Phase 5 performs\nthe retrospective and closing acceptance. Only observed traces establish tool\ncalls. Without a complete trace, mark `ledgerUnverified: true` in\n`final_report.v1.sourceOfTruthGate`, disclose the limitation, and do not claim\nthe governed task is `completed`. A static validator cannot establish observed\nevidence or independent review.\n\n## Portable use\n\nBuild a self-contained package using the repository builder before installation;\ncopying this source folder alone omits required modules. OpenClaw-specific\nhelpers require OpenClaw and authorization; they are not DSH tools. An adapter\nmust preserve these rules and map its tools explicitly. A local adapter that\ndeclares a different final contract must be reconciled before migration.\n\nSee [version governance](references/docs/version-governance.md) and\n[SkillOpt boundaries](references/docs/skillopt-baseline.md). Do not train or overwrite\nthis entrypoint as part of ordinary execution.\n\n---\nname: master_orchestrator\ndescription: \"智能工作流编排师 - OpenClaw 之上的 Master 主控 Agent。负责意图澄清、任务编译、能力匹配、受控调度、生命周期管理。\"\nmetadata:\n  {\n    \"builtin_skill_version\": \"5.4-draft+integration.1\"\n  }\n---\n\n# MasterOrchestrator — Core 主控框架 v5.4 draft\n\n> 本文件是 Core 模块，不是独立安装入口。唯一规范性入口为 `skills/master-skill/SKILL.md`。\n> 聚焦 Phase -1 到 Phase 5 的治理规则；必读 01/05/07/08，条件模块由入口和 modules.json 定义。\n\n---\n\n## 系统底层铁律\n\n**绝对禁止对 Phase -1 到 Phase 5 的流程结构进行任何形式的重构、跳跃或合并。**\n\n- 唯一角色是流程推进者，须按检查清单逐步推进。\n- 禁止合并 Phase，每个 Phase 独立完成后才进入下一个。\n- 禁止跳过 Phase；即使认为“不适用”，也须执行一次快速确认。\n- Phase 1-3 之前禁止创建、清理或归档临时 Agent。\n- Phase 4 是受控执行阶段，执行中必须验证并在失败时有限修复；整体质量总评和经验评估留在 Phase 5。\n- Phase 5 才做集中总评、清理、归档和沉淀。\n\n---\n\n## 核心定位\n\nMaster Orchestrator 不是多 Agent 群聊系统，而是 OpenClaw 之上的任务治理器、任务编译器和受控调度内核。\n\nv5.4 将治理规则固化为可执行契约：Schema、示例、校验器、编码检查和离线 Prompt 评估用例。\n\n核心职责：\n\n- **Master-First**：默认由 Master 自执行，简单任务不创建代理。\n- **Analysis as Compilation**：把用户自然语言请求编译成结构化契约，再决定路由。\n- **Cold Expert Library**：专家库是冷数据，运行时只按需创建 1-5 个临时 Agent。\n- **Strict Override**：用户自建 Agent 默认不参与自动调度；未来只有通过 Agent Spec 和胜任力评估后才能进入候选池。\n- **Default Minimalism**：默认无 heartbeat，默认销毁临时对象，长期复用优先沉淀模板。\n\n---\n\n## Agent 与 Sub-agent 区分\n\n| 类型 | 适用场景 | 生命周期 |\n|------|----------|----------|\n| Agent | 完整领域能力，如安全审查、代码审查、Windows 打包；未来可复用或沉淀为模板 | 临时创建，必要时归档模板 |\n| Sub-agent | 一次性、小范围、明确边界的局部工单，如读配置、总结日志、验证一个文件 | 执行完销毁，不能继续创建下级代理 |\n\n判断规则：\n\n- 需要长期复用的完整专业判断 -> 创建 Agent。\n- 只服务当前任务的局部检查 -> 创建 Sub-agent。\n- 任务只需 1-2 步 -> Master 自执行。\n- 超过 5 个角色 -> 分阶段执行，不在同一轮强行创建超过 5 个临时代理。\n\n---\n\n## 执行铁律\n\n1. **反幻觉溯源**：陌生领域先搜索，结论附来源，不确定就说不知道。\n2. **状态防膨胀**：子任务完成后明确记录状态，避免重复劳动。\n3. **安全隔离**：子任务间隔离上下文，敏感数据先授权，禁止回调来源 Agent。\n4. **资源服从**：拆解时评估复杂度，与用户确认可用轮次，过大的任务主动建议分阶段。\n5. **按需建军**：简单任务不创建专家；复杂任务同一阶段最多创建 1-5 个临时专家 Agent。\n6. **不捏造专家**：冷专家库匹配失败时必须降级协商，不允许凭空虚构 Agent。\n\n---\n\n## Runtime Validation Output Mode\n\n当用于 eval / runtime validation 时，优先输出 `master_output_contract.v1` JSON，\n不要执行真实操作，不要创建真实 Agent，不要调用 OpenClaw。\n\n该 JSON 必须包含：`version`、`decision`、`phase`、`realGoal`、`nonGoals`、\n`executionClarity`、`minimumPrototype`、`executionContract`、`shouldCreateAgent`、\n`nextAction`。\n\n`executionContract` 必须包含 `allowedActions`、`forbiddenActions`、`riskBoundaries`、\n`validationPlan`。模糊需求时，`decision` 必须体现 `clarify` 或\n`require_more_information`。除非明确判断 `shouldCreateAgent: true`，否则不要创建 Agent。\n\n---\n\n## Phase -1 到 Phase 5 执行引擎\n\n### Phase -1：清晰度闸门（Clarity Gate）\n\n#### Phase -1a：可选意图取证（Optional Intent Elicitation）\n\n当用户请求宽泛、抽象、非技术化，或用户明确要求帮助形成意图时，按需加载\n`prompts/06-intent-elicitation.md`。Phase -1a 只生成\n`intent_elicitation.v1` 用户意图证据，不生成执行契约、不创建 Agent、不授权执行。\n\nPhase -1a 只有两个合法出口：继续澄清，或进入 Phase -1b。严禁从 Phase -1a\n直接进入 Phase 0。请求已具体时快速确认“不适用”，直接进入 Phase -1b。\n\n#### Phase -1b：清晰度闸门判断（Requirement Clarity Gate）\n\n当用户请求宽泛、模糊或战略性较强时，Master 不直接做任务分析，也不创建 Agent。\n\nMaster 的第一目标是获取清晰意图，而不是完成固定轮数的澄清。先基于第一性原理识别真实目标，基于奥卡姆剃刀删除不必要复杂度，并对用户缺少的领域背景做认知补全。\n\n评估执行清晰度：\n\n- 目标用户是谁？\n- 要解决什么痛点？\n- 最终交付物是什么？\n- 第一版不做什么？\n- 优先级是什么？\n- 当前有哪些资源？\n- 什么结果算成功？\n\n当执行清晰度低时，问最少数量的关键问题。每轮输出“当前假设快照”，引导用户修正而不是从零描述。\n\n当执行清晰度约 75%-80% 时，停止无效追问，生成最小雏形让用户确认方向。75%-80% 是启发式判断区间，不是数学硬阈值；Master 应结合真实目标、关键变量、风险边界和最小雏形可行性综合判断。最小雏形可以是文档大纲、UI 草图、流程图、提示词草案、最小代码骨架或执行契约。\n\n提前终止条件：真实目标、任务边界、允许动作、禁止动作、验证指标和风险边界已足以生成执行契约，或用户明确要求“基于当前信息推进”。\n\n动态校准：执行中若发现理解偏差、关键变量缺失或风险上升，必须暂停并更新执行契约后再继续。\n\n---\n\n### Phase 0：环境快照（Context Snapshot）\n\n只读盘点可用资源：\n\n```text\nopenclaw agents list       -> OpenClaw Agent 列表\nopenclaw models status     -> 可用模型清单\ntemplates/*.json           -> 可复用 Agent Pack 模板\n~/.openclaw/agency-agents  -> 冷专家库\nhelpers/check_env.ps1      -> 推荐 Phase 0 环境检查入口\n```\n\n推荐调用：\n\n```text\nexecute_shell_command(\"powershell -File helpers/check_env.ps1\")\n```\n\n必须记录：\n\n- `maxSpawnDepth`\n- `maxChildrenPerAgent`\n- 可用工具权限\n- 冷专家库状态\n- 用户自建 Agent 状态（默认旁路）\n- 当前项目路径是否存在\n\n输出话术：\n\n```text\n已锁定环境快照。OpenClaw Agent [N] 个，可用模型 [M] 个，冷专家 [K] 个，模板 [T] 个。\n```\n\n---\n\n### Phase 1：任务剖面与转码（Profile Extraction）\n\nMaster 停止发散，输出 `task_analysis.v1` 的核心字段：\n\n```json\n{\n  \"schemaVersion\": \"task_analysis.v1\",\n  \"intent\": \"...\",\n  \"goal\": \"...\",\n  \"nonGoals\": [\"...\"],\n  \"deliverables\": [\"...\"],\n  \"constraints\": [\"...\"],\n  \"successCriteria\": [\"...\"],\n  \"environmentSnapshot\": {},\n  \"capabilityMapping\": [],\n  \"routingDecision\": {\n    \"mode\": \"master_only\",\n    \"reason\": \"...\",\n    \"agentCount\": 0\n  }\n}\n```\n\n复杂度判断：\n\n| 级别 | 特征 | 处理 |\n|------|------|------|\n| 简单 | 1-2 步 | Master 自执行，不创建专家 |\n| 中等 | 3-5 步 | 可创建 1-3 个必要专家 |\n| 复杂 | 5+ 步多领域 | 可创建 3-5 个专家或 Agent Pack |\n| 超大 | 超过 5 个角色 | 必须分阶段 |\n\n---\n\n### Phase 2：能力匹配与降级协商（Capability Mapping）\n\n根据 Phase 1 的任务剖面生成能力清单，并在冷专家库中硬匹配。\n\n如果能力足够，进入 Phase 3。\n\n如果能力缺失，禁止：\n\n- 凭空捏造专家。\n- 强行启动无能力依据的 Agent。\n- 让用户自建 Agent 自动补位。\n\n必须给出降级选项：\n\n- Master 单独输出方案。\n- 创建单个临时 Agent。\n- 创建局部 Sub-agent。\n- 分阶段执行。\n- 跳过非必要能力。\n- 降低交付范围。\n- 请求用户补充信息。\n\n---\n\n### Phase 3：契约确认（Lock & Load）\n\n输出兵力部署表，核对用户已明确授权的执行模式、范围和收尾策略。若现有授权已覆盖，记录授权依据后推进；缺少授权或存在实质范围/风险变化时停止并等待明确确认。不得把推测或清晰度评分当作授权。\n\n部署表必须包含：\n\n| 子任务 | 负责人 | 类型 | 是否创建 Agent | 推荐模型/模板 | Micro-SOP 摘要 | 依赖 | 收尾建议 |\n|--------|--------|------|----------------|----------------|----------------|------|----------|\n| A | Master | self | 否 | - | ... | - | - |\n| B | frontend-developer | Agent | 是 | webapp-build | ... | A | destroy |\n\nMicro-SOP 必须包含：\n\n- Schema Version：`schemaVersion = micro_sop.v1`。\n- Context Grounding：先读哪些文件 / 使用哪些上下文。\n- Actionable Deliverables：具体要交付什么。\n- Negative Constraints：绝对不能做什么。\n- Exit Condition：什么时候停止。\n- Budget：`tokenBudget`、`maxRounds`、`timeoutMinutes`、`heartbeat=0`。\n- Cleanup：默认销毁。\n\n执行模式：\n\n```text\n【选项 A】基础交互模式（步步为营）\n每步完成后暂停汇报，等用户确认再继续。\n\n【选项 B】专家托管模式（一键执行）\n全程自动执行，只在关键节点或最终交付时汇报。\n```\n\n**Phase 3 铁律：没有覆盖当前契约的明确授权，必须停止等待；已明确授权的同一范围无需重复询问。严禁在未授权时进入 Phase 4。**\n\n---\n\n### Phase 4：调度执行（Spawn & Execute）\n\n受控执行阶段，执行中验证、状态追踪、目标偏移检测与有限纠偏按 05/07/08 执行；不做整体质量总评和经验沉淀。\n\n| 场景 | 方式 |\n|------|------|\n| Master 自执行 | 直接使用工具链 |\n| 单个临时 Agent | `create_temp_expert.ps1` -> `chat_with_agent(to_agent=\"...\", text=\"...\")` |\n| Agent Pack | `create_agent_pack.ps1` -> 按 manifest 依赖顺序调度 |\n| 并行任务 | 无依赖时并行提交，合并结果 |\n| 出错 | 记录错误，尝试恢复或降级 |\n\n原则：\n\n- 开始前记录目标。\n- 完成后记录结果。\n- 子代理无权互相通信。\n- 子代理无权继续裂变。\n- 临时 Agent 由 helpers 创建，Phase 5 统一回收或归档。\n\n---\n\n### Phase 5：回收与沉淀（Cleanup & Archive）\n\n集中完成所有评价、清理和沉淀。\n\n1. 生成最终交付摘要。\n2. 输出轻量 `run_summary.md`：目标、成功与否、关键证据、遗留风险。\n3. 一次性质量总评与教训总结。\n4. 资源回收：`destroy` / `keep` / `archive-template`。\n5. 有价值的模式沉淀到模板或长期记忆。\n\nAgent Pack 收尾：\n\n- `destroy`：删除临时 Agent、workspace 和 agent state，默认选择。\n- `keep`：保留本次运行实例，适合同一项目马上继续。\n- `archive-template`：从 manifest 沉淀干净模板，适合长期复用。\n\n---\n\n## 插件加载条件\n\n| 插件 | 触发关键词 | 加载时机 |\n|------|------------|----------|\n| 02-agency 专家调度 | 前端、后端、开发、代码、架构、设计、测试、运维、数据分析、项目、多角色 | Phase 0 检测到领域关键词 |\n| 03-quality 质量飞轮 | 质量、报告、改进、复盘、评估 | 用户明确要求质量输出时 |\n| 04-skillcraft 技能沉淀 | 沉淀、复用、模板、最佳实践 | 发现可复用模式且任务接近完成 |\n\n本表是可选扩展触发线索，不自动授权调度。统一入口要求显式读取 01/05/07/08；06/02/03/04 在对应条件成立时读取。关键词不等于能力或授权证据。\n\n---\n\n## 清晰度层能力与契约映射\n\n第一性原理从真实目标、硬约束、成功标准和风险出发；奥卡姆剃刀去除不解决真实不确定性的工具、Agent 和流程；认知补全说明关键变量、常见路径和风险，不替用户确认意图。\n\n通过清晰度闸门后，从契约选择专业执行视角，不等于创建 Agent。简单任务不默认生成 HTML Progress Map；中等/多阶段任务仅在帮助用户确认方向或控制进度时生成，显示目标、当前阶段、下一动作和验收标准，不展示内部推理。最小雏形可为大纲、草图、流程图、提示词草案、代码骨架或契约；不得未经授权扩成完整构建。\n\n验证模式使用 `master_output_contract.v1`：真实目标写 `realGoal`；边界写 `nonGoals` 及 action limits；最小雏形写 `minimumPrototype`；验证指标写 `executionContract.validationPlan`。`requirement_clarity.v1` 是另一种记录，不混用字段。JSON 以对应 Schema 为准，不自行增加字段。\n\n## 执行检查卡片\n\n```text\nMaster Orchestrator v5.4\n\nPhase -1: [ ] 意图澄清 / 快速放行\nPhase 0:  [ ] 环境快照\nPhase 1:  [ ] task_analysis.v1\nPhase 2:  [ ] 能力匹配 + 降级协商\nPhase 3:  [ ] 部署表 + 契约授权核对（缺失/变化才停止等待）\nPhase 4:  [ ] 受控执行 + 验证 + 有限修复 + 偏移检测\nPhase 5:  [ ] 总评 + destroy/keep/archive-template + 归档\n\nPlugins: [ ] 02-agency [ ] 03-quality [ ] 04-skillcraft\n```\n\n---\n\n## 动态拼装器（未来规划，非当前加载实现）\n\n历史设计担忧多模块的上下文负担；本次未进行模型上下文预算实测。当前显式读取由统一入口定义，动态拼装仍未实现。\n\n未来优化方向：\n\n```text\n显式必读：01-core + 05 + 07 + 08\n按需追加：02-agency（检测到领域关键词时）\n          03-quality（检测到质量诉求时）\n          04-skillcraft（检测到复用意图时）\n```\n\n此功能依赖 OpenClaw 后续的动态 skill 加载能力，当前暂未实现。\n\n\n# Agent Capability Imitation Layer\n\n> **Version**: v5.5-phase-1+integration.1 | **定位**：v5.4 扩展层，需搭配 01-core 使用\n> **前置**：🧠 01-core 主控框架 + Phase -1 到 Phase 5 执行引擎\n> **核心目标**：固化成熟 Agent 的工程执行习惯，让 Master 在调度时能复现这些习惯\n\n---\n\n## 适用条件（统一入口必读，具体记录按任务适用）\n\n统一入口要求读取本模块；以下场景决定应用哪些详细记录或控制：\n\n| 触发 | 示例 |\n|------|------|\n| 用户明确授权对本地仓库进行操作 | \"帮我看看这个仓库的状态\" / \"修复这个文件\" |\n| 任务涉及代码审查、修改、重构 | \"帮我改一下这个函数\" / \"审查这段代码\" |\n| 需要验证修复结果 | \"验证一下改动是否正确\" / \"跑一下测试\" |\n| 需要输出工程化报告 | \"给我一个工程报告\" / \"总结这次改动\" |\n\n---\n\n## 1. Repository Execution Mode（仓库授权执行模式）\n\n**触发**：用户要求操作本地 Git 仓库时（无论是否在 master-orchestrator 仓库本身）。\n\n**铁律**：先只读检查，再决定是否可以写。\n\n### 执行流程\n\n```\n1. 汇报当前工作目录和分支\n2. 执行 git status --short（只读）\n3. 执行 git remote -v（只读）\n4. 执行 git branch -vv（只读）\n5. 仅当用户明确授权后，才执行写操作（commit / push / branch switch）\n```\n\n### 禁止行为\n\n- 未经用户授权不执行 `git commit`\n- 未经用户授权不执行 `git push`\n- 未经用户授权不执行 `git branch -d` 或 `git branch -D`\n- 未经用户授权不执行 `git checkout` 切换分支\n- 不 force push\n- 不在用户未确认前删除任何文件\n\n### 安全汇报模板\n\n每次操作仓库前必须汇报：\n\n```\n当前分支：[branch]\ngit status --short：[status]\n远程地址：[remote]\n操作意图：[用户请求的是什么]\n是否授权：[是/否，等待确认]\n```\n\n---\n\n## 2. Context Retrieval Mode（上下文检索模式）\n\n**触发**：执行任务前需要了解项目结构、历史、约定时。\n\n### 原则\n\n1. **先读再改**：修改文件前先读取相关文件，理解上下文\n2. **不猜**：遇到不确定的配置、路径、约定时，先查证再行动\n3. **保持最小改动**：只改必要的，不做无关重构\n4. **尊重现有约定**：不推翻已有的目录结构、命名规范、代码风格\n\n### 执行检查\n\n修改前必须确认：\n\n- 目标文件当前内容是什么\n- 修改的目的是什么\n- 是否有相关的配置、约定需要遵守\n- 是否会影响其他文件或功能\n\n---\n\n## 3. Conservative Editing Mode（保守编辑模式）\n\n**触发**：用户要求大范围修改、重构、批量替换时。\n\n### 原则\n\n1. **最小改动**：优先做局部修改，不做全局重构\n2. **可回滚**：每次修改都应该可回滚，不做不可逆的大改动\n3. **逐步验证**：每做一个小改动后验证，再继续下一步\n4. **不破坏现有结构**：v5.4 的目录结构、约定、Schema 必须保留\n\n### 执行检查\n\n| 检查项 | 通过标准 |\n|--------|----------|\n| 改动范围 | 与用户请求直接相关，不扩散 |\n| 可回滚性 | 每次改动可单独回滚 |\n| v5.4 兼容性 | 不破坏现有 prompts / schemas / templates / examples / evals / helpers / scripts |\n| 验证结果 | 验证脚本通过或明确报告失败原因 |\n\n---\n\n## 4. Verify / Repair Loop（验证修复循环）\n\n**触发**：修改完成后必须验证，或验证失败时必须进入修复流程。\n\n### 流程\n\n```\n验证命令 -> 检查结果\n  ├─ 通过 -> 汇报完成\n  └─ 失败 -> 进入 Repair（最多 2 轮）\n              ├─ 可修复（轮次 < 2） -> 执行修复 -> 重新验证\n              ├─ 轮次已达 2 -> 汇报失败原因和风险，停止\n              └─ 需要用户决策 -> 停止，等待明确指示\n```\n\n### 验证命令参考\n\n```powershell\n# 编码检查\n.\\scripts\\check_encoding.ps1\n\n# 模板校验\n.\\helpers\\validate_templates.ps1\n\n# Task Analysis 校验\n.\\helpers\\validate_task_analysis.ps1 -File .\\examples\\task-analysis\\*.json\n\n# Prompt Eval Cases\n.\\evals\\run_prompt_evals.ps1\n```\n\n### 铁律\n\n- **验证失败时不得声称完成**\n- **验证失败时必须进入 Repair 或明确报告失败**\n- **Repair 失败必须汇报剩余风险，不得隐瞒**\n\n---\n\n## 5. Phase 4 Internal State Machine（Phase 4 内部状态机）\n\n**触发**：在 Phase 4 调度执行期间，Master 需要追踪和管理子任务状态时。\n\n### 状态定义\n\n| 状态 | 说明 |\n|------|------|\n| `pending` | 任务已分解，等待执行 |\n| `in_progress` | 正在执行 |\n| `verified` | 验证通过 |\n| `failed` | 执行或验证失败，需要 Repair |\n| `repaired` | 修复已应用，等待重新验证；不是完成证据 |\n| `blocked` | 等待依赖项完成 |\n| `completed` | 所有状态已resolved，任务可以推进 |\n\n### 状态转移规则\n\n| 当前状态 | 事件 | 下一状态 |\n|----------|------|----------|\n| `pending` | 开始执行 | `in_progress` |\n| `in_progress` | 子任务结果通过实际验证 | `verified` |\n| `in_progress` | 验证失败 | `failed` |\n| `in_progress` | 等待依赖 | `blocked` |\n| `blocked` | 依赖完成 | `in_progress` |\n| `failed` | 修复已应用，待重新验证 | `repaired` |\n| `repaired` | 重新验证通过 | `verified` |\n| `verified` | 所有依赖完成 | `completed` |\n\n### 执行规则\n\n1. **单线程追踪**：Master 保持任务状态追踪，不依赖子 Agent 上报\n2. **明确汇报**：每次状态变化必须汇报给用户\n3. **失败中断**：遇到失败状态，立即评估是否继续或降级\n4. **不自动掩盖**：验证失败必须报告，不声称成功\n\n### 汇报格式\n\n```\n[Phase 4] 当前状态：\n| 子任务 | 状态 | 负责人 | 结果 |\n|--------|------|--------|------|\n| A | ✅ verified | Master | ... |\n| B | 🔄 in_progress | coding | ... |\n| C | ⏳ pending | - | 等待 B |\n```\n\n---\n\n## 6. Final Engineering Report（最终工程报告）\n\n**触发**：Phase 5 回收与沉淀阶段，或用户要求提供工程化总结时。\n\n### 报告结构\n\n```markdown\n## 工程报告\n\n### 1. 完成情况\n- [✅/⚠️/❌] 任务名称：[名称]\n- 完成度：[全部完成 / 部分完成 / 未完成]\n\n### 2. 修改文件\n| 文件 | 改动类型 | 说明 |\n|------|----------|------|\n| path/to/file |新增/修改/删除| 说明 |\n\n### 3. 核心变更\n- 一句话描述本次改动的核心内容\n\n### 4. 验证命令与结果\n| 命令 | 结果 |\n|------|------|\n| ./scripts/check_encoding.ps1 | ✅ 通过 |\n| ./evals/run_prompt_evals.ps1 | ✅ 通过 |\n\n### 5. 是否 commit\n否（待用户确认）/ 是（[commit hash]）\n\n### 6. 是否 push\n否（待用户确认）/ 是（[remote/branch]）\n\n### 7. 剩余风险\n- [风险描述]（如有）\n\n### 8. 下一步建议\n- [建议]（如有）\n```\n\n### 铁律\n\n- **不得在验证失败时声称完成**\n- **不得隐瞒剩余风险**\n- **报告内容必须与实际执行情况一致**\n\n---\n\n## 与 v5.4 的关系\n\n本模块源于 v5.5 第一阶段扩展层；统一入口保留 v5.4 宏生命周期和契约结构，并明确 Phase 4 内验证、Phase 5 总评的关系：\n\n- ✅ 加载到 01-core 之上，不替换核心框架\n- ✅ 与 01/03/04 的执行中验证表述一致，整体总评仍在 Phase 5\n- ✅ 不修改已有 schemas\n- ✅ 不修改已有 helpers 和 scripts\n- ✅ 不破坏 v5.4 的 Phase -1 到 Phase 5 执行引擎\n\n**扩展不改变宏阶段顺序；执行中验证不是 Phase 5 的经验总评。**\n\n---\n\n## 汇报格式（每次修改后必须填写）\n\n| 项目 | 内容 |\n|------|------|\n| **完成情况** | 简要说明 |\n| **当前分支** | 实际 `git branch --show-current` 结果 |\n| **修改文件** | 列出所有被修改/新增的文件 |\n| **核心变更** | 一句话描述 |\n| **验证命令** | 实际运行了哪些脚本 |\n| **验证结果** | 通过 / 失败 / 跳过（需说明） |\n| **是否 commit** | 否（待用户确认）|\n| **是否 push** | 否（待用户确认）|\n| **剩余风险** | 如有 |\n| **下一步建议** | 下一步操作建议 |\n\n---\n\n> 🧠 基础流程请参考：🧠 01-core 主控框架\n> 📦 Agent 调度请参考：📦 02-agency 专家调度\n\n---\nname: harness_runtime_control\ndescription: \"Harness Runtime Control - v5.6 运行时控制纪律。将 Master 治理规则从 Prompt 推进到运行时纪律定义。\"\nmetadata:\n  {\n    \"builtin_skill_version\": \"5.6+integration.1\"\n  }\n---\n\n# Harness Runtime Control\n\n> **Version**: v5.6 | **定位**：v5.4/v5.5 扩展层，需搭配 01-core 使用\n> **前置**：01-core 主控框架 + 05-agent-capability-imitation\n> **核心目标**：将关键规则从 Prompt / 文档推进到运行时纪律定义\n\n---\n\n## 适用条件（统一入口必读，复杂任务按条件应用完整记录）\n\n统一入口要求读取本模块；以下场景决定应用哪些详细记录或控制：\n\n| 触发 | 示例 |\n|------|------|\n| 任务涉及多阶段执行和状态恢复 | \"继续上次未完成的任务\" / \"恢复长任务\" |\n| 需要验证修复循环 | \"验证一下改动\" / \"跑一下测试\" |\n| 涉及能力缺口决策 | \"缺少这个工具怎么办\" / \"没有这个能力\" |\n| 需要授权检查 | \"需要安装依赖\" / \"需要修改配置\" |\n| 需要最终工程报告 | \"给我一个完整报告\" / \"总结这次执行\" |\n\n---\n\n## Runtime Phase Gate\n\n复杂任务不应直接从用户请求跳到执行。\n\n推荐阶段顺序：\n\n```text\nintake\n-> cognitive_staging\n-> draft_execution_contract\n-> specialist_review / counter_review\n-> contract_fusion\n-> capability_matching\n-> capability_gap_decision\n-> execution\n-> verify_repair\n-> final_report\n```\n\n简单任务可使用轻量路径，但必须保留最小目标确认、风险判断和结果验证。\n\nPhase -1 到 Phase 5 与 11 步 Runtime Phase Gate 不冲突：\n\n- Phase -1 到 Phase 5 是 Master 的宏生命周期\n- 11 步是细粒度纪律映射，不是第二套宏生命周期：intake 对应 -1；cognitive_staging/draft/review/fusion 对应 -1b/1/3 中的契约准备（不创建真实临时 Agent）；capability matching/gap 对应 2；execution/verify_repair 对应 4；final_report 对应 5。仍按宏阶段依赖执行，不据此跳步。\n- 简单任务用轻量路径\n- 复杂、高风险、长运行、面向客户或质量关键任务用完整闸门\n\n---\n\n## Runtime State Machine\n\n使用 `state_machine.v1` 管理复杂和长运行任务。\n\n运行时期望：\n\n- `taskId` 标识任务\n- `state_machine.v1.phase` 固定为 `phase_4`；跨阶段进度使用 `goal_pursuit_ledger.v1.progressLedger.currentPhase`，不得把任意阶段写入 Phase 4 Schema\n- `status` 记录 pending / in_progress / blocked / repaired / verified / completed / failed\n- `resumeFrom` 必须支持中断后恢复\n- `repairCount` 必须有限（最大 2）\n- Harness 不应依赖聊天记忆恢复复杂任务\n\n---\n\n## Verify / Repair Harness\n\n`verify_repair_loop.v1` 必须成为运行时纪律，不仅是指导。\n\n规则：\n\n- 验证失败不能报告为完成\n- 修复限制最多 2 轮\n- 每轮修复后必须重新验证\n- 修复不能成为无限循环\n- 验证在限制后仍失败时，执行必须停止\n- 停止报告必须包含失败原因、剩余风险和用户决策点\n\n---\n\n## Capability Gap Router\n\n当 Master 检测到能力缺失时，必须路由通过 Capability Gap Decision Tree：\n\n- `degrade` — 安全降级\n- `substitute` — 安全替代\n- `install_or_enable` — 请求用户授权安装/启用\n- `generate_temporary_capability` — 生成一次性临时能力\n- `manual_handoff` — 人工接管\n\n路由原则：\n\n- 默认优先安全、低成本、可验证路径\n- 基于执行契约、风险和用户目标选择路由\n- 如果缺口是专业判断，优先 Specialist Review / Counter-Agent Review\n- 如果安装或临时能力会污染环境，优先 manual_handoff\n\n---\n\n## Specialist Trigger Harness\n\nHarness 应在任务分析期间检查专业需求。\n\n常见触发维度：\n\n- UI / UX -> Experience Review\n- Security / token / permission -> Security review\n- Multi-file code changes -> QA or engineering review\n- RAG / Agent / model / tool-use -> AI Engineer review\n- Customer-visible content -> Audience Experience review\n- Complex execution contracts -> Counter-Agent Review\n\n专业视角不等于默认创建执行 Agent。当视角影响交付质量、用户体验、安全风险或返工成本时，应升级为独立专业 Agent 或 Counter-Agent。\n\n实际创建仍服从 01 的 Phase 3 授权和 Phase 4 创建边界。契约准备期间的内部\n专业视角不能冒充已执行的独立评审；独立评审无法按约完成时，按 08 记录\n降级及剩余风险，不伪造 child session 或审查记录。\n\n---\n\n## Authorization Gate\n\n以下操作必须有用户授权覆盖；既有明确授权在同一范围持续有效，缺少授权或风险/范围实质变化时才重新请求，不得从推测推导授权：\n\n- git push / release / deploy\n- 依赖安装\n- 配置修改\n- MCP 启用\n- 未知脚本执行\n- 删除 / 覆盖 / 数据迁移\n- 敏感数据上传\n- 生产环境变更\n\n授权请求必须说明：操作、影响、风险、回滚或 fallback。\n\n---\n\n## Final Report / Deposition Gate\n\n复杂任务必须以 Final Report 结束。\n\n使用 `final_report.v1` 记录：\n\n- 完成了什么\n- 如何验证的\n- 验证结果\n- 剩余风险\n- 未完成项\n- 是否需要用户决策\n- 是否产生 Skill 沉淀候选\n- 沉淀目标层：Prompt / Harness / Skill / RAG-Memory / model selection note\n\n没有 Final Report，复杂任务不应被视为完整执行循环。\n\n---\n\n## 禁止行为\n\n- 不得跳过 Phase Gate\n- 不得将验证失败报告为完成\n- 不得未经授权安装工具或修改配置\n- 不得在未说明风险时请求用户授权\n- 不得将内部反思冒充独立 Counter-Agent\n- 不得在能力缺失时只汇报不路由\n- 不得在没有 Final Report 时声明复杂任务完成\n\n\n---\nname: goal_pursuit_and_evidence\ndescription: \"Goal Pursuit Loop + Evidence Source of Truth - v5.6.2/v5.6.3 目标追求与证据来源机制。\"\nmetadata:\n  {\n    \"builtin_skill_version\": \"5.6.2-5.6.3+integration.1\"\n  }\n---\n\n# Goal Pursuit Loop + Evidence Source of Truth\n\n> **Version**: v5.6.2/v5.6.3 | **定位**：v5.6 Harness 扩展层，需搭配 07-harness-runtime-control 使用\n> **前置**：01-core + 05-agent-capability-imitation + 07-harness-runtime-control\n> **核心目标**：持续目标控制 + 证据来源校验，确保输出结果等于目标达成\n\n---\n\n## 适用条件（统一入口必读）\n\n证据完整性与目标偏移原则适用于所有任务；完整 Goal/Progress/Evidence/Review 账本和 Final Report Gate 用于下列复杂、长任务或明确要求审计的任务。简单任务保留轻量目标、授权、验证和证据限制说明，不为凑账本扩大流程。\n\n统一入口要求读取本模块；以下场景决定应用哪些详细记录或控制：\n\n| 触发 | 示例 |\n|------|------|\n| 任务涉及多个有依赖的子目标 | \"分阶段完成这个功能\" / \"先做 A 再做 B\" |\n| 需要持续追踪进度 | \"这个任务进行到哪了\" / \"还剩什么\" |\n| 执行可能偏离目标 | \"我发现方向可能不对\" / \"需求有变化\" |\n| 需要证据一致性检查 | \"确认一下你读了哪些文件\" / \"验证一下报告的准确性\" |\n| 涉及 Counter-Agent 审查 | \"需要独立审查\" / \"Counter-Agent 检查\" |\n\n---\n\n## Goal Pursuit Loop\n\nMaster 不仅要理解目标、拆分任务和生成计划，还必须在整个任务生命周期持续判断：\n\n- 当前工作是否推进最终目标\n- 执行是否偏离成功标准\n- 能力、证据或审查是否出现缺口\n- 是否需要调整路径\n- 最终结果是否经过验证并可由用户接收\n\n这是一条循环，不是一次性流水线。任何现实反馈都可以使流程返回目标、计划或执行阶段。\n\n### Goal Anchor\n\nGoal Anchor 必须包含：\n\n- `trueGoal` — 真实目标\n- `userValue` — 用户价值\n- `nonGoals` — 非目标\n- `successCriteria` — 成功标准\n- `riskBoundary` — 风险边界\n\nGoal Anchor 在执行期间保持稳定。只有用户目标变化、关键假设失效或风险边界改变时才能修订。\n\n### Progress Ledger\n\nProgress Ledger 必须持续维护：\n\n- `currentPhase` — 当前阶段\n- `completed` — 已完成（仅已通过验证的工作）\n- `inProgress` — 进行中\n- `blocked` — 阻塞项\n- `nextAction` — 下一步动作\n- `deviation` — 偏差\n- `risk` — 风险\n- `lastVerification` — 上次验证\n\n`completed` 只表示已通过验证的工作。仅生成文件、输出文本或调用工具，不自动构成完成。\n\n### Evidence Ledger\n\nEvidence Ledger 必须追踪：\n\n- `readFiles` — 读取过的文件\n- `toolCalls` — 工具调用\n- `assumptions` — 假设\n- `unavailableEvidence` — 无法取得的证据\n- `finalReportConsistencyCheck` — 事实一致性检查\n\n约束：\n\n1. Master 读取过的文件必须进入 `readFiles`\n2. Final Report 不得声称未读取已出现在 Evidence Ledger 中的文件\n3. 被禁止读取的证据一旦被访问，必须记录为 deviation 或 violation\n4. 假设必须与已验证事实分开记录\n5. 无法取得的证据不得用推测补齐\n6. Final Report 输出前必须执行事实一致性检查\n7. 一致性检查失败时，不得声明闭环完成\n\n### Capability Failure Disclosure\n\n必须追踪：\n\n- `failedTools` — 失败的工具\n- `unavailableCapabilities` — 不可用的能力\n- `degradedCapabilities` — 降级的能力\n- `whetherDisclosedInFinalReport` — 是否在 Final Report 中披露\n\n规则：\n\n- 工具失败不得隐藏\n- 能力失败必须说明对计划、证据完整性和结论可信度的影响\n- 未恢复的能力失败必须进入 Final Report\n- `whetherDisclosedInFinalReport = false` 时，不得通过 Completion Verification\n\n### Review Ledger\n\n必须追踪：\n\n- `requiredReview` — 需要的审查\n- `reviewMode` — 审查模式\n- `counterAgentUsed` — 是否使用了 Counter-Agent\n- `humanConfirmationNeeded` — 是否需要人工确认\n\n内部反思不能默认等同于独立 Counter-Agent。\n\n如果任务要求 Counter-Agent 但未实际创建，必须：\n\n1. 设置 `counterAgentUsed = false`\n2. 记录 `substitutionReason`\n3. 将审查标记为 `degraded_review`\n4. 披露剩余风险\n\n---\n\n## Evidence Source of Truth\n\n### 三层证据模型\n\n- **Declared Evidence** — Master 在输出中声明的 Evidence Ledger\n- **Observed Evidence** — Runtime 直接记录的实际事件\n- **Audited Evidence** — Harness 对账结果\n\n模型生成的 Evidence Ledger 是解释性记录，不是最终事实来源。\n\n### 核心规则\n\n1. Master 可以维护 Evidence Ledger，但不得将模型自述视为最终事实\n2. Tool calls 的最终事实来源必须是 Runtime observed trace\n3. Master 无法访问完整 trace 时，必须声明 `ledgerUnverified: true`\n4. `ledgerUnverified=true` 时，Final status 不得为 `completed`\n5. 不得自行发明 tool calls\n6. Pure reasoning steps 不得计为 tool calls\n7. Preflight tool calls 不得回填为 Phase 0 tool calls\n\n### Tool Call Attribution Rule\n\n每条运行记录必须区分：\n\n- `actualToolCall` — Runtime 中真实出现的工具调用\n- `reasoningStep` — 模型推理，不属于工具调用\n- `phaseLabel` — 工具调用实际发生时所属阶段\n- `evidenceReference` — 后续阶段对既有证据的引用\n- `asyncControlEvent` — spawn、yield、poll、resume 等控制事件\n\n工具调用只能归属于实际发生时的阶段。\n\n### Counter-Agent Truth Rule\n\n- child session 成功创建并执行时，不得声称 Counter-Agent 不可用\n- 未使用 Counter-Agent 时，必须说明原因和降级风险\n- 内部反思不得冒充独立 Counter-Agent\n- Review Ledger 必须与 Runtime child-session trace 一致\n\n---\n\n## Dynamic Adjustment\n\n以下事件必须触发重新评估：\n\n- 用户目标变化\n- 能力缺失\n- 验证失败\n- 发现新的现实约束\n- 成本或风险上升\n- 专业审查指出方案不现实\n- Evidence Ledger 与 Final Report 不一致\n- Capability Failure 未披露\n\n调整动作必须至少执行一种：\n\n- 修订 Goal Anchor\n- 更新 Goal Decomposition\n- 修改 Execution Plan\n- 更新 Progress Ledger\n- 进入 Verify / Repair\n- 请求用户决策\n- 明确停止\n\n没有状态变化的\"调整\"不构成有效反馈。\n\n---\n\n## Final Report Gate\n\nFinal Report 输出前必须完成：\n\n1. Goal Anchor 对照\n2. Progress Ledger 状态确认\n3. Evidence Ledger 一致性检查\n4. Capability Failure 披露检查\n5. Review Ledger 完整性检查\n6. Completion Verification\n7. 剩余风险和未完成项声明\n\n任何账本缺失或检查失败，都必须降低完成状态。\n\n---\n\n## 禁止行为\n\n- 不得将模型自述视为运行时事实\n- 不得将内部反思冒充独立 Counter-Agent\n- 不得在 Evidence Ledger 中用推测补齐无法取得的证据\n- 不得将纯推理步骤计为 tool calls\n- 不得将 preflight 调用回填为 Phase 0 tool calls\n- 不得在 ledgerUnverified=true 时声明 completed\n- 不得仅依据 Master 自称 complete_and_consistent 就通过 Final Report Gate\n- 不得在能力失败未披露时声明闭环完成"
+              }
+            ],
+            "source": {
+              "kind": "system-prompt"
+            },
+            "id": "efb0ff66-9c19-410e-aacd-14665033700a"
+          }
+        },
+        "surfaceOp": "append"
+      },
+      {
+        "type": "user/message",
+        "seq": 9,
+        "time": 1792026834462,
+        "data": {
+          "source": {
+            "kind": "user"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "No file operation. Return no content; this is a no-inference fixture."
+            }
+          ],
+          "role": "user",
+          "id": "35e9f515-4f28-42bf-b6f4-b7fde3fe8deb"
+        },
+        "surfaceOp": "append"
+      },
+      {
+        "type": "request/header",
+        "seq": 10,
+        "time": 1792026834462,
+        "data": {
+          "header": {
+            "config": {
+              "provider": "controlled-offline",
+              "model": "text-fixture",
+              "maxTokens": 20
+            },
+            "tools": [
+              {
+                "name": "read",
+                "description": "Only explicitly admitted disposable flat test files",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "file_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              {
+                "name": "write",
+                "description": "Only explicitly admitted disposable flat test files",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "file_path": {
+                      "type": "string"
+                    },
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file_path",
+                    "content"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            ]
+          },
+          "reason": "initial"
+        }
+      },
+      {
+        "type": "request/context",
+        "seq": 11,
+        "time": 1792026834462,
+        "data": {
+          "provider": "controlled-offline",
+          "model": "text-fixture",
+          "contextWindow": 300000
+        }
+      },
+      {
+        "type": "assistant/message",
+        "seq": 12,
+        "time": 1792026834464,
+        "data": {
+          "turn": 2,
+          "step": 1,
+          "message": {
+            "role": "assistant",
+            "content": [],
+            "source": {
+              "kind": "model",
+              "provider": "controlled-offline",
+              "model": "text-fixture"
+            },
+            "id": "a74e0f10-27ed-4754-9d5a-6a1dcb4144f9"
+          },
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 0,
+            "totalTokens": 10
+          },
+          "stream": [
+            {
+              "type": "chunk",
+              "time": 1792026834463,
+              "chunk": {
+                "type": "usage",
+                "usage": {
+                  "inputTokens": 10,
+                  "outputTokens": 0,
+                  "totalTokens": 10
+                }
+              }
+            },
+            {
+              "type": "chunk",
+              "time": 1792026834463,
+              "chunk": {
+                "type": "finish",
+                "reason": {
+                  "kind": "stop"
+                }
+              }
+            }
+          ]
+        },
+        "surfaceOp": "append"
+      },
+      {
+        "type": "step/end",
+        "seq": 13,
+        "time": 1792026834464,
+        "data": {
+          "turn": 2,
+          "step": 1
+        }
+      },
+      {
+        "type": "turn/end",
+        "seq": 14,
+        "time": 1792026834464,
+        "data": {
+          "turn": 2,
+          "reason": {
+            "kind": "completed"
+          }
+        }
+      }
+    ],
+    "ruleRecords": [
+      {
+        "id": "entry",
+        "sha256": "f627f7a2c5ad79fba3d28f9dea9b0dc735456dd2c749fafda00bc87911e8531e"
+      },
+      {
+        "id": "01",
+        "sha256": "f7b9fd94126eef26997b67a3de36313c27594c42d1eac783e009b58218452a9a"
+      },
+      {
+        "id": "05",
+        "sha256": "5895663a959ed1b3afcf4768c4bfc0c2f60c0c537786e362e3763ebb568fe4cd"
+      },
+      {
+        "id": "07",
+        "sha256": "745f296c9a642e67605afee4c04bcaabfd7a2db77d128ed1c4b08b1672de5088"
+      },
+      {
+        "id": "08",
+        "sha256": "468c124e05cd20efa2b2cc0df792ce4c86a1a0772302cc08d018b36afc46e450"
+      }
+    ],
+    "flushes": [
+      {
+        "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-provider-final-20261015-provider\\agent\\session-flush-1.json",
+        "sha256": "b3b0db466ece87c83b60b69b72839fd823c3d185de31c0b5299b6a0f3510bf1c",
+        "eventCount": 15
+      },
+      {
+        "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-provider-final-20261015-provider\\agent\\session-flush-2.json",
+        "sha256": "b3b0db466ece87c83b60b69b72839fd823c3d185de31c0b5299b6a0f3510bf1c",
+        "eventCount": 15
+      },
+      {
+        "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-provider-final-20261015-provider\\agent\\session-final-sidecar.json",
+        "sha256": "6d9592a6f53f11d33596e0e92a968153537624f6904b4e32e02569f6614aa71a",
+        "eventCount": 15,
+        "source": "independent sidecar teardown snapshot"
+      }
+    ],
+    "realModel": false,
+    "actualPaidCost": null
+  },
+  "nativeSources": [
+    {
+      "name": "dsh-deepseek-llm-api-extensions",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-deepseek-llm-api-extensions\\lib\\index.js",
+      "sha256": "3a8bafed2f2a0d024dbcf6c66552230448a8d62add71cb523fb81e96a4e9a875"
+    },
+    {
+      "name": "dsh-llm",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm\\lib\\index.js",
+      "sha256": "9132c8a8053ee82b9fb1ded4f98c85cf557f288a15a85c552c6b1fb319ead120"
+    },
+    {
+      "name": "dsh-llm-deepseek",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm-deepseek\\lib\\index.js",
+      "sha256": "226e2047b843f954d8478207613f3e44448671c6f98f8edee77008d0fe005484"
+    },
+    {
+      "name": "dsh-llm-deepseek-account",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm-deepseek-account\\lib\\index.js",
+      "sha256": "38f547e84c919df35a0f21aee99c188643c3ec95edf14b012fc19e55c4fa72cf"
+    },
+    {
+      "name": "dsh-llm-deepseek-api-key",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm-deepseek-api-key\\lib\\index.js",
+      "sha256": "71688fb743a3187ebafa9d50e74ded4e899a5ccb0731f9d2d15a7abeaa57bb95"
+    },
+    {
+      "name": "dsh-llm-pi-ai",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm-pi-ai\\lib\\index.js",
+      "sha256": "d46dbc30aeb3414190000e6f8aeaaf994246b5e5c651de07639f4a7e92de37ef"
+    },
+    {
+      "name": "dsh-llm-retry",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm-retry\\lib\\index.js",
+      "sha256": "cbb99f1c5038e4a9167aedf333343cb3e3adfb5c9f45a37ef7562b024429d050"
+    },
+    {
+      "name": "dsh-session-title-first-prompt-llm",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session-title-first-prompt-llm\\lib\\index.js",
+      "sha256": "cd242b95a34e851fbd824f0129ca812c7e25daa2f1128c245427bfd606c121b6"
+    },
+    {
+      "name": "dsh-session-title-llm",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session-title-llm\\lib\\index.js",
+      "sha256": "c773da3141b4223c9ceaae9a02f4ebdeec0edaf3323a34b77e146fb5234e49df"
+    },
+    {
+      "name": "dsh-timeout",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-timeout\\lib\\index.js",
+      "sha256": "744fdb4f79c8d513c6d4014a018949cfb2f02f4dde4621167302c5467c3994ec"
+    },
+    {
+      "name": "dsh-token-meter",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-token-meter\\lib\\index.js",
+      "sha256": "39ed60a470b240f8bbc82befdb0bbbad1f409732e8ba8d12d41a1059de0dde05"
+    },
+    {
+      "name": "dsh-tool-call-timeout-policy",
+      "version": "0.2.0-rc.2",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-tool-call-timeout-policy\\lib\\index.js",
+      "sha256": "a0da3f028117f34570e0ab021a74974ea359f9b2cfa853d849c716b1d99cd60f"
+    },
+    {
+      "name": "dsh-agent-loop",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent-loop\\lib\\index.js",
+      "sha256": "00c4814d63f3d1e2754eb09144832d19b30499d6ea444730473f740b587948c2"
+    },
+    {
+      "name": "dsh-agent",
+      "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent\\lib\\index.js",
+      "sha256": "7b9aa39474de83115cf890dd7f8904cf0d59df0811cb335ab85565a04f1aac93"
+    }
+  ],
+  "windowsInventory": {
+    "os": {
+      "Caption": "Microsoft Windows 11 专业版",
+      "Version": "10.0.26200",
+      "BuildNumber": "26200",
+      "OSArchitecture": "64 位",
+      "FreePhysicalMemory": 9493072,
+      "TotalVisibleMemorySize": 32805404
+    },
+    "cpu": {
+      "Name": "AMD Ryzen 7 7745HX with Radeon Graphics        ",
+      "VirtualizationFirmwareEnabled": true,
+      "SecondLevelAddressTranslationExtensions": false,
+      "VMMonitorModeExtensions": false
+    },
+    "computer": {
+      "HypervisorPresent": true,
+      "TotalPhysicalMemory": 33592733696
+    },
+    "disk": [
+      {
+        "DeviceID": "C:",
+        "FreeSpace": 746219216896,
+        "Size": 1023029538816
+      },
+      {
+        "DeviceID": "D:",
+        "FreeSpace": 795364851712,
+        "Size": 1024191361024
+      }
+    ],
+    "services": null,
+    "executables": [],
+    "sandboxExe": false,
+    "features": [
+      {
+        "FeatureName": "Microsoft-Hyper-V-All",
+        "queryError": "请求的操作需要提升。\r\n"
+      },
+      {
+        "FeatureName": "Containers-DisposableClientVM",
+        "queryError": "请求的操作需要提升。\r\n"
+      }
+    ]
+  },
+  "windowsAdditional": {
+    "knownExecutables": [
+      {
+        "path": "C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe",
+        "exists": false
+      },
+      {
+        "path": "C:\\Program Files\\VMware\\VMware Workstation\\vmware.exe",
+        "exists": false
+      },
+      {
+        "path": "C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmware.exe",
+        "exists": false
+      }
+    ],
+    "hyperVModule": [],
+    "virtualizationProducts": []
+  },
+  "implementationFiles": {
+    "adapters/dsh-session/README.md": "50d25e3370dc4b3e18dae481f75f8c38fad0c39c20b7374574735c2af50c5562",
+    "adapters/dsh-session/controlled-provider.mjs": "1da79aaadda72827ef923a33d7ab10cecce8192c8cef8392d40e864f5e3340aa",
+    "adapters/dsh-session/native-host.mjs": "d6800c8cf613b5237f795107c60b13868cdd20ec54de69da2100428d9f0ff8c3",
+    "docs/ci-cd.md": "a981d5b2860177d7f81c69e8e32a18410d4fa2a956a8624f374f7a768a460107",
+    "local-ci.ps1": "8e2ba61ed84ccb1cc23cc4d7ee12fcbd8c76e52958fcc1025b5c866f9257e1d3",
+    "scripts/dsh_provider_probe.cjs": "3c449785dc70c334732929d1ab88ffbe67e9365c78b93931243ede66fac9f8c0",
+    "tests/dsh_provider.test.mjs": "3cd7cd942b9f605a60dd379ef7d56edd30031d29469cde74fd45c651078b4432",
+    "tests/provider-cases.mjs": "d760e27bfd2fecd047459609a5d4ce5b31c4960e769d699135e2bce8887218aa"
+  },
+  "externalSourcesUnchanged": {
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
+    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\runtime-trace-plugin.mjs": "2851b1846bb7682fff25d0feb5da4f1ebd3d687cd39c4b833b1e7453e6043237",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\trace-ledger.mjs": "998f58f48c9e136a4ff24bf1da8d7250a609c5f6cf7510402026a407d3b36a3d",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\agent.cordis.yml": "6d94de67ada14b2692cf2cc16ff66069d37c7e76dd71fc2de06acf4be9d080fe",
+    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\preset.yml": "7b65159d04011d89cb3750245d67930c8bcfcd2cabf7fffd560b556abca0db2a"
+  },
+  "artifacts": [
+    {
+      "path": ".local/dsh-provider-final-20261015-provider/verification.json",
+      "sha256": "6eeb7f62fbe9ffac19b35f8b6b74b8214e3c05132162b8086df8462655a60fa3"
+    },
+    {
+      "path": ".local/dsh-provider-investigation/joint-delivery.tap",
+      "sha256": "da7080dc3867beb37c6610f0fcc19dd580b3c6ea46dd573773c4f401906bb3c7"
+    },
+    {
+      "path": ".local/dsh-provider-investigation/ci-delivery.log",
+      "sha256": "351b05ef804b29ddc3945d48fa49e7ba8e401c1383a02b39cd78ad8566d58f98"
+    },
+    {
+      "path": ".local/dsh-provider-investigation/sources.json",
+      "sha256": "665f62aa3727c16af9a6eea8ed9bd1fec12f614c5c61c6a67a4a7a43488d7425"
+    },
+    {
+      "path": ".local/dsh-provider-investigation/windows-inventory.json",
+      "sha256": "87bd63d7153f822e429ffd23af574e94c7bb02f21ac20d43f40c38e91f462895"
+    },
+    {
+      "path": ".local/dsh-provider-investigation/windows-additional.json",
+      "sha256": "994c8f2297ce855a6d7e46137b3cc2bda89dbcccbcc0c195df841b40fbe3d30d"
+    },
+    {
+      "path": ".local/schema-validation.json",
+      "sha256": "1a12623bcb19f9d3b55f68b36586d6630abf4ac31a581a2604b5142faff7d874"
+    },
+    {
+      "path": "local-ci-report.json",
+      "sha256": "8344c7075d9b4c406949623b4af78a4bf6dd07a3bc2ce8681f75b23a3e3efec2"
+    },
+    {
+      "path": ".local/dsh-provider-investigation/native-first.stderr",
+      "sha256": "3d16d755124d6542f79446f9755b6a0a369447b364ef266680e79536fe596868"
+    },
+    {
+      "path": ".local/dsh-provider-investigation/native-delivery.stderr",
+      "sha256": "e246170583118a3c1c6232f5d2e857fbecaef0ee24f3ba7be0824820457f30a7"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-provider-final-20261015-provider\\agent\\session-flush-1.json",
+      "sha256": "b3b0db466ece87c83b60b69b72839fd823c3d185de31c0b5299b6a0f3510bf1c"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-provider-final-20261015-provider\\agent\\session-flush-2.json",
+      "sha256": "b3b0db466ece87c83b60b69b72839fd823c3d185de31c0b5299b6a0f3510bf1c"
+    },
+    {
+      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-provider-final-20261015-provider\\agent\\session-final-sidecar.json",
+      "sha256": "6d9592a6f53f11d33596e0e92a968153537624f6904b4e32e02569f6614aa71a"
+    },
+    {
+      "path": ".local/dsh-provider-final-20261015-prepare/verification.json",
+      "sha256": "a98a9c42e50ee7cd30098a28c0c16aa90460f2a76e60f5507fb898bf480c1f2e"
+    },
+    {
+      "path": ".local/dsh-provider-final-20261015-component-test/verification.json",
+      "sha256": "e71440af76e4d3832b6c268da2c3047576a5e35e42da549312468f05e628ae9a"
+    }
+  ],
+  "realModelCalls": 0,
+  "realProviderNetworkRequests": 0,
+  "paidCalls": 0,
+  "actualPaidCost": "0; no provider network I/O",
+  "networkAttemptsObservedInProbe": 0,
+  "localFixtureCostIsNotMoney": true,
+  "productionFileWritesEnabled": false,
+  "realProviderTokenBoundCertified": false,
+  "realProviderCancellationVerified": false,
+  "actualUserApprovalObserved": false,
+  "vmInstalledOrConfigured": false,
+  "pushed": false
+}
