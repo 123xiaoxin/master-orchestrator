@@ -37,7 +37,8 @@ The pipeline runs:
 10. Offline runtime sidecar tests: host receipts, scope gates, correlated traces, two-repair stop and independent acceptance; A–E use deterministic Mock tools.
 11. Host authorization lifecycle, concurrent cumulative budgets and confined-file capability tests.
 12. Controlled Provider preflight, pricing, budget, cancellation and conservative failure settlement with a no-network fixture.
-13. The complete Pester test directory through `run-tests.ps1`.
+13. Single DeepSeek readonly boundary, held-out intent samples and evidence-bound independent review tests.
+14. The complete Pester test directory through `run-tests.ps1`.
 
 `scripts/dsh_provider_probe.cjs` separately runs the Provider cases through the
 actual installed DSH LlmRuntime and a fully assembled Agent. These local

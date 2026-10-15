@@ -24,7 +24,7 @@ const within=(root,target)=>{const r=relative(root,target);return r && r!=='..'&
  * No model adapter, credential service, remote gateway, shell or PTC is mounted.
  * Real-user/provider/filesystem admission remains closed until audited separately.
  */
-export async function assembleHost({packageRoot,profileFile,skillRoot,workspace,output,componentTest=false}) {
+export async function assembleHost({packageRoot,profileFile,skillRoot,workspace,output,componentTest=false,readOnlyIntent=false}) {
   const local=await realpath(join(ROOT,'.local')),root=await realpath(workspace)
   if(!within(local,root)||!within(local,await realpath(output)))throw new Error('Only isolated .local workspace/output accepted')
   const lock=JSON.parse(await readFile(join(HERE,'native-runtime-source-lock.json'),'utf8'))
@@ -110,18 +110,19 @@ export async function assembleHost({packageRoot,profileFile,skillRoot,workspace,
       const manifest=JSON.parse(await readFile(join(skill.resourceBase.path,'modules.json'),'utf8'))
       const sourceLock=JSON.parse(await readFile(join(skill.resourceBase.path,'source-lock.json'),'utf8'))
       const normativeManifest=JSON.parse(await readFile(join(ROOT,'skills/master-skill/modules.json'),'utf8'))
-      for(const path of ['skills/master-skill/SKILL.md','skills/master-skill/modules.json',...normativeManifest.modules.filter(m=>m.required).map(m=>m.path)])
+      const selected=m=>m.required||readOnlyIntent&&m.id==='06'
+      for(const path of ['skills/master-skill/SKILL.md','skills/master-skill/modules.json',...normativeManifest.modules.filter(selected).map(m=>m.path)])
         if(sourceLock.sources[path]!==sha256(await readFile(join(ROOT,path))))throw new Error('Packaged Skill source differs from current normative source')
-      for(const path of ['SKILL.md','modules.json',...manifest.modules.filter(m=>m.required).map(m=>m.path)])
+      for(const path of ['SKILL.md','modules.json',...manifest.modules.filter(selected).map(m=>m.path)])
         if(sourceLock.artifacts[path]!==sha256(await readFile(join(skill.resourceBase.path,path))))throw new Error('Packaged Skill artifact hash mismatch')
       ruleRecords=[{id:'entry',text:skill.content,sha256:sha256(await readFile(skill.path))}]
-      for(const module of manifest.modules.filter(m=>m.required)) {
+      for(const module of manifest.modules.filter(selected)) {
         const filename=await realpath(resolve(skill.resourceBase.path,module.path))
         if(!within(skillDirectory,filename))throw new Error('Skill module escape')
         const bytes=await readFile(filename)
         ruleRecords.push({id:module.id,text:bytes.toString('utf8'),sha256:sha256(bytes)})
       }
-      if(JSON.stringify(ruleRecords.slice(1).map(r=>r.id))!==JSON.stringify(['01','05','07','08']))throw new Error('Mandatory modules changed')
+      if(JSON.stringify(ruleRecords.slice(1).map(r=>r.id))!==JSON.stringify(readOnlyIntent?['01','05','07','08','06']:['01','05','07','08']))throw new Error('Mandatory modules changed')
     }finally{await provider.dispose()}
     handle=await ctx.agents.create({sessionId:profile.sessionId,meta:{cwd:root},
       agentOptions:{provider:'no-paid-provider-mounted',model:'no-model-authorized'},setup:(agentCtx)=>{
@@ -175,7 +176,8 @@ export async function assembleHost({packageRoot,profileFile,skillRoot,workspace,
     }})
     const denial=(exec)=>{
       let reason
-      if(exec.agent!==agent)reason='Wrong or missing live Agent'
+      if(readOnlyIntent)reason='Read-only intent mode denies every execution tool'
+      else if(exec.agent!==agent)reason='Wrong or missing live Agent'
       else if(!['write','read'].includes(exec.name))reason='Tool not explicitly authorized'
       else if(!exec.arguments || typeof exec.arguments.file_path!=='string'||Object.keys(exec.arguments).some(k=>!['file_path','content'].includes(k)))reason='Invalid closed tool arguments'
       else if(!componentTest)reason='Actual external-user and filesystem isolation admission unverified'
@@ -190,7 +192,7 @@ export async function assembleHost({packageRoot,profileFile,skillRoot,workspace,
       return reason
     }
     ctx.tools.guard(denial)
-    for(const name of ['write','read']) {
+    for(const name of readOnlyIntent?[]:['write','read']) {
       const parameters={type:'object',properties:{file_path:{type:'string'},...(name==='write'?{content:{type:'string'}}:{})},required:name==='write'?['file_path','content']:['file_path'],additionalProperties:false}
       ctx.tools.register({name,description:'Only explicitly admitted disposable flat test files',parameters,
         output:{schema:{type:'object',properties:{file:{type:'string'},operation:{type:'string'},bytes:{type:'integer'},content:{type:'string'}},required:['file','operation'],additionalProperties:false},
@@ -236,6 +238,16 @@ export async function assembleHost({packageRoot,profileFile,skillRoot,workspace,
             budgetBinding.budgetConfig.providerPolicyHash===policyHash&&authority.liveModelBudget(modelGrant,agent.session,budgetBinding))})
         ctx.llm.registerAdapter([policy.provider],adapter)
         controlledRoute=structuredClone(policy)
+        return adapter
+      },
+      mountReadonlyDeepSeek:({boundary,audit})=>{
+        if(!readOnlyIntent||controlledRoute)throw new Error('Explicit read-only host required')
+        const policy=boundary.policy
+        const adapter=controlledProvider({LlmAdapter:native['dsh-llm'].LlmAdapter,delegate:boundary.delegate,boundary,policy,audit,sessionId:agent.id,
+          getBudget:()=>budget,getBudgetConfig:()=>budgetBinding?.budgetConfig??{},
+          authorize:({provider,model,policyHash})=>!!(budgetBinding&&budgetBinding.provider===provider&&budgetBinding.model===model&&
+            budgetBinding.budgetConfig.providerPolicyHash===policyHash&&authority.liveModelBudget(modelGrant,agent.session,budgetBinding))})
+        ctx.llm.registerAdapter([policy.provider],adapter);controlledRoute=structuredClone(policy)
         return adapter
       },
       reconciliation:()=>({complete:toolRequests.length>0&&toolRequests.length===toolFacts.length&&toolViolations.length===0,

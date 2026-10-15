@@ -5,6 +5,19 @@ Master v1 Adapter and execution sidecar. It is not a new Agent loop, a second
 contract standard, or the DSH headless/Preset loader. Real providers and
 production file execution are deliberately **BLOCKED**.
 
+The optional `readOnlyIntent` host mode registers no file tools and denies every
+tool dispatch, including later registration. It additionally assembles module 06
+with the entry and required modules, checking packaged source/artifact hashes.
+`deepseek-readonly.mjs` selects only `deepseek-official/deepseek-flash` through
+the installed native DeepSeekAdapter's Messages protocol, with thinking off.
+Network remains closed: only component mode can use the intercepted transport;
+live input-token bound certification and actual billing/remote cancellation
+evidence remain engineering blockers, independent of user budget approval.
+`scripts/dsh_readonly_probe.cjs` accepts the same three paths as the Provider
+probe and NEVER forwards fetch. Its two replies are labelled Mock fixtures.
+`evals/readonly-intent` provides synthetic split samples and a manual semantic
+review interface; no paid model or Judge is invoked.
+
 `controlled-provider.mjs` now decorates the native LlmAdapter boundary. It uses
 local metadata for preparation, then checks the entire request and reserves the
 existing BudgetLedger before touching even the delegate's preparation method.

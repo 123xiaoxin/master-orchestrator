@@ -1,4 +1,5 @@
 import { contractHash } from '../dsh-v2.1/adapter.mjs'
+import { isDeepSeekBoundary } from './deepseek-readonly.mjs'
 
 const positive=n=>Number.isSafeInteger(n)&&n>0
 const money=n=>typeof n==='string'&&/^(0|[1-9][0-9]*)$/u.test(n)
@@ -26,17 +27,19 @@ export function fixtureInputBound(request,policy) {
  * metadata only. Every delegate prepare and stream is behind one admission.
  * Network admission is intentionally unavailable until a real route is reviewed.
  */
-export function controlledProvider({LlmAdapter,delegate,policy,getBudget,getBudgetConfig,authorize,sessionId,audit=[]}) {
+export function controlledProvider({LlmAdapter,delegate,policy,getBudget,getBudgetConfig,authorize,sessionId,audit=[],boundary}) {
+  if(boundary&&!isDeepSeekBoundary(boundary))throw new Error('Unrecognized private model boundary')
   const p=freeze(structuredClone(policy))
   const record=(type,data={})=>audit.push({sequence:audit.length+1,type,...data,source:'controlled adapter boundary'})
   const checkRoute=(provider,model,budgetAdmission=true)=>{
     if(provider!==p.provider||model!==p.model)throw new Error('Provider/model outside approved route')
-    if(p.transport!=='offline-fixture'||p.networkAllowed!==false)throw new Error('Real network provider admission not reviewed')
+    if(boundary)boundary.validate(p)
+    else if(p.transport!=='offline-fixture'||p.networkAllowed!==false)throw new Error('Real network provider admission not reviewed')
     if(!authorize({provider,model,policyHash:contractHash(p)}))throw new Error('No live private host provider authorization')
     const c=getBudgetConfig(),price=p.price,now=Date.now()
     if(!price||price.provider!==provider||price.model!==model||price.currency!==c.price?.currency||price.unit!=='micro-per-token'||
       !price.version||!price.source||!Number.isFinite(Date.parse(price.validFrom))||!Number.isFinite(Date.parse(price.validUntil))||
-      now<Date.parse(price.validFrom)||now>=Date.parse(price.validUntil)||price.otherCharges!=='none-in-offline-fixture'||
+      now<Date.parse(price.validFrom)||now>=Date.parse(price.validUntil)||price.otherCharges!==(boundary?'text-only-no-attachments-no-extra-services':'none-in-offline-fixture')||
       !['input','output','cacheRead','cacheWrite'].every(k=>money(price[k]))||
       BigInt(c.price.inputMicrosPerToken)<[price.input,price.cacheRead,price.cacheWrite].map(BigInt).reduce((a,b)=>a>b?a:b)||
       BigInt(c.price.outputMicrosPerToken)<BigInt(price.output))throw new Error('Unknown, stale, mismatched or uncovered price')
@@ -64,12 +67,13 @@ export function controlledProvider({LlmAdapter,delegate,policy,getBudget,getBudg
       const ledger=getBudget()
       try {
         // Snapshot before awaits. A mutable caller cannot enlarge a checked request.
-        const request=freeze(structuredClone(Object.fromEntries(Object.entries(options).filter(([key])=>key!=='signal'))))
+        const snapshot=structuredClone(Object.fromEntries(Object.entries(options).filter(([key])=>key!=='signal')))
+        const request=freeze(boundary?boundary.normalize(snapshot):snapshot)
         const signal=options.signal?AbortSignal.any([options.signal,ledger.signal]):ledger.signal
         signal.throwIfAborted();checkRoute(request.provider,request.model)
         if(request.sessionId!==undefined&&request.sessionId!==sessionId)throw new Error('Wrong budget Session')
         if(!positive(request.maxTokens)||request.maxTokens>p.outputUpperBound)throw new Error('Explicit enforced output bound required')
-        const input=fixtureInputBound(request,p)
+        const input=boundary?boundary.measure(request,p):fixtureInputBound(request,p)
         if(input>p.inputUpperBound)throw new Error('Request input exceeds approved per-call bound')
         ledger.step(sessionId)
         reservation=ledger.reserve({sessionId,inputUpperBound:p.inputUpperBound,outputUpperBound:request.maxTokens})
@@ -88,7 +92,8 @@ export function controlledProvider({LlmAdapter,delegate,policy,getBudget,getBudg
           checkRoute(request.provider,request.model,false)
           if(item.done){completed=true;break}
           const chunk=item.value
-          if(chunk.type==='usage'){if(usage)throw new Error('Ambiguous duplicate usage');usage=structuredClone(chunk.usage)}
+          if(boundary&&(chunk.blockType==='tool-call'||chunk.type==='tool-call-delta'))throw new Error('Readonly model attempted a tool call')
+          if(chunk.type==='usage'){if(usage)throw new Error('Ambiguous duplicate usage');boundary?.validateUsage(chunk.usage);usage=structuredClone(chunk.usage)}
           if(chunk.type==='finish'&&['error','aborted'].includes(chunk.reason?.kind)){failed=true;ledger.stop('provider_terminal_failure')}
           yield chunk
         }

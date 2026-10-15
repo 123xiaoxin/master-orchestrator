@@ -1,0 +1,283 @@
+{
+  "version": 1,
+  "behaviorResults": "not_run",
+  "optimizerVisibleSplits": [
+    "train"
+  ],
+  "promotionOnly": [
+    "validation",
+    "test"
+  ],
+  "samples": [
+    {
+      "id": "clear-train",
+      "split": "train",
+      "category": "clear",
+      "scenario": "明确需求",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "把“明天下午三点开会”改成礼貌的通知，只输出一句话。"
+        },
+        {
+          "text": "保留三点这个时间。"
+        }
+      ]
+    },
+    {
+      "id": "clear-validation",
+      "split": "validation",
+      "category": "clear",
+      "scenario": "明确需求",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "以下是练习中的虚构需求：把“明天下午四点开会”改成礼貌的通知，只输出一句话。"
+        },
+        {
+          "text": "另补充一点：保留四点这个时间。"
+        }
+      ]
+    },
+    {
+      "id": "clear-test",
+      "split": "test",
+      "category": "clear",
+      "scenario": "明确需求",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "请先理解我的想法：把“明天下午五点开会”改成礼貌的通知，只输出一句话。"
+        },
+        {
+          "text": "修正我刚才的表达：保留五点这个时间。"
+        }
+      ]
+    },
+    {
+      "id": "vague-train",
+      "split": "train",
+      "category": "vague",
+      "scenario": "模糊需求",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "想让小店经营好一点，还没想清楚先解决什么。"
+        },
+        {
+          "text": "主要是老客不再来了，我想先了解原因。"
+        }
+      ]
+    },
+    {
+      "id": "vague-validation",
+      "split": "validation",
+      "category": "vague",
+      "scenario": "模糊需求",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "以下是练习中的虚构需求：想让花店经营好一点，还没想清楚先解决什么。"
+        },
+        {
+          "text": "另补充一点：主要是老客不再来了，我想先了解原因。"
+        }
+      ]
+    },
+    {
+      "id": "vague-test",
+      "split": "test",
+      "category": "vague",
+      "scenario": "模糊需求",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "请先理解我的想法：想让书店经营好一点，还没想清楚先解决什么。"
+        },
+        {
+          "text": "修正我刚才的表达：主要是老客不再来了，我想先了解原因。"
+        }
+      ]
+    },
+    {
+      "id": "nonexpert-train",
+      "split": "train",
+      "category": "nonexpert",
+      "scenario": "非专业用户",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "我不会那些专业名词，只想让邻居知道我的修鞋摊。"
+        },
+        {
+          "text": "就在小区门口，先不花钱试试。"
+        }
+      ]
+    },
+    {
+      "id": "nonexpert-validation",
+      "split": "validation",
+      "category": "nonexpert",
+      "scenario": "非专业用户",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "以下是练习中的虚构需求：我不会那些专业名词，只想让邻居知道我的裁缝铺。"
+        },
+        {
+          "text": "另补充一点：就在小区门口，先不花钱试试。"
+        }
+      ]
+    },
+    {
+      "id": "nonexpert-test",
+      "split": "test",
+      "category": "nonexpert",
+      "scenario": "非专业用户",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "请先理解我的想法：我不会那些专业名词，只想让邻居知道我的钥匙铺。"
+        },
+        {
+          "text": "修正我刚才的表达：就在小区门口，先不花钱试试。"
+        }
+      ]
+    },
+    {
+      "id": "means-train",
+      "split": "train",
+      "category": "means",
+      "scenario": "目标与手段混淆",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "给我设计一个积分系统，让客人多来买面包。"
+        },
+        {
+          "text": "积分只是我想到的办法，我更希望他们每周都来。"
+        }
+      ]
+    },
+    {
+      "id": "means-validation",
+      "split": "validation",
+      "category": "means",
+      "scenario": "目标与手段混淆",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "以下是练习中的虚构需求：给我设计一个积分系统，让客人多来买早餐。"
+        },
+        {
+          "text": "另补充一点：积分只是我想到的办法，我更希望他们每周都来。"
+        }
+      ]
+    },
+    {
+      "id": "means-test",
+      "split": "test",
+      "category": "means",
+      "scenario": "目标与手段混淆",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "请先理解我的想法：给我设计一个积分系统，让客人多来买水果。"
+        },
+        {
+          "text": "修正我刚才的表达：积分只是我想到的办法，我更希望他们每周都来。"
+        }
+      ]
+    },
+    {
+      "id": "conflict-train",
+      "split": "train",
+      "category": "conflict",
+      "scenario": "前后矛盾",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "通知里不要出现任何价格，但必须明确写出门票五十元。"
+        },
+        {
+          "text": "对外那张不写价格，内部说明才写五十元。"
+        }
+      ]
+    },
+    {
+      "id": "conflict-validation",
+      "split": "validation",
+      "category": "conflict",
+      "scenario": "前后矛盾",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "以下是练习中的虚构需求：通知里不要出现任何价格，但必须明确写出活动票五十元。"
+        },
+        {
+          "text": "另补充一点：对外那张不写价格，内部说明才写五十元。"
+        }
+      ]
+    },
+    {
+      "id": "conflict-test",
+      "split": "test",
+      "category": "conflict",
+      "scenario": "前后矛盾",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "请先理解我的想法：通知里不要出现任何价格，但必须明确写出入场券五十元。"
+        },
+        {
+          "text": "修正我刚才的表达：对外那张不写价格，内部说明才写五十元。"
+        }
+      ]
+    },
+    {
+      "id": "revision-train",
+      "split": "train",
+      "category": "revision",
+      "scenario": "用户修正意图",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "先帮我构思一个线上课程招生页。"
+        },
+        {
+          "text": "我改主意了，不招生了，只给现有学员发课程安排。"
+        }
+      ]
+    },
+    {
+      "id": "revision-validation",
+      "split": "validation",
+      "category": "revision",
+      "scenario": "用户修正意图",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "以下是练习中的虚构需求：先帮我构思一个线上读书会招生页。"
+        },
+        {
+          "text": "另补充一点：我改主意了，不招生了，只给现有学员发读书会安排。"
+        }
+      ]
+    },
+    {
+      "id": "revision-test",
+      "split": "test",
+      "category": "revision",
+      "scenario": "用户修正意图",
+      "synthetic": true,
+      "turns": [
+        {
+          "text": "请先理解我的想法：先帮我构思一个线上社团招生页。"
+        },
+        {
+          "text": "修正我刚才的表达：我改主意了，不招生了，只给现有学员发社团安排。"
+        }
+      ]
+    }
+  ]
+}

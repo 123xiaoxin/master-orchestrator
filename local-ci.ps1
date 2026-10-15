@@ -260,6 +260,12 @@ Invoke-CiCheck -Name "dsh-provider-offline" -Action {
     return "Controlled adapter preflight, private approval, cumulative budgets, conservative failure settlement and cancellation passed with an offline fixture; installed DSH is checked separately."
 }
 
+Invoke-CiCheck -Name "dsh-readonly-intent" -Action {
+    $testOutput = & node --test (Join-Path $repoRoot "tests/dsh_readonly.test.mjs") 2>&1
+    if (-not $?) { throw "Readonly model and independent intent review tests failed: $testOutput" }
+    return "Single-model closed-network admission, text-only boundary, split isolation and evidence-bound human review interface passed; no real model behavior claimed."
+}
+
 Invoke-CiCheck -Name "pester" -Action {
     $testResult = & (Join-Path $repoRoot "run-tests.ps1") -PassThru
     if ($testResult.FailedCount -gt 0) {
