@@ -266,6 +266,12 @@ Invoke-CiCheck -Name "dsh-readonly-intent" -Action {
     return "Single-model closed-network admission, text-only boundary, split isolation and evidence-bound human review interface passed; no real model behavior claimed."
 }
 
+Invoke-CiCheck -Name "dsh-pilot-admission" -Action {
+    $testOutput = & node --test (Join-Path $repoRoot "tests/dsh_pilot_admission.test.mjs") 2>&1
+    if (-not $?) { throw "Pilot wire/usage/balance audit tests failed: $testOutput" }
+    return "Exact serialized request audits, raw cache inclusion hypotheses, conservative unknown usage and decimal balance attribution passed offline; no approval or real network authority granted."
+}
+
 Invoke-CiCheck -Name "pester" -Action {
     $testResult = & (Join-Path $repoRoot "run-tests.ps1") -PassThru
     if ($testResult.FailedCount -gt 0) {

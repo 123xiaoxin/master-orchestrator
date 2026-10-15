@@ -9,6 +9,7 @@ async function main(){
  await fs.mkdir(target);const workspace=path.join(target,'workspace');await fs.mkdir(workspace)
  const {sha256,contractHash}=await import(pathToFileURL(path.join(root,'adapters/dsh-v2.1/adapter.mjs')).href)
  const {TARGET,createDeepSeekBoundary}=await import(pathToFileURL(path.join(root,'adapters/dsh-session/deepseek-readonly.mjs')).href)
+ const {inspectMessages,auditRawUsage}=await import(pathToFileURL(path.join(root,'adapters/dsh-session/pilot-audit.mjs')).href)
  const source=path.join(packageRoot,'dsh-llm-deepseek/lib/index.js'),hash=sha256(await fs.readFile(source))
  assert.equal(hash,'226e2047b843f954d8478207613f3e44448671c6f98f8edee77008d0fe005484')
  const wire=[],checks={},audit=[];let fixtureEnabled=false
@@ -21,12 +22,17 @@ async function main(){
  globalThis.fetch=async(url,options)=>{
   assert.equal(fixtureEnabled,true);assert.equal(String(url),'https://api.deepseek.com/anthropic/v1/messages')
   const body=JSON.parse(options.body);assert.equal(body.model,TARGET.model);assert.equal(body.thinking.type,'disabled');assert.equal(body.max_tokens,256);assert.equal(body.tools,undefined)
-  wire.push({url:String(url),body,source:'native DeepSeekAdapter serialized request; intercepted in memory, never sent'})
+  const requestAudit=inspectMessages(options.body,{previous:wire.at(-1)?.requestAudit})
+  assert.equal(requestAudit.structurePassed,true)
+  wire.push({url:String(url),body,serializedBody:options.body,requestAudit,source:'native DeepSeekAdapter serialized request; intercepted in memory, never sent'})
   const reply=wire.length===1?'[MOCK] 你最希望先改善哪件事？':'[MOCK] 已收到补充，目标更新为了解老客不再来的原因。'
   const events=[{type:'message_start',message:{usage:{input_tokens:10,cache_read_input_tokens:2,cache_creation_input_tokens:0}}},
    {type:'content_block_start',index:0,content_block:{type:'text',text:''}},
    {type:'content_block_delta',index:0,delta:{type:'text_delta',text:reply}},{type:'content_block_stop',index:0},
    {type:'message_delta',delta:{stop_reason:'end_turn'},usage:{output_tokens:5}},{type:'message_stop'}]
+  wire.at(-1).rawSSEEvents=events
+  wire.at(-1).rawUsageAudit=auditRawUsage(events)
+  wire.at(-1).fixtureUsageMapping=auditRawUsage(events,{relation:'disjoint',fixtureEvidence:true})
   return new Response(events.map(e=>'event: '+e.type+'\ndata: '+JSON.stringify(e)+'\n\n').join(''),{status:200,headers:{'content-type':'text/event-stream'}})
  }
  const {DeepSeekAdapter,resolveAdapterOptions}=require(path.join(packageRoot,'dsh-llm-deepseek'))
@@ -54,6 +60,10 @@ async function main(){
   checks.nativeSystemPromptIncludes06=host.assemblies.some(a=>a.sectionNames.includes('master:06'))
   checks.fullRulesReachSerializedRequest=wire.every(w=>typeof w.body.system==='string'&&w.body.system.length>10000)
   checks.noToolSchemas=wire.every(w=>w.body.tools===undefined)
+  checks.exactSerializedBodiesAudited=wire.every(w=>w.requestAudit.structurePassed&&w.requestAudit.liveAdmission==='BLOCKED')
+  checks.secondTurnHistoryPreserved=wire[1].requestAudit.messageCount===wire[0].requestAudit.messageCount+2
+  checks.systemNotRepeated=wire[0].requestAudit.systemSha256===wire[1].requestAudit.systemSha256
+  checks.unknownRawSemanticsRetainOccupancy=wire.every(w=>w.rawUsageAudit.ledgerUsage===null&&w.rawUsageAudit.actualBilledCost===null)
   for(const tool of ['read','write','pwsh','browser','web_search','spawn_agent','mcp'])checks['toolDenied:'+tool]=(await host.tool(tool,{file_path:'no-access',command:'never'},'readonly-'+tool)).isError===true
   checks.noWorkspaceFiles=(await fs.readdir(workspace)).length===0
   checks.budgetCallsMatch=host.budget().calls===2&&host.budget().pendingRequests===0

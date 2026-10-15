@@ -38,7 +38,8 @@ The pipeline runs:
 11. Host authorization lifecycle, concurrent cumulative budgets and confined-file capability tests.
 12. Controlled Provider preflight, pricing, budget, cancellation and conservative failure settlement with a no-network fixture.
 13. Single DeepSeek readonly boundary, held-out intent samples and evidence-bound independent review tests.
-14. The complete Pester test directory through `run-tests.ps1`.
+14. Exact Messages serialization, raw Usage inclusion hypotheses and balance reconciliation audit tests; these never authorize live network calls.
+15. The complete Pester test directory through `run-tests.ps1`.
 
 `scripts/dsh_provider_probe.cjs` separately runs the Provider cases through the
 actual installed DSH LlmRuntime and a fully assembled Agent. These local

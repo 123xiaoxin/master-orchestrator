@@ -5,6 +5,15 @@ Master v1 Adapter and execution sidecar. It is not a new Agent loop, a second
 contract standard, or the DSH headless/Preset loader. Real providers and
 production file execution are deliberately **BLOCKED**.
 
+`pilot-audit.mjs` audits the original native serialized string, preserves raw SSE
+Usage field presence and cumulative updates, and reconciles supplied decimal
+balance snapshots without making an account query. Cache inclusion mappings are
+explicit offline hypotheses; unknown semantics retain conservative occupancy.
+Character estimates are labelled nonbinding and never open the live gate.
+`pilot-authorization.template.json` is a nonexecutable review document with null
+limits and no approval. It is not a new HostAuthority grant format or a way to
+enable network access. No public balance-client or credential resolver is added.
+
 The optional `readOnlyIntent` host mode registers no file tools and denies every
 tool dispatch, including later registration. It additionally assembles module 06
 with the entry and required modules, checking packaged source/artifact hashes.
