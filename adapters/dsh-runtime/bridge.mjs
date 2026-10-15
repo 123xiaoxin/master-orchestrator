@@ -69,10 +69,12 @@ export async function prepareExecution({ master, agentRecord, receipt, workspace
   const local = await realpath(resolve(dirname(fileURLToPath(import.meta.url)),'../../.local'))
   requireValue(inside(local,root) && root !== local, 'Only repository .local disposable workspaces are supported')
   const files = host.value.execution.writeFiles
+  const readFiles = host.value.execution.readFiles ?? []
   const checks = host.value.execution.checks
   requireValue(Array.isArray(files) && files.length > 0 && new Set(files).size === files.length, 'Explicit file scope required')
   requireValue(Array.isArray(checks) && checks.length > 0, 'Acceptance criteria required')
-  requireValue(equal(master.executionContract.allowedActions, files.map(f => `write:${f}`)), 'File scope differs from contract')
+  requireValue(Array.isArray(readFiles) && new Set(readFiles).size === readFiles.length && readFiles.every(f=>files.includes(f)), 'Only explicitly scoped test-file reads supported')
+  requireValue(equal(master.executionContract.allowedActions, [...files.map(f => `write:${f}`),...readFiles.map(f=>`read:${f}`)]), 'File scope differs from contract')
   requireValue(equal(master.executionContract.validationPlan, checks.map(criterion)), 'Acceptance differs from contract')
   requireValue(host.value.execution.maxRepairs === 2 && master.shouldCreateAgent === false, 'Only bounded nondelegated tests supported')
   files.forEach(f => safeFile(root, f))
@@ -95,7 +97,7 @@ export async function prepareExecution({ master, agentRecord, receipt, workspace
   if (result.status !== 'READY') return {result, permit:null}
   requireValue(result.candidate.decision === 'execute', 'Nonexecution decision')
   const permit = Object.freeze({})
-  permits.set(permit, {root,files:structuredClone(files),checks:structuredClone(checks), candidate:structuredClone(result.candidate), candidateHash:contractHash(result.candidate), masterHash:contractHash(master), host, repairs:0, awaitingVerification:false,verifiedRound:null,dispatchedRounds:new Set(),revision:0})
+  permits.set(permit, {root,files:structuredClone(files),readFiles:structuredClone(readFiles),checks:structuredClone(checks), candidate:structuredClone(result.candidate), candidateHash:contractHash(result.candidate), masterHash:contractHash(master), host, repairs:0, awaitingVerification:false,verifiedRound:null,dispatchedRounds:new Set(),revision:0})
   return {result,permit}
 }
 
@@ -105,8 +107,8 @@ export function executionGate(permit, candidate, operation, { requireModel = fal
     requireValue(p, 'Missing independent execution capability')
     requireValue(!requireModel || p.host.evidenceLevel === 'DSH model session', 'Mock/component permission cannot authorize a model session')
     requireValue(contractHash(candidate) === p.candidateHash, 'Candidate changed after validation')
-    requireValue(operation.name === 'write' && p.files.includes(operation.file), 'Operation outside explicit file scope')
-    requireValue(!p.dispatchedRounds.has(p.repairs), 'This execution/repair round already dispatched')
+    requireValue(operation.name === 'write' && p.files.includes(operation.file) || operation.name === 'read' && p.readFiles.includes(operation.file), 'Operation outside explicit file scope')
+    requireValue(operation.name !== 'write' || !p.dispatchedRounds.has(p.repairs), 'This execution/repair round already dispatched')
     safeFile(p.root, operation.file)
     return {allowed:true}
   } catch (error) { return {allowed:false, reason:error.message} }
@@ -116,8 +118,7 @@ export function claimOperation(permit,candidate,operation) {
   const gate = executionGate(permit,candidate,operation)
   if (gate.allowed) {
     const p = permits.get(permit)
-    p.dispatchedRounds.add(p.repairs)
-    p.revision++
+    if(operation.name==='write'){p.dispatchedRounds.add(p.repairs);p.revision++}
   }
   return gate
 }
@@ -213,7 +214,7 @@ export async function finalAcceptance({permit,observer,verificationReceipt,trace
   const current = bound ? await verifyGoal(permit) : null
   const fresh = current?.passed && equal(current.results,v.results)
   const operationsInScope = bound && t.calls.every(c => {
-    try { const args = JSON.parse(c.call.data.arguments); return c.call.data.name === 'write' && p.files.includes(args.file_path) && !!safeFile(p.root,args.file_path) }
+    try { const args = JSON.parse(c.call.data.arguments); return (c.call.data.name === 'write' && p.files.includes(args.file_path) || c.call.data.name === 'read' && p.readFiles.includes(args.file_path)) && !!safeFile(p.root,args.file_path) }
     catch { return false }
   })
   const lastResult = t.calls.at(-1)?.result?.data

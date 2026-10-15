@@ -248,6 +248,12 @@ Invoke-CiCheck -Name "dsh-runtime-offline" -Action {
     return "Bound host admission, execution gates, trace correlation, independent acceptance and deterministic A-E scenarios passed; no model session claimed."
 }
 
+Invoke-CiCheck -Name "dsh-session-host" -Action {
+    $testOutput = & node --test (Join-Path $repoRoot "tests/dsh_session.test.mjs") 2>&1
+    if (-not $?) { throw "DSH host/budget/permission tests failed: $testOutput" }
+    return "Host authorization lifecycle, cumulative budget reservations and confined test-file tools passed; actual DSH assembly is a separate local component check."
+}
+
 Invoke-CiCheck -Name "pester" -Action {
     $testResult = & (Join-Path $repoRoot "run-tests.ps1") -PassThru
     if ($testResult.FailedCount -gt 0) {

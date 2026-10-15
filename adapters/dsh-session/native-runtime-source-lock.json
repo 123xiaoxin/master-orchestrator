@@ -1,0 +1,41 @@
+{
+  "observedAt": "2026-10-14",
+  "entries": {
+    "cordis": {
+      "version": "4.0.4",
+      "sha256": "6a9394c0877ff45218818c6e815edd038f8057e1a1deb390a8d43ec81c57691e"
+    },
+    "dsh-system-prompt": {
+      "version": "0.2.0-rc.2",
+      "sha256": "ff422afac6ba85f89afa985d921aed0b603feb354a05a549c48eae04cf0d2f57"
+    },
+    "dsh-session": {
+      "version": "0.2.0-rc.2",
+      "sha256": "87ea85e2fb5318bf1f826db9a1c88c1b26d3ea328027a7f32b211880c4d62b9d"
+    },
+    "dsh-session-projection": {
+      "version": "0.2.0-rc.2",
+      "sha256": "022f1d13e25aeb3c18e10407d84c69e018c1c05a65c9ee36ed14d89b185a4fa8"
+    },
+    "dsh-tools": {
+      "version": "0.2.0-rc.2",
+      "sha256": "40f47709337c3c205d4e09e647f8588f4977e66f6d52f019b3cc7ef81159d84f"
+    },
+    "dsh-llm": {
+      "version": "0.2.0-rc.2",
+      "sha256": "9132c8a8053ee82b9fb1ded4f98c85cf557f288a15a85c552c6b1fb319ead120"
+    },
+    "dsh-agent": {
+      "version": "0.2.0-rc.2",
+      "sha256": "7b9aa39474de83115cf890dd7f8904cf0d59df0811cb335ab85565a04f1aac93"
+    },
+    "dsh-agent-loop": {
+      "version": "0.2.0-rc.2",
+      "sha256": "00c4814d63f3d1e2754eb09144832d19b30499d6ea444730473f740b587948c2"
+    },
+    "dsh-skill-filesystem": {
+      "version": "0.2.0-rc.2",
+      "sha256": "244e92e032ef15e96cb60c9e2cfddf5d89e167eb171fcbfd83e9415b0455a0d7"
+    }
+  }
+}
