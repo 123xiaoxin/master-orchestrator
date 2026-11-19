@@ -1,6 +1,6 @@
 # AGENTS.md — master-orchestrator 项目行为准则
 
-> 约束爱丽丝在 master-orchestrator 仓库中的行为。每次对话时系统自动加载为项目上下文。
+> 适用于在 master-orchestrator 仓库工作的 Cursor、Codex 及其他代理。共用工作区的分工与交接规则见第 5 节。
 
 ---
 
@@ -82,5 +82,3 @@
 | **下一步建议** | 下一步操作建议 |
 
 ---
-
-> 爱丽丝 🌸 — 遵循上述规则，在用户明确授权前保持只读。
