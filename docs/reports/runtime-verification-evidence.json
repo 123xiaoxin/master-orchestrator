@@ -1,4 +1,19 @@
 {
+  "pathNormalization": {
+    "normalizedOn": "2026-11-19",
+    "sourceReportCommit": "ae8bcf79abd7bbecda56cf4e048779d904c45eb3",
+    "sourceReportPath": "docs/reports/runtime-verification-evidence.json",
+    "recordScope": "path-normalized presentation of historical evidence",
+    "pathGuide": "docs/collaboration.md",
+    "pathRoots": {
+      ".": "Repository root; repository artifacts use ./ relative paths.",
+      "<INSTALLED_DSH_HOME>": "External installed DSH user configuration directory; distinct from isolated trial DSH_HOME."
+    },
+    "historyPreserved": "All original non-path values, dates, counts, status, authorization, cost, digests, signatures and hash values are unchanged.",
+    "hashScope": "Hashes and bindings refer to original source files and raw artifacts, not this normalized representation. Use the original artifacts to verify bindings; do not replay this report as live runtime evidence.",
+    "localArtifactsBundledByThisChange": false,
+    "historicalRuntimeOrModelChecksRerun": false
+  },
   "date": "2026-10-10",
   "integrationCommit": "032aa7fa123e5ae50262033cbad7af173e45e14e",
   "implementationCommit": "4674ee17786a6747ad0dfbcb9a6f4c02df2af1e6",
@@ -317,16 +332,16 @@
     "releases": 0
   },
   "dshExternalSources": {
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
-    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\runtime-trace-plugin.mjs": "2851b1846bb7682fff25d0feb5da4f1ebd3d687cd39c4b833b1e7453e6043237",
-    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\trace-ledger.mjs": "998f58f48c9e136a4ff24bf1da8d7250a609c5f6cf7510402026a407d3b36a3d",
-    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\agent.cordis.yml": "6d94de67ada14b2692cf2cc16ff66069d37c7e76dd71fc2de06acf4be9d080fe",
-    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\preset.yml": "7b65159d04011d89cb3750245d67930c8bcfcd2cabf7fffd560b556abca0db2a"
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/master_execution_contract.v2.1.schema.json": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/validate-contract.mjs": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/schema-validate.mjs": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/example-contract.v2.1.json": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/MASTER-EXECUTION-FRAMEWORK.md": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/SEMANTIC-DEFINITIONS.md": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
+    "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/runtime-trace-plugin.mjs": "2851b1846bb7682fff25d0feb5da4f1ebd3d687cd39c4b833b1e7453e6043237",
+    "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/trace-ledger.mjs": "998f58f48c9e136a4ff24bf1da8d7250a609c5f6cf7510402026a407d3b36a3d",
+    "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/agent.cordis.yml": "6d94de67ada14b2692cf2cc16ff66069d37c7e76dd71fc2de06acf4be9d080fe",
+    "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/preset.yml": "7b65159d04011d89cb3750245d67930c8bcfcd2cabf7fffd560b556abca0db2a"
   },
   "dshExternalFilesUnchanged": true,
   "dshChecks": [
@@ -366,7 +381,7 @@
     "evidenceLevel": "real DSH filesystem provider / isolated component",
     "modelCalls": 0,
     "fullDshSession": false,
-    "entrypoint": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-probe\\skills\\master-skill\\SKILL.md",
+    "entrypoint": "./.local/dsh-probe/skills/master-skill/SKILL.md",
     "moduleReads": [
       {
         "id": "01",

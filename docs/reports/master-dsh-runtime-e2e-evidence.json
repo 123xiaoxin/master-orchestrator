@@ -1,4 +1,20 @@
 {
+  "pathNormalization": {
+    "normalizedOn": "2026-11-19",
+    "sourceReportCommit": "ae8bcf79abd7bbecda56cf4e048779d904c45eb3",
+    "sourceReportPath": "docs/reports/master-dsh-runtime-e2e-evidence.json",
+    "recordScope": "path-normalized presentation of historical evidence",
+    "pathGuide": "docs/collaboration.md",
+    "pathRoots": {
+      ".": "Repository root; repository artifacts use ./ relative paths.",
+      "<INSTALLED_DSH_HOME>": "External installed DSH user configuration directory; distinct from isolated trial DSH_HOME.",
+      "<DSH_INSTALL_ROOT>": "External DSH application installation root."
+    },
+    "historyPreserved": "All original non-path values, dates, counts, status, authorization, cost, digests, signatures and hash values are unchanged.",
+    "hashScope": "Hashes and bindings refer to original source files and raw artifacts, not this normalized representation. Use the original artifacts to verify bindings; do not replay this report as live runtime evidence.",
+    "localArtifactsBundledByThisChange": false,
+    "historicalRuntimeOrModelChecksRerun": false
+  },
   "version": "master_dsh_runtime_verification.v1",
   "verifiedAt": "2026-10-14",
   "branch": "codex/master-integration",
@@ -20,52 +36,52 @@
     "runtimePackageSourcesUnchanged": true,
     "files": [
       {
-        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json",
+        "path": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/master_execution_contract.v2.1.schema.json",
         "sha256": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
         "unchangedFromPreviousStage": true
       },
       {
-        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs",
+        "path": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/validate-contract.mjs",
         "sha256": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
         "unchangedFromPreviousStage": true
       },
       {
-        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs",
+        "path": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/schema-validate.mjs",
         "sha256": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
         "unchangedFromPreviousStage": true
       },
       {
-        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json",
+        "path": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/example-contract.v2.1.json",
         "sha256": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
         "unchangedFromPreviousStage": true
       },
       {
-        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md",
+        "path": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/MASTER-EXECUTION-FRAMEWORK.md",
         "sha256": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
         "unchangedFromPreviousStage": true
       },
       {
-        "path": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md",
+        "path": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/SEMANTIC-DEFINITIONS.md",
         "sha256": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
         "unchangedFromPreviousStage": true
       },
       {
-        "path": "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\runtime-trace-plugin.mjs",
+        "path": "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/runtime-trace-plugin.mjs",
         "sha256": "2851b1846bb7682fff25d0feb5da4f1ebd3d687cd39c4b833b1e7453e6043237",
         "unchangedFromPreviousStage": true
       },
       {
-        "path": "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\trace-ledger.mjs",
+        "path": "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/trace-ledger.mjs",
         "sha256": "998f58f48c9e136a4ff24bf1da8d7250a609c5f6cf7510402026a407d3b36a3d",
         "unchangedFromPreviousStage": true
       },
       {
-        "path": "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\agent.cordis.yml",
+        "path": "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/agent.cordis.yml",
         "sha256": "6d94de67ada14b2692cf2cc16ff66069d37c7e76dd71fc2de06acf4be9d080fe",
         "unchangedFromPreviousStage": true
       },
       {
-        "path": "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\preset.yml",
+        "path": "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/preset.yml",
         "sha256": "7b65159d04011d89cb3750245d67930c8bcfcd2cabf7fffd560b556abca0db2a",
         "unchangedFromPreviousStage": true
       }
@@ -89,37 +105,37 @@
     "sources": {
       "dsh-desktop-host": {
         "version": "0.2.0-rc.2",
-        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-desktop-host\\lib\\index.js",
+        "entryPath": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-desktop-host/lib/index.js",
         "sha256": "6c6182cbd9ff7df144145065885fbc5873e9a9db9651c5152e785c84a55689d6"
       },
       "dsh-headless": {
         "version": "0.2.0-rc.2",
-        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-headless\\lib\\index.js",
+        "entryPath": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-headless/lib/index.js",
         "sha256": "31a4caa307b6a3bc0133e01d765c9449ff808725058639e32ebf0d020524e267"
       },
       "dsh-session": {
         "version": "0.2.0-rc.2",
-        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session\\lib\\index.js",
+        "entryPath": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-session/lib/index.js",
         "sha256": "87ea85e2fb5318bf1f826db9a1c88c1b26d3ea328027a7f32b211880c4d62b9d"
       },
       "dsh-agent-loop": {
         "version": "0.2.0-rc.2",
-        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent-loop\\lib\\index.js",
+        "entryPath": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-agent-loop/lib/index.js",
         "sha256": "00c4814d63f3d1e2754eb09144832d19b30499d6ea444730473f740b587948c2"
       },
       "dsh-tools": {
         "version": "0.2.0-rc.2",
-        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-tools\\lib\\index.js",
+        "entryPath": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-tools/lib/index.js",
         "sha256": "40f47709337c3c205d4e09e647f8588f4977e66f6d52f019b3cc7ef81159d84f"
       },
       "dsh-skill-filesystem": {
         "version": "0.2.0-rc.2",
-        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-skill-filesystem\\lib\\index.js",
+        "entryPath": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-skill-filesystem/lib/index.js",
         "sha256": "244e92e032ef15e96cb60c9e2cfddf5d89e167eb171fcbfd83e9415b0455a0d7"
       },
       "dsh-agent-preset": {
         "version": "0.2.0-rc.2",
-        "entryPath": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent-preset\\lib\\index.js",
+        "entryPath": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-agent-preset/lib/index.js",
         "sha256": "23cd2dd62ac3b27522a2d377e14b5a93f80c2189e733937dcdd02b73a6d3d1da"
       }
     },
@@ -254,7 +270,7 @@
             "criterion": "bytes:hello.txt:69dbb50b83e6a77a160a0be0de765aa1d6dd4ce3629d99e84afdc00672ce106a",
             "file": "hello.txt",
             "passed": false,
-            "error": "ENOENT: no such file or directory, lstat 'C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-runtime-entry-mJhrir\\mock\\D\\workspace\\hello.txt'"
+            "error": "ENOENT: no such file or directory, lstat './.local/dsh-runtime-entry-mJhrir/mock/D/workspace/hello.txt'"
           }
         ],
         "limitations": [

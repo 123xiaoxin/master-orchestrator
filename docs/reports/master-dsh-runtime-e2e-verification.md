@@ -1,10 +1,15 @@
 # Master × DSH 最小执行闭环验收
 
+> 路径整理说明（2026-11-19）：本次仅规范化本机路径；正文日期、历史结论、计数和哈希值保留，未重跑历史验证。
+> 占位符含义见[路径表示](../collaboration.md#历史报告中的路径表示)，使用命令前须替换占位路径。
+> 命令、错误摘录及证据对象属于规范化展示；哈希对应原始文件或日志，不代表改写后的报告可用作原始运行时证据重放或验签。
+> .local/ 原始日志和外部安装文件未随本次提交分发。
+
 日期：2026-10-14（2026-10-10 实施，2026-10-14 复核交付）。结论：**Level 1 PASS；Level 2 BLOCKED；Level 3 BLOCKED**。本轮模型调用为 0，实际 Master 模型会话为 0。已验证离线保护机制及实际 DSH 组件接口，不能据此宣布 Master 在真实执行中自行发现偏差并完成纠偏。
 
 ## 1. Git 与改动边界
 
-- 仓库：`C:\Users\tongk\Documents\ChatGPT\master\master-orchestrator-recovered`。
+- 仓库：`.`。
 - 分支：`codex/master-integration`；任务基线 `c88a85566e6f31079804383fd020ccbb11f7de55`。
 - 本轮代码提交：`0790027604686e70367f6294ce90613792256a74`。本报告另行提交；报告自身提交的完整 SHA 以最终交付及本地 Git 为准，避免自引用 SHA。
 - 新增独立 sidecar、Mock 流程、组件探针、准入入口、测试；Local CI 增加离线 Runtime 项。文件清单及来源哈希见同目录 `master-dsh-runtime-e2e-evidence.json`。
@@ -12,9 +17,9 @@
 
 ## 2. 真实安装与接口
 
-实际 CLI：`D:\tongk\Deeoseek Harness work\Deepseek harness packages\resources\runtime\cli\bin\dsh.cmd`，通过 `ELECTRON_RUN_AS_NODE=1`、`--expose-internals` 启动安装内 CLI。
+实际 CLI：`<DSH_INSTALL_ROOT>/resources/runtime/cli/bin/dsh.cmd`，通过 `ELECTRON_RUN_AS_NODE=1`、`--expose-internals` 启动安装内 CLI。
 
-可执行文件：`D:\tongk\Deeoseek Harness work\Deepseek harness packages\DeepSeek Harness.exe`，FileVersion `0.2.0-rc.2`、ProductVersion `0.2.0.0`。检查的七个 DSH 包均为 `0.2.0-rc.2`；本地 Node `26.8.1`。源码从安装的 `resources/app.asar/dsh/node_modules/@deepseek-ai` 只读提取，组件探针直接加载安装中的模块，未采用仿造的 Validator 或 Session 类。
+可执行文件：`<DSH_INSTALL_ROOT>/DeepSeek Harness.exe`，FileVersion `0.2.0-rc.2`、ProductVersion `0.2.0.0`。检查的七个 DSH 包均为 `0.2.0-rc.2`；本地 Node `26.8.1`。源码从安装的 `resources/app.asar/dsh/node_modules/@deepseek-ai` 只读提取，组件探针直接加载安装中的模块，未采用仿造的 Validator 或 Session 类。
 
 | 接口 | 实际调查结果 | 验证边界 |
 |---|---|---|

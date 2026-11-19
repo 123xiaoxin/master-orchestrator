@@ -1,4 +1,18 @@
 {
+  "pathNormalization": {
+    "normalizedOn": "2026-11-19",
+    "sourceReportCommit": "ae8bcf79abd7bbecda56cf4e048779d904c45eb3",
+    "sourceReportPath": "docs/reports/master-dsh-v2.1-adapter-evidence.json",
+    "recordScope": "path-normalized presentation of historical evidence",
+    "pathGuide": "docs/collaboration.md",
+    "pathRoots": {
+      "<INSTALLED_DSH_HOME>": "External installed DSH user configuration directory; distinct from isolated trial DSH_HOME."
+    },
+    "historyPreserved": "All original non-path values, dates, counts, status, authorization, cost, digests, signatures and hash values are unchanged.",
+    "hashScope": "Hashes and bindings refer to original source files and raw artifacts, not this normalized representation. Use the original artifacts to verify bindings; do not replay this report as live runtime evidence.",
+    "localArtifactsBundledByThisChange": false,
+    "historicalRuntimeOrModelChecksRerun": false
+  },
   "date": "2026-10-10",
   "baseCommit": "6681ce92879e1c5ca4d003e447457d636ac25209",
   "implementationCommit": "07fdcf346f0616d9c6c04fac904a0992b1ce2132",
@@ -131,32 +145,32 @@
       "files": {
         "master_execution_contract.v2.1.schema.json": {
           "sha256": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
-          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json",
+          "sourcePath": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/master_execution_contract.v2.1.schema.json",
           "vendored": true
         },
         "validate-contract.mjs": {
           "sha256": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
-          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs",
+          "sourcePath": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/validate-contract.mjs",
           "vendored": true
         },
         "schema-validate.mjs": {
           "sha256": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
-          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs",
+          "sourcePath": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/schema-validate.mjs",
           "vendored": true
         },
         "MASTER-EXECUTION-FRAMEWORK.md": {
           "sha256": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
-          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md",
+          "sourcePath": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/MASTER-EXECUTION-FRAMEWORK.md",
           "vendored": false
         },
         "SEMANTIC-DEFINITIONS.md": {
           "sha256": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
-          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md",
+          "sourcePath": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/SEMANTIC-DEFINITIONS.md",
           "vendored": false
         },
         "example-contract.v2.1.json": {
           "sha256": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
-          "sourcePath": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json",
+          "sourcePath": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/example-contract.v2.1.json",
           "vendored": false
         }
       },
@@ -194,7 +208,7 @@
     "provenance": {
       "adapterVersion": "1.0.0-draft",
       "native": {
-        "directory": "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework",
+        "directory": "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework",
         "sourceHashes": {
           "master_execution_contract.v2.1.schema.json": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
           "validate-contract.mjs": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",

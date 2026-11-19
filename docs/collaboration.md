@@ -2,7 +2,7 @@
 
 ## 打开同一份代码
 
-- 当前开发目录：`C:\Users\tongk\Documents\ChatGPT\master\master-orchestrator-recovered`。
+- 当前开发目录：外层 `master/` 工作区下的 `master-orchestrator-recovered/`；以该目录内 `git rev-parse --show-toplevel` 的结果为准。
 - Cursor：打开上一级的 `master.code-workspace`，工作区中只有当前开发仓库。
 - Codex：本聊天可继续使用，外层 `AGENTS.md` 已指向当前仓库。以后创建本地开发聊天时直接选择上述仓库目录。
 - 两端共享的是已保存到磁盘的文件。此设置不连接两端聊天，不传递未保存的编辑，也不自动派发任务。
@@ -20,6 +20,27 @@ git status --short
 这些值只是当时快照，后续以实际命令结果为准。`master-orchestrator-offline/`
 及上一级 ZIP、恢复脚本保留为历史材料，不自动复制到当前仓库。
 
+## 历史报告中的路径表示
+
+2026-11-19 对历史 DSH 报告及证据 JSON 整理了路径。下列标记只用于描述位置，
+不是环境变量或已验证可用的目录；命令中的占位路径须由读者按自己的环境替换。
+本仓库的相对路径均以仓库根目录为基准。
+
+| 表示 | 含义 |
+| --- | --- |
+| `.` / `./...` | 当前仓库根目录及其内部文件；`.local/` 产物仍保持相对定位 |
+| `<INSTALLED_DSH_HOME>` | 原始安装使用的 DSH 用户配置目录（通常为用户目录下的 `.dsh`）；区别于隔离试验临时设置的 `DSH_HOME` |
+| `<DSH_INSTALL_ROOT>` | 外部 DSH 应用安装根目录，保留其下 `resources/`、`app.asar` 和程序文件结构 |
+| `<PROGRAM_FILES>` | Windows 的 Program Files 目录 |
+| `<PROGRAM_FILES_X86>` | Windows 的 Program Files (x86) 目录 |
+
+历史日期、结论、计数、布尔值、费用/授权状态、摘要、签名及哈希值均保留原值。
+JSON 的 `pathNormalization` 标明本次整理及对应整理前提交；路径键名也按同一规则
+变换，键对应的原始哈希不重算。命令、错误摘录及带路径的证据对象是规范化后的展示，
+不再是逐字原始记录，不应作为原始运行时输入重新验证签名或重放。
+需要核对原始字节或绑定关系时，应使用原始产物；`.local/` 日志和外部安装文件未因
+本次整理而进入仓库。原始哈希不是日志附件，本次也不重跑历史模型或运行时验证。
+
 ## 分工和交接
 
 1. 默认 Codex 修改与整合，Cursor 只读审查。用户可直接指定 Cursor 实现某个任务，再由 Codex 审查，指定后不重复请求同一授权。
@@ -36,21 +57,33 @@ git status --short
 | 项目 | 内容 |
 | --- | --- |
 | 更新时间 | 2026-11-19（北京时间） |
-| 当前任务 | Clarify 独立入库已完成（`99bb2ce`）；本轮整理并单独提交协作配置 |
-| 当前分支 / HEAD | `codex/master-integration` / `99bb2ce`（以实际 `git rev-parse` 为准；协作配置提交后 HEAD 会前移） |
-| 当前写入方 | Cursor（用户明确指派实现本计划）；完成后恢复默认：Codex 实现、Cursor 审查 |
-| 记录维护方 | Cursor（本轮串行写入方）；完成后交回 Codex 或随下一写入方交接 |
-| Cursor 分工 | 本轮：更新交接记录并提交协作配置 3 文件；提交后只读复核残留状态 |
-| 本次写入范围 | `AGENTS.md`、`.cursor/rules/shared-workspace.mdc`、`docs/collaboration.md` |
-| 已知既有工作 | Clarify 包已在 `99bb2ce` 入库。协作配置提交前：`AGENTS.md` 为已跟踪未提交修改（` M`）；`.cursor/rules/shared-workspace.mdc` 与本文件为未跟踪（`??`）。两份 `docs/reports/master-clarify-p0-*` 仍未跟踪，不混入本提交 |
-| 核心变更 | 共用工作区规则写入 `AGENTS.md` §5；Cursor 规则与交接记录入库；交接表与 Clarify 已提交状态对齐 |
-| 验证 | 拟提交 3 文件 dry-run；`check_encoding.ps1 -Json`；针对拟提交内容 `git diff --check` |
-| Git 操作 | Clarify 已 commit、未 push。本轮仅暂存并 commit 上述 3 文件；不 push；不纳入 P0 |
-| 下一步 | P0 材料另行处理；Clarify P5 真实行为评测仍待明确授权与费用边界；P6 未启动 |
+| 当前任务 | 历史 DSH 报告及交接记录的路径整理与验证已完成；本轮独立提交以 Git 记录为准 |
+| 当前分支 / 基线 | `codex/master-integration`；本轮起始提交 `ae8bcf7`，实时 HEAD 以 `git rev-parse HEAD` 为准 |
+| 当前写入方 | 本轮由 Codex 完成整理与验证，提交后交回只读复核；Cursor 继续只读审查 |
+| 记录维护方 | Codex |
+| Cursor 分工 | 只读核对本轮路径清理、历史证据边界和提交范围 |
+| 本次写入范围 | 下表列出的 12 份 DSH/runtime 历史报告和证据，以及本文件，共 13 文件 |
+| 已知既有工作 | 本轮开始时仓库干净。Clarify `99bb2ce`、协作配置 `e3451bc`、通用代理说明 `d9b29bf`、P0 归档 `ae8bcf7` 均已提交 |
+| 核心变更 | 仓库内路径相对化，外部安装目录使用明确占位符；历史报告与当前交接状态分别说明 |
+| 验证 | 50 个 JSON 路径键、81 个路径值及 13 行历史 Markdown 路径已规范化；329 个 JSON SHA-256 值及全部非路径值不变。编码 257/0、模板 6/0、任务分析 4/0、离线定义 19/0 通过；报告目录及本文件无本机绝对路径；差异检查通过 |
+| Git 操作 | 用户已授权本轮单独提交；不 push，不修改运行实现、授权单、Clarify 包或 P0 归档 |
+| 下一步 | Cursor 只读审查本轮独立提交；P5 仍待明确授权与费用边界，P6 未启动 |
 
-## 协作配置的独立变更范围
+本轮历史材料范围（每份报告的原始时点及结论保持不变）：
 
-本轮在当前仓库仅纳入：
+| Markdown 报告 | 对应证据 JSON |
+| --- | --- |
+| `docs/reports/master-dsh-v2.1-adapter.md` | `docs/reports/master-dsh-v2.1-adapter-evidence.json` |
+| `docs/reports/master-dsh-runtime-e2e-verification.md` | `docs/reports/master-dsh-runtime-e2e-evidence.json` |
+| `docs/reports/master-dsh-real-session-wiring.md` | `docs/reports/master-dsh-real-session-wiring-evidence.json` |
+| `docs/reports/master-dsh-provider-safety.md` | `docs/reports/master-dsh-provider-safety-evidence.json` |
+| `docs/reports/master-runtime-integration-verification.md` | `docs/reports/runtime-verification-evidence.json` |
+| 未修改 Markdown（无本机路径） | `docs/reports/master-dsh-readonly-model-readiness-evidence.json` |
+| 未修改 Markdown（无本机路径） | `docs/reports/master-dsh-readonly-pilot-admission-evidence.json` |
+
+## 协作配置提交快照（`e3451bc`）
+
+该历史提交在当前仓库仅纳入以下文件，括号内为当时提交前的状态：
 
 - `AGENTS.md`（已跟踪修改）
 - `.cursor/rules/shared-workspace.mdc`（未跟踪）

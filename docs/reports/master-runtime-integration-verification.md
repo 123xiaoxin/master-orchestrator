@@ -1,5 +1,10 @@
 # Master Runtime 整合验收与 SkillOpt 训练前检查
 
+> 路径整理说明（2026-11-19）：本次仅规范化本机路径；正文日期、历史结论、计数和哈希值保留，未重跑历史验证。
+> 占位符含义见[路径表示](../collaboration.md#历史报告中的路径表示)，使用命令前须替换占位路径。
+> 命令、错误摘录及证据对象属于规范化展示；哈希对应原始文件或日志，不代表改写后的报告可用作原始运行时证据重放或验签。
+> .local/ 原始日志和外部安装文件未随本次提交分发。
+
 日期：2026-10-10，Asia/Shanghai。结论：**仓库整合已提交；DSH 加载组件通过，协议尚不兼容；第二轮 SkillOpt 暂不具备启动条件。**
 
 ## 1. 版本、审查及授权范围
@@ -34,9 +39,9 @@
 
 读取本机实际安装文件，未修改：
 
-- `C:/Users/tongk/.dsh/skills/master-orchestrator/framework/master_execution_contract.v2.1.schema.json`
+- `<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/master_execution_contract.v2.1.schema.json`
 - 同目录 `validate-contract.mjs`、`schema-validate.mjs`、`MASTER-EXECUTION-FRAMEWORK.md`、`SEMANTIC-DEFINITIONS.md`、真实 v2.1 示例。
-- `C:/Users/tongk/.dsh/.agent-presets/master-orchestrator/agent.cordis.yml`、`preset.yml`、`runtime-trace-plugin.mjs`、`trace-ledger.mjs`。
+- `<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/agent.cordis.yml`、`preset.yml`、`runtime-trace-plugin.mjs`、`trace-ledger.mjs`。
 - 安装程序 `resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-skill-filesystem/lib/index.js` 的实际加载实现。
 
 这些外部文件按原字节快照到 `.local/dsh-contract-verification/`，保存 SHA-256，不导入仓库成为第二份规范核心。框架正文有 v2/v2.1 名称不一致；实际 Schema/默认验证器使用 v2.1。其 `additionalProperties:false`，22 个必需字段，`intentEvidence` 可选。契约检查包括结构层与内部治理层，明确不负责现实执行正确性。
@@ -122,7 +127,7 @@ runner `-Split train|validation|test` 只运行选定集；默认 train，旧未
 | Python 整合 | `python tests/test_master_skill.py`，CI 内执行 | 10/10，与上轮相同 |
 | 全 Schema | `python -X utf8 ../validate_all_schemas.py` | 12 Schema / 38 示例；与上轮相同；外部辅助文件此前已保留 |
 | 入口/编码/Prompt | `python scripts/master_skill.py check`、CI encoding/offline-prompt-evals | 通过；历史定义仍 19/19，新增 12 不混入旧计数 |
-| DSH 原生契约/trace | `python -X utf8 scripts/verify_dsh_candidate.py --dsh-home C:/Users/tongk/.dsh --output .local/dsh-contract-verification` | 5/5；其中插件是 Mock，v1 拒绝为预期差异证明 |
+| DSH 原生契约/trace | `python -X utf8 scripts/verify_dsh_candidate.py --dsh-home '<INSTALLED_DSH_HOME>' --output .local/dsh-contract-verification` | 5/5；其中插件是 Mock，v1 拒绝为预期差异证明 |
 | Skill 包/闭包 | `python scripts/master_skill.py build --output .local/runtime-verification-final/skills/master-skill`；`export --modules 06 --output .local/runtime-verification-final/skillopt-baseline` | 自包含引用、闭包和新来源锁检查 |
 | DSH 实际加载器 | DSH Electron 主机 `--expose-internals scripts/test_dsh_loader.cjs <实际 provider 文件> .local/runtime-verification-final/skills .local/runtime-verification-final/loader-verification.json` | 实际 provider，隔离组件；无模型 |
 | Git | `git diff --check`、`git diff --cached --check`、`git fsck --full` | 通过；最后工作区 clean；无远程写入 |

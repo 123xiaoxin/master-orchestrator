@@ -1,5 +1,10 @@
 # Master → DSH v2.1 Contract Adapter 离线验收
 
+> 路径整理说明（2026-11-19）：本次仅规范化本机路径；正文日期、历史结论、计数和哈希值保留，未重跑历史验证。
+> 占位符含义见[路径表示](../collaboration.md#历史报告中的路径表示)，使用命令前须替换占位路径。
+> 命令、错误摘录及证据对象属于规范化展示；哈希对应原始文件或日志，不代表改写后的报告可用作原始运行时证据重放或验签。
+> .local/ 原始日志和外部安装文件未随本次提交分发。
+
 日期：2026-10-10（Asia/Shanghai）。**实现并通过离线 Adapter 验收。**
 真实本机原生 Validator 对正常候选返回 `PASS (L1 + L2)`；缺项、冲突与原生拒绝均不会输出候选。此结论不包含完整 DSH 会话、真实 Agent 行为、执行授权发放或目标完成。
 
@@ -9,7 +14,7 @@
 
 读取仓库实际 v1 Schema、统一 SKILL、01/05/07/08、原验证器和示例。Master 输出为 `master_output_contract.v1`，同范围明确授权持续有效，清晰度不能提供权限；Phase -1..5 不变。
 
-读取本机 `C:/Users/tongk/.dsh/skills/master-orchestrator/framework/` 的六份实际文件：
+读取本机 `<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/` 的六份实际文件：
 
 | 来源 | 标识 / 用途 |
 |---|---|
@@ -96,13 +101,13 @@ python -X utf8 ../validate_all_schemas.py
 pwsh -NoProfile -File helpers/validate_master_output_contract.ps1 -File tests/fixtures/dsh-adapter/master.v1.json -Json
 ```
 
-真实安装运行：临时设 MASTER_DSH_FRAMEWORK 为 `C:/Users/tongk/.dsh/skills/master-orchestrator/framework`，执行 `node --test --test-reporter=tap tests/dsh_adapter.test.mjs`，随后恢复进程环境。全部 **37/37** 通过，无 skip。相同 37 项也在 CI 中对未修改原字节快照执行。
+真实安装运行：临时设 MASTER_DSH_FRAMEWORK 为 `<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework`，执行 `node --test --test-reporter=tap tests/dsh_adapter.test.mjs`，随后恢复进程环境。全部 **37/37** 通过，无 skip。相同 37 项也在 CI 中对未修改原字节快照执行。
 
 正常 CLI 实际执行：
 
 ```powershell
-node adapters/dsh-v2.1/adapter.mjs --master tests/fixtures/dsh-adapter/master.v1.json --evidence tests/fixtures/dsh-adapter/evidence.json --evidence-root tests/fixtures/dsh-adapter --trusted-user-source tests/fixtures/dsh-adapter/user-authority.json --framework-dir C:/Users/tongk/.dsh/skills/master-orchestrator/framework --output .local/dsh-adapter/acceptance
-node C:/Users/tongk/.dsh/skills/master-orchestrator/framework/validate-contract.mjs .local/dsh-adapter/acceptance/candidate.v2.1.json
+node adapters/dsh-v2.1/adapter.mjs --master tests/fixtures/dsh-adapter/master.v1.json --evidence tests/fixtures/dsh-adapter/evidence.json --evidence-root tests/fixtures/dsh-adapter --trusted-user-source tests/fixtures/dsh-adapter/user-authority.json --framework-dir '<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework' --output .local/dsh-adapter/acceptance
+node '<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/validate-contract.mjs' .local/dsh-adapter/acceptance/candidate.v2.1.json
 ```
 
 实际原生 CLI 返回 **PASS (L1 + L2)**；Adapter 内部调用的也是真实安装导出的 checkContract，目标候选无错误、无 WARNING。独立使用本机已安装 jsonschema 4.26.0 的 Draft202012Validator，完整验证 Master fixture、evidence envelope、原生候选的三个 Schema/实例，全部通过，没有安装依赖。

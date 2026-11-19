@@ -1,5 +1,10 @@
 # Master × DSH Provider 受控接入与试验预备
 
+> 路径整理说明（2026-11-19）：本次仅规范化本机路径；正文日期、历史结论、计数和哈希值保留，未重跑历史验证。
+> 占位符含义见[路径表示](../collaboration.md#历史报告中的路径表示)，使用命令前须替换占位路径。
+> 命令、错误摘录及证据对象属于规范化展示；哈希对应原始文件或日志，不代表改写后的报告可用作原始运行时证据重放或验签。
+> .local/ 原始日志和外部安装文件未随本次提交分发。
+
 日期：2026-10-15（Asia/Shanghai）。本轮判定：**PROVIDER_OFFLINE_PASS**。
 
 实际安装的 DSH LlmRuntime 已接入受控 Adapter 边界，38 项无网络正反例通过，
@@ -28,7 +33,7 @@ Schema、生命周期、既有 Adapter 或 Sidecar，未启动 SkillOpt，未推
 ## 2. 实际源码依据与调用顺序
 
 读取当前实际安装 app.asar 内的源码，未依赖旧报告推断接口。
-安装位置：`D:\tongk\Deeoseek Harness work\Deepseek harness packages`。
+安装位置：`<DSH_INSTALL_ROOT>`。
 DSH `0.2.0-rc.2`、Cordis `4.0.4`；本机 Node `26.8.1`。
 14 个相关模块的当前源码路径、版本和 SHA256 记录在机器证据 `nativeSources`。
 源码摘取保留于 `.local/dsh-provider-investigation/`，未加载实际凭据服务或收费插件。

@@ -1,4 +1,20 @@
 {
+  "pathNormalization": {
+    "normalizedOn": "2026-11-19",
+    "sourceReportCommit": "ae8bcf79abd7bbecda56cf4e048779d904c45eb3",
+    "sourceReportPath": "docs/reports/master-dsh-real-session-wiring-evidence.json",
+    "recordScope": "path-normalized presentation of historical evidence",
+    "pathGuide": "docs/collaboration.md",
+    "pathRoots": {
+      ".": "Repository root; repository artifacts use ./ relative paths.",
+      "<INSTALLED_DSH_HOME>": "External installed DSH user configuration directory; distinct from isolated trial DSH_HOME.",
+      "<DSH_INSTALL_ROOT>": "External DSH application installation root."
+    },
+    "historyPreserved": "All original non-path values, dates, counts, status, authorization, cost, digests, signatures and hash values are unchanged.",
+    "hashScope": "Hashes and bindings refer to original source files and raw artifacts, not this normalized representation. Use the original artifacts to verify bindings; do not replay this report as live runtime evidence.",
+    "localArtifactsBundledByThisChange": false,
+    "historicalRuntimeOrModelChecksRerun": false
+  },
   "version": "master_dsh_wiring_evidence.v1",
   "verifiedAtUtc": "2026-10-15T00:59:23.615671+00:00",
   "branch": "codex/master-integration",
@@ -348,47 +364,47 @@
       },
       "runtimeSources": {
         "cordis": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\cordis\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/cordis/lib/index.js",
           "sha256": "6a9394c0877ff45218818c6e815edd038f8057e1a1deb390a8d43ec81c57691e",
           "version": "4.0.4"
         },
         "dsh-system-prompt": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-system-prompt\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-system-prompt/lib/index.js",
           "sha256": "ff422afac6ba85f89afa985d921aed0b603feb354a05a549c48eae04cf0d2f57",
           "version": "0.2.0-rc.2"
         },
         "dsh-session": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-session/lib/index.js",
           "sha256": "87ea85e2fb5318bf1f826db9a1c88c1b26d3ea328027a7f32b211880c4d62b9d",
           "version": "0.2.0-rc.2"
         },
         "dsh-session-projection": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session-projection\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-session-projection/lib/index.js",
           "sha256": "022f1d13e25aeb3c18e10407d84c69e018c1c05a65c9ee36ed14d89b185a4fa8",
           "version": "0.2.0-rc.2"
         },
         "dsh-tools": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-tools\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-tools/lib/index.js",
           "sha256": "40f47709337c3c205d4e09e647f8588f4977e66f6d52f019b3cc7ef81159d84f",
           "version": "0.2.0-rc.2"
         },
         "dsh-llm": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-llm/lib/index.js",
           "sha256": "9132c8a8053ee82b9fb1ded4f98c85cf557f288a15a85c552c6b1fb319ead120",
           "version": "0.2.0-rc.2"
         },
         "dsh-agent": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-agent/lib/index.js",
           "sha256": "7b9aa39474de83115cf890dd7f8904cf0d59df0811cb335ab85565a04f1aac93",
           "version": "0.2.0-rc.2"
         },
         "dsh-agent-loop": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent-loop\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-agent-loop/lib/index.js",
           "sha256": "00c4814d63f3d1e2754eb09144832d19b30499d6ea444730473f740b587948c2",
           "version": "0.2.0-rc.2"
         },
         "dsh-skill-filesystem": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-skill-filesystem\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-skill-filesystem/lib/index.js",
           "sha256": "244e92e032ef15e96cb60c9e2cfddf5d89e167eb171fcbfd83e9415b0455a0d7",
           "version": "0.2.0-rc.2"
         }
@@ -531,47 +547,47 @@
       },
       "runtimeSources": {
         "cordis": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\cordis\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/cordis/lib/index.js",
           "sha256": "6a9394c0877ff45218818c6e815edd038f8057e1a1deb390a8d43ec81c57691e",
           "version": "4.0.4"
         },
         "dsh-system-prompt": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-system-prompt\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-system-prompt/lib/index.js",
           "sha256": "ff422afac6ba85f89afa985d921aed0b603feb354a05a549c48eae04cf0d2f57",
           "version": "0.2.0-rc.2"
         },
         "dsh-session": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-session/lib/index.js",
           "sha256": "87ea85e2fb5318bf1f826db9a1c88c1b26d3ea328027a7f32b211880c4d62b9d",
           "version": "0.2.0-rc.2"
         },
         "dsh-session-projection": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-session-projection\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-session-projection/lib/index.js",
           "sha256": "022f1d13e25aeb3c18e10407d84c69e018c1c05a65c9ee36ed14d89b185a4fa8",
           "version": "0.2.0-rc.2"
         },
         "dsh-tools": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-tools\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-tools/lib/index.js",
           "sha256": "40f47709337c3c205d4e09e647f8588f4977e66f6d52f019b3cc7ef81159d84f",
           "version": "0.2.0-rc.2"
         },
         "dsh-llm": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-llm\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-llm/lib/index.js",
           "sha256": "9132c8a8053ee82b9fb1ded4f98c85cf557f288a15a85c552c6b1fb319ead120",
           "version": "0.2.0-rc.2"
         },
         "dsh-agent": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-agent/lib/index.js",
           "sha256": "7b9aa39474de83115cf890dd7f8904cf0d59df0811cb335ab85565a04f1aac93",
           "version": "0.2.0-rc.2"
         },
         "dsh-agent-loop": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-agent-loop\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-agent-loop/lib/index.js",
           "sha256": "00c4814d63f3d1e2754eb09144832d19b30499d6ea444730473f740b587948c2",
           "version": "0.2.0-rc.2"
         },
         "dsh-skill-filesystem": {
-          "path": "D:\\tongk\\Deeoseek Harness work\\Deepseek harness packages\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-skill-filesystem\\lib\\index.js",
+          "path": "<DSH_INSTALL_ROOT>/resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-skill-filesystem/lib/index.js",
           "sha256": "244e92e032ef15e96cb60c9e2cfddf5d89e167eb171fcbfd83e9415b0455a0d7",
           "version": "0.2.0-rc.2"
         }
@@ -824,16 +840,16 @@
     }
   },
   "externalSourcesUnchanged": {
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\master_execution_contract.v2.1.schema.json": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\validate-contract.mjs": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\schema-validate.mjs": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\example-contract.v2.1.json": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\MASTER-EXECUTION-FRAMEWORK.md": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
-    "C:\\Users\\tongk\\.dsh\\skills\\master-orchestrator\\framework\\SEMANTIC-DEFINITIONS.md": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
-    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\runtime-trace-plugin.mjs": "2851b1846bb7682fff25d0feb5da4f1ebd3d687cd39c4b833b1e7453e6043237",
-    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\trace-ledger.mjs": "998f58f48c9e136a4ff24bf1da8d7250a609c5f6cf7510402026a407d3b36a3d",
-    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\agent.cordis.yml": "6d94de67ada14b2692cf2cc16ff66069d37c7e76dd71fc2de06acf4be9d080fe",
-    "C:\\Users\\tongk\\.dsh\\.agent-presets\\master-orchestrator\\preset.yml": "7b65159d04011d89cb3750245d67930c8bcfcd2cabf7fffd560b556abca0db2a"
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/master_execution_contract.v2.1.schema.json": "f919751297ddd4e2792f01a3cd154d852da1b725b243e063d927dab3b4acd6a2",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/validate-contract.mjs": "66dbd80b30ab485bd4f3b70131a4978474e3ac6bc69b792180df41d976a33ece",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/schema-validate.mjs": "876e6cba02b33de615cf6fdeba7aeb0f50eea5806f8b9b8f2d0180303b80bf54",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/example-contract.v2.1.json": "357a338fb2ab6708094011b13e458bc3d98e172a35a951d5942e6ec1a2ed2fe2",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/MASTER-EXECUTION-FRAMEWORK.md": "98a220ae4a079fa1e283bdee76a94e6c5520abf7f8e418b26253e3eb37bca02f",
+    "<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework/SEMANTIC-DEFINITIONS.md": "34928156df804a44b45fa4f4c83d5fbb55674efd7b7ea2186ecf01d0f7381d9c",
+    "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/runtime-trace-plugin.mjs": "2851b1846bb7682fff25d0feb5da4f1ebd3d687cd39c4b833b1e7453e6043237",
+    "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/trace-ledger.mjs": "998f58f48c9e136a4ff24bf1da8d7250a609c5f6cf7510402026a407d3b36a3d",
+    "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/agent.cordis.yml": "6d94de67ada14b2692cf2cc16ff66069d37c7e76dd71fc2de06acf4be9d080fe",
+    "<INSTALLED_DSH_HOME>/.agent-presets/master-orchestrator/preset.yml": "7b65159d04011d89cb3750245d67930c8bcfcd2cabf7fffd560b556abca0db2a"
   },
   "implementationFiles": {
     "adapters/dsh-runtime/bridge.mjs": "c5b026611c76bd759e8f1e8ea8e781329963ceb91990153687e30025981b71aa",
@@ -852,17 +868,17 @@
   },
   "artifacts": [
     {
-      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-prepare\\session-flush-1.json",
+      "path": "./.local/dsh-session-delivery-20261015-prepare/session-flush-1.json",
       "sha256": "cd5f9d7a35204064fe1e8d59c20d02d96ac2b90c14630b9aef8975eaa45f22b1",
       "kind": "actual-session-sidecar"
     },
     {
-      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-prepare\\session-flush-2.json",
+      "path": "./.local/dsh-session-delivery-20261015-prepare/session-flush-2.json",
       "sha256": "cd5f9d7a35204064fe1e8d59c20d02d96ac2b90c14630b9aef8975eaa45f22b1",
       "kind": "actual-session-sidecar"
     },
     {
-      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-prepare\\session-final-sidecar.json",
+      "path": "./.local/dsh-session-delivery-20261015-prepare/session-final-sidecar.json",
       "sha256": "201f01f976460a5cbd0238bfec6ef674e544b9672ecc1e591cbe994a02617aa6",
       "kind": "actual-session-sidecar"
     },
@@ -872,17 +888,17 @@
       "kind": "native-probe-report"
     },
     {
-      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-component-test\\session-flush-1.json",
+      "path": "./.local/dsh-session-delivery-20261015-component-test/session-flush-1.json",
       "sha256": "2f5c5571d5a13a4dc17d72ac1736cc655b61c860c7cc328520a4145cb6f52e2d",
       "kind": "actual-session-sidecar"
     },
     {
-      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-component-test\\session-flush-2.json",
+      "path": "./.local/dsh-session-delivery-20261015-component-test/session-flush-2.json",
       "sha256": "2f5c5571d5a13a4dc17d72ac1736cc655b61c860c7cc328520a4145cb6f52e2d",
       "kind": "actual-session-sidecar"
     },
     {
-      "path": "C:\\Users\\tongk\\Documents\\ChatGPT\\master\\master-orchestrator-recovered\\.local\\dsh-session-delivery-20261015-component-test\\session-final-sidecar.json",
+      "path": "./.local/dsh-session-delivery-20261015-component-test/session-final-sidecar.json",
       "sha256": "96de42787dbdbbdb5e336f5a77d69eec708cce09dc2a92922ebba9cf9b87dbee",
       "kind": "actual-session-sidecar"
     },

@@ -1,5 +1,10 @@
 # Master × DSH 真实会话接线与安全准入验收
 
+> 路径整理说明（2026-11-19）：本次仅规范化本机路径；正文日期、历史结论、计数和哈希值保留，未重跑历史验证。
+> 占位符含义见[路径表示](../collaboration.md#历史报告中的路径表示)，使用命令前须替换占位路径。
+> 命令、错误摘录及证据对象属于规范化展示；哈希对应原始文件或日志，不代表改写后的报告可用作原始运行时证据重放或验签。
+> .local/ 原始日志和外部安装文件未随本次提交分发。
+
 验收日期：2026-10-15（Asia/Shanghai）。结论：**BLOCKED**。
 
 已经建立真实 DSH Agent 的受控装配入口，接通统一 Skill、现有 Adapter、
@@ -38,7 +43,7 @@
 ## 2. 实际安装与接口调查
 
 只读调查实际安装：
-`D:\tongk\Deeoseek Harness work\Deepseek harness packages\DeepSeek Harness.exe`。
+`<DSH_INSTALL_ROOT>/DeepSeek Harness.exe`。
 FileVersion 为 `0.2.0-rc.2`，ProductVersion 为 `0.2.0.0`。
 安装包内 DSH 组件为 `0.2.0-rc.2`，Cordis 为 `4.0.4`，本机 Node 为 `26.8.1`。
 真实组件探针使用安装的 Electron Node 模式和 `--expose-internals` 读取 app.asar。
@@ -172,7 +177,7 @@ prepare 实际 Session 事件 4 条，组件测试 8 条。原始证据存于下
 实际执行的普通检查：
 
 ```powershell
-$env:MASTER_DSH_FRAMEWORK = 'C:\Users\tongk\.dsh\skills\master-orchestrator\framework'
+$env:MASTER_DSH_FRAMEWORK = '<INSTALLED_DSH_HOME>/skills/master-orchestrator/framework'
 node --test tests/dsh_adapter.test.mjs tests/dsh_runtime.test.mjs tests/dsh_session.test.mjs
 ./local-ci.ps1 -OutputReport
 python tests/test_master_skill.py
