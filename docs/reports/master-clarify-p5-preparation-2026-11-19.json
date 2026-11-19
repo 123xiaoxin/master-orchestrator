@@ -1,0 +1,838 @@
+{
+  "recordType": "clarify_p5_preparation.v1",
+  "preparedOn": "2026-11-19",
+  "baselineCommit": "ceb19ed0e8873da3342d9a7f23293621bf38e192",
+  "status": "PREPARED_NOT_EXECUTABLE",
+  "behaviorStatus": "BEHAVIOR_NOT_VERIFIED",
+  "integrationStatus": "INTEGRATION_NOT_STARTED",
+  "scope": "Local preparation and public official documentation research only; no real P5 model/account requests.",
+  "actualThisPreparation": {
+    "p5ModelRequests": 0,
+    "accountQueries": 0,
+    "modelListQueries": 0,
+    "completedBehaviorSessions": 0,
+    "p5ModelCost": "0",
+    "currency": "CNY",
+    "p6Changes": 0,
+    "pushes": 0
+  },
+  "authorization": {
+    "approved": false,
+    "executable": false,
+    "approvedBy": null,
+    "trustedApprovalReference": null,
+    "approvedAt": null,
+    "expiresAt": null,
+    "host": null,
+    "accountReference": null,
+    "provider": null,
+    "model": null,
+    "currency": null,
+    "maxSessions": null,
+    "maxRequests": null,
+    "maxInputTokens": null,
+    "maxOutputTokens": null,
+    "maxCost": null,
+    "maxWallClockSeconds": null,
+    "dataScope": null,
+    "credentialUseMethod": null,
+    "allowBalanceQuery": false,
+    "allowModelListQuery": false,
+    "reviewer": null,
+    "remoteBillingResidualRiskAccepted": false
+  },
+  "candidateRoute": {
+    "provider": "deepseek-official",
+    "model": "deepseek-flash",
+    "versionObservedInOfficialDocs": "DeepSeek-V4.1-Flash-1017",
+    "baseURL": "https://api.deepseek.com/anthropic",
+    "path": "/v1/messages",
+    "transport": "DeepSeek Messages",
+    "host": "Standalone Clarify wrapper around reviewed existing route; not implemented or admitted",
+    "proposedConfiguration": {
+      "thinking": {
+        "type": "disabled"
+      },
+      "temperature": 0,
+      "max_tokens": 8192,
+      "stream": true,
+      "tools": [],
+      "automaticRetries": 0,
+      "concurrency": 1
+    },
+    "configurationVerifiedAgainstInstalledHost": false,
+    "accountUsable": "NOT_CHECKED",
+    "liveAdmission": "BLOCKED"
+  },
+  "entryAudit": {
+    "clarifyPrepare": "Offline only; no model runner",
+    "deepseekBoundary": "networkAllowed=false; uncertified real input bound; credentials/live delegate reject",
+    "nativeHost": "Loads Master core; creates a per-host ledger; not a standalone paired Clarify host",
+    "legacyLlmEvals": "Real HTTP POST, Master output contract, no P5 cumulative accounting; not invoked",
+    "legacyPolicyValidUntil": "2026-10-16T00:00:00Z",
+    "localInstallation": {
+      "artifact": "<DSH_INSTALL_ROOT>/resources/app.asar",
+      "collection": "Read-only ASAR header/package/entry-text parsing; no module import or application launch",
+      "version": "0.2.1-rc.5",
+      "lockMatches": 1,
+      "lockMismatches": 8,
+      "lockComparisonBasis": "Entry SHA-256 only; cordis version changed from 4.0.4 to 4.0.5 while its entry bytes remained identical.",
+      "installedAdapterStreamMode": "stream:true in dsh-llm-deepseek/lib/index.js; candidate retains streaming and requires complete stream accounting",
+      "entries": {
+        "cordis": {
+          "lockedVersion": "4.0.4",
+          "lockedSha256": "6a9394c0877ff45218818c6e815edd038f8057e1a1deb390a8d43ec81c57691e",
+          "observedVersion": "4.0.5",
+          "observedSha256": "6a9394c0877ff45218818c6e815edd038f8057e1a1deb390a8d43ec81c57691e",
+          "matches": true
+        },
+        "dsh-system-prompt": {
+          "lockedVersion": "0.2.0-rc.2",
+          "lockedSha256": "ff422afac6ba85f89afa985d921aed0b603feb354a05a549c48eae04cf0d2f57",
+          "observedVersion": "0.2.1-rc.5",
+          "observedSha256": "7be9f7aafbf345d01ddcc12fd297b16e9a1d41283a6a04073b867becca0bf020",
+          "matches": false
+        },
+        "dsh-session": {
+          "lockedVersion": "0.2.0-rc.2",
+          "lockedSha256": "87ea85e2fb5318bf1f826db9a1c88c1b26d3ea328027a7f32b211880c4d62b9d",
+          "observedVersion": "0.2.1-rc.5",
+          "observedSha256": "2f5dd07cb5c744a29abbb8003a8a4cefd9e582c6e2538074ca299a0ddd02a3bf",
+          "matches": false
+        },
+        "dsh-session-projection": {
+          "lockedVersion": "0.2.0-rc.2",
+          "lockedSha256": "022f1d13e25aeb3c18e10407d84c69e018c1c05a65c9ee36ed14d89b185a4fa8",
+          "observedVersion": "0.2.1-rc.5",
+          "observedSha256": "7dc2b212819baf4fc292751054d30b97afcbdee0a4733230abf92c6722e6550c",
+          "matches": false
+        },
+        "dsh-tools": {
+          "lockedVersion": "0.2.0-rc.2",
+          "lockedSha256": "40f47709337c3c205d4e09e647f8588f4977e66f6d52f019b3cc7ef81159d84f",
+          "observedVersion": "0.2.1-rc.5",
+          "observedSha256": "1e53932e7c4213ea24a7d87f06960b7a7702cb21f8a5741c97242b4a470a442a",
+          "matches": false
+        },
+        "dsh-llm": {
+          "lockedVersion": "0.2.0-rc.2",
+          "lockedSha256": "9132c8a8053ee82b9fb1ded4f98c85cf557f288a15a85c552c6b1fb319ead120",
+          "observedVersion": "0.2.1-rc.5",
+          "observedSha256": "d18d8ae4c8d961e628708c1e4698e09716a0ebb80e55a672e0bde1029bec1155",
+          "matches": false
+        },
+        "dsh-agent": {
+          "lockedVersion": "0.2.0-rc.2",
+          "lockedSha256": "7b9aa39474de83115cf890dd7f8904cf0d59df0811cb335ab85565a04f1aac93",
+          "observedVersion": "0.2.1-rc.5",
+          "observedSha256": "7b59cf82c2784c25bdce4e3e24e5e5303b02b9f1003efacf50255492d17baf8b",
+          "matches": false
+        },
+        "dsh-agent-loop": {
+          "lockedVersion": "0.2.0-rc.2",
+          "lockedSha256": "00c4814d63f3d1e2754eb09144832d19b30499d6ea444730473f740b587948c2",
+          "observedVersion": "0.2.1-rc.5",
+          "observedSha256": "cf57e3ecd487ac5c2553455aaa5cef2c6fb41e6bd61be5aa455675d1d7193033",
+          "matches": false
+        },
+        "dsh-skill-filesystem": {
+          "lockedVersion": "0.2.0-rc.2",
+          "lockedSha256": "244e92e032ef15e96cb60c9e2cfddf5d89e167eb171fcbfd83e9415b0455a0d7",
+          "observedVersion": "0.2.1-rc.5",
+          "observedSha256": "783214a95cc531c82567925ed0afabfdee5c091a56c4b1c1e1bce523b948ee02",
+          "matches": false
+        }
+      },
+      "additionalDeepSeekEntry": {
+        "version": "0.2.1-rc.5",
+        "sha256": "21fedb71f8d9aafea73b35ee13bc73737a8271d7ffa261697d4208e8563196cb"
+      }
+    },
+    "environmentPresenceOnly": {
+      "scopes": [
+        "process",
+        "user"
+      ],
+      "variables": [
+        "MASTER_EVAL_BASE_URL",
+        "MASTER_EVAL_MODEL",
+        "MASTER_EVAL_API_KEY",
+        "OPENAI_BASE_URL",
+        "OPENAI_API_BASE",
+        "OPENAI_MODEL",
+        "OPENAI_API_KEY",
+        "ANTHROPIC_BASE_URL",
+        "ANTHROPIC_MODEL",
+        "ANTHROPIC_API_KEY",
+        "DEEPSEEK_API_KEY",
+        "DSH_HOME"
+      ],
+      "configuredCount": 0,
+      "valuesCollected": false,
+      "machineScopeChecked": false,
+      "credentialFilesChecked": false,
+      "meaning": "Does not establish whether an installed account is usable"
+    }
+  },
+  "design": {
+    "selectedCaseIds": [
+      "T01",
+      "T02",
+      "T05",
+      "T06",
+      "T07",
+      "T10",
+      "T12",
+      "T14",
+      "T16",
+      "T18",
+      "T19",
+      "T22",
+      "T25",
+      "T26"
+    ],
+    "repeatCaseIds": [
+      "T12",
+      "T22",
+      "T25"
+    ],
+    "holdoutCaseIds": [
+      "T05",
+      "T14",
+      "T22",
+      "T25"
+    ],
+    "independentSessions": 34,
+    "seedSessions": 6,
+    "minimumGenerationRequestsWithoutFollowups": 40,
+    "proposedMaximumGenerationRequests": 136,
+    "turnCounting": "Seed, current-message answer, clarification and format repair all count within four assistant turns per session. No automatic retry. A dispatched failed attempt consumes a request slot.",
+    "allSelectedCasesCritical": true,
+    "independentReviewsRequired": 34,
+    "commonFiles": [
+      "contracts/contract.md",
+      "contracts/clarify_input.v1.schema.json",
+      "contracts/clarify_state.v1.schema.json"
+    ],
+    "skillOnlyFiles": [
+      "SKILL.md",
+      "references/clarification-method.md",
+      "references/compatibility.md"
+    ],
+    "commonInstruction": "请依据本次提供的可信 input 和共有契约，只输出一个符合 clarify_state.v1 的 JSON 候选状态。不修改 input 或冒充来源；需要追问、材料或样例时在契约字段中表达。模型输出不会自动执行。",
+    "commonInstructionSha256": "44fc92daf5f47dec38b1bfd22c74e9e4b5f5d12e64dc449864f0858df49a0bb6",
+    "orderSeedHex": "29fa2780c9735acceb1913bc9cb68ebd",
+    "orderAlgorithm": "Start with baseline,skill; reverse iff first byte of SHA256(UTF8(seed + colon + caseId + colon + repetition)) modulo 2 is 1. Pair list follows selected order then repeats.",
+    "pairSchedule": [
+      {
+        "pairNumber": 1,
+        "caseId": "T01",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T01-r0-skill",
+          "CP5-20261119-T01-r0-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 2,
+        "caseId": "T02",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T02-r0-skill",
+          "CP5-20261119-T02-r0-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 3,
+        "caseId": "T05",
+        "repetition": 0,
+        "armOrder": [
+          "baseline",
+          "skill"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T05-r0-baseline",
+          "CP5-20261119-T05-r0-skill"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 4,
+        "caseId": "T06",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T06-r0-skill",
+          "CP5-20261119-T06-r0-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 5,
+        "caseId": "T07",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T07-r0-skill",
+          "CP5-20261119-T07-r0-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 6,
+        "caseId": "T10",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T10-r0-skill",
+          "CP5-20261119-T10-r0-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 7,
+        "caseId": "T12",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T12-r0-skill",
+          "CP5-20261119-T12-r0-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 8,
+        "caseId": "T14",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T14-r0-skill",
+          "CP5-20261119-T14-r0-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 9,
+        "caseId": "T16",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T16-r0-skill",
+          "CP5-20261119-T16-r0-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 10,
+        "caseId": "T18",
+        "repetition": 0,
+        "armOrder": [
+          "baseline",
+          "skill"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T18-r0-baseline",
+          "CP5-20261119-T18-r0-skill"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 11,
+        "caseId": "T19",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T19-r0-skill",
+          "CP5-20261119-T19-r0-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 12,
+        "caseId": "T22",
+        "repetition": 0,
+        "armOrder": [
+          "baseline",
+          "skill"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T22-r0-baseline",
+          "CP5-20261119-T22-r0-skill"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 13,
+        "caseId": "T25",
+        "repetition": 0,
+        "armOrder": [
+          "baseline",
+          "skill"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T25-r0-baseline",
+          "CP5-20261119-T25-r0-skill"
+        ],
+        "requiresSeedTurn": true,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 14,
+        "caseId": "T26",
+        "repetition": 0,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T26-r0-skill",
+          "CP5-20261119-T26-r0-baseline"
+        ],
+        "requiresSeedTurn": true,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 15,
+        "caseId": "T12",
+        "repetition": 1,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T12-r1-skill",
+          "CP5-20261119-T12-r1-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 16,
+        "caseId": "T22",
+        "repetition": 1,
+        "armOrder": [
+          "skill",
+          "baseline"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T22-r1-skill",
+          "CP5-20261119-T22-r1-baseline"
+        ],
+        "requiresSeedTurn": false,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      },
+      {
+        "pairNumber": 17,
+        "caseId": "T25",
+        "repetition": 1,
+        "armOrder": [
+          "baseline",
+          "skill"
+        ],
+        "plannedSessionLabels": [
+          "CP5-20261119-T25-r1-baseline",
+          "CP5-20261119-T25-r1-skill"
+        ],
+        "requiresSeedTurn": true,
+        "maxAssistantTurnsPerSessionIncludingSeed": 4,
+        "status": "NOT_RUN"
+      }
+    ],
+    "T01Policy": "The first official pair also checks wiring. It is part of 34 sessions/136 requests; no extra smoke pool. Preserve all failures. Configuration changes require a new evaluation version and accounting within remaining authorization.",
+    "seedStages": {
+      "T25": {
+        "seedSourceIds": [
+          "T25-C1"
+        ],
+        "withheldUntilAfterValidSeed": [
+          "T25-U1"
+        ]
+      },
+      "T26": {
+        "seedSourceIds": [
+          "T26-C1"
+        ],
+        "withheldUntilAfterValidSeed": [
+          "T26-U1",
+          "T26-C2"
+        ]
+      }
+    },
+    "seedInstruction": "请将提供的既有需求摘要整理为首版候选状态，保留已有事项标识；没有来源的确认状态保持未知。暂不处理后续变更。"
+  },
+  "budgetRecommendation": {
+    "approved": false,
+    "currency": "CNY",
+    "sourceObservedOn": "2026-11-19",
+    "ratePerMillionTokens": {
+      "peakCacheMiss": "2",
+      "peakCacheHit": "0.04",
+      "peakOutput": "8",
+      "offPeakCacheMiss": "1",
+      "offPeakCacheHit": "0.02",
+      "offPeakOutput": "4"
+    },
+    "costPolicy": "Use peak cache-miss input price for all input; no caching discount assumed. CNY rates are directly published, not converted from USD. Refresh before execution.",
+    "formula": "(inputTokens * 2 + outputTokens * 8) / 1000000",
+    "planningScenarios": [
+      {
+        "name": "minimum-turn illustrative scenario",
+        "requests": 40,
+        "assumedInputTokensPerRequest": 16384,
+        "assumedOutputTokensPerRequest": 4096,
+        "costCny": "2.62144"
+      },
+      {
+        "name": "68-request illustrative scenario",
+        "requests": 68,
+        "assumedInputTokensPerRequest": 16384,
+        "assumedOutputTokensPerRequest": 4096,
+        "costCny": "4.456448"
+      }
+    ],
+    "fullRunProposedCaps": {
+      "maxSessions": 34,
+      "maxRequests": 136,
+      "maxInputTokensPerRequest": 32768,
+      "maxOutputTokensPerRequest": 8192,
+      "maxInputTokens": 4456448,
+      "maxOutputTokens": 1114112,
+      "derivedCostAtAssumedBoundsCny": "17.825792",
+      "suggestedMaxCostCny": "20",
+      "maxWallClockSeconds": 21600,
+      "perRequestTimeoutSeconds": 120,
+      "concurrency": 1,
+      "automaticRetries": 0,
+      "suggestedAuthorizationLifetimeHours": 24
+    },
+    "firstPairOnlyAlternative": {
+      "caseId": "T01",
+      "maxSessions": 2,
+      "maxRequests": 8,
+      "maxInputTokens": 262144,
+      "maxOutputTokens": 65536,
+      "derivedCostAtAssumedBoundsCny": "1.048576",
+      "suggestedMaxCostCny": "2",
+      "maxWallClockSeconds": 1800,
+      "countsWithinFullRun": true,
+      "cannotClaimP5Complete": true
+    },
+    "boundsVerified": false,
+    "currencyOfActualAccount": "NOT_CHECKED",
+    "limitations": [
+      "All token counts are proposed allowances or assumptions, not measured usage.",
+      "No proven preflight input bound or running campaign ledger yet.",
+      "20 CNY is a recommendation, not authorization or a guaranteed remote billing ceiling.",
+      "Reviewer model calls, balance/model-list queries, extra re-runs and new tools have no separate allowance.",
+      "If any cap cannot be met, stop incomplete; do not truncate inputs or silently enlarge limits."
+    ]
+  },
+  "engineeringPrerequisites": [
+    {
+      "id": "E1",
+      "status": "PENDING",
+      "requirement": "Review installed source drift; do not merely replace expected hashes."
+    },
+    {
+      "id": "E2",
+      "status": "PENDING",
+      "requirement": "Standalone host without Master loading, with common-contract/skill-only isolation and fresh sessions."
+    },
+    {
+      "id": "E3",
+      "status": "PENDING",
+      "requirement": "One durable campaign ledger across all sessions/restarts; reserve requests/tokens/cost before dispatch; enforce expiry/revocation/time limits."
+    },
+    {
+      "id": "E4",
+      "status": "PENDING",
+      "requirement": "Verified complete-request input bound and output cap; protocol-specific raw usage presence and cumulative-stream semantics; unknown usage retains reservations and stops."
+    },
+    {
+      "id": "E5",
+      "status": "PENDING",
+      "requirement": "No tools, nested model calls, automatic retries or unrecorded summarization; exact wire request and all outputs retained with secrets removed."
+    },
+    {
+      "id": "E6",
+      "status": "PENDING",
+      "requirement": "Offline failure checks for limits, transport errors, missing usage, forbidden tool returns, seed isolation and snapshot binding; only then consider separately authorized T01 pair."
+    }
+  ],
+  "sourceSha256": {
+    "skills/master-clarify/evals/plan.json": "b9f4c224d56c4008e5416ab621deb83d2eed12e238d7aaa16e22948fffdab138",
+    "skills/master-clarify/evals/freeze.json": "c1efc1f47b1e14ed2d35e2cf0b8e54ca021408f53d7fec9c01b1f74aa76be3bd",
+    "skills/master-clarify/evals/cases.jsonl": "4bdade4d12fa35875ee832805810648111e0d7e8848c781b13e631e04ce48b96",
+    "skills/master-clarify/evals/prepare.py": "56d61f4bd57039c5dc3059fb0497d6534c8c3636948da8df26be3da7fb912937",
+    "skills/master-clarify/evals/README.md": "8cb1670ca46c5155b7b6868e27c5e48fe5fa7b5f7d68916aabfdbffb6bbb8d0b",
+    "skills/master-clarify/evals/rubric.md": "7b3d8060758919f03085c0d9718647afd44b57ffd39ec525c48564d3ba6c5177",
+    "skills/master-clarify/evals/run-record.template.json": "2505b7ec789e1d1cecbbfc7dc1fa4184bcff509520913add6b2f5df02a4a1aa8",
+    "skills/master-clarify/evals/comparison.template.json": "0a5358294e52e2d02875c3b10018dbedbefd1ac52a598dcd34ae596176e68d07",
+    "adapters/dsh-session/deepseek-readonly.mjs": "a3d52e045a6ad655a2db61a908781704fe3a44770d7439158c0a3860332c1d3a",
+    "adapters/dsh-session/native-host.mjs": "c9853a4b43f02e83e4bc0e5346488df414f2c040ac6dad8eb009ddc68bfd4175",
+    "adapters/dsh-session/native-runtime-source-lock.json": "2bc15883622d108f7564df4a7ac39c1aaac605d6e1cec7e5f1d4fcf9b8365281",
+    "adapters/dsh-session/budget.mjs": "5a02e7330b77c3764ebbcc79907bae948f62cac2b2d8d935a01b2c347770086d",
+    "adapters/dsh-session/controlled-provider.mjs": "4ea3972f738f7a7cf985362d50826a802812ff78e0ece3661a7bc11dc014ada6",
+    "adapters/dsh-session/pilot-authorization.template.json": "ad93fd189dc6050c43442d8dbc37f5d1a35ee5dad074b3a15b87e581c3e23c94",
+    "evals/run_llm_evals.ps1": "c9161c2f911bc39091fb4ec19406c195624fc68901da02989c379b05243494cd",
+    "docs/reports/first-readonly-pilot-authorization.md": "6d07edcfe5cb3e62489e456fc1a9e266e7cc958a7f6089fbdaebe0775e744ceb"
+  },
+  "clarifyPackageSha256": {
+    "skills/master-clarify/.gitignore": "f16b6dd288a3bb87fde88de299867fd983ab976bb7e0642e09e5d8d1c1bcc260",
+    "skills/master-clarify/README.md": "810d5faa58df8417956e0d1a11f9e3bf99c5a722054cbb7533acca4121ea3277",
+    "skills/master-clarify/SKILL.md": "d6a801236a6438f6161626cba83f5f47dc7e26aea9d89abaae2bebd899f61114",
+    "skills/master-clarify/contracts/clarify_input.v1.schema.json": "a4d2ee68ccea3e343c506d4f1eb5b4002ed767bfe8653a2c08b423508bf842cb",
+    "skills/master-clarify/contracts/clarify_state.v1.schema.json": "b17708709942ca992b1caec0673cee03dff1f97d23470d29ded8582aeafc135a",
+    "skills/master-clarify/contracts/contract.md": "886b7c8a9990a7e63de333465c331f6c569f4f988e02c15f1e76c052f87f1ab0",
+    "skills/master-clarify/evals/README.md": "8cb1670ca46c5155b7b6868e27c5e48fe5fa7b5f7d68916aabfdbffb6bbb8d0b",
+    "skills/master-clarify/evals/cases.jsonl": "4bdade4d12fa35875ee832805810648111e0d7e8848c781b13e631e04ce48b96",
+    "skills/master-clarify/evals/comparison.template.json": "0a5358294e52e2d02875c3b10018dbedbefd1ac52a598dcd34ae596176e68d07",
+    "skills/master-clarify/evals/freeze.json": "c1efc1f47b1e14ed2d35e2cf0b8e54ca021408f53d7fec9c01b1f74aa76be3bd",
+    "skills/master-clarify/evals/plan.json": "b9f4c224d56c4008e5416ab621deb83d2eed12e238d7aaa16e22948fffdab138",
+    "skills/master-clarify/evals/prepare.py": "56d61f4bd57039c5dc3059fb0497d6534c8c3636948da8df26be3da7fb912937",
+    "skills/master-clarify/evals/rubric.md": "7b3d8060758919f03085c0d9718647afd44b57ffd39ec525c48564d3ba6c5177",
+    "skills/master-clarify/evals/run-record.template.json": "2505b7ec789e1d1cecbbfc7dc1fa4184bcff509520913add6b2f5df02a4a1aa8",
+    "skills/master-clarify/evals/test_materials.py": "2cdabd51c36fb264732b23c0591f0a1ae1edd0e8417871e2dade4e8e51b042d3",
+    "skills/master-clarify/examples/ambiguous.input.json": "5973ec9bc7c786e5c491a59cc6bc14329ef571c90c15e4574fc4b5c8e6025f01",
+    "skills/master-clarify/examples/ambiguous.state.json": "14800ed39e8924e639d1efb10fd891e8d94e5b5e3c367b89d301d53cb1e18784",
+    "skills/master-clarify/examples/ambiguous.summary.md": "ea2c7e7377e39ad1fc04bc9e22b3cf303292691f974524f23b593ef8fef7ca17",
+    "skills/master-clarify/examples/clear.input.json": "8277a32de578de6c77fb5979a27e384c1c680f2238e8a65adacc4c29d25aa2cc",
+    "skills/master-clarify/examples/clear.state.json": "97646eb18115a18367f81244f2fbe1571dcc63819a1b009afb55702b9e48b1a4",
+    "skills/master-clarify/examples/clear.summary.md": "f1ac32405294e3847ea2b9db11455f6e51f91f3e6ca072666a698e4cdbf6992a",
+    "skills/master-clarify/examples/revised.input.json": "f41a8544485900592764a18c26cb17ceae7f736725d0d35609cf9e7267171574",
+    "skills/master-clarify/examples/revised.state.json": "289f8b4bc6a028f03ee8274e4c76171869f164f12ca7646fba08a051ece31476",
+    "skills/master-clarify/examples/revised.summary.md": "822da6e80d05eda4e0a0f56fab2095be87071cc307713cf0aa55ac2eb6d3a328",
+    "skills/master-clarify/references/clarification-method.md": "afaf7adf8b3f0afe9d66c06f64e7c54107c7b9f0f01b4e16b191656b0c8dd6dd",
+    "skills/master-clarify/references/compatibility.md": "3a68ff0a7abcb7ff934a1a61d56f45cfdc1744c7cff4892a46c6d751a56291d9",
+    "skills/master-clarify/reports/implementation-report.md": "ba1fc3ed70f476fa2629ab63ca03a703c5d392b356533f26ad1cd22d690c656d",
+    "skills/master-clarify/reports/verification.json": "768c5e8f5b3629ab32e5a517a77b768b69b6ca441c83d39c2a75c01e7ae57492",
+    "skills/master-clarify/requirements.txt": "4046ca1e3a64f4ea791fb4fb3d8566242086ff1c8e2431e2c349e1052ffc6ba0",
+    "skills/master-clarify/tests/fixtures.py": "0e12ff8c379637f1f35284a2f8ca1c9c94edd8ebb056bcd9a5475dcfd2361882",
+    "skills/master-clarify/tests/test_clarify.py": "eaf29590d715109de0a64acc31023a65e8ba57bbbf8de8a0c71df099e23db5c3",
+    "skills/master-clarify/tools/clarify.py": "8d300cb79e2842085ca7d9130dc52639a4dd4d6fff889788e697aa03395d4b88",
+    "skills/master-clarify/tools/package.py": "b915a490dccc5d0b6140d70f7d9e156226332e0d6dad6089ec4d188378a4cf6a"
+  },
+  "preparedArtifacts": {
+    "root": ".local/clarify-p5-prep-20261119-wyf63r1_/packets",
+    "bundledInGit": false,
+    "manifestSha256": "4f642e10c2315bd2a9c8e642cf5ca82c10e4d6cc45316f0b4a17012ed9a1ff6b",
+    "inputSha256": {
+      "T01.json": "593dfcc31a40cdcde0eed868b898e5c125239f8c3a6d6dda67d77fc3a638c338",
+      "T02.json": "7f3541668e73990e6ec3051587a8953b3a5a3e3262039eb6602692e65c28b92d",
+      "T05.json": "1c69934f46386e8873dc97dd75007a6a56217a2115fbae905c033f3c4520f579",
+      "T06.json": "0f79c543485247b01c8850de7f28700a4823fd76fa1f9822571af0620ffd4f6b",
+      "T07.json": "72f8d1c86e2b95832cf1050a7a4c01fba73706a2990cc158293c1fa04154e13f",
+      "T10.json": "60ea9f8dbff9dc355cf78fcd7a5c2f2882bf9af810e0ad072d0ac69afa0089da",
+      "T12.json": "3e2b2fcb9aab3cbf13887d311d66a0a8e0b2bf6beaf5282f66a2a2bb90f411c3",
+      "T14.json": "24462393d3db6319f4ffd6e423fc38e212063b91fd6238383be1ee283eb1a2f6",
+      "T16.json": "ccc151eca0ea8500a6c212ccac665718f22b30990280328822adfc30b448a50c",
+      "T18.json": "cc96a896469896d6d627cda230ac79ffebeb23a8e6f4e799eec39a8b41ed2d93",
+      "T19.json": "87d171f52605ac20d97abb11a003b1e2ae36619bee8622829f07c38eeb3e6f23",
+      "T22.json": "dc33e2a22d4f20d192c9b70627e826d9b6a9f10798e2fda66e5a15df18cdfece",
+      "T25.json": "0b18313e27c95033b291018c41ecab67ff09e2e965f6c578d7fcaf52ccaae650",
+      "T26.json": "39bd058c2f84b2aefd955c6dbab0916ea65beb3f61657fae337fe0fb2fb8e144"
+    },
+    "skillFilesSha256": {
+      "contracts/contract.md": "886b7c8a9990a7e63de333465c331f6c569f4f988e02c15f1e76c052f87f1ab0",
+      "contracts/clarify_input.v1.schema.json": "a4d2ee68ccea3e343c506d4f1eb5b4002ed767bfe8653a2c08b423508bf842cb",
+      "contracts/clarify_state.v1.schema.json": "b17708709942ca992b1caec0673cee03dff1f97d23470d29ded8582aeafc135a",
+      "SKILL.md": "d6a801236a6438f6161626cba83f5f47dc7e26aea9d89abaae2bebd899f61114",
+      "references/clarification-method.md": "afaf7adf8b3f0afe9d66c06f64e7c54107c7b9f0f01b4e16b191656b0c8dd6dd",
+      "references/compatibility.md": "3a68ff0a7abcb7ff934a1a61d56f45cfdc1744c7cff4892a46c6d751a56291d9"
+    },
+    "caseSha256": {
+      "T01": "7e782ef9ab6e212448155092a95f423b18c95738c04c4287e43a327ae21438f1",
+      "T02": "308e693ac9ed915146a9f868468fdebc61d1c15ce89c4b2be245bfc6c4e40632",
+      "T05": "813b104a109dbfe8b8bf1dd32cca4603f35cf3f123e31c64bde29b8ee863f59c",
+      "T06": "bb3b6a67e9f676bc738102a2dcfcc1c557be50c2d8c519453a9344cc36371d5b",
+      "T07": "976b8d22db81ba76112d9e0e61d12557a0a8d160ae8341997ac2f5b1bc3d66d6",
+      "T10": "e95ed944979eb9ed47eec859c33f2426cfcf8e9015fa489fd937c34274808ac1",
+      "T12": "fc9fa5af12ae961668c4f1672e30f8aa2ba2282fdaf74e90573a1c15cfdfe052",
+      "T14": "cacdc7e411f62d3e9a3b067b2bf21824bf435ff3d4a41157e53cd0c4faaa59f6",
+      "T16": "e6830ff491ad3b6b0cb02d35913ffd4c73bfabf2a12692f22a3e1089c8e8fef5",
+      "T18": "703c93feceed4564312d031a50dc44fa1213597d7a56be220dee1ec7301306b5",
+      "T19": "2fed7d29934680c1a6bfc6dbad34b6ed9277a0e031bba4bb7fb4b2bab91c81e9",
+      "T22": "11ce403c8f11ea214f1dabb3772892dd263c1f4c39ef57dc59d4e329fd1dbfe0",
+      "T25": "ca5c07b081991970b1bb7206b95c6677ab2d5bf5b1e9a86347d9566c81706ed6",
+      "T26": "23d8fd27c5458fa2f8b8965dd2392f98ade5fa3b473e0cdd9193de56c9a78e82"
+    },
+    "sourceUtf8Bytes": {
+      "commonContracts": 21705,
+      "skillOnly": 18763
+    },
+    "byteCountsAreTokenBounds": false
+  },
+  "officialSources": [
+    {
+      "topic": "CNY prices and current model",
+      "url": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/"
+    },
+    {
+      "topic": "Model version update history",
+      "url": "https://api-docs.deepseek.com/updates/"
+    },
+    {
+      "topic": "Messages and usage fields",
+      "url": "https://api-docs.deepseek.com/api/create-message/"
+    },
+    {
+      "topic": "Anthropic compatibility and streaming usage",
+      "url": "https://api-docs.deepseek.com/guides/anthropic_api/"
+    },
+    {
+      "topic": "Thinking mode",
+      "url": "https://api-docs.deepseek.com/guides/thinking_mode/"
+    },
+    {
+      "topic": "Token estimates",
+      "url": "https://api-docs.deepseek.com/quick_start/token_usage/"
+    },
+    {
+      "topic": "Separate account balance API; not called",
+      "url": "https://api-docs.deepseek.com/api/get-user-balance/"
+    }
+  ],
+  "validation": {
+    "status": "OFFLINE_PREPARATION_PASS",
+    "checks": [
+      {
+        "name": "material-check",
+        "command": "python -B skills/master-clarify/evals/prepare.py check",
+        "exitCode": 0,
+        "result": "26 definitions / 12 capabilities / 14 selected / 4 holdouts / 34 sessions; 0 calls"
+      },
+      {
+        "name": "material-tests",
+        "command": "python -B -m unittest discover -s skills/master-clarify/evals -p test_materials.py -v",
+        "exitCode": 0,
+        "result": "7 tests passed"
+      },
+      {
+        "name": "encoding",
+        "command": "pwsh -NoProfile -File ./scripts/check_encoding.ps1 -Json",
+        "exitCode": 0,
+        "result": "259 checked / 0 issues"
+      },
+      {
+        "name": "templates",
+        "command": "pwsh -NoProfile -File ./helpers/validate_templates.ps1 -AgencyRoot ./.ci-stubs/agency-agents",
+        "exitCode": 0,
+        "result": "6 passed using .ci-stubs/agency-agents; not a real expert library"
+      },
+      {
+        "name": "task-analysis",
+        "command": "pwsh -NoProfile -File ./helpers/validate_task_analysis.ps1 -File './examples/task-analysis/*.json' -Json",
+        "exitCode": 0,
+        "result": "4 passed"
+      },
+      {
+        "name": "prompt-evals",
+        "command": "pwsh -NoProfile -File ./evals/run_prompt_evals.ps1 -Json",
+        "exitCode": 0,
+        "result": "19 offline definitions passed; not model outputs"
+      },
+      {
+        "name": "diff-check",
+        "command": "git diff --check",
+        "exitCode": 0,
+        "result": "No whitespace errors in tracked diff; new files additionally scanned by consistency check"
+      }
+    ],
+    "consistency": {
+      "ok": true,
+      "pairedSessions": 34,
+      "seedSessions": 6,
+      "minimumRequests": 40,
+      "proposedMaxRequests": 136,
+      "schemaValidPackets": 14,
+      "packageFilesUnchanged": 33,
+      "currentSourceSealMatched": 31,
+      "otherTrackedFilesUnchanged": 260,
+      "changedFiles": [
+        "docs/collaboration.md",
+        "docs/reports/master-clarify-p5-preparation-2026-11-19.json",
+        "docs/reports/master-clarify-p5-preparation-2026-11-19.md"
+      ],
+      "stagedFiles": 0,
+      "userAbsolutePaths": 0,
+      "budgetArithmetic": "PASS",
+      "modelCalls": 0,
+      "behaviorStatus": "BEHAVIOR_NOT_VERIFIED"
+    },
+    "localRawChecks": ".local/clarify-p5-prep-20261119-wyf63r1_/checks.json",
+    "localRawChecksSha256": "7dd7c0777c40e76338581b57cfdf3af51613d78dea174976fc0b1face3d74055",
+    "logsBundled": false,
+    "limitations": [
+      "No live model, account or balance calls.",
+      "No runtime, full Pester or historical DSH regression rerun.",
+      "An initial local consistency helper resolved package .gitignore against the repository root; its path resolution was corrected before the successful hash check.",
+      "Code-review feedback corrected observed cordis version to 4.0.5 and aligned the proposal with the installed streaming adapter."
+    ]
+  },
+  "evidenceLimitations": [
+    "Read-only local metadata and public docs do not establish authenticated host/model availability.",
+    "Installed binaries and ignored raw logs are not distributed with this report; hashes are identifiers, not attached evidence.",
+    "Public docs were accessed but no authenticated provider model/account endpoint was called.",
+    "Engineering code-review subagents are not P5 behavior sessions.",
+    "Original Clarify package, historical reports and approvals remain unchanged."
+  ]
+}
