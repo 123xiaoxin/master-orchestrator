@@ -1,0 +1,76 @@
+{
+  "planVersion": "clarify_behavior_plan.v1",
+  "status": "BEHAVIOR_NOT_VERIFIED",
+  "authorization": {
+    "approved": false,
+    "provider": null,
+    "model": null,
+    "host": null,
+    "maxRequests": null,
+    "maxInputTokens": null,
+    "maxOutputTokens": null,
+    "maxCost": null,
+    "currency": null,
+    "expiry": null,
+    "dataScope": null
+  },
+  "selectedCaseIds": [
+    "T01",
+    "T02",
+    "T05",
+    "T06",
+    "T07",
+    "T10",
+    "T12",
+    "T14",
+    "T16",
+    "T18",
+    "T19",
+    "T22",
+    "T25",
+    "T26"
+  ],
+  "repeatCaseIds": [
+    "T12",
+    "T22",
+    "T25"
+  ],
+  "repeatCount": 1,
+  "arms": [
+    "baseline",
+    "skill"
+  ],
+  "sameAcrossArms": [
+    "model",
+    "modelConfiguration",
+    "inputMessages",
+    "providedContext",
+    "visibleMaterials",
+    "outputContract",
+    "userResponsePolicy",
+    "resourceCaps"
+  ],
+  "differentAcrossArms": [
+    "isolatedFreshSessionId",
+    "skillInstructionsIncluded"
+  ],
+  "baselineLoadsSkill": false,
+  "skillArmLoadsSkill": true,
+  "minimumIndependentSessions": 34,
+  "minimumRequestsIsNotMaximum": true,
+  "orderPolicy": "Record randomized arm order for each case/repeat before execution; do not reuse sessions across arms or cases.",
+  "userResponsePolicy": "Use only an applicable prewritten branch once, or record a real human response with source. Unexpected questions => human response or incomplete. Never let the evaluated model impersonate the user.",
+  "budgetPolicy": "This plan authorizes no request. Use only an existing authorized host and enforce its confirmed cumulative request/token/cost/time caps before each request. Stop at cap; incomplete coverage stays incomplete. No retries outside the remaining approved cap.",
+  "reviewPolicy": "All heldouts and critical cases require a human or independent reviewer using raw materials. Model self-evaluation is auxiliary only.",
+  "completionGate": {
+    "allSelectedCasesReviewed": true,
+    "all12CapabilitiesCovered": true,
+    "all3DomainsCovered": true,
+    "atLeast4UntunedHoldouts": true,
+    "threeCriticalRepeatedCases": true,
+    "noCriticalFailure": true,
+    "pairedComparisonRequired": true,
+    "missingCasesCountAsPass": false,
+    "p6AllowedBeforeGate": false
+  }
+}

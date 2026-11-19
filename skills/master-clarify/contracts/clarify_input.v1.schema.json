@@ -1,0 +1,185 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "clarify_input.v1"
+    },
+    "projectId": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+    },
+    "taskId": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "mode": {
+          "enum": [
+            "clarify",
+            "plan"
+          ]
+        },
+        "sourceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "text",
+        "mode",
+        "sourceRefs"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+          },
+          "projectId": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+          },
+          "taskId": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+          },
+          "kind": {
+            "enum": [
+              "user_message",
+              "material",
+              "inspection",
+              "model",
+              "host_control"
+            ]
+          },
+          "content": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "locator": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "availability": {
+            "enum": [
+              "provided",
+              "unavailable"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "projectId",
+          "taskId",
+          "kind",
+          "content",
+          "locator",
+          "availability"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "previousStateId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "control": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pauseReason": {
+          "anyOf": [
+            {
+              "enum": [
+                "user",
+                "resource_limit",
+                "no_new_information"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "pauseReason",
+        "sourceRefs"
+      ]
+    },
+    "allowExpressiveExamples": {
+      "type": "boolean"
+    },
+    "evidenceType": {
+      "enum": [
+        "synthetic",
+        "host_output"
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "taskId",
+    "request",
+    "sources",
+    "previousStateId",
+    "control",
+    "allowExpressiveExamples",
+    "evidenceType"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "clarify_input.v1"
+}

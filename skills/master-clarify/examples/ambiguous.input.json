@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "clarify_input.v1",
+  "projectId": "demo",
+  "taskId": "ambiguous",
+  "request": {
+    "text": "做个专业点的东西，给客户用。",
+    "mode": "plan",
+    "sourceRefs": [
+      "U1"
+    ]
+  },
+  "sources": [
+    {
+      "id": "U1",
+      "projectId": "demo",
+      "taskId": "ambiguous",
+      "kind": "user_message",
+      "content": "做个专业点的东西，给客户用。",
+      "locator": null,
+      "availability": "provided"
+    }
+  ],
+  "previousStateId": null,
+  "control": {
+    "pauseReason": null,
+    "sourceRefs": []
+  },
+  "allowExpressiveExamples": true,
+  "evidenceType": "synthetic"
+}

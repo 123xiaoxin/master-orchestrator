@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "clarify_state.v1",
+  "projectId": "demo",
+  "taskId": "inspection-guide",
+  "stateId": "S1",
+  "revision": 1,
+  "previousStateId": null,
+  "items": [
+    {
+      "id": "G1",
+      "kind": "goal",
+      "text": "供值班同事阅读的巡检说明",
+      "status": "active",
+      "confirmation": "explicit",
+      "provenance": {
+        "kind": "user_stated",
+        "sourceRefs": [
+          "U1"
+        ]
+      }
+    },
+    {
+      "id": "SCOPE1",
+      "kind": "scope",
+      "text": "一页中文文档；不连接设备、不发布",
+      "status": "active",
+      "confirmation": "explicit",
+      "provenance": {
+        "kind": "user_stated",
+        "sourceRefs": [
+          "U1"
+        ]
+      }
+    },
+    {
+      "id": "SC1",
+      "kind": "criterion",
+      "text": "检查步骤、异常记录方式和升级联系人占位齐全，顺序可跟随",
+      "status": "active",
+      "confirmation": "explicit",
+      "provenance": {
+        "kind": "user_stated",
+        "sourceRefs": [
+          "U1"
+        ]
+      },
+      "verification": {
+        "method": "用户逐项阅读确认",
+        "evidenceType": "人工审阅记录",
+        "assessor": "用户"
+      }
+    },
+    {
+      "id": "C1",
+      "kind": "constraint",
+      "text": "当前只交付文档，不连接设备、不发布",
+      "status": "active",
+      "confirmation": "explicit",
+      "provenance": {
+        "kind": "user_stated",
+        "sourceRefs": [
+          "U1"
+        ]
+      }
+    }
+  ],
+  "gaps": [],
+  "requests": [],
+  "handoffs": [
+    {
+      "id": "H1",
+      "criterionRefs": [
+        "SC1"
+      ],
+      "status": "current"
+    }
+  ],
+  "changes": [],
+  "proposedNext": "ready_for_planning"
+}

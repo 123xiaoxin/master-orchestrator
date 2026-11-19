@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "clarify_input.v1",
+  "projectId": "demo",
+  "taskId": "inspection-guide",
+  "request": {
+    "text": "改成两页中文文档，第一页检查步骤，第二页异常记录和升级联系人占位；其他要求不变。",
+    "mode": "plan",
+    "sourceRefs": [
+      "U2"
+    ]
+  },
+  "sources": [
+    {
+      "id": "U1",
+      "projectId": "demo",
+      "taskId": "inspection-guide",
+      "kind": "user_message",
+      "content": "请整理一页中文设备巡检说明，供值班同事阅读，包含检查步骤、异常记录方式和升级联系人占位。当前只交付文档，不连接设备、不发布。我按这三项是否齐全且顺序可跟随来确认完成。",
+      "locator": null,
+      "availability": "provided"
+    },
+    {
+      "id": "U2",
+      "projectId": "demo",
+      "taskId": "inspection-guide",
+      "kind": "user_message",
+      "content": "改成两页中文文档，第一页检查步骤，第二页异常记录和升级联系人占位；其他要求不变。",
+      "locator": null,
+      "availability": "provided"
+    }
+  ],
+  "previousStateId": "S1",
+  "control": {
+    "pauseReason": null,
+    "sourceRefs": []
+  },
+  "allowExpressiveExamples": true,
+  "evidenceType": "synthetic"
+}

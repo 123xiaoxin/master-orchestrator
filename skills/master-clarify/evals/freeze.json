@@ -1,0 +1,43 @@
+{
+  "manifestVersion": "clarify_eval_freeze.v1",
+  "frozenDate": "2026-10-28",
+  "canonicalization": "UTF-8 JSON, ensure_ascii=false, sort_keys=true, separators=(comma,colon), no trailing newline",
+  "frozenBeforeBehaviorOutputs": true,
+  "behaviorOutputsObservedAtFreeze": 0,
+  "meaning": "Frozen from behavior-result-driven prompt tuning; not a claim that authors have never read the case definitions. Deterministic fixture checks are not behavior outputs.",
+  "holdoutCaseIds": [
+    "T05",
+    "T14",
+    "T22",
+    "T25"
+  ],
+  "caseSha256": {
+    "T01": "7e782ef9ab6e212448155092a95f423b18c95738c04c4287e43a327ae21438f1",
+    "T02": "308e693ac9ed915146a9f868468fdebc61d1c15ce89c4b2be245bfc6c4e40632",
+    "T03": "eff9a286a2bb736bc6239a9c9e8f0792627a27726d272ede543298389b670704",
+    "T04": "d3552a6e96cd3c235c9e95d59ebf4bd981ea8aa1b4999a3c7658ed2fddc82e0b",
+    "T05": "813b104a109dbfe8b8bf1dd32cca4603f35cf3f123e31c64bde29b8ee863f59c",
+    "T06": "bb3b6a67e9f676bc738102a2dcfcc1c557be50c2d8c519453a9344cc36371d5b",
+    "T07": "976b8d22db81ba76112d9e0e61d12557a0a8d160ae8341997ac2f5b1bc3d66d6",
+    "T08": "3dedec1c1747301286d515f80a6521100d6c952c9f61fae0f0682298c9130581",
+    "T09": "2d73be1210c15c42fef7ecf7ad232f68eef53584fa8e78d6339896159bf8b0cf",
+    "T10": "e95ed944979eb9ed47eec859c33f2426cfcf8e9015fa489fd937c34274808ac1",
+    "T11": "1255bfb1c530646f9937a4a675c6113ad4a32ec3a5b818407c03b9192aba3da0",
+    "T12": "fc9fa5af12ae961668c4f1672e30f8aa2ba2282fdaf74e90573a1c15cfdfe052",
+    "T13": "31060854fe0070dde6e9149c5731316941808e7a2761bd8748bdb5e23e56a4bc",
+    "T14": "cacdc7e411f62d3e9a3b067b2bf21824bf435ff3d4a41157e53cd0c4faaa59f6",
+    "T15": "462c95a4ae80a2b17068e60931f7f7f7c84b4f85637c5c26762ee89a01810b40",
+    "T16": "e6830ff491ad3b6b0cb02d35913ffd4c73bfabf2a12692f22a3e1089c8e8fef5",
+    "T17": "d3425787e75ec530cb613d9ee863e93237deed76c03fd31046246482bc27c5e6",
+    "T18": "703c93feceed4564312d031a50dc44fa1213597d7a56be220dee1ec7301306b5",
+    "T19": "2fed7d29934680c1a6bfc6dbad34b6ed9277a0e031bba4bb7fb4b2bab91c81e9",
+    "T20": "edafb359f3516d73921c61263ec008fb7ab6bea1b6f85c2526c9c1412fe738c3",
+    "T21": "bac539764aa5bcd134308977e4ddfd30a80099dd805ba0b68bda799a4aa2a1b1",
+    "T22": "11ce403c8f11ea214f1dabb3772892dd263c1f4c39ef57dc59d4e329fd1dbfe0",
+    "T23": "76c7141d621f69c087c9f1755999d9619e4c59edf7b9c3da76fb4ffc0fbd4217",
+    "T24": "b483161d80293ca47c8fa1fb303e4c6a6732046ad9fa2945a204b7aeb06bc9c2",
+    "T25": "ca5c07b081991970b1bb7206b95c6677ab2d5bf5b1e9a86347d9566c81706ed6",
+    "T26": "23d8fd27c5458fa2f8b8965dd2392f98ade5fa3b473e0cdd9193de56c9a78e82"
+  },
+  "promotionRule": "If any holdout behavior outcome informs a Skill change, move that case to development, record the reason and old hash, add a new unused holdout and issue a new freeze version before further behavior testing. Never silently update this freeze."
+}

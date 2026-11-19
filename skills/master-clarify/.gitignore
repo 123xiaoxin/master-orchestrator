@@ -1,0 +1,5 @@
+.local/
+.test-tmp/
+__pycache__/
+*.pyc
+clarify-eval-*/

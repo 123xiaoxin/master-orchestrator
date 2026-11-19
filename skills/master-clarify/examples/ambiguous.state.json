@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "clarify_state.v1",
+  "projectId": "demo",
+  "taskId": "ambiguous",
+  "stateId": "A1",
+  "revision": 1,
+  "previousStateId": null,
+  "items": [],
+  "gaps": [
+    {
+      "id": "GAP1",
+      "description": "尚不清楚客户要完成什么、交付什么及怎样判断有效",
+      "kind": "missing",
+      "affects": "current",
+      "resolution": "user",
+      "status": "open",
+      "blocks": [
+        "goal",
+        "scope",
+        "criterion"
+      ],
+      "itemRefs": [],
+      "sourceRefs": [
+        "U1"
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "id": "Q1",
+      "gapRefs": [
+        "GAP1"
+      ],
+      "method": "user",
+      "text": "客户拿到它后，最希望能完成哪件具体事情？",
+      "sideEffects": false
+    }
+  ],
+  "handoffs": [],
+  "changes": [],
+  "proposedNext": "clarify"
+}

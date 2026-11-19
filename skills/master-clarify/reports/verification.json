@@ -1,0 +1,566 @@
+{
+  "evidenceScope": {
+    "currentResults": "currentVerification",
+    "historicalDate": "2026-10-28",
+    "historicalFields": [
+      "date",
+      "timezone",
+      "skillVersion",
+      "schemaVersions",
+      "status",
+      "baseCommit",
+      "branch",
+      "stages",
+      "modelCalls",
+      "paidCalls",
+      "externalBusinessActions",
+      "defaultMasterEntryChanged",
+      "executionAuthorityGranted",
+      "newTests",
+      "regression",
+      "independentCopy",
+      "evaluation",
+      "knownBaselineLimitations",
+      "limitations",
+      "sourceSha256",
+      "logSha256",
+      "finalEncoding"
+    ],
+    "historicalMeaning": "Original fields below are an unchanged historical snapshot, not validation of the currently modified sources",
+    "currentSourceHashPath": "currentVerification.sourceSha256",
+    "historicalSourceHashPath": "sourceSha256",
+    "sourceInventory": "31 distributed files excluding reports/**; reports are evidence descriptions, excluded to avoid self-reference",
+    "distributionInventory": "33 files including both reports; package.py --output writes an external package-manifest.json covering all 33, excluding the manifest itself",
+    "localLogs": "logSha256 and currentVerification.checks localLog hashes fingerprint undistributed local logs; they are not log attachments and cannot be reviewed from Git alone",
+    "reproduction": "Current package checks can be rerun from the package with its declared dependencies; repository-level checks require the full repository. Historical private Pester/audit helpers are not distributed."
+  },
+  "currentVerification": {
+    "date": "2026-11-19",
+    "timezone": "Asia/Shanghai",
+    "status": [
+      "ENGINEERING_OFFLINE_PASS",
+      "BEHAVIOR_NOT_VERIFIED",
+      "INTEGRATION_NOT_STARTED"
+    ],
+    "scope": "Cursor review follow-up: tests, contract clarification and evidence documentation; no runtime-tool changes",
+    "checks": [
+      {
+        "name": "clarify-tests",
+        "command": "python -B -m unittest discover -s skills/master-clarify/tests -p 'test_*.py' -v",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "passed": 61,
+          "failed": 0
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/clarify-tests.log",
+        "localLogSha256": "5973929e4ddbad7a0f902bcd3008c1b381ebf4f41eb35bd6f1c3d9f49d8aa4d1",
+        "logDistributed": false
+      },
+      {
+        "name": "eval-material-tests",
+        "command": "python -B -m unittest discover -s skills/master-clarify/evals -p test_materials.py -v",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "passed": 7,
+          "failed": 0
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/eval-material-tests.log",
+        "localLogSha256": "b4c5f4f9520b0bae46cd1f479e1cb6e8ad8327e71483cca40dd7c01ae017f656",
+        "logDistributed": false
+      },
+      {
+        "name": "eval-material-check",
+        "command": "python -B skills/master-clarify/evals/prepare.py check",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "ok": true,
+          "cases": 26,
+          "capabilities": 12,
+          "selectedCases": 14,
+          "holdouts": [
+            "T05",
+            "T14",
+            "T22",
+            "T25"
+          ],
+          "minimumIndependentSessions": 34,
+          "modelCalls": 0,
+          "behaviorStatus": "BEHAVIOR_NOT_VERIFIED"
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/eval-material-check.log",
+        "localLogSha256": "85c5a34add2451c6a1d5e4a6f375ed3bf0454ce593cd9cca9e29d76f654a96b4",
+        "logDistributed": false
+      },
+      {
+        "name": "encoding",
+        "command": "pwsh -NoProfile -File ./scripts/check_encoding.ps1 -Json",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "ok": true,
+          "checked": 257,
+          "issueCount": 0
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/encoding.log",
+        "localLogSha256": "3dfa35a477c56e93d2b1d6a84a352011dc31c2f7b164af26045423b640318269",
+        "logDistributed": false
+      },
+      {
+        "name": "templates",
+        "command": "pwsh -NoProfile -File ./helpers/validate_templates.ps1 -AgencyRoot ./.ci-stubs/agency-agents",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "ok": true,
+          "total": 6,
+          "failed": 0
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/templates.log",
+        "localLogSha256": "3991ef18d4010c3d895ff9054a560a9be69c701dde7adef60be900bd0efe3caa",
+        "logDistributed": false
+      },
+      {
+        "name": "task-analysis",
+        "command": "pwsh -NoProfile -File ./helpers/validate_task_analysis.ps1 -File './examples/task-analysis/*.json' -Json",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "ok": true,
+          "total": 4,
+          "failed": 0
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/task-analysis.log",
+        "localLogSha256": "16509c96b8c6a71a2e22bda1dd9d0e8833261d953a04c31b1632b739af00f296",
+        "logDistributed": false
+      },
+      {
+        "name": "prompt-evals",
+        "command": "pwsh -NoProfile -File ./evals/run_prompt_evals.ps1 -Json",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "ok": true,
+          "total": 19,
+          "failed": 0
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/prompt-evals.log",
+        "localLogSha256": "7c47325b4b87ed45d58e7a8bb82b63256e4ab949792f90d27ac1da87a645fa41",
+        "logDistributed": false
+      },
+      {
+        "name": "package-check",
+        "command": "python -B skills/master-clarify/tools/package.py",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "ok": true,
+          "files": 33,
+          "behaviorStatus": "BEHAVIOR_NOT_VERIFIED"
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/package-check.log",
+        "localLogSha256": "5fde5492124c70dd4a6b7aa12465c8a53f985c7dfd1db6e3b9445ccd015c66cf",
+        "logDistributed": false
+      },
+      {
+        "name": "git-diff-check",
+        "command": "git diff --check",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "ok": true
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/git-diff-check.log",
+        "localLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "logDistributed": false
+      },
+      {
+        "name": "clarify-dry-run-add",
+        "command": "git add --dry-run -- skills/master-clarify",
+        "workingDirectory": ".",
+        "exitCode": 0,
+        "summary": {
+          "candidateFiles": 33,
+          "actualStaging": false
+        },
+        "localLog": ".local/clarify-review-20261119-gnxgd47y/clarify-dry-run-add.log",
+        "localLogSha256": "f40d17ee2d100a3d51fd56d12fa7f0f30dff0e1495277423c529a2103256c4e5",
+        "logDistributed": false
+      }
+    ],
+    "notRerun": [
+      "full Pester suite",
+      "Node DSH aggregate",
+      "Master-specific Python regression",
+      "full outside-repository copy audit hook"
+    ],
+    "independentCopyBoundary": "Package-copy unit tests ran within the 61-test suite; the historical complete outside-repository audit was not rerun",
+    "sourceFileCount": 31,
+    "reportFileCount": 2,
+    "packageFileCount": 33,
+    "sourceSha256": {
+      ".gitignore": "f16b6dd288a3bb87fde88de299867fd983ab976bb7e0642e09e5d8d1c1bcc260",
+      "contracts/clarify_input.v1.schema.json": "a4d2ee68ccea3e343c506d4f1eb5b4002ed767bfe8653a2c08b423508bf842cb",
+      "contracts/clarify_state.v1.schema.json": "b17708709942ca992b1caec0673cee03dff1f97d23470d29ded8582aeafc135a",
+      "contracts/contract.md": "886b7c8a9990a7e63de333465c331f6c569f4f988e02c15f1e76c052f87f1ab0",
+      "evals/cases.jsonl": "4bdade4d12fa35875ee832805810648111e0d7e8848c781b13e631e04ce48b96",
+      "evals/comparison.template.json": "0a5358294e52e2d02875c3b10018dbedbefd1ac52a598dcd34ae596176e68d07",
+      "evals/freeze.json": "c1efc1f47b1e14ed2d35e2cf0b8e54ca021408f53d7fec9c01b1f74aa76be3bd",
+      "evals/plan.json": "b9f4c224d56c4008e5416ab621deb83d2eed12e238d7aaa16e22948fffdab138",
+      "evals/prepare.py": "56d61f4bd57039c5dc3059fb0497d6534c8c3636948da8df26be3da7fb912937",
+      "evals/README.md": "8cb1670ca46c5155b7b6868e27c5e48fe5fa7b5f7d68916aabfdbffb6bbb8d0b",
+      "evals/rubric.md": "7b3d8060758919f03085c0d9718647afd44b57ffd39ec525c48564d3ba6c5177",
+      "evals/run-record.template.json": "2505b7ec789e1d1cecbbfc7dc1fa4184bcff509520913add6b2f5df02a4a1aa8",
+      "evals/test_materials.py": "2cdabd51c36fb264732b23c0591f0a1ae1edd0e8417871e2dade4e8e51b042d3",
+      "examples/ambiguous.input.json": "5973ec9bc7c786e5c491a59cc6bc14329ef571c90c15e4574fc4b5c8e6025f01",
+      "examples/ambiguous.state.json": "14800ed39e8924e639d1efb10fd891e8d94e5b5e3c367b89d301d53cb1e18784",
+      "examples/ambiguous.summary.md": "ea2c7e7377e39ad1fc04bc9e22b3cf303292691f974524f23b593ef8fef7ca17",
+      "examples/clear.input.json": "8277a32de578de6c77fb5979a27e384c1c680f2238e8a65adacc4c29d25aa2cc",
+      "examples/clear.state.json": "97646eb18115a18367f81244f2fbe1571dcc63819a1b009afb55702b9e48b1a4",
+      "examples/clear.summary.md": "f1ac32405294e3847ea2b9db11455f6e51f91f3e6ca072666a698e4cdbf6992a",
+      "examples/revised.input.json": "f41a8544485900592764a18c26cb17ceae7f736725d0d35609cf9e7267171574",
+      "examples/revised.state.json": "289f8b4bc6a028f03ee8274e4c76171869f164f12ca7646fba08a051ece31476",
+      "examples/revised.summary.md": "822da6e80d05eda4e0a0f56fab2095be87071cc307713cf0aa55ac2eb6d3a328",
+      "README.md": "810d5faa58df8417956e0d1a11f9e3bf99c5a722054cbb7533acca4121ea3277",
+      "references/clarification-method.md": "afaf7adf8b3f0afe9d66c06f64e7c54107c7b9f0f01b4e16b191656b0c8dd6dd",
+      "references/compatibility.md": "3a68ff0a7abcb7ff934a1a61d56f45cfdc1744c7cff4892a46c6d751a56291d9",
+      "requirements.txt": "4046ca1e3a64f4ea791fb4fb3d8566242086ff1c8e2431e2c349e1052ffc6ba0",
+      "SKILL.md": "d6a801236a6438f6161626cba83f5f47dc7e26aea9d89abaae2bebd899f61114",
+      "tests/fixtures.py": "0e12ff8c379637f1f35284a2f8ca1c9c94edd8ebb056bcd9a5475dcfd2361882",
+      "tests/test_clarify.py": "eaf29590d715109de0a64acc31023a65e8ba57bbbf8de8a0c71df099e23db5c3",
+      "tools/clarify.py": "8d300cb79e2842085ca7d9130dc52639a4dd4d6fff889788e697aa03395d4b88",
+      "tools/package.py": "b915a490dccc5d0b6140d70f7d9e156226332e0d6dad6089ec4d188378a4cf6a"
+    },
+    "changedSourcesSinceHistoricalSnapshot": [
+      "contracts/contract.md",
+      "tests/test_clarify.py"
+    ],
+    "modelCalls": 0,
+    "paidCalls": 0,
+    "externalBusinessActions": 0,
+    "defaultMasterEntryChanged": false,
+    "executionAuthorityGranted": false,
+    "staged": false,
+    "committed": false,
+    "pushed": false
+  },
+  "date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "skillVersion": "0.1.0",
+  "schemaVersions": [
+    "clarify_input.v1",
+    "clarify_state.v1"
+  ],
+  "status": [
+    "ENGINEERING_OFFLINE_PASS",
+    "BEHAVIOR_NOT_VERIFIED",
+    "INTEGRATION_NOT_STARTED"
+  ],
+  "baseCommit": "645e2c28d5f339899be9008d62bdb2e4604eaa01",
+  "branch": "codex/master-integration",
+  "stages": {
+    "P0": "completed",
+    "P1": "completed",
+    "P2": "completed",
+    "P3": "completed",
+    "P4": "completed",
+    "P5": "materials_prepared_no_real_model_evaluation",
+    "P6": "not_entered"
+  },
+  "modelCalls": 0,
+  "paidCalls": 0,
+  "externalBusinessActions": 0,
+  "defaultMasterEntryChanged": false,
+  "executionAuthorityGranted": false,
+  "newTests": [
+    {
+      "command": "python -B -m unittest discover -s skills/master-clarify/tests -p 'test_*.py' -v",
+      "exitCode": 0,
+      "passed": 52,
+      "failed": 0,
+      "scope": "synthetic deterministic mechanisms; T01-T26 are subcases, not additional test-method counts"
+    },
+    {
+      "command": "python -B -m unittest discover -s skills/master-clarify/evals -p test_materials.py -v",
+      "exitCode": 0,
+      "passed": 7,
+      "failed": 0,
+      "scope": "evaluation material integrity, not real model behavior"
+    }
+  ],
+  "regression": [
+    {
+      "name": "encoding",
+      "command": "pwsh -NoProfile -File ./scripts/check_encoding.ps1 -Json",
+      "exitCode": 0,
+      "log": ".local\\clarify-final-regression\\encoding.log",
+      "summary": {
+        "ok": true,
+        "checked": 255
+      }
+    },
+    {
+      "name": "templates",
+      "command": "pwsh -NoProfile -File ./helpers/validate_templates.ps1",
+      "exitCode": 0,
+      "log": ".local\\clarify-final-regression\\templates.log",
+      "summary": {
+        "ok": true,
+        "total": 6,
+        "failed": 0
+      }
+    },
+    {
+      "name": "task-analysis",
+      "command": "pwsh -NoProfile -File ./helpers/validate_task_analysis.ps1 -File examples/task-analysis/*.json -Json",
+      "exitCode": 0,
+      "log": ".local\\clarify-final-regression\\task-analysis.log",
+      "summary": {
+        "ok": true,
+        "total": 4,
+        "failed": 0
+      }
+    },
+    {
+      "name": "prompt-evals",
+      "command": "pwsh -NoProfile -File ./evals/run_prompt_evals.ps1 -Json",
+      "exitCode": 0,
+      "log": ".local\\clarify-final-regression\\prompt-evals.log",
+      "summary": {
+        "ok": true,
+        "total": 19,
+        "failed": 0
+      }
+    },
+    {
+      "name": "master-check",
+      "command": "python scripts/master_skill.py check --root .",
+      "exitCode": 0,
+      "log": ".local\\clarify-final-regression\\master-check.log",
+      "summary": {
+        "ok": true,
+        "totalModules": 8
+      }
+    },
+    {
+      "name": "master-tests",
+      "command": "python tests/test_master_skill.py",
+      "exitCode": 0,
+      "log": ".local\\clarify-final-regression\\master-tests.log",
+      "summary": {
+        "total": 10
+      }
+    },
+    {
+      "name": "pester-portable",
+      "command": "pwsh -NoProfile -File .local/clarify-final-regression/run-pester-portable.ps1",
+      "exitCode": 0,
+      "log": ".local/clarify-final-regression/pester.log",
+      "summary": {
+        "PassedCount": 75,
+        "FailedCount": 0,
+        "SkippedCount": 0,
+        "TotalCount": 75
+      }
+    }
+  ],
+  "independentCopy": {
+    "location": "outside source repository",
+    "originalRepositoryReads": "denied by Python audit hook",
+    "pythonMode": "-I -B -X utf8",
+    "checks": [
+      {
+        "check": "tests",
+        "argv": [
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "exitCode": 0,
+        "sourceRepositoryReadsDenied": true
+      },
+      {
+        "check": "eval-tests",
+        "argv": [
+          "unittest",
+          "discover",
+          "-s",
+          "evals",
+          "-p",
+          "test_materials.py",
+          "-v"
+        ],
+        "exitCode": 0,
+        "sourceRepositoryReadsDenied": true
+      },
+      {
+        "check": "clear",
+        "argv": [
+          "script",
+          "tools/clarify.py",
+          "run",
+          "--input",
+          "examples/clear.input.json",
+          "--candidate",
+          "examples/clear.state.json",
+          "--output",
+          ".local/clear"
+        ],
+        "exitCode": 0,
+        "sourceRepositoryReadsDenied": true
+      },
+      {
+        "check": "ambiguous",
+        "argv": [
+          "script",
+          "tools/clarify.py",
+          "run",
+          "--input",
+          "examples/ambiguous.input.json",
+          "--candidate",
+          "examples/ambiguous.state.json",
+          "--output",
+          ".local/ambiguous"
+        ],
+        "exitCode": 0,
+        "sourceRepositoryReadsDenied": true
+      },
+      {
+        "check": "revised",
+        "argv": [
+          "script",
+          "tools/clarify.py",
+          "run",
+          "--input",
+          "examples/revised.input.json",
+          "--candidate",
+          "examples/revised.state.json",
+          "--previous",
+          ".local/clear/result.json",
+          "--output",
+          ".local/revised"
+        ],
+        "exitCode": 0,
+        "sourceRepositoryReadsDenied": true
+      },
+      {
+        "check": "eval-check",
+        "argv": [
+          "script",
+          "evals/prepare.py",
+          "check"
+        ],
+        "exitCode": 0,
+        "sourceRepositoryReadsDenied": true
+      },
+      {
+        "check": "package-check",
+        "argv": [
+          "script",
+          "tools/package.py"
+        ],
+        "exitCode": 0,
+        "sourceRepositoryReadsDenied": true
+      }
+    ]
+  },
+  "evaluation": {
+    "cases": 26,
+    "capabilities": 12,
+    "plannedCases": 14,
+    "holdouts": [
+      "T05",
+      "T14",
+      "T22",
+      "T25"
+    ],
+    "repeatCases": [
+      "T12",
+      "T22",
+      "T25"
+    ],
+    "minimumSessions": 34,
+    "transcripts": 0,
+    "relativeImprovement": "NOT VERIFIED",
+    "missing": [
+      "available authorized model entrance",
+      "bounded cumulative request/token/cost/time authorization",
+      "real isolated paired outputs and independent reviews"
+    ]
+  },
+  "knownBaselineLimitations": [
+    "Standard Pester registry and CIM access blocked; portable config runs same tests with registry/XML disabled",
+    "Node aggregate incomplete; isolated provider loopback EACCES leaks initialization listener; no Node source changes"
+  ],
+  "limitations": [
+    "Tools cannot establish semantic fidelity, transcript authenticity or whether user words authorize an action",
+    "Provenance source envelope must be host supplied",
+    "Package private-path/secret feature scans are not exhaustive security proof"
+  ],
+  "sourceSha256": {
+    ".gitignore": "f16b6dd288a3bb87fde88de299867fd983ab976bb7e0642e09e5d8d1c1bcc260",
+    "contracts/clarify_input.v1.schema.json": "a4d2ee68ccea3e343c506d4f1eb5b4002ed767bfe8653a2c08b423508bf842cb",
+    "contracts/clarify_state.v1.schema.json": "b17708709942ca992b1caec0673cee03dff1f97d23470d29ded8582aeafc135a",
+    "contracts/contract.md": "a7b5f3d9cb9c4b8528e10af845b209b3b92f9cd335420e1e661bbd6fa94632be",
+    "evals/cases.jsonl": "4bdade4d12fa35875ee832805810648111e0d7e8848c781b13e631e04ce48b96",
+    "evals/comparison.template.json": "0a5358294e52e2d02875c3b10018dbedbefd1ac52a598dcd34ae596176e68d07",
+    "evals/freeze.json": "c1efc1f47b1e14ed2d35e2cf0b8e54ca021408f53d7fec9c01b1f74aa76be3bd",
+    "evals/plan.json": "b9f4c224d56c4008e5416ab621deb83d2eed12e238d7aaa16e22948fffdab138",
+    "evals/prepare.py": "56d61f4bd57039c5dc3059fb0497d6534c8c3636948da8df26be3da7fb912937",
+    "evals/README.md": "8cb1670ca46c5155b7b6868e27c5e48fe5fa7b5f7d68916aabfdbffb6bbb8d0b",
+    "evals/rubric.md": "7b3d8060758919f03085c0d9718647afd44b57ffd39ec525c48564d3ba6c5177",
+    "evals/run-record.template.json": "2505b7ec789e1d1cecbbfc7dc1fa4184bcff509520913add6b2f5df02a4a1aa8",
+    "evals/test_materials.py": "2cdabd51c36fb264732b23c0591f0a1ae1edd0e8417871e2dade4e8e51b042d3",
+    "examples/ambiguous.input.json": "5973ec9bc7c786e5c491a59cc6bc14329ef571c90c15e4574fc4b5c8e6025f01",
+    "examples/ambiguous.state.json": "14800ed39e8924e639d1efb10fd891e8d94e5b5e3c367b89d301d53cb1e18784",
+    "examples/ambiguous.summary.md": "ea2c7e7377e39ad1fc04bc9e22b3cf303292691f974524f23b593ef8fef7ca17",
+    "examples/clear.input.json": "8277a32de578de6c77fb5979a27e384c1c680f2238e8a65adacc4c29d25aa2cc",
+    "examples/clear.state.json": "97646eb18115a18367f81244f2fbe1571dcc63819a1b009afb55702b9e48b1a4",
+    "examples/clear.summary.md": "f1ac32405294e3847ea2b9db11455f6e51f91f3e6ca072666a698e4cdbf6992a",
+    "examples/revised.input.json": "f41a8544485900592764a18c26cb17ceae7f736725d0d35609cf9e7267171574",
+    "examples/revised.state.json": "289f8b4bc6a028f03ee8274e4c76171869f164f12ca7646fba08a051ece31476",
+    "examples/revised.summary.md": "822da6e80d05eda4e0a0f56fab2095be87071cc307713cf0aa55ac2eb6d3a328",
+    "README.md": "810d5faa58df8417956e0d1a11f9e3bf99c5a722054cbb7533acca4121ea3277",
+    "references/clarification-method.md": "afaf7adf8b3f0afe9d66c06f64e7c54107c7b9f0f01b4e16b191656b0c8dd6dd",
+    "references/compatibility.md": "3a68ff0a7abcb7ff934a1a61d56f45cfdc1744c7cff4892a46c6d751a56291d9",
+    "requirements.txt": "4046ca1e3a64f4ea791fb4fb3d8566242086ff1c8e2431e2c349e1052ffc6ba0",
+    "SKILL.md": "d6a801236a6438f6161626cba83f5f47dc7e26aea9d89abaae2bebd899f61114",
+    "tests/fixtures.py": "0e12ff8c379637f1f35284a2f8ca1c9c94edd8ebb056bcd9a5475dcfd2361882",
+    "tests/test_clarify.py": "e63fd94a3521073e2b4d6facbcfa17a8b97a58492ddaa9b4b1f5fa8c810aa27a",
+    "tools/clarify.py": "8d300cb79e2842085ca7d9130dc52639a4dd4d6fff889788e697aa03395d4b88",
+    "tools/package.py": "b915a490dccc5d0b6140d70f7d9e156226332e0d6dad6089ec4d188378a4cf6a"
+  },
+  "logSha256": {
+    ".local/clarify-final-regression/commands.json": "8772645e32b55c713a506fbdde424e4fc091c54fde3105620b0b18d82b32113e",
+    ".local/clarify-final-regression/encoding.log": "76db102b7ff2e4f3c0de0f73f532c55ceb2534fea395e74924a937b4e38a7d1d",
+    ".local/clarify-final-regression/master-check.log": "7be213feef84c6ad2820508e4664b5025f6c6a21ca3ff1b0c39b9e7f3c03eaf0",
+    ".local/clarify-final-regression/master-tests.log": "8ded3ab57103f5258d312b29327fea39fa11a8b95e20faf28e323b2a3522dff4",
+    ".local/clarify-final-regression/pester-summary.json": "0f6913d370d6bfdfd486b5986fc95664a14f3a71ddb416e94eb2b20f371f434a",
+    ".local/clarify-final-regression/pester.log": "b969fee333f0dcc3d9da717c325c4a3f53896083e1db2282ecae9b99abab81af",
+    ".local/clarify-final-regression/prompt-evals.log": "b20bf94d4f87741259bff7036fb6a185ff32c68260acd48d0451477b74b90b22",
+    ".local/clarify-final-regression/regression-summary.json": "d4c71fb517ca5350de5357ead63d41df327bffe0c1a45a90b4abda0bcb691a0c",
+    ".local/clarify-final-regression/run-pester-portable.ps1": "a8346e9e7cdcf9a7ef79708f52d99274d0d3893429f20bac92ba6415422a1a68",
+    ".local/clarify-final-regression/task-analysis.log": "c2a239fbbafad11a703bf549c20824371a3155aa21b21e924933c533ddffdbd6",
+    ".local/clarify-final-regression/templates.log": "725ae0a404dba3dc13ed393e4ea465a26386c114aea294721aea7cf36f5a8562",
+    ".local/clarify-independent-verification/ambiguous.log": "150add73f971a7532e88cf36ae105957acef5e2d516aaf88864a026c2aeb755b",
+    ".local/clarify-independent-verification/clear.log": "82fd1777f101e62305e303ca540453eccc53f1c6f995a5095823ac55be976d55",
+    ".local/clarify-independent-verification/eval-check.log": "ab284d4598c5db8ba80a6163075c05e9d0e35c0350d7a41cc61703add5472c85",
+    ".local/clarify-independent-verification/eval-tests.log": "13aeb6f15b07587bd78eb435ac801faefafd5db5afe845fffc26a7b8a5f68751",
+    ".local/clarify-independent-verification/package-check.log": "51f4bcd7e1451b627d2aac9ef9347e2177bc209afce8bc5b1cc7f278c560f813",
+    ".local/clarify-independent-verification/results.json": "2b35c1ad64f91398db27c6a94000ece1d6a303d5345c7485e325709dfcfd3bfd",
+    ".local/clarify-independent-verification/revised.log": "1d83d5756301745fe76d45cccb04551f1a5df4c753ac79fef73078cfd63952bd",
+    ".local/clarify-independent-verification/tests.log": "d183190f675bfeaf4f4e48aa9a10f0a0af9221ab516d22620509e5a8a61cb03e"
+  },
+  "finalEncoding": {
+    "command": "pwsh -NoProfile -File ./scripts/check_encoding.ps1 -Json",
+    "checked": 256,
+    "exitCode": 0,
+    "issueCount": 0
+  }
+}

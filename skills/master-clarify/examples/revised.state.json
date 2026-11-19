@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "clarify_state.v1",
+  "projectId": "demo",
+  "taskId": "inspection-guide",
+  "stateId": "S2",
+  "revision": 2,
+  "previousStateId": "S1",
+  "items": [
+    {
+      "id": "G1",
+      "kind": "goal",
+      "text": "供值班同事阅读的巡检说明",
+      "status": "active",
+      "confirmation": "explicit",
+      "provenance": {
+        "kind": "user_stated",
+        "sourceRefs": [
+          "U1"
+        ]
+      }
+    },
+    {
+      "id": "SCOPE1",
+      "kind": "scope",
+      "text": "两页中文文档；不连接设备、不发布",
+      "status": "active",
+      "confirmation": "explicit",
+      "provenance": {
+        "kind": "user_stated",
+        "sourceRefs": [
+          "U1",
+          "U2"
+        ]
+      }
+    },
+    {
+      "id": "SC1",
+      "kind": "criterion",
+      "text": "第一页检查步骤，第二页异常记录和升级联系人占位，顺序可跟随",
+      "status": "active",
+      "confirmation": "explicit",
+      "provenance": {
+        "kind": "user_stated",
+        "sourceRefs": [
+          "U1",
+          "U2"
+        ]
+      },
+      "verification": {
+        "method": "用户逐项阅读确认",
+        "evidenceType": "人工审阅记录",
+        "assessor": "用户"
+      }
+    },
+    {
+      "id": "C1",
+      "kind": "constraint",
+      "text": "当前只交付文档，不连接设备、不发布",
+      "status": "active",
+      "confirmation": "explicit",
+      "provenance": {
+        "kind": "user_stated",
+        "sourceRefs": [
+          "U1"
+        ]
+      }
+    }
+  ],
+  "gaps": [],
+  "requests": [],
+  "handoffs": [
+    {
+      "id": "H1",
+      "criterionRefs": [
+        "SC1"
+      ],
+      "status": "needs_review"
+    }
+  ],
+  "changes": [
+    {
+      "itemId": "SCOPE1",
+      "type": "requirement_change",
+      "action": "modified",
+      "sourceRefs": [
+        "U2"
+      ]
+    },
+    {
+      "itemId": "SC1",
+      "type": "requirement_change",
+      "action": "modified",
+      "sourceRefs": [
+        "U2"
+      ]
+    }
+  ],
+  "proposedNext": "ready_for_planning"
+}
