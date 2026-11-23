@@ -57,18 +57,18 @@ JSON 的 `pathNormalization` 标明本次整理及对应整理前提交；路径
 | 项目 | 内容 |
 | --- | --- |
 | 更新时间 | 2026-11-23（北京时间） |
-| 当前任务 | Clarify「少轮做对」宿主规程与必要离线检查已实现；本轮只交审，不暂存、不 commit |
-| 当前分支 / 基线 | `codex/master-integration` / `0eb6019` |
-| 当前写入方 / 记录维护方 | Codex 实现与验证；Cursor 只读审查 |
-| Cursor 既有审查结论 | 用户确认上一轮默认额外修复 2 次、最小追问与每份 65,536 UTF-8 字节检查已通过只读审查；本轮宿主规程尚待新审查 |
-| 实际修改范围 | 下列 13 文件（12 个已跟踪修改、1 个新规程文件）；不包含任何暂停工程 |
-| 核心约束 | 先生成候选，再做契约及交互检查；无效最多额外修复 2 次，仍无效保留错误停止；有效后才按推导状态追问或交接；失败输出计字节 |
-| 两臂加载 | baseline 只加载三份公共契约；skill 再加载入口、方法、兼容边界三份说明；主持人协议与评测答案不发给模型 |
-| 计费与运输 | 暂停；E4 PARTIAL / LIVE_ADMISSION_BLOCKED；不补计费上界，不调用模型或查询账户，不进 P6，不改 Master 默认入口 |
-| 既有工作 | 开始时 16 项未跟踪工程（含既存 pycache）保持原字节；不运行或修改 admission/eval 运输工程及 P5/E4 报告 |
-| 验证 | 包内 91/91、材料 8/8，freeze、14 个准备包、CLI 修复/零问及 digest 对照、格式检查通过；四项基础与包检查记录在 currentVerification.checks；BEHAVIOR_NOT_VERIFIED |
-| Git 操作 | 暂存区为空；没有本轮暂存/commit 授权，不 push |
-| 下一步 | 交 Cursor 只读审查本轮 13 文件；等待用户另行明确「可以 commit」，当前不暂存 |
+| 当前任务 | 整包收束为唯一公开版本 `main`：并入 v5.8 coverage 文档提交、快进推送、删除过时远程分支 |
+| 当前分支 / 基线 | 目标公开线 `main`；收束前开发 tip 含 `071cdaf` + cherry-pick `ad8e1fe`（`d88ef43`） |
+| 当前写入方 / 记录维护方 | Cursor 按用户授权执行整合与推送；完成后日常只跟 `main` |
+| Cursor 既有审查结论 | `071cdaf` 宿主规程只读复核已通过；本轮为 Git 收束，不重新声称行为验证 |
+| 实际修改范围 | cherry-pick 仅 README.md / TODO.md（其余 coverage 文件本已在开发线）；交接本表；不入库 16 项未跟踪工程 |
+| 核心约束 | 快进-only 更新 `main`；禁止 force push；旧 `codex/master-clarify-test` 与三个 `upgrade/*` 远程分支删除 |
+| 两臂加载 | 不变：baseline 三契约 / skill +3 说明；规程与答案不发给模型 |
+| 计费与运输 | 仍暂停；E4 PARTIAL / LIVE_ADMISSION_BLOCKED；`BEHAVIOR_NOT_VERIFIED`；不改 Master 默认入口 |
+| 既有工作 | 16 项未跟踪工程保持原字节、不入库 |
+| 验证 | 收束前：对 `origin/main` 可快进；cherry-pick 无冲突；coverage 脚本字节已与 `d88ef43` 一致 |
+| Git 操作 | 用户已授权：cherry-pick commit、检出 `main` 快进、`push origin main`、删远程废分支、移除旧 worktree |
+| 下一步 | 推送成功后请外部按 `skills/master-clarify/` 真人测；行为证据未齐前不标验收、不启用默认 Clarify 入口 |
 
 ### 本轮文件清单（13 项）
 
