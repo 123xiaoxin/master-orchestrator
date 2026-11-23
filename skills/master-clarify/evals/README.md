@@ -20,11 +20,14 @@ python -B -X utf8 -m unittest discover -s tests -p test_interaction_checks.py -v
 
 `interaction_checks.py` 对同一 input/previous 的原始候选文件回放；重复传
 `--candidate` 保留首次和修复顺序。默认最多 2 次额外修复、每份 65,536 字节，
-可用 `--max-repairs` / `--max-output-bytes` 指定预登记值，两臂一致且服从更低的
+可用 `--max-repairs` / `--max-output-bytes` 指定预登记的更低值，不允许扩大上限；两臂一致且服从更低的
 总资源限制。失败与成功都计字节；不得改换 ID、删失败记录或改输入来清零同轮计数。
 stdout 报告另存到新的日志文件，并将路径填入 `interactionCheckArtifact`。
 退出 2 也包括 NEEDS_REPAIR、上限耗尽及 TRACE_VIOLATION，不自动重试或改写规范状态。
 该检查器未连接运输/模型，不能证明语义最少问题或活动级费用。口径见 [rubric](rubric.md)。
+hostDirective 给出修复/停止/人工复核/有效下一步及规范结果 digest；不是额外授权。
+完整操作顺序与每臂精确文件加载表见[操作者宿主规程](host-protocol.md)，其副本仅放
+operator-only，并由 manifest 记录哈希；模型只能收到 modelFilesByArm 白名单中的文件。
 
 ## 冻结与覆盖
 
@@ -35,11 +38,11 @@ stdout 报告另存到新的日志文件，并将路径填入 `interactionCheckA
 ## 输入分发和真实宿主执行
 
 1. 由可信操作者核验当前已有宿主、模型、累计调用/Token/费用/时间上限及数据范围；未满足时保留材料即可。记录模型配置、Skill 快照与输入哈希，不新增供应商或服务。每对随机确定组别顺序并在运行前登记。
-2. 为每个案例、组别和重复建立新会话。两组收到相同输入与输出格式。baseline 不收到 Skill；skill 组额外读取准备目录 `skill/` 内的入口、方法和契约说明。该目录是提示词/契约快照，确定性工具仍使用完整独立能力包；不需要 Master Core。不要把当前主聊天、其他案例或另一组的历史带入。
+2. 为每个案例、组别和重复建立新会话。两组都读取 `contracts/contract.md` 与两个 v1 Schema；skill 组另外读取 `SKILL.md`、`references/clarification-method.md` 和 `references/compatibility.md`，baseline 不收到这三份。按 manifest.modelFilesByArm 从准备目录 `skill/` 精确分发，不能加载整个目录。相同通用候选指令与检查流程见宿主规程；不带入当前主聊天、其他案例或另一组历史。确定性工具仍用完整独立包，不需要 Master Core。
 3. `inputs/Txx.json` 仅含原始场景包和契约输入，不含标题、能力 ID、期望、禁行行为或回应脚本。将其中 `input` 原样作为首轮可信 envelope，供模型读取并产生 candidate state。`excludedBackground` 是明确不适用于本项目的背景，可以展示其项目标签用于隔离能力评审，但绝不能合并到本项目 sources。`scenarioSeedContext` 的处理见下一节。
 4. `operator-only/` 仅给主持人/评审者：响应分支、空模板、计划和清单不提供给被测模型。完整 cases.jsonl 的期望也不得加入模型提示。模型不得改写 input.sources；候选必须与原始宿主输入一起校验。
-5. 需要追问时，主持人按实际问题含义选择尚未用过且适用的预设分支，将其作为新的 scripted user 事件记录；相关问法可变，禁止用关键词自动猜答案。问题超出脚本时交真人或标记 incomplete，不让同一模型自问自答。每个案例四个助手轮次是本套脚本的资源限制，达到上限保存未完成状态，不成为就绪依据。
-6. 将真实输出、原始宿主日志或人工会话导出、可见用户回应及其 script/human 来源完整留存，再运行 `tools/clarify.py run`。准备的 envelope 标为 synthetic；实际宿主输出的收集者另存标为 host_output 的本次 envelope 与原始日志映射。仅修改这个标签不证明真实性，也不能把脚本用户当作真人授权。
+5. 每轮先完整留存候选原始 bytes，再运行 `interaction_checks.py`（内部调用 `tools/clarify.py` 并增加交互检查）。同一 input/previous 下无效最多额外修复 2 次；失败也计字节，每份不超过 65,536 字节。达到修复/输出上限、越界或工具错误则停止保错，不能提问。首次、种子、修复和后续澄清共用每会话四个助手轮次，剩余额度更低时提前停止；不能重新开轮抹掉消耗。
+6. 只有两层检查通过，才用同一候选运行 `tools/clarify.py run` 生成规范结果，核对 hostDirective.resultDigest 后按获准请求 ID 展示；review_required 先人工复核。ready_for_planning 可零追问交接，其余状态按规程分流。有效问题后才按含义选择未用过且适用的脚本分支，禁止关键词猜答案；超出脚本交真人或 incomplete，不让模型自问自答。留存原始日志及 script/human 来源。准备输入为 synthetic，真实收集时另存 host_output envelope 与原始日志映射，并在本轮检查前固定，不事后换标签；标签不证明真实性，脚本用户不构成真人授权。
 7. 每个会话复制并填写 [run-record.template.json](run-record.template.json)，逐例评审后填 [comparison.template.json](comparison.template.json)。模型自评不替代独立复核。准备器不自动计算行为通过，更不启用 P6。
 
 ## 多轮种子和局部更新

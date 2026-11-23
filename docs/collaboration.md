@@ -57,6 +57,74 @@ JSON 的 `pathNormalization` 标明本次整理及对应整理前提交；路径
 | 项目 | 内容 |
 | --- | --- |
 | 更新时间 | 2026-11-23（北京时间） |
+| 当前任务 | Clarify「少轮做对」宿主规程与必要离线检查已实现；本轮只交审，不暂存、不 commit |
+| 当前分支 / 基线 | `codex/master-integration` / `0eb6019` |
+| 当前写入方 / 记录维护方 | Codex 实现与验证；Cursor 只读审查 |
+| Cursor 既有审查结论 | 用户确认上一轮默认额外修复 2 次、最小追问与每份 65,536 UTF-8 字节检查已通过只读审查；本轮宿主规程尚待新审查 |
+| 实际修改范围 | 下列 13 文件（12 个已跟踪修改、1 个新规程文件）；不包含任何暂停工程 |
+| 核心约束 | 先生成候选，再做契约及交互检查；无效最多额外修复 2 次，仍无效保留错误停止；有效后才按推导状态追问或交接；失败输出计字节 |
+| 两臂加载 | baseline 只加载三份公共契约；skill 再加载入口、方法、兼容边界三份说明；主持人协议与评测答案不发给模型 |
+| 计费与运输 | 暂停；E4 PARTIAL / LIVE_ADMISSION_BLOCKED；不补计费上界，不调用模型或查询账户，不进 P6，不改 Master 默认入口 |
+| 既有工作 | 开始时 16 项未跟踪工程（含既存 pycache）保持原字节；不运行或修改 admission/eval 运输工程及 P5/E4 报告 |
+| 验证 | 包内 91/91、材料 8/8，freeze、14 个准备包、CLI 修复/零问及 digest 对照、格式检查通过；四项基础与包检查记录在 currentVerification.checks；BEHAVIOR_NOT_VERIFIED |
+| Git 操作 | 暂存区为空；没有本轮暂存/commit 授权，不 push |
+| 下一步 | 交 Cursor 只读审查本轮 13 文件；等待用户另行明确「可以 commit」，当前不暂存 |
+
+### 本轮文件清单（13 项）
+
+- `skills/master-clarify/SKILL.md`
+- `skills/master-clarify/README.md`
+- `skills/master-clarify/references/clarification-method.md`
+- `skills/master-clarify/evals/README.md`
+- `skills/master-clarify/evals/host-protocol.md`（新增）
+- `skills/master-clarify/evals/rubric.md`
+- `skills/master-clarify/evals/prepare.py`
+- `skills/master-clarify/evals/interaction_checks.py`
+- `skills/master-clarify/evals/test_materials.py`
+- `skills/master-clarify/tests/test_interaction_checks.py`
+- `skills/master-clarify/reports/implementation-report.md`
+- `skills/master-clarify/reports/verification.json`
+- `docs/collaboration.md`
+
+实现细节见[宿主规程](../skills/master-clarify/evals/host-protocol.md)，本轮结果与局限见
+[实施报告第 12 节](../skills/master-clarify/reports/implementation-report.md#12-2026-11-23-少轮做对宿主规程基线-0eb6019)
+及 [verification.json](../skills/master-clarify/reports/verification.json) 的 currentVerification。
+本轮日志保存在 `.local/clarify-host-protocol-20261123-n4z8dutp/`，不随包分发。
+源文件封印 34 项，分发包 36 项（含两份报告）；此前 currentVerification 完整追加到
+priorVerifications，历史日志与源码哈希不改写。此处 Codex 内部只读复审不代替 Cursor 新一轮审查。
+
+本轮新增检查覆盖失败不放行、修复后绑定同轮规范结果、零问分流、混合请求优先级、
+重叠请求先人工复核、previous 绑定与错误保留；材料测试锁定两臂白名单及操作者文件隔离。
+准备器并未实现真实宿主隔离或会话累计控制，checks 的 hostDirective 不是调用许可。
+
+本轮实际验证命令（仓库根目录，日志/输出使用新目录）：
+
+```powershell
+python -B -X utf8 -m unittest discover -s skills/master-clarify/tests -p 'test_*.py' -v
+python -B -X utf8 -m unittest discover -s skills/master-clarify/evals -p test_materials.py -v
+python -B -X utf8 skills/master-clarify/evals/prepare.py check
+python -B -X utf8 skills/master-clarify/evals/prepare.py prepare --output .local/clarify-host-protocol-20261123-n4z8dutp/packets
+python -B -X utf8 skills/master-clarify/tools/package.py
+pwsh -NoProfile -File ./scripts/check_encoding.ps1 -Json
+pwsh -NoProfile -File ./helpers/validate_templates.ps1 -AgencyRoot ./.ci-stubs/agency-agents
+pwsh -NoProfile -File ./helpers/validate_task_analysis.ps1 -File './examples/task-analysis/*.json' -Json
+pwsh -NoProfile -File ./evals/run_prompt_evals.ps1 -Json
+git diff --check
+```
+
+CLI 初次失败、修复后有效、单次规范结果及 clear 零问回放的精确参数和退出码另见
+currentVerification.checks；初次无效返回 2 是预期结果。模板检查使用离线 stub，
+不证明真实专家库可用。原生 DSH、暂停工程、真实模型与账户相关检查没有运行。
+
+## 方法轮次提交准备历史（已提交 `0eb6019`）
+
+以下保留上一轮提交前快照；其后用户授权提交了恰好 11 项，形成 `0eb6019`，未 push。
+表中 `aec69bd`、待批准和未提交口径只描述当时准备阶段，不代表当前 HEAD 或本轮权限。
+
+
+| 项目 | 内容 |
+| --- | --- |
+| 更新时间 | 2026-11-23（北京时间） |
 | 当前任务 | 单独整理「少轮做对」方法轮次的 11 文件，复跑验证并预览提交范围；等待用户明确授权后才可暂存、commit |
 | 当前分支 / 基线 | `codex/master-integration`；离线工程基线 `aec69bd`，实时 HEAD 以 `git rev-parse HEAD` 为准 |
 | 当前写入方 | Codex 负责整理与验证；Cursor 继续只读审查 |

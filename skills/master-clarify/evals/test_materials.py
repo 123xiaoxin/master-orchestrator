@@ -1,5 +1,6 @@
 """Tests of eval material integrity; never claims model behavior validation."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -76,6 +77,7 @@ class EvaluationMaterials(unittest.TestCase):
             for folder in ['contracts', 'references', 'evals']:
                 shutil.copytree(ROOT.parent / folder, module / folder,
                                 ignore=shutil.ignore_patterns('__pycache__'))
+            (module / 'references/not-for-model.md').write_text('operator-only sentinel', encoding='utf-8')
             result = materials.prepare(output, module / 'evals')
             self.assertEqual(result['modelCalls'], 0)
             self.assertEqual(result['behaviorStatus'], 'BEHAVIOR_NOT_VERIFIED')
@@ -83,8 +85,37 @@ class EvaluationMaterials(unittest.TestCase):
             self.assertEqual(record['status'], 'NOT_RUN')
             self.assertEqual(record['transcript'], [])
             self.assertFalse(record['p6Admission'])
+            manifest = json.loads((output / 'operator-only/manifest.json').read_text(encoding='utf-8'))
+            common = ['contracts/contract.md', 'contracts/clarify_input.v1.schema.json',
+                      'contracts/clarify_state.v1.schema.json']
+            skill = ['SKILL.md', 'references/clarification-method.md', 'references/compatibility.md']
+            self.assertEqual(manifest['modelFilesByArm'], {'baseline': common, 'skill': common + skill})
+            self.assertFalse(manifest['executable'])
+            self.assertEqual(manifest['modelFileBase'], 'skill/')
+            copied = {p.relative_to(output/'skill').as_posix() for p in (output/'skill').rglob('*') if p.is_file()}
+            self.assertEqual(copied, set(common + skill))
+            for name in copied:
+                self.assertEqual((output/'skill'/name).read_bytes(), (module/name).read_bytes())
+                self.assertEqual(manifest['skillFilesSha256'][name], hashlib.sha256((module/name).read_bytes()).hexdigest())
+            protocol = (module/'evals/host-protocol.md').read_bytes()
+            self.assertEqual((output/'operator-only/host-protocol.md').read_bytes(), protocol)
+            self.assertEqual(manifest['operatorProtocolSha256'], hashlib.sha256(protocol).hexdigest())
             with self.assertRaisesRegex(ValueError, 'new directory'):
                 materials.prepare(output, module / 'evals')
+
+    def test_prepare_requires_every_declared_model_file_and_operator_protocol(self):
+        for missing in ['clarification-method.md', 'host-protocol.md']:
+            with self.subTest(missing=missing), tempfile.TemporaryDirectory(prefix='clarify-missing-', dir=ROOT.parent) as name:
+                module = Path(name)/'module'
+                module.mkdir()
+                shutil.copyfile(ROOT.parent/'SKILL.md', module/'SKILL.md')
+                for folder in ['contracts', 'references', 'evals']:
+                    shutil.copytree(ROOT.parent/folder, module/folder,
+                                    ignore=shutil.ignore_patterns('__pycache__', missing))
+                output = Path(name)/'packets'
+                with self.assertRaisesRegex(ValueError, 'Declared model files'):
+                    materials.prepare(output, module/'evals')
+                self.assertFalse(output.exists())
 
 
 if __name__ == '__main__':

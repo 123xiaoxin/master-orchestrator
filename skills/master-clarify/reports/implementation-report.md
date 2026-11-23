@@ -182,7 +182,7 @@ Master 默认入口或旧 06/Clarity Gate。P0 报告保留为前置核查历史
 `sourceSha256`、`logSha256` 等字段完整保留为 **2026-10-28 历史快照**。
 `evidenceScope` 明确范围；当时的 `currentVerification` 记录 2026-11-19 实际命令、
 结果和源文件哈希，现已原值保存到 `priorVerifications` 的同日对象。当前工作副本
-验证见第 11 节及 `currentVerification.sourceSha256`，不能用历史哈希断言改动后的
+验证见第 12 节及 `currentVerification.sourceSha256`，不能用历史哈希断言改动后的
 文件仍是旧版本。
 
 本轮未重跑完整 Pester、Node DSH、旧 Master 专项回归或原仓库外的完整审计钩子
@@ -246,3 +246,43 @@ skill-creator 格式检查通过。编码 276/0、模板 6/0（离线 stub）、
 另在验证副本中运行新增检查器，审计钩子禁止读取源仓库和连接网络，clear 合成输入
 通过。副本 33 个非 reports 源文件与本轮一致；报告保留复制时快照。这不等同于
 完整仓库外回归或真实行为评测。
+
+## 12. 2026-11-23 少轮做对宿主规程（基线 0eb6019）
+
+第 11 节描述已提交 `0eb6019` 的历史准备结果。其完整 currentVerification 对象
+原值追加到 priorVerifications（同日、scope 为 method/rubric revision 的对象）；
+本节和新的 currentVerification 才描述本轮工作副本。旧 source/log 哈希不重算。
+本轮仍为 `BEHAVIOR_NOT_VERIFIED` / `INTEGRATION_NOT_STARTED`，没有真实行为结果。
+
+新增操作者专用 [host-protocol.md](../evals/host-protocol.md)：固定输入后先捕获候选，
+逐次运行契约及交互检查，无效最多额外修复 2 次；每份最多 65,536 UTF-8 字节，
+失败与误收到的越界输出仍计量。参数只能下调。达到上限、工具失败或轨迹越界时
+保留所有错误和上一有效结果停止。原每会话四个助手轮次与其他剩余额度优先，
+不会因修复新增调用配额；本工具仅回放一轮，跨轮累计与原始记录完整性仍由宿主负责。
+
+interaction_checks 增加 hostDirective，以实际 process 结果绑定候选编号、规范
+result.digest 与对应 requestIds；失败链不给本轮 digest 或请求。重叠标记先人工
+复核，不自动追问或追加修复。有效后才按 computed nextStep 分流；只有规划就绪
+可零追问交接。完整 summary 作为审计件保留，不能绕过所选请求 ID 直接发给用户。
+通过此检查不证明问题最少、理解正确、来源真实，也不提供业务或模型调用授权。
+原 tools/clarify.py、v1 契约和摘要渲染保持不变。
+
+prepare 固定六文件白名单：baseline 的三份公共契约，skill 再加载入口、方法、
+兼容边界三份说明。manifest 明确 modelFilesByArm；宿主规程只复制到 operator-only
+并记录哈希。新增参考不再自动扩大模型加载范围。准备器不实现真实宿主文件隔离；
+实际加载、提示、会话隔离和回应策略仍需未来运行时核对。案例、freeze、plan 原值
+保留，种子及响应脚本纪律不变，旧 prepared/P5/E4 快照不能冒充当前版本。
+
+本轮包测试 91/91（61 契约、30 交互；本轮新增 6 项并扩展上限反例），材料 8/8
+（新增必需文件失败用例，并扩展两臂清单、哈希和操作者文件隔离检查）。
+CLI 合成回放验证：首次失败保留错误、修复后问题放行、零问规划交接；两种有效
+结果的 digest 均与单次工具输出一致。prepare check 通过并生成 14 个新输入包，
+模型调用 0；格式检查通过。基础与包检查的实际命令、退出码和原始日志哈希见
+verification.json；原始日志在忽略的 .local，未随包分发，不以哈希冒充附件。
+
+当前分发 36 文件：34 个非 reports 文件加两份报告。源码封印仍排除 reports/**，
+避免自引用。更新本报告不改写先前 31/33、33/35 的历史计数或结论。
+本轮只修改包内文件和 docs/collaboration.md；开始时 16 项未跟踪工程保持原样。
+计费/运输暂停，E4 PARTIAL / LIVE_ADMISSION_BLOCKED；未补计费上界、查询账户、
+运行模型、改 Master 默认入口或接入 P6。暂停工程及原生 DSH/Pester 未复跑。
+不暂存、不 commit、不 push；Cursor 继续只读审查，本轮等待新的审查意见。

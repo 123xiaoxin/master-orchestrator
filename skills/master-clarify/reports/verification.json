@@ -29,8 +29,8 @@
     "historicalMeaning": "Original fields below are an unchanged historical snapshot, not validation of the currently modified sources",
     "currentSourceHashPath": "currentVerification.sourceSha256",
     "historicalSourceHashPath": "sourceSha256",
-    "sourceInventory": "33 distributed non-reports files; reports/** excluded to avoid self-reference",
-    "distributionInventory": "35 files including both reports; package.py --output records a separate manifest covering all distributed files",
+    "sourceInventory": "34 distributed non-reports files; reports/** excluded to avoid self-reference",
+    "distributionInventory": "36 files including both reports; package.py --output records a separate manifest covering all distributed files",
     "localLogs": "logSha256 and currentVerification.checks localLog hashes fingerprint undistributed local logs; they are not log attachments and cannot be reviewed from Git alone",
     "reproduction": "Current package checks can be rerun from the package with its declared dependencies; repository-level checks require the full repository. Historical private Pester/audit helpers are not distributed.",
     "priorVerificationPath": "priorVerifications (unchanged former currentVerification objects)"
@@ -38,15 +38,17 @@
   "currentVerification": {
     "date": "2026-11-23",
     "timezone": "Asia/Shanghai",
+    "baseCommit": "0eb60196420639e8532d6ce834f5b8c8297f1733",
+    "branch": "codex/master-integration",
     "status": [
       "ENGINEERING_OFFLINE_PASS",
       "BEHAVIOR_NOT_VERIFIED",
       "INTEGRATION_NOT_STARTED"
     ],
-    "scope": "Standalone Skill method/rubric revision and offline candidate interaction checks; billing workstream paused by user",
-    "sourceFileCount": 33,
+    "scope": "Offline host protocol, validated request routing and explicit baseline/skill file loading; billing/transport paused",
+    "sourceFileCount": 34,
     "reportFileCount": 2,
-    "packageFileCount": 35,
+    "packageFileCount": 36,
     "sourceSha256": {
       ".gitignore": "f16b6dd288a3bb87fde88de299867fd983ab976bb7e0642e09e5d8d1c1bcc260",
       "contracts/clarify_input.v1.schema.json": "a4d2ee68ccea3e343c506d4f1eb5b4002ed767bfe8653a2c08b423508bf842cb",
@@ -55,13 +57,14 @@
       "evals/cases.jsonl": "4bdade4d12fa35875ee832805810648111e0d7e8848c781b13e631e04ce48b96",
       "evals/comparison.template.json": "0a5358294e52e2d02875c3b10018dbedbefd1ac52a598dcd34ae596176e68d07",
       "evals/freeze.json": "c1efc1f47b1e14ed2d35e2cf0b8e54ca021408f53d7fec9c01b1f74aa76be3bd",
-      "evals/interaction_checks.py": "9a924f494da3f9ea84bed87a30b2991befc4fa72273d1c303df29d5818016e7c",
+      "evals/host-protocol.md": "63994bd328bdd2d56d6d0cb831dd37e038a59cfe96b8fb7aaa2a7f5e55691f81",
+      "evals/interaction_checks.py": "6e8d0a7ddd5ae8bc2b13aea9b33f47c5bd92cee79b3d2e6a4f4237b94f2fbb52",
       "evals/plan.json": "b9f4c224d56c4008e5416ab621deb83d2eed12e238d7aaa16e22948fffdab138",
-      "evals/prepare.py": "56d61f4bd57039c5dc3059fb0497d6534c8c3636948da8df26be3da7fb912937",
-      "evals/README.md": "dfc249201239b40a6219a9d204706e60e8345faae7a841e8ac52d0baae122cc2",
-      "evals/rubric.md": "6a9f2a059297b0921f8010dcc874f7f3afb74874beeb43183cc12301b64467cf",
+      "evals/prepare.py": "12546634032a883f366c5052f1f51526a114bb930fda5408225523085da9eaf5",
+      "evals/README.md": "fdb838d3670810d074333830c271d3ef089a87ee7a11bc18385f6300450cd9e0",
+      "evals/rubric.md": "73e49960e0e43e1f6bc02a795350cbed39571f6fa6459f4c575c76f74f2141a6",
       "evals/run-record.template.json": "8cb3e5a836dbb6942c0ae7b5eff4f8e853e699c4af28d87cc60d2609c4679b4e",
-      "evals/test_materials.py": "2cdabd51c36fb264732b23c0591f0a1ae1edd0e8417871e2dade4e8e51b042d3",
+      "evals/test_materials.py": "ae8406de311947af7b724b7d07e4c806b332dfe4884c9c95e998143f635cc892",
       "examples/ambiguous.input.json": "5973ec9bc7c786e5c491a59cc6bc14329ef571c90c15e4574fc4b5c8e6025f01",
       "examples/ambiguous.state.json": "14800ed39e8924e639d1efb10fd891e8d94e5b5e3c367b89d301d53cb1e18784",
       "examples/ambiguous.summary.md": "ea2c7e7377e39ad1fc04bc9e22b3cf303292691f974524f23b593ef8fef7ca17",
@@ -71,14 +74,14 @@
       "examples/revised.input.json": "f41a8544485900592764a18c26cb17ceae7f736725d0d35609cf9e7267171574",
       "examples/revised.state.json": "289f8b4bc6a028f03ee8274e4c76171869f164f12ca7646fba08a051ece31476",
       "examples/revised.summary.md": "822da6e80d05eda4e0a0f56fab2095be87071cc307713cf0aa55ac2eb6d3a328",
-      "README.md": "d8d1faba8e1087a3124998172aad11fd749bfb6608ce3aa978b01a00ee7d9190",
-      "references/clarification-method.md": "c51e441cd78b6d606ff26bc05d7edd2cb8ecc9cc67e4554161eade645a64820d",
+      "README.md": "5a41c598cf269a7a8afa3923d4a064275d40b531f2eb4550bdb4071e82d72341",
+      "references/clarification-method.md": "40445cc491a24d8b6144d926df77059d4c586696a596ab06cd4f86fa2cbd8a41",
       "references/compatibility.md": "3a68ff0a7abcb7ff934a1a61d56f45cfdc1744c7cff4892a46c6d751a56291d9",
       "requirements.txt": "4046ca1e3a64f4ea791fb4fb3d8566242086ff1c8e2431e2c349e1052ffc6ba0",
-      "SKILL.md": "100e0f1cb4b98b0ac8dc48e679a87a1f7d2af1701d350390894793d7268b171e",
+      "SKILL.md": "290dd094253334e8084452caf5cff27a2749cdde555e89e643ce561ad768729a",
       "tests/fixtures.py": "0e12ff8c379637f1f35284a2f8ca1c9c94edd8ebb056bcd9a5475dcfd2361882",
       "tests/test_clarify.py": "eaf29590d715109de0a64acc31023a65e8ba57bbbf8de8a0c71df099e23db5c3",
-      "tests/test_interaction_checks.py": "eb86bb28190161d4f0629994942d8ba9abaa47165e69a97b85f3471a64918800",
+      "tests/test_interaction_checks.py": "828d1a309122a4c8cf1a647ff47eaf63ca9ca8dcee060fe7983097916b3d2c88",
       "tools/clarify.py": "8d300cb79e2842085ca7d9130dc52639a4dd4d6fff889788e697aa03395d4b88",
       "tools/package.py": "b915a490dccc5d0b6140d70f7d9e156226332e0d6dad6089ec4d188378a4cf6a"
     },
@@ -100,9 +103,9 @@
           "-v"
         ],
         "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/package-tests.log",
-        "logSha256": "763e59fd143513e7244aca0a49e14770d476e8ae348eed14ff6da100214fb15a",
-        "summary": "85 passed: 61 existing + 24 interaction boundary tests"
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/package-tests.log",
+        "logSha256": "3004887f5a59565e5ad8fe913f23327b58d8a94cc4412187678a8583dba6a104",
+        "summary": "91 passed: 61 contract + 30 interaction (6 new host protocol tests)"
       },
       {
         "name": "materials",
@@ -121,9 +124,9 @@
           "-v"
         ],
         "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/materials.log",
-        "logSha256": "d31a52d451858b3d6c7e2160b19b851371c8b95e4dded15bf8267dcdde9044be",
-        "summary": "7 passed"
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/materials.log",
+        "logSha256": "4c89fc7cb9c65c9c6e4740bd970f540c751032e5d78b4e1051580d38f5a10036",
+        "summary": "8 passed; explicit model allowlist, hashes, operator-only protocol and missing resources tested"
       },
       {
         "name": "freeze",
@@ -136,9 +139,9 @@
           "check"
         ],
         "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/freeze.log",
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/freeze.log",
         "logSha256": "ab284d4598c5db8ba80a6163075c05e9d0e35c0350d7a41cc61703add5472c85",
-        "summary": "26 cases / 12 capabilities / 14 selected / 4 holdouts / 34 planned sessions; 0 model calls"
+        "summary": "26 cases, 12 capabilities, 14 selected, 4 holdouts, 34 planned sessions; unchanged freeze"
       },
       {
         "name": "prepare",
@@ -150,91 +153,12 @@
           "skills/master-clarify/evals/prepare.py",
           "prepare",
           "--output",
-          ".local/clarify-interaction-20261123-73sta0_f/packets-final"
+          ".local\\clarify-host-protocol-20261123-n4z8dutp\\packets"
         ],
         "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/prepare-final.log",
-        "logSha256": "7204381fb6529a48cb84e7524051d8a321fd2b3edb6c7633475c01266ef147e1",
-        "summary": "14 offline input packets; new Skill snapshot; executable=false"
-      },
-      {
-        "name": "package",
-        "argv": [
-          "python",
-          "-B",
-          "-X",
-          "utf8",
-          "skills/master-clarify/tools/package.py"
-        ],
-        "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/package-final.log",
-        "logSha256": "1c2e09cbb230edf7ae090a9756363577478199ad4ca39353f3744d57b2243d24",
-        "summary": "35 files passed"
-      },
-      {
-        "name": "clear-interaction",
-        "argv": [
-          "python",
-          "-B",
-          "-X",
-          "utf8",
-          "skills/master-clarify/evals/interaction_checks.py",
-          "--input",
-          "skills/master-clarify/examples/clear.input.json",
-          "--candidate",
-          "skills/master-clarify/examples/clear.state.json"
-        ],
-        "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/clear-interaction.log",
-        "logSha256": "05846ac01edcd945ed94cfffcbd6c8b25007a20d10ae73900b0b595d0a3b2253",
-        "summary": "ACCEPTED_OFFLINE; ready_for_planning; 0 questions"
-      },
-      {
-        "name": "ambiguous-interaction",
-        "argv": [
-          "python",
-          "-B",
-          "-X",
-          "utf8",
-          "skills/master-clarify/evals/interaction_checks.py",
-          "--input",
-          "skills/master-clarify/examples/ambiguous.input.json",
-          "--candidate",
-          "skills/master-clarify/examples/ambiguous.state.json"
-        ],
-        "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/ambiguous-interaction.log",
-        "logSha256": "fee2a5d7ed4ba104a4902354971674f0c6349dca2e48daeac52163920edeb415",
-        "summary": "ACCEPTED_OFFLINE; clarify; 1 question"
-      },
-      {
-        "name": "skill-format",
-        "argv": [
-          "python",
-          "-B",
-          "-X",
-          "utf8",
-          "<SKILL_CREATOR_ROOT>/scripts/quick_validate.py",
-          "skills/master-clarify"
-        ],
-        "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/skill-format.log",
-        "logSha256": "6cf9e7f0d34ccd36dbd28f270cd28dd04277b2e1516bd4333ce7bb501d7b18d4",
-        "summary": "Skill is valid"
-      },
-      {
-        "name": "encoding",
-        "argv": [
-          "pwsh",
-          "-NoProfile",
-          "-File",
-          "./scripts/check_encoding.ps1",
-          "-Json"
-        ],
-        "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/encoding-final.log",
-        "logSha256": "b9cb510d13faaf1acb3073c0987f2ff33e9d419b0458ca9239878a51e7b91d9a",
-        "summary": "276 checked / 0 issues"
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/prepare.log",
+        "logSha256": "09e6ad1d34136f2c186a563f9679e6521bec9d174fe842b08becfb6236980e76",
+        "summary": "14 input packets; explicit baseline 3 files / skill 6 files; executable=false"
       },
       {
         "name": "templates",
@@ -247,9 +171,9 @@
           "./.ci-stubs/agency-agents"
         ],
         "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/templates.log",
-        "logSha256": "bf54859c4ae3132cc9fefda6338546e6c6084f485272502944e6a9807e7d5a05",
-        "summary": "6 passed; offline agency stubs"
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/templates.log",
+        "logSha256": "38f9f792a9fee0048a31ad7eead8ebef2120a648b489d0ea792e12c81be66ed5",
+        "summary": "6 passed using offline agency stubs"
       },
       {
         "name": "task-analysis",
@@ -263,7 +187,7 @@
           "-Json"
         ],
         "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/task-analysis.log",
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/task-analysis.log",
         "logSha256": "c2a239fbbafad11a703bf549c20824371a3155aa21b21e924933c533ddffdbd6",
         "summary": "4 passed"
       },
@@ -277,9 +201,155 @@
           "-Json"
         ],
         "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/prompt-evals.log",
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/prompt-evals.log",
         "logSha256": "b20bf94d4f87741259bff7036fb6a185ff32c68260acd48d0451477b74b90b22",
         "summary": "19 offline definitions passed"
+      },
+      {
+        "name": "skill-format",
+        "argv": [
+          "python",
+          "-B",
+          "-X",
+          "utf8",
+          "<SKILL_CREATOR_ROOT>/scripts/quick_validate.py",
+          "skills/master-clarify"
+        ],
+        "exitCode": 0,
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/skill-format.log",
+        "logSha256": "6cf9e7f0d34ccd36dbd28f270cd28dd04277b2e1516bd4333ce7bb501d7b18d4",
+        "summary": "Skill is valid"
+      },
+      {
+        "name": "cli-invalid",
+        "argv": [
+          "python",
+          "-B",
+          "-X",
+          "utf8",
+          "skills/master-clarify/evals/interaction_checks.py",
+          "--input",
+          "skills/master-clarify/examples/ambiguous.input.json",
+          "--candidate",
+          ".local\\clarify-host-protocol-20261123-n4z8dutp\\initial-invalid.raw"
+        ],
+        "exitCode": 2,
+        "expectedExitCode": 2,
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/cli-invalid.log",
+        "logSha256": "2a9a7c19b87b116fd3adf6cc0a284335e58c3e3ed034ce451b0604526579b6f6",
+        "summary": "Expected exit 2: NEEDS_REPAIR; no request IDs or result digest"
+      },
+      {
+        "name": "cli-repaired",
+        "argv": [
+          "python",
+          "-B",
+          "-X",
+          "utf8",
+          "skills/master-clarify/evals/interaction_checks.py",
+          "--input",
+          "skills/master-clarify/examples/ambiguous.input.json",
+          "--candidate",
+          ".local\\clarify-host-protocol-20261123-n4z8dutp\\initial-invalid.raw",
+          "--candidate",
+          "skills/master-clarify/examples/ambiguous.state.json"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0,
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/cli-repaired.log",
+        "logSha256": "ba272167d1fede14afc02585a587fda426338a383394c7fc3a90d706227a3572",
+        "summary": "ACCEPTED_OFFLINE; initial error retained; ask_user from repaired candidate"
+      },
+      {
+        "name": "cli-canonical",
+        "argv": [
+          "python",
+          "-B",
+          "-X",
+          "utf8",
+          "skills/master-clarify/tools/clarify.py",
+          "run",
+          "--input",
+          "skills/master-clarify/examples/ambiguous.input.json",
+          "--candidate",
+          "skills/master-clarify/examples/ambiguous.state.json",
+          "--output",
+          ".local\\clarify-host-protocol-20261123-n4z8dutp\\canonical-ambiguous"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0,
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/cli-canonical.log",
+        "logSha256": "150add73f971a7532e88cf36ae105957acef5e2d516aaf88864a026c2aeb755b",
+        "summary": "Digest equals repaired candidate hostDirective resultDigest"
+      },
+      {
+        "name": "cli-clear",
+        "argv": [
+          "python",
+          "-B",
+          "-X",
+          "utf8",
+          "skills/master-clarify/evals/interaction_checks.py",
+          "--input",
+          "skills/master-clarify/examples/clear.input.json",
+          "--candidate",
+          "skills/master-clarify/examples/clear.state.json"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0,
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/cli-clear.log",
+        "logSha256": "e14edc8f9cc47427ed2106d4a59418ceefa98e11705857f4dffacddf3637faf0",
+        "summary": "ACCEPTED_OFFLINE; zero-question handoff_to_planning"
+      },
+      {
+        "name": "cli-clear-canonical",
+        "argv": [
+          "python",
+          "-B",
+          "-X",
+          "utf8",
+          "skills/master-clarify/tools/clarify.py",
+          "run",
+          "--input",
+          "skills/master-clarify/examples/clear.input.json",
+          "--candidate",
+          "skills/master-clarify/examples/clear.state.json",
+          "--output",
+          ".local\\clarify-host-protocol-20261123-n4z8dutp\\canonical-clear"
+        ],
+        "exitCode": 0,
+        "expectedExitCode": 0,
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/cli-clear-canonical.log",
+        "logSha256": "82fd1777f101e62305e303ca540453eccc53f1c6f995a5095823ac55be976d55",
+        "summary": "Digest equals zero-question hostDirective resultDigest"
+      },
+      {
+        "name": "encoding",
+        "argv": [
+          "pwsh",
+          "-NoProfile",
+          "-File",
+          "./scripts/check_encoding.ps1",
+          "-Json"
+        ],
+        "exitCode": 0,
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/encoding.log",
+        "logSha256": "4ab8e66429c480aab105af893c449543fb1f81b97dd69f66821cb4846c9788d7",
+        "summary": "277 checked / 0 issues"
+      },
+      {
+        "name": "package",
+        "argv": [
+          "python",
+          "-B",
+          "-X",
+          "utf8",
+          "skills/master-clarify/tools/package.py"
+        ],
+        "exitCode": 0,
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/package.log",
+        "logSha256": "af5f06ec50a289a848af39e83a53154506348cf06ad6f8866e9c19ee09a64567",
+        "summary": "36 distributed files passed"
       },
       {
         "name": "diff-check",
@@ -289,60 +359,83 @@
           "--check"
         ],
         "exitCode": 0,
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/diff-check-final.log",
+        "localLog": ".local/clarify-host-protocol-20261123-n4z8dutp/diff-check.log",
         "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "summary": "passed"
-      },
-      {
-        "name": "package-copy",
-        "command": "package.py --output <new validation copy>",
-        "exitCode": 0,
-        "summary": "35-file portable copy generated for offline validation",
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/package-copy.log",
-        "logSha256": "1c2e09cbb230edf7ae090a9756363577478199ad4ca39353f3744d57b2243d24"
-      },
-      {
-        "name": "standalone-interaction",
-        "command": "python -I -B -X utf8 <audit-hook>: run copied evals/interaction_checks.py on copied clear fixture",
-        "exitCode": 0,
-        "summary": "Copied checker passed with original repository reads and network denied; no model calls",
-        "localLog": ".local/clarify-interaction-20261123-73sta0_f/standalone-interaction.log",
-        "logSha256": "05846ac01edcd945ed94cfffcbd6c8b25007a20d10ae73900b0b595d0a3b2253"
       }
     ],
+    "packageTests": 91,
+    "contractTests": 61,
+    "interactionTests": 30,
+    "newHostProtocolTests": 6,
+    "materialTests": 8,
     "modelCalls": 0,
     "paidCalls": 0,
     "accountQueries": 0,
     "externalBusinessActions": 0,
     "defaultMasterEntryChanged": false,
     "executionAuthorityGranted": false,
+    "staged": false,
     "committed": false,
     "pushed": false,
-    "newInteractionTests": 24,
-    "existingContractTests": 61,
-    "materialTests": 7,
+    "p6Admission": false,
     "billingWorkstream": "PAUSED_BY_USER",
+    "transportWorkstream": "PAUSED_BY_USER",
+    "e4Status": "PARTIAL",
+    "liveAdmission": "BLOCKED",
+    "engineeringLimits": {
+      "maxRepairs": 2,
+      "maxOutputBytesPerAttempt": 65536,
+      "mayOnlyLower": true,
+      "notTokenOrBillingBounds": true
+    },
+    "hostProtocolBoundary": "Offline advice from actual deterministic validation, not a model host or execution authority; full raw trace, remaining session quota, provenance and semantic necessity still require host/reviewer controls.",
+    "armLoading": {
+      "baseline": [
+        "contracts/contract.md",
+        "contracts/clarify_input.v1.schema.json",
+        "contracts/clarify_state.v1.schema.json"
+      ],
+      "skillAdditional": [
+        "SKILL.md",
+        "references/clarification-method.md",
+        "references/compatibility.md"
+      ],
+      "operatorProtocol": "evals/host-protocol.md",
+      "runtimeIsolationVerified": false
+    },
+    "rawLogsBundled": false,
+    "commandDisplayNormalization": "Optional skill-creator installation replaced with <SKILL_CREATOR_ROOT>; log hashes identify original local bytes, not bundled attachments.",
+    "previousSnapshots": "All former verification objects preserved as historical values. Current prepared packets are new; old P5/E4 hashes and untracked engineering remain unchanged.",
     "notRerun": [
-      "paused billing/transport and native DSH suites",
+      "paused admission/eval billing/transport engineering",
+      "native DSH probe",
       "full Pester",
+      "external-directory audit hooks",
       "real model behavior",
       "account/balance queries"
     ],
-    "engineeringLimitDefaults": {
-      "maxRepairs": 2,
-      "maxOutputBytesPerAttempt": 65536,
-      "notTokenOrBillingBounds": true
-    },
-    "rawLogsBundled": false,
-    "initialCheckLimitations": {
-      "packageScan": "Initial parallel scan raced material-test temporary-directory cleanup; rerun sequentially passed",
-      "reportLineEndings": "Initial diff check found CRLF additions; rewritten LF and rerun passed",
-      "initialRecords": ".local/clarify-interaction-20261123-73sta0_f/checks-initial.json",
-      "sha256": "220e0e13eba8ccecedecb7a96b46d91b1418c00721be1bacb9bc876674448280"
-    },
-    "commandDisplayNormalization": "Only skill-creator installation path replaced by <SKILL_CREATOR_ROOT>; optional host helper is not bundled. Local log hashes describe original bytes, not attachments.",
-    "previousSnapshots": "Old prepared packets and P5/E4 package hashes identify their historical snapshots. They must not be relabelled as the revised package.",
-    "independentCopyBoundary": "New interaction checker ran from a validation copy, with audit hooks denying reads from the original repository and socket access. The 33 non-reports source hashes match; copied reports reflect their copy-time snapshot. This is not a full external-directory regression or behavior test."
+    "scopeVerification": {
+      "changedFileCount": 13,
+      "trackedChanges": 12,
+      "newPackageFiles": [
+        "skills/master-clarify/evals/host-protocol.md"
+      ],
+      "preExistingUntrackedFiles": 16,
+      "preExistingUntrackedSha256Unchanged": true,
+      "unchanged": [
+        "Master entry and original tools/clarify.py",
+        "v1 contracts",
+        "cases.jsonl",
+        "freeze.json",
+        "plan.json",
+        "admission/eval/P5-E4 engineering and existing cache"
+      ],
+      "historicalVerificationObjectsPreserved": true,
+      "currentSourceHashesMatched": 34,
+      "indexEmpty": true,
+      "headUnchanged": true
+    }
   },
   "date": "2026-10-28",
   "timezone": "Asia/Shanghai",
@@ -873,6 +966,315 @@
       "staged": false,
       "committed": false,
       "pushed": false
+    },
+    {
+      "date": "2026-11-23",
+      "timezone": "Asia/Shanghai",
+      "status": [
+        "ENGINEERING_OFFLINE_PASS",
+        "BEHAVIOR_NOT_VERIFIED",
+        "INTEGRATION_NOT_STARTED"
+      ],
+      "scope": "Standalone Skill method/rubric revision and offline candidate interaction checks; billing workstream paused by user",
+      "sourceFileCount": 33,
+      "reportFileCount": 2,
+      "packageFileCount": 35,
+      "sourceSha256": {
+        ".gitignore": "f16b6dd288a3bb87fde88de299867fd983ab976bb7e0642e09e5d8d1c1bcc260",
+        "contracts/clarify_input.v1.schema.json": "a4d2ee68ccea3e343c506d4f1eb5b4002ed767bfe8653a2c08b423508bf842cb",
+        "contracts/clarify_state.v1.schema.json": "b17708709942ca992b1caec0673cee03dff1f97d23470d29ded8582aeafc135a",
+        "contracts/contract.md": "886b7c8a9990a7e63de333465c331f6c569f4f988e02c15f1e76c052f87f1ab0",
+        "evals/cases.jsonl": "4bdade4d12fa35875ee832805810648111e0d7e8848c781b13e631e04ce48b96",
+        "evals/comparison.template.json": "0a5358294e52e2d02875c3b10018dbedbefd1ac52a598dcd34ae596176e68d07",
+        "evals/freeze.json": "c1efc1f47b1e14ed2d35e2cf0b8e54ca021408f53d7fec9c01b1f74aa76be3bd",
+        "evals/interaction_checks.py": "9a924f494da3f9ea84bed87a30b2991befc4fa72273d1c303df29d5818016e7c",
+        "evals/plan.json": "b9f4c224d56c4008e5416ab621deb83d2eed12e238d7aaa16e22948fffdab138",
+        "evals/prepare.py": "56d61f4bd57039c5dc3059fb0497d6534c8c3636948da8df26be3da7fb912937",
+        "evals/README.md": "dfc249201239b40a6219a9d204706e60e8345faae7a841e8ac52d0baae122cc2",
+        "evals/rubric.md": "6a9f2a059297b0921f8010dcc874f7f3afb74874beeb43183cc12301b64467cf",
+        "evals/run-record.template.json": "8cb3e5a836dbb6942c0ae7b5eff4f8e853e699c4af28d87cc60d2609c4679b4e",
+        "evals/test_materials.py": "2cdabd51c36fb264732b23c0591f0a1ae1edd0e8417871e2dade4e8e51b042d3",
+        "examples/ambiguous.input.json": "5973ec9bc7c786e5c491a59cc6bc14329ef571c90c15e4574fc4b5c8e6025f01",
+        "examples/ambiguous.state.json": "14800ed39e8924e639d1efb10fd891e8d94e5b5e3c367b89d301d53cb1e18784",
+        "examples/ambiguous.summary.md": "ea2c7e7377e39ad1fc04bc9e22b3cf303292691f974524f23b593ef8fef7ca17",
+        "examples/clear.input.json": "8277a32de578de6c77fb5979a27e384c1c680f2238e8a65adacc4c29d25aa2cc",
+        "examples/clear.state.json": "97646eb18115a18367f81244f2fbe1571dcc63819a1b009afb55702b9e48b1a4",
+        "examples/clear.summary.md": "f1ac32405294e3847ea2b9db11455f6e51f91f3e6ca072666a698e4cdbf6992a",
+        "examples/revised.input.json": "f41a8544485900592764a18c26cb17ceae7f736725d0d35609cf9e7267171574",
+        "examples/revised.state.json": "289f8b4bc6a028f03ee8274e4c76171869f164f12ca7646fba08a051ece31476",
+        "examples/revised.summary.md": "822da6e80d05eda4e0a0f56fab2095be87071cc307713cf0aa55ac2eb6d3a328",
+        "README.md": "d8d1faba8e1087a3124998172aad11fd749bfb6608ce3aa978b01a00ee7d9190",
+        "references/clarification-method.md": "c51e441cd78b6d606ff26bc05d7edd2cb8ecc9cc67e4554161eade645a64820d",
+        "references/compatibility.md": "3a68ff0a7abcb7ff934a1a61d56f45cfdc1744c7cff4892a46c6d751a56291d9",
+        "requirements.txt": "4046ca1e3a64f4ea791fb4fb3d8566242086ff1c8e2431e2c349e1052ffc6ba0",
+        "SKILL.md": "100e0f1cb4b98b0ac8dc48e679a87a1f7d2af1701d350390894793d7268b171e",
+        "tests/fixtures.py": "0e12ff8c379637f1f35284a2f8ca1c9c94edd8ebb056bcd9a5475dcfd2361882",
+        "tests/test_clarify.py": "eaf29590d715109de0a64acc31023a65e8ba57bbbf8de8a0c71df099e23db5c3",
+        "tests/test_interaction_checks.py": "eb86bb28190161d4f0629994942d8ba9abaa47165e69a97b85f3471a64918800",
+        "tools/clarify.py": "8d300cb79e2842085ca7d9130dc52639a4dd4d6fff889788e697aa03395d4b88",
+        "tools/package.py": "b915a490dccc5d0b6140d70f7d9e156226332e0d6dad6089ec4d188378a4cf6a"
+      },
+      "checks": [
+        {
+          "name": "package-tests",
+          "argv": [
+            "python",
+            "-B",
+            "-X",
+            "utf8",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "skills/master-clarify/tests",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/package-tests.log",
+          "logSha256": "763e59fd143513e7244aca0a49e14770d476e8ae348eed14ff6da100214fb15a",
+          "summary": "85 passed: 61 existing + 24 interaction boundary tests"
+        },
+        {
+          "name": "materials",
+          "argv": [
+            "python",
+            "-B",
+            "-X",
+            "utf8",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "skills/master-clarify/evals",
+            "-p",
+            "test_materials.py",
+            "-v"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/materials.log",
+          "logSha256": "d31a52d451858b3d6c7e2160b19b851371c8b95e4dded15bf8267dcdde9044be",
+          "summary": "7 passed"
+        },
+        {
+          "name": "freeze",
+          "argv": [
+            "python",
+            "-B",
+            "-X",
+            "utf8",
+            "skills/master-clarify/evals/prepare.py",
+            "check"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/freeze.log",
+          "logSha256": "ab284d4598c5db8ba80a6163075c05e9d0e35c0350d7a41cc61703add5472c85",
+          "summary": "26 cases / 12 capabilities / 14 selected / 4 holdouts / 34 planned sessions; 0 model calls"
+        },
+        {
+          "name": "prepare",
+          "argv": [
+            "python",
+            "-B",
+            "-X",
+            "utf8",
+            "skills/master-clarify/evals/prepare.py",
+            "prepare",
+            "--output",
+            ".local/clarify-interaction-20261123-73sta0_f/packets-final"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/prepare-final.log",
+          "logSha256": "7204381fb6529a48cb84e7524051d8a321fd2b3edb6c7633475c01266ef147e1",
+          "summary": "14 offline input packets; new Skill snapshot; executable=false"
+        },
+        {
+          "name": "package",
+          "argv": [
+            "python",
+            "-B",
+            "-X",
+            "utf8",
+            "skills/master-clarify/tools/package.py"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/package-final.log",
+          "logSha256": "1c2e09cbb230edf7ae090a9756363577478199ad4ca39353f3744d57b2243d24",
+          "summary": "35 files passed"
+        },
+        {
+          "name": "clear-interaction",
+          "argv": [
+            "python",
+            "-B",
+            "-X",
+            "utf8",
+            "skills/master-clarify/evals/interaction_checks.py",
+            "--input",
+            "skills/master-clarify/examples/clear.input.json",
+            "--candidate",
+            "skills/master-clarify/examples/clear.state.json"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/clear-interaction.log",
+          "logSha256": "05846ac01edcd945ed94cfffcbd6c8b25007a20d10ae73900b0b595d0a3b2253",
+          "summary": "ACCEPTED_OFFLINE; ready_for_planning; 0 questions"
+        },
+        {
+          "name": "ambiguous-interaction",
+          "argv": [
+            "python",
+            "-B",
+            "-X",
+            "utf8",
+            "skills/master-clarify/evals/interaction_checks.py",
+            "--input",
+            "skills/master-clarify/examples/ambiguous.input.json",
+            "--candidate",
+            "skills/master-clarify/examples/ambiguous.state.json"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/ambiguous-interaction.log",
+          "logSha256": "fee2a5d7ed4ba104a4902354971674f0c6349dca2e48daeac52163920edeb415",
+          "summary": "ACCEPTED_OFFLINE; clarify; 1 question"
+        },
+        {
+          "name": "skill-format",
+          "argv": [
+            "python",
+            "-B",
+            "-X",
+            "utf8",
+            "<SKILL_CREATOR_ROOT>/scripts/quick_validate.py",
+            "skills/master-clarify"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/skill-format.log",
+          "logSha256": "6cf9e7f0d34ccd36dbd28f270cd28dd04277b2e1516bd4333ce7bb501d7b18d4",
+          "summary": "Skill is valid"
+        },
+        {
+          "name": "encoding",
+          "argv": [
+            "pwsh",
+            "-NoProfile",
+            "-File",
+            "./scripts/check_encoding.ps1",
+            "-Json"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/encoding-final.log",
+          "logSha256": "b9cb510d13faaf1acb3073c0987f2ff33e9d419b0458ca9239878a51e7b91d9a",
+          "summary": "276 checked / 0 issues"
+        },
+        {
+          "name": "templates",
+          "argv": [
+            "pwsh",
+            "-NoProfile",
+            "-File",
+            "./helpers/validate_templates.ps1",
+            "-AgencyRoot",
+            "./.ci-stubs/agency-agents"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/templates.log",
+          "logSha256": "bf54859c4ae3132cc9fefda6338546e6c6084f485272502944e6a9807e7d5a05",
+          "summary": "6 passed; offline agency stubs"
+        },
+        {
+          "name": "task-analysis",
+          "argv": [
+            "pwsh",
+            "-NoProfile",
+            "-File",
+            "./helpers/validate_task_analysis.ps1",
+            "-File",
+            "./examples/task-analysis/*.json",
+            "-Json"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/task-analysis.log",
+          "logSha256": "c2a239fbbafad11a703bf549c20824371a3155aa21b21e924933c533ddffdbd6",
+          "summary": "4 passed"
+        },
+        {
+          "name": "prompt-evals",
+          "argv": [
+            "pwsh",
+            "-NoProfile",
+            "-File",
+            "./evals/run_prompt_evals.ps1",
+            "-Json"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/prompt-evals.log",
+          "logSha256": "b20bf94d4f87741259bff7036fb6a185ff32c68260acd48d0451477b74b90b22",
+          "summary": "19 offline definitions passed"
+        },
+        {
+          "name": "diff-check",
+          "argv": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exitCode": 0,
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/diff-check-final.log",
+          "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "summary": "passed"
+        },
+        {
+          "name": "package-copy",
+          "command": "package.py --output <new validation copy>",
+          "exitCode": 0,
+          "summary": "35-file portable copy generated for offline validation",
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/package-copy.log",
+          "logSha256": "1c2e09cbb230edf7ae090a9756363577478199ad4ca39353f3744d57b2243d24"
+        },
+        {
+          "name": "standalone-interaction",
+          "command": "python -I -B -X utf8 <audit-hook>: run copied evals/interaction_checks.py on copied clear fixture",
+          "exitCode": 0,
+          "summary": "Copied checker passed with original repository reads and network denied; no model calls",
+          "localLog": ".local/clarify-interaction-20261123-73sta0_f/standalone-interaction.log",
+          "logSha256": "05846ac01edcd945ed94cfffcbd6c8b25007a20d10ae73900b0b595d0a3b2253"
+        }
+      ],
+      "modelCalls": 0,
+      "paidCalls": 0,
+      "accountQueries": 0,
+      "externalBusinessActions": 0,
+      "defaultMasterEntryChanged": false,
+      "executionAuthorityGranted": false,
+      "committed": false,
+      "pushed": false,
+      "newInteractionTests": 24,
+      "existingContractTests": 61,
+      "materialTests": 7,
+      "billingWorkstream": "PAUSED_BY_USER",
+      "notRerun": [
+        "paused billing/transport and native DSH suites",
+        "full Pester",
+        "real model behavior",
+        "account/balance queries"
+      ],
+      "engineeringLimitDefaults": {
+        "maxRepairs": 2,
+        "maxOutputBytesPerAttempt": 65536,
+        "notTokenOrBillingBounds": true
+      },
+      "rawLogsBundled": false,
+      "initialCheckLimitations": {
+        "packageScan": "Initial parallel scan raced material-test temporary-directory cleanup; rerun sequentially passed",
+        "reportLineEndings": "Initial diff check found CRLF additions; rewritten LF and rerun passed",
+        "initialRecords": ".local/clarify-interaction-20261123-73sta0_f/checks-initial.json",
+        "sha256": "220e0e13eba8ccecedecb7a96b46d91b1418c00721be1bacb9bc876674448280"
+      },
+      "commandDisplayNormalization": "Only skill-creator installation path replaced by <SKILL_CREATOR_ROOT>; optional host helper is not bundled. Local log hashes describe original bytes, not attachments.",
+      "previousSnapshots": "Old prepared packets and P5/E4 package hashes identify their historical snapshots. They must not be relabelled as the revised package.",
+      "independentCopyBoundary": "New interaction checker ran from a validation copy, with audit hooks denying reads from the original repository and socket access. The 33 non-reports source hashes match; copied reports reflect their copy-time snapshot. This is not a full external-directory regression or behavior test."
     }
   ]
 }

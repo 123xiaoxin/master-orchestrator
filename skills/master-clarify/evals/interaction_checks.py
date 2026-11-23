@@ -57,10 +57,10 @@ def check_attempts(inp, candidates, previous=None, input_dir=None,
     trace violation. All supplied bytes count, including output we cannot accept.
     The caller must separately retain raw files and establish their provenance.
     """
-    if type(max_repairs) is not int or max_repairs < 0:
-        raise ValueError('max_repairs must be a nonnegative integer')
-    if type(max_output_bytes) is not int or max_output_bytes < 1:
-        raise ValueError('max_output_bytes must be a positive integer')
+    if type(max_repairs) is not int or not 0 <= max_repairs <= DEFAULT_MAX_REPAIRS:
+        raise ValueError('max_repairs must be an integer from 0 to 2')
+    if type(max_output_bytes) is not int or not 1 <= max_output_bytes <= DEFAULT_MAX_OUTPUT_BYTES:
+        raise ValueError('max_output_bytes must be an integer from 1 to 65536')
     if not isinstance(candidates, (list, tuple)) or not candidates or any(type(b) is not bytes for b in candidates):
         raise ValueError('provide one or more captured immutable byte strings')
 
@@ -71,6 +71,7 @@ def check_attempts(inp, candidates, previous=None, input_dir=None,
     terminal = False
     status = 'NEEDS_REPAIR'
     accepted = None
+    accepted_result = None
     for index, raw in enumerate(candidates):
         row = {'index': index, 'kind': 'initial' if index == 0 else 'repair',
                'rawOutputBytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(),
@@ -110,14 +111,38 @@ def check_attempts(inp, candidates, previous=None, input_dir=None,
                     # Logical render metric, explicitly not an on-disk CRLF file size.
                     row['renderedSummaryUtf8Bytes'] = len(result['summary'].encode('utf-8'))
                     accepted, status, terminal = index, 'ACCEPTED_OFFLINE', True
+                    accepted_result = result
         if not terminal and index == max_repairs:
             status, terminal = 'REPAIR_LIMIT', True
 
     if violations:
         status = 'TRACE_VIOLATION'
         accepted = None
+        accepted_result = None
+    # Advice for an offline host protocol, never authority to invoke a model/tool.
+    directive = {'action': 'repair_candidate' if status == 'NEEDS_REPAIR' else 'stop',
+                 'candidateIndex': None, 'resultDigest': None, 'requestIds': []}
+    if accepted_result is not None:
+        directive.update(candidateIndex=accepted, resultDigest=accepted_result['digest'])
+        if attempts[accepted]['reviewFlags']:
+            directive['action'] = 'review_required'
+        else:
+            next_step = accepted_result['nextStep']
+            action, method = {
+                'clarify': ('ask_user', 'user'),
+                'await_evidence': ('request_evidence', 'evidence'),
+                'prototype_to_clarify': ('present_example', 'example'),
+                'ready_for_planning': ('handoff_to_planning', None),
+                'paused': ('preserve_paused', None),
+            }[next_step]
+            directive['action'] = action
+            directive['requestIds'] = [r['id'] for r in accepted_result['state']['requests']
+                                       if method is not None and r['method'] == method]
+            if method is not None and not directive['requestIds']:
+                directive['action'] = 'review_required'
     return {'recordType': 'clarify_interaction_check.v1', 'status': status,
             'ok': status == 'ACCEPTED_OFFLINE', 'acceptedAttemptIndex': accepted,
+            'hostDirective': directive,
             'limits': {'maxRepairs': max_repairs, 'maxOutputBytesPerAttempt': max_output_bytes},
             'inputSha256': input_sha,
             'previousDigest': previous.get('digest') if isinstance(previous, dict) else None,

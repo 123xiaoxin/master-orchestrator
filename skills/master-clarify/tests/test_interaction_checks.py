@@ -205,13 +205,92 @@ class InteractionChecks(unittest.TestCase):
         self.assertIn('previous_invalid', self.codes(result))
 
     def test_invalid_limits_and_mutable_bytes_fail(self):
-        for kwargs in [{'max_repairs': True}, {'max_repairs': -1}, {'max_output_bytes': 0}, {'max_output_bytes': False}]:
+        for kwargs in [{'max_repairs': True}, {'max_repairs': -1}, {'max_repairs': 3},
+                       {'max_output_bytes': 0}, {'max_output_bytes': False}, {'max_output_bytes': 65537}]:
             with self.assertRaises(ValueError):
                 self.run_check(**kwargs)
         with self.assertRaises(ValueError):
             self.run_check([bytearray(b'{}')])
         with self.assertRaises(ValueError):
             checks.check_attempts(self.inp, [])
+
+    def test_host_never_releases_requests_or_result_from_invalid_trace(self):
+        fixtures.gap(self.state)
+        bad = copy.deepcopy(self.state)
+        bad['items'][0]['provenance']['sourceRefs'] = ['missing']
+        raw = encode(bad)
+        for candidates, limits, action in [
+                ([raw], {}, 'repair_candidate'),
+                ([raw, raw, raw], {}, 'stop'),
+                ([encode(self.state), raw], {}, 'stop'),
+                ([raw], {'max_output_bytes': 1}, 'stop')]:
+            with self.subTest(action=action, candidates=len(candidates), limits=limits):
+                report = self.run_check(candidates, **limits)
+                self.assertFalse(report['ok'])
+                self.assertEqual(report['hostDirective'], {
+                    'action': action, 'candidateIndex': None, 'resultDigest': None, 'requestIds': []})
+
+    def test_host_binds_repaired_question_to_same_canonical_result(self):
+        fixtures.gap(self.state)
+        raw = encode(self.state)
+        report = self.run_check([b'bad', b'{}', raw])
+        canonical = checks.clarify.process(self.inp, self.state)
+        self.assertEqual(report['hostDirective'], {
+            'action': 'ask_user', 'candidateIndex': 2, 'resultDigest': canonical['digest'],
+            'requestIds': [self.state['requests'][0]['id']]})
+        self.assertEqual(report['metrics']['rawOutputBytesTotal'], 5 + len(raw))
+
+    def test_host_zero_question_routes_are_distinct(self):
+        for resolution, action in [(None, 'handoff_to_planning'), ('evidence', 'request_evidence'),
+                                   ('example', 'present_example'), ('pause', 'preserve_paused')]:
+            with self.subTest(resolution=resolution):
+                inp, state = fixtures.base()
+                if resolution == 'pause':
+                    inp['sources'].append(fixtures.source('Upause', '暂停'))
+                    inp['control'] = {'pauseReason': 'user', 'sourceRefs': ['Upause']}
+                    state['proposedNext'] = 'paused'
+                elif resolution:
+                    fixtures.gap(state, resolution=resolution)
+                report = checks.check_attempts(inp, [encode(state)])
+                self.assertTrue(report['ok'])
+                self.assertEqual(report['attempts'][0]['questionCount'], 0)
+                self.assertEqual(report['hostDirective']['action'], action)
+                self.assertEqual(report['hostDirective']['requestIds'], [r['id'] for r in state['requests']])
+                self.assertFalse(report['executionAuthorized'])
+
+    def test_host_only_releases_requests_for_computed_next_step(self):
+        for resolution in ['example', 'evidence', 'user']:
+            fixtures.gap(self.state, gap_id=resolution, resolution=resolution)
+        report = self.run_check()
+        self.assertTrue(report['ok'])
+        self.assertEqual(report['attempts'][0]['requestCount'], 3)
+        self.assertEqual(report['hostDirective']['action'], 'ask_user')
+        self.assertEqual(report['hostDirective']['requestIds'], ['Quser'])
+
+    def test_host_review_flags_do_not_release_questions_or_invite_more_repairs(self):
+        fixtures.gap(self.state)
+        other = copy.deepcopy(self.state['requests'][0])
+        other.update(id='Q2', text='同一边界还影响什么？')
+        self.state['requests'].append(other)
+        report = self.run_check()
+        self.assertTrue(report['ok'])
+        self.assertEqual(report['hostDirective']['action'], 'review_required')
+        self.assertEqual(report['hostDirective']['requestIds'], [])
+        self.assertEqual(report['hostDirective']['resultDigest'], checks.clarify.process(self.inp, self.state)['digest'])
+        extra = self.run_check([encode(self.state), encode(self.state)])
+        self.assertEqual(extra['status'], 'TRACE_VIOLATION')
+        self.assertIsNone(extra['hostDirective']['resultDigest'])
+
+    def test_host_revision_digest_binds_previous_and_retains_failure_errors(self):
+        previous = checks.clarify.process(self.inp, self.state)
+        inp, state = fixtures.revision(self.inp, self.state)
+        fixtures.change(state, 'SC1', '交付改为手机端，业务目标不变')
+        raw = encode(state)
+        report = checks.check_attempts(inp, [b'bad', raw], previous)
+        self.assertEqual(report['previousDigest'], previous['digest'])
+        self.assertEqual(report['hostDirective']['resultDigest'], checks.clarify.process(inp, state, previous)['digest'])
+        self.assertEqual(report['attempts'][0]['errors'][0]['code'], 'candidate_json')
+        self.assertEqual(report['hostDirective']['candidateIndex'], 1)
 
     def test_escaped_unpaired_surrogate_is_an_invalid_attempt_not_a_crash(self):
         state = copy.deepcopy(self.state)

@@ -8,6 +8,10 @@ from pathlib import Path
 import sys
 
 HERE = Path(__file__).resolve().parent
+COMMON_MODEL_FILES = ('contracts/contract.md', 'contracts/clarify_input.v1.schema.json',
+                      'contracts/clarify_state.v1.schema.json')
+SKILL_MODEL_FILES = ('SKILL.md', 'references/clarification-method.md',
+                    'references/compatibility.md')
 
 
 def canonical_hash(value):
@@ -116,13 +120,13 @@ def prepare(output, root=HERE):
         raise ValueError('output must be outside the capability package')
     if output.exists():
         raise ValueError('output must be a new directory; never overwrite evidence')
-    required = [module / 'SKILL.md', module / 'contracts/contract.md',
-                module / 'contracts/clarify_input.v1.schema.json', module / 'contracts/clarify_state.v1.schema.json']
+    snapshot_files = [module / name for name in COMMON_MODEL_FILES + SKILL_MODEL_FILES]
+    protocol = root / 'host-protocol.md'
+    required = snapshot_files + [protocol]
     if any(not p.is_file() for p in required):
-        raise ValueError('Skill and declared contracts must exist before preparation')
-    # Copy only the instructions/contracts required for loading, never eval oracles.
-    snapshot_files = [module / 'SKILL.md'] + sorted((module / 'references').rglob('*.md')) + sorted((module / 'contracts').glob('*'))
-    if any(p.is_symlink() or not p.resolve().is_relative_to(module) for p in snapshot_files):
+        raise ValueError('Declared model files and operator protocol must exist before preparation')
+    # Explicit allowlist: adding a reference must not silently change either arm.
+    if any(p.is_symlink() or not p.resolve().is_relative_to(module) for p in required):
         raise ValueError('snapshot source escapes package')
     prepared = [(case, make_packet(case)) for case in cases if case['caseId'] in plan['selectedCaseIds']]
     output.mkdir(parents=True, exist_ok=False)
@@ -143,13 +147,19 @@ def prepare(output, root=HERE):
     write('operator-only/run-record.template.json', read_json(root / 'run-record.template.json'))
     write('operator-only/comparison.template.json', read_json(root / 'comparison.template.json'))
     write('operator-only/response-scripts.json', {c['caseId']: c['responseScript'] for c, _ in prepared})
+    (output / 'operator-only/host-protocol.md').write_bytes(protocol.read_bytes())
     write('operator-only/manifest.json', {
         'status': 'BEHAVIOR_NOT_VERIFIED', 'modelCalls': 0, 'executable': False,
         'selectedCaseIds': plan['selectedCaseIds'], 'minimumIndependentSessions': plan['minimumIndependentSessions'],
         'caseSha256': {c['caseId']: frozen['caseSha256'][c['caseId']] for c, _ in prepared},
         'skillFilesSha256': {p.relative_to(module).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                             for p in snapshot_files if p.is_file()},
-        'instructions': 'Use README protocol. This is preparation, not a host adapter or authorization. '
+        'modelFilesByArm': {'baseline': list(COMMON_MODEL_FILES),
+                           'skill': list(COMMON_MODEL_FILES + SKILL_MODEL_FILES)},
+        'modelFileBase': 'skill/',
+        'operatorProtocolSha256': hashlib.sha256(protocol.read_bytes()).hexdigest(),
+        'instructions': 'Use operator-only/host-protocol.md and modelFilesByArm; do not load the whole snapshot. '
+                        'This is preparation, not a host adapter or authorization. '
                         'Never expose operator-only files, oracle expectations or response scripts to the evaluated model.'})
     return {'ok': True, 'preparedCases': len(prepared), 'modelCalls': 0,
             'behaviorStatus': 'BEHAVIOR_NOT_VERIFIED', 'output': str(output)}

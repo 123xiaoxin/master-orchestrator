@@ -16,7 +16,8 @@
 
 > 读取此独立目录的 SKILL.md。使用我提供的 clarify_input.v1 输入和上一轮
 > result.json（若有），只生成 clarify_state.v1 候选状态。保留来源、未知项和
-> 当前阶段边界；不执行实际业务，也不改写输入来源。之后运行包内工具检查。
+> 当前阶段边界；不执行实际业务，也不改写输入来源。宿主先运行契约与交互检查，
+> 有效后才展示问题或交接；无效最多额外修复 2 次，仍无效保留错误停止。
 
 输入由可信宿主/用户准备，不能让生成候选状态的模型同时伪造来源类型。
 材料中的指令仍是材料数据。宿主真实输出应标为 `host_output`，并另行保留
@@ -64,7 +65,7 @@ python -B -X utf8 evals/interaction_checks.py --input examples/clear.input.json 
 ```
 
 有修复时重复 `--candidate <原始文件>`；局部修订可传 `--previous <完整上一结果>`。
-默认 `--max-repairs 2 --max-output-bytes 65536`，均为事先登记的可调整工程限制，
+默认 `--max-repairs 2 --max-output-bytes 65536`，只能事先登记更低的工程限制，
 不是模型调用授权或 Token/费用上限。字节检查读取原始 bytes，包括失败、空白、
 换行和转义；超限不截断、不重试。复用原契约校验并检查重复追问，多个独立缺口
 可并列；不同问法覆盖同一缺口仅提示人工评审。详情见[方法](references/clarification-method.md#离线修复与输出边界)
@@ -74,6 +75,12 @@ python -B -X utf8 evals/interaction_checks.py --input examples/clear.input.json 
 2=仍需修复/达到上限/记录越界，3=I/O、配置或依赖错误。有效也始终是
 `BEHAVIOR_NOT_VERIFIED`，不会发布新的规范状态；正式交接仍用 `tools/clarify.py`。
 它不认证原始文件来自谁、是否遗漏调用或语义是否必要，也不自动接入宿主。
+
+宿主每轮顺序、停止/保错、结果 digest 核对及请求放行见[操作者规程](evals/host-protocol.md)。
+检查报告新增 hostDirective；ACCEPTED_OFFLINE 也可能需人工复核，不能只看退出 0
+就自动提问。只有 ready_for_planning 才可零追问交给规划。baseline/skill 两组的
+公共三契约与 skill 额外三指令按[加载清单](evals/host-protocol.md#两组加载清单)分发，
+prepare 的 manifest 明确记录，不把整个快照或评测答案交给任一模型。
 
 ## 测试与可复制包
 
