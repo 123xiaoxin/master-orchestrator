@@ -86,9 +86,9 @@ JSON 的 `pathNormalization` 标明本次整理及对应整理前提交；路径
 - `skills/master-clarify/reports/verification.json`
 - `docs/collaboration.md`
 
-实现细节见[宿主规程](../skills/master-clarify/evals/host-protocol.md)，本轮结果与局限见
-[实施报告第 12 节](../skills/master-clarify/reports/implementation-report.md#12-2026-11-23-少轮做对宿主规程基线-0eb6019)
-及 [verification.json](../skills/master-clarify/reports/verification.json) 的 currentVerification。
+实现细节见 `skills/master-clarify/evals/host-protocol.md`，本轮结果与局限见
+`skills/master-clarify/reports/implementation-report.md` 第 12 节
+及 `skills/master-clarify/reports/verification.json` 的 currentVerification。
 本轮日志保存在 `.local/clarify-host-protocol-20261123-n4z8dutp/`，不随包分发。
 源文件封印 34 项，分发包 36 项（含两份报告）；此前 currentVerification 完整追加到
 priorVerifications，历史日志与源码哈希不改写。此处 Codex 内部只读复审不代替 Cursor 新一轮审查。
@@ -180,8 +180,8 @@ git diff --check
 内容为方法/rubric、离线检查与测试及交接整理；行为未验证，Master 默认入口不变。
 这只是待用户批准的提交准备，未执行真实暂存、commit 或 push。
 
-本轮说明与证据见 [Clarify 实施报告第 11 节](../skills/master-clarify/reports/implementation-report.md#11-2026-11-23-方法与离线交互检查)
-及 [verification.json](../skills/master-clarify/reports/verification.json)。当前包 35 文件：
+本轮说明与证据见 `skills/master-clarify/reports/implementation-report.md` 第 11 节
+及 `skills/master-clarify/reports/verification.json`。当前包 35 文件：
 33 个非 reports 文件和两份报告；2026-11-19 原验证对象完整移入 priorVerifications，
 26 个冻结案例与 plan 原字节不变。离线检查不能证明语义最少追问或真实行为改善。
 

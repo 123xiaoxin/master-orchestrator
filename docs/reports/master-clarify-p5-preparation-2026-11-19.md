@@ -65,9 +65,9 @@ Messages 的 `input_tokens` 不含缓存读取；总输入需计入 `cache_read_
 
 ## 3. 评测设计与输入隔离
 
-沿用原包 [plan.json](../../skills/master-clarify/evals/plan.json)、
-[README](../../skills/master-clarify/evals/README.md) 和
-[rubric](../../skills/master-clarify/evals/rubric.md)，不改案例、Skill 或冻结哈希。
+沿用原包 `skills/master-clarify/evals/plan.json`、
+`skills/master-clarify/evals/README.md` 和
+`skills/master-clarify/evals/rubric.md`，不改案例、Skill 或冻结哈希。
 
 - 初轮 14 例：T01、T02、T05、T06、T07、T10、T12、T14、T16、T18、T19、T22、T25、T26。
 - 每例 baseline / skill 两组；T12、T22、T25 各再做一对，共 17 对、34 个独立会话。

@@ -3,8 +3,8 @@
 > 归档说明（2026-11-19）：下文记录 2026-10-28 尚未取得指定任务书时的 P0 前置核查，
 > 其中“本轮”“当前”“待实施”均指该历史时点，不代表现行开发状态。后来已取得任务书并
 > 完成 P1–P4，独立包已在 `99bb2ce` 入库；后续实施与验证见
-> [独立包实施报告](../../skills/master-clarify/reports/implementation-report.md) 及
-> [验证记录](../../skills/master-clarify/reports/verification.json) 的 `currentVerification`。
+> 独立包实施报告见 `skills/master-clarify/reports/implementation-report.md`，
+> 验证记录见 `skills/master-clarify/reports/verification.json` 的 `currentVerification`。
 > 行为状态仍为 `BEHAVIOR_NOT_VERIFIED`，P6 仍未开始。
 >
 > 本次只补充历史说明并将本机绝对路径改为仓库相对路径，不重跑或改写当时的结果。
