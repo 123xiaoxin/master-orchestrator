@@ -1,7 +1,7 @@
 # Master Clarify 实施与验证报告
 
 初始实施日期：2026-10-28。包版本 0.1.0；任务书 `Master_Clarify_Codex_Implementation_Plan_v0.1.md`。
-第 1–9 节保留该日历史记录；2026-11-19 的审查修正与当前验证见第 10 节。
+第 1–9 节保留该日历史记录；2026-11-19 修正见第 10 节，当前验证见第 11 节。
 任务书 SHA-256：`e5efa5d72c0239b5fe539678b4ae20a0b0e785724d43d0255b9aafe7233418b3`。
 本报告可随包复制，不包含用户私人目录。原始执行日志仅在源仓库 `.local/` 留存，
 没有作为 Git 或分发包附件提供；日志哈希不能替代日志内容，也不能证明读者已复核它们。
@@ -180,9 +180,10 @@ Master 默认入口或旧 06/Clarity Gate。P0 报告保留为前置核查历史
 
 [verification.json](verification.json) 顶层旧日期、测试、回归、独立副本、
 `sourceSha256`、`logSha256` 等字段完整保留为 **2026-10-28 历史快照**。
-`evidenceScope` 明确范围；`currentVerification` 记录本轮实际运行的命令、结果
-和当前源文件哈希。校验当前文件时须使用 `currentVerification.sourceSha256`，
-不能用历史哈希断言改动后的文件仍是旧版本。
+`evidenceScope` 明确范围；当时的 `currentVerification` 记录 2026-11-19 实际命令、
+结果和源文件哈希，现已原值保存到 `priorVerifications` 的同日对象。当前工作副本
+验证见第 11 节及 `currentVerification.sourceSha256`，不能用历史哈希断言改动后的
+文件仍是旧版本。
 
 本轮未重跑完整 Pester、Node DSH、旧 Master 专项回归或原仓库外的完整审计钩子
 验证。包单测中的复制检查已经执行，但不等同于上述完整独立目录验证。第 5 节的
@@ -206,3 +207,42 @@ Master 默认入口或旧 06/Clarity Gate。P0 报告保留为前置核查历史
 状态保持 `ENGINEERING_OFFLINE_PASS` / `BEHAVIOR_NOT_VERIFIED` /
 `INTEGRATION_NOT_STARTED`。真实模型调用、付费调用和业务操作均为 0。
 后续独立提交只纳入包内 33 个文件；协作配置、两份 P0 材料和临时输出分开处理。
+
+## 11. 2026-11-23 方法与离线交互检查
+
+本轮按用户要求暂停计费/运输主线，修订 SKILL、方法参考和行为 rubric，新增
+`evals/interaction_checks.py` 与对应离线测试；README、评测 README、回收模板同步。
+未修改 Master 入口、旧 06、P6、两个 v1 Schema 或原 `tools/clarify.py`。
+此前 P5/E4 的未提交工程及历史报告保持原字节；真实模型、账户查询和费用仍为 0。
+
+修复链按同一可信 input/previous 计数，首次候选不计额外修复；默认最多修复 2 次，
+成功或到限即停止，后续输出构成记录越界。全部候选重新校验，不相信自填 valid；
+到限无效不会生成虚假的 ready/paused 状态。新输入另开轮不免除活动级累计要求，
+本工具并不执行模型、活动预算或来源认证。
+
+最小追问保留原契约的当前缺口覆盖；重复问题换 ID/空白仍被拒绝，重叠缺口的不同
+问法标为待语义评审。允许零追问及多个独立关键缺口并列，不把固定一问当门槛。
+默认每份原始输出上限 65,536 字节，中文/emoji/CRLF/转义/空白及失败输出计入，
+超限不截断。规范状态与逻辑摘要长度分别报告，不能换成 Token/计费结论。
+
+当前精确命令、结果和源码封印见 [verification.json](verification.json) 的
+`currentVerification`；上一份 2026-11-19 对象原值保留在 `priorVerifications`，
+顶层 2026-10-28 历史字段也保留。当前分发为 35 文件：33 个非 reports 文件和两份
+报告；本节更新计数不改写第 10 节的 31/33 历史结论。原始本轮日志仍在仓库 `.local/`
+留存，未随包分发，哈希不是日志附件。
+
+本轮未修改 cases.jsonl、freeze.json 或 plan.json，不重冻保留集，不运行真实模型。
+SKILL/方法已改变，旧 prepared 快照及旧 P5/E4 报告的包哈希只对应历史版本；
+后续恢复评测必须重新准备并核对新快照。离线测试只验证合成机制，当前状态仍为
+`ENGINEERING_OFFLINE_PASS` / `BEHAVIOR_NOT_VERIFIED` / `INTEGRATION_NOT_STARTED`。
+没有切分支、暂存、commit 或 push。
+
+本轮实际验证：包单测 85/85（既有 61 + 新增 24），材料 7/7；prepare check 与
+14 个新输入包准备通过；clear/ambiguous 离线交互检查通过；包检查 35 文件通过；
+skill-creator 格式检查通过。编码 276/0、模板 6/0（离线 stub）、任务分析 4/0、
+离线定义 19/0 和 diff check 通过。初次包扫描与材料测试清理临时目录并行发生冲突，
+已在测试结束后串行重跑通过；初次报告换行问题已修正为 LF，未改变旧验证对象值。
+暂停的 P5/E4 宿主及运输测试、原生 DSH 探针、完整 Pester 和真实模型评测均未重跑。
+另在验证副本中运行新增检查器，审计钩子禁止读取源仓库和连接网络，clear 合成输入
+通过。副本 33 个非 reports 源文件与本轮一致；报告保留复制时快照。这不等同于
+完整仓库外回归或真实行为评测。

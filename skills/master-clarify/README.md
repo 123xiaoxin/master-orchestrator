@@ -55,6 +55,26 @@ python tools/clarify.py run --input examples/revised.input.json --candidate exam
 `executionAuthorized=false`。真实设备、环境、预算、授权仍由下游检查。
 未解决的执行/未来缺口会保留在摘要中，不自动阻断当前安全规划。
 
+## 离线交互检查
+
+在同一可信 input / previous 下，将已捕获的首次候选及修复文件按顺序传入：
+
+```powershell
+python -B -X utf8 evals/interaction_checks.py --input examples/clear.input.json --candidate examples/clear.state.json
+```
+
+有修复时重复 `--candidate <原始文件>`；局部修订可传 `--previous <完整上一结果>`。
+默认 `--max-repairs 2 --max-output-bytes 65536`，均为事先登记的可调整工程限制，
+不是模型调用授权或 Token/费用上限。字节检查读取原始 bytes，包括失败、空白、
+换行和转义；超限不截断、不重试。复用原契约校验并检查重复追问，多个独立缺口
+可并列；不同问法覆盖同一缺口仅提示人工评审。详情见[方法](references/clarification-method.md#离线修复与输出边界)
+及 [rubric](evals/rubric.md#无效修复最小追问与输出字节)。
+
+该工具不改输入或上一结果，只向 stdout 输出检查报告。退出 0=离线候选序列有效，
+2=仍需修复/达到上限/记录越界，3=I/O、配置或依赖错误。有效也始终是
+`BEHAVIOR_NOT_VERIFIED`，不会发布新的规范状态；正式交接仍用 `tools/clarify.py`。
+它不认证原始文件来自谁、是否遗漏调用或语义是否必要，也不自动接入宿主。
+
 ## 测试与可复制包
 
 ```powershell
@@ -80,7 +100,10 @@ python tools/package.py --output ../../.local/master-clarify-package
 
 P5 当前没有可用、获授权且受累计费用上限约束的真实模型入口；模型调用数 0。
 不运行旧 LLM runner，不填造 transcript，不以工程子代理审查代替真实行为评测。
-先补齐本次评测所需有效入口、数据范围和预算授权，再在独立会话做同模型对照。
+2026-11-23 按用户要求暂停计费/运输主线，当前仅修订方法和离线检查。恢复真实评测
+仍需另行明确任务、有效入口、数据范围与预算授权；当前不开展同模型真实对照。
+本次提示词/方法已产生新快照，旧 prepared 输入包及历史 P5/E4 报告中的包哈希只代表
+各自记录时点。恢复前须重新准备和审查，不能改写旧哈希来冒充同一版本。
 达到任务书行为门槛前不进入 P6。
 
 旧接口差异与 CR-1…CR-6 处理见 [兼容说明](references/compatibility.md)。

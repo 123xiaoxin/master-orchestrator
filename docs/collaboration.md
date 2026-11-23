@@ -56,18 +56,72 @@ JSON 的 `pathNormalization` 标明本次整理及对应整理前提交；路径
 
 | 项目 | 内容 |
 | --- | --- |
-| 更新时间 | 2026-11-19（北京时间） |
-| 当前任务 | Clarify P5 评测准备已完成；方案及待授权材料交 Cursor 只读审查，真实运行仍不可执行 |
-| 当前分支 / 基线 | `codex/master-integration`；本轮起始提交 `ceb19ed`，实时 HEAD 以 `git rev-parse HEAD` 为准 |
-| 当前写入方 | Codex 已完成本轮准备与验证；Cursor 继续只读审查 |
+| 更新时间 | 2026-11-23（北京时间） |
+| 当前任务 | 单独整理「少轮做对」方法轮次的 11 文件，复跑验证并预览提交范围；等待用户明确授权后才可暂存、commit |
+| 当前分支 / 基线 | `codex/master-integration`；离线工程基线 `aec69bd`，实时 HEAD 以 `git rev-parse HEAD` 为准 |
+| 当前写入方 | Codex 负责整理与验证；Cursor 继续只读审查 |
 | 记录维护方 | Codex |
-| Cursor 分工 | 只读核对 P5 入口、对照与冻结纪律、预算算式及待授权边界 |
-| 本次写入范围 | `docs/reports/master-clarify-p5-preparation-2026-11-19.md`、同名 `.json` 及本文件；本地准备产物留在忽略的 `.local/` |
-| 已知既有工作 | 本轮开始时仓库干净；Clarify `99bb2ce`、协作配置 `e3451bc`、通用代理说明 `d9b29bf`、P0 归档 `ae8bcf7`、历史路径整理 `ceb19ed` 均已提交 |
-| 核心变更 | 已核对 DSH 网络关闭、当前安装 8 项入口哈希漂移及旧 Master 宿主不适用；预登记 17 对/34 会话，含种子最低 40 请求、建议最多 136 请求/20 元，全部未授权 |
-| 验证 | 材料检查及 7 项材料测试通过；14 输入 Schema、17 对顺序、预算算式通过；Clarify 33 文件及当前 31 项源码封印不变。除本交接记录外，260 个既有跟踪文件（含 Clarify 包）保持原样。编码 259/0、模板 6/0（离线 stub）、任务分析 4/0、离线定义 19/0 通过；差异及路径检查通过 |
-| Git 操作 | 用户于 2026-11-20 授权仅将本文件与两份 P5 准备报告独立提交；提交后的离线工程另列改动，不 push |
-| 下一步 | Cursor 审查两份 P5 准备报告；随后需完成独立宿主、活动累计账本及真实协议输入/用量边界的离线工程验证，才讨论单独调用授权。P6 未启动 |
+| Cursor 分工 | 只读核对 Clarify 文档、离线检查及快照证据；不修改、不启动真实评测 |
+| Cursor 审查结论 | 用户已确认 Cursor 审查通过「少轮做对」离线改动：默认额外修复 2 次、最小追问检查、每份输出 65,536 UTF-8 字节；这不是 P5 行为验收或真实调用批准 |
+| 拟提交范围 | 仅下方列出的 11 文件；本次整理更新本交接记录，包内已审查内容保持原样，验证日志留在忽略的 `.local/` |
+| 已知既有工作 | 上两轮共 16 个工程文件未提交（含本文件），另有既存 `adapters/clarify-eval/__pycache__/messages.cpython-312.pyc`；保留计费/运输源码和历史报告原字节，缓存排除提交 |
+| 核心变更 | 固定输入修复链默认额外 2 次；最小追问保留关键缺口覆盖、拒绝重复并标记语义待审；按原始 UTF-8 字节检查每次及累计输出，默认每份 65,536 字节；原 v1 契约/单次工具不改 |
+| 验证 | 本轮复跑包单测 85/0、材料 7/0、prepare check、35 文件包检查通过；编码 276/0、模板 6/0（离线 stub）、任务分析 4/0、离线定义 19/0、diff check 通过；包内 10 个拟提交文件及源码封印 33 项保持原样 |
+| 计费与运输 | 继续暂停；E4 仍 PARTIAL，真实准入仍 BLOCKED；不补计费上界，不运行真实模型/账户查询，不进 P6，不改 Master 默认入口 |
+| Git 操作 | HEAD 保持 `aec69bd`；当前只允许 `git add --dry-run` 范围预览，未获暂存或 commit 授权，不 push |
+| 提交范围预览 | 逐文件执行 `git add --dry-run --`，输出恰好下方 11 项（9 个已修改、2 个未跟踪），与白名单完全相等；预览前后暂存区均为空 |
+| 下一步 | 向用户汇报本轮验证与恰好 11 项的 dry-run 结果，等待明确「可以 commit」后再执行提交；期间保持暂存区为空 |
+
+### 拟提交文件（恰好 11 项）
+
+- `skills/master-clarify/SKILL.md`
+- `skills/master-clarify/references/clarification-method.md`
+- `skills/master-clarify/evals/rubric.md`
+- `skills/master-clarify/README.md`
+- `skills/master-clarify/evals/README.md`
+- `skills/master-clarify/evals/run-record.template.json`
+- `skills/master-clarify/evals/interaction_checks.py`
+- `skills/master-clarify/tests/test_interaction_checks.py`
+- `skills/master-clarify/reports/implementation-report.md`
+- `skills/master-clarify/reports/verification.json`
+- `docs/collaboration.md`
+
+排除 `adapters/clarify-admission/`、`adapters/clarify-eval/`、E4/P5 工程报告、
+`scripts/clarify_native_probe.cjs`、仓库根 `tests/test_clarify_*.py` 及任何 `__pycache__`。
+预览逐文件指定上述白名单，不用整个仓库或整个目录作暂存范围。
+
+本次提交准备的复跑记录在 `.local/clarify-precommit-20261123-8y64b1ci/checks.json`，
+dry-run 参数、输出清单及摘要在同目录 `dry-run.json`；原始日志不随提交分发。
+本轮没有改写包内已审查报告；它们的历史验证和源码封印仍有效，新复跑结果单独记录。
+
+实际验证命令（仓库根目录）：
+
+```powershell
+python -B -X utf8 -m unittest discover -s skills/master-clarify/tests -p 'test_*.py' -v
+python -B -X utf8 -m unittest discover -s skills/master-clarify/evals -p test_materials.py -v
+python -B -X utf8 skills/master-clarify/evals/prepare.py check
+python -B -X utf8 skills/master-clarify/tools/package.py
+pwsh -NoProfile -File ./scripts/check_encoding.ps1 -Json
+pwsh -NoProfile -File ./helpers/validate_templates.ps1 -AgencyRoot ./.ci-stubs/agency-agents
+pwsh -NoProfile -File ./helpers/validate_task_analysis.ps1 -File './examples/task-analysis/*.json' -Json
+pwsh -NoProfile -File ./evals/run_prompt_evals.ps1 -Json
+git diff --check
+```
+
+拟提交说明：`feat(master-clarify): add bounded offline interaction checks`。
+内容为方法/rubric、离线检查与测试及交接整理；行为未验证，Master 默认入口不变。
+这只是待用户批准的提交准备，未执行真实暂存、commit 或 push。
+
+本轮说明与证据见 [Clarify 实施报告第 11 节](../skills/master-clarify/reports/implementation-report.md#11-2026-11-23-方法与离线交互检查)
+及 [verification.json](../skills/master-clarify/reports/verification.json)。当前包 35 文件：
+33 个非 reports 文件和两份报告；2026-11-19 原验证对象完整移入 priorVerifications，
+26 个冻结案例与 plan 原字节不变。离线检查不能证明语义最少追问或真实行为改善。
+
+上轮未提交工程记录：`docs/reports/master-clarify-e4-review-2026-11-23.md` 及同名
+`.json`；仍在本机，不随本次方法提交分发。历史条件预算按整窗输入计算为
+2.162688 元/请求、136 请求 294.125568 元，均未批准，不是所有失败路径的账单保证。
+新组件仅支持每登记会话一次确切请求；不声称完整 P5 多轮运行器已经接通。
+实际模型调用、账户/余额/模型列表查询、费用及 P6 均为 0。本轮未再检索供应商或计费资料。
 
 ## 历史路径整理快照（`ceb19ed`）
 
@@ -108,7 +162,7 @@ Clarify 独立包已提交：`99bb2ce`
 - 提交范围：`skills/master-clarify/` 下 33 个文件。
 - 排除：包内 `.local/`、`.test-tmp/`、缓存；协作配置与两份 P0 审计材料。
 - 状态口径：独立离线工程快照；行为未验证；Master 默认入口未改变。
-- 验证依据：包内 `reports/verification.json` 的 `currentVerification`；顶层旧字段属于 2026-10-28 历史快照。
+- 当时验证依据：包内 `reports/verification.json` 原 `currentVerification`，现完整保存在 `priorVerifications` 的 2026-11-19 对象；当前验证另见 2026-11-23 `currentVerification`。顶层旧字段属于 2026-10-28 历史快照。
 - 未重跑完整 Pester、Node DSH、旧 Master 专项回归及原仓库外完整审计钩子；旧结果不算该提交轮次的新通过。
 - 原始日志：本仓库 `.local/clarify-review-20261119-gnxgd47y/` 等，不随包分发。
 - Push：未执行。

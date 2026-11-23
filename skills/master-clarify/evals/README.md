@@ -2,15 +2,29 @@
 
 状态：**BEHAVIOR_NOT_VERIFIED**。没有真实模型调用或已通过行为案例。这里只准备、检查输入，不提供付费接口或可绕过授权的执行器。
 
+2026-11-23：计费/运输主线按用户要求暂停。以下真实宿主流程保留为未来协议，
+本轮只运行合成候选的离线检查；不打开真实入口或 P6。方法修订后旧 prepared
+快照不能代表当前包，重新准备不会改变未授权状态或冻结案例。
+
 从能力包根目录运行：
 
 ```powershell
 python evals/prepare.py check
 python evals/prepare.py prepare --output ../clarify-eval-packets
 python -B -m unittest discover -s evals -p test_materials.py -v
+python -B -X utf8 evals/interaction_checks.py --input examples/clear.input.json --candidate examples/clear.state.json
+python -B -X utf8 -m unittest discover -s tests -p test_interaction_checks.py -v
 ```
 
 输出目录必须尚不存在且位于能力包之外，防止覆盖旧证据。需要换一次评测时使用新目录。Python 3.10+ 标准库即可完成材料检查与准备；候选输出的确定性检查使用能力包已声明的 jsonschema 依赖及 `tools/clarify.py`。退出 0 表示准备/完整性检查成功，2 表示材料或冻结约束错误，3 表示文件读取/写入失败。准备器不认证任何真实对话，也不会自动把状态改为已验证。
+
+`interaction_checks.py` 对同一 input/previous 的原始候选文件回放；重复传
+`--candidate` 保留首次和修复顺序。默认最多 2 次额外修复、每份 65,536 字节，
+可用 `--max-repairs` / `--max-output-bytes` 指定预登记值，两臂一致且服从更低的
+总资源限制。失败与成功都计字节；不得改换 ID、删失败记录或改输入来清零同轮计数。
+stdout 报告另存到新的日志文件，并将路径填入 `interactionCheckArtifact`。
+退出 2 也包括 NEEDS_REPAIR、上限耗尽及 TRACE_VIOLATION，不自动重试或改写规范状态。
+该检查器未连接运输/模型，不能证明语义最少问题或活动级费用。口径见 [rubric](rubric.md)。
 
 ## 冻结与覆盖
 

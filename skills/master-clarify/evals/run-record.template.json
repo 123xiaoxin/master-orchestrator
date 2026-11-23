@@ -21,6 +21,7 @@
   "canonicalResultArtifact": null,
   "summaryArtifact": null,
   "validationReportArtifact": null,
+  "interactionCheckArtifact": null,
   "rawHostLogArtifact": null,
   "observedUsage": null,
   "observedCost": null,
