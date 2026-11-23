@@ -57,18 +57,18 @@ JSON 的 `pathNormalization` 标明本次整理及对应整理前提交；路径
 | 项目 | 内容 |
 | --- | --- |
 | 更新时间 | 2026-11-23（北京时间） |
-| 当前任务 | 整包收束为唯一公开版本 `main`：并入 v5.8 coverage 文档提交、快进推送、删除过时远程分支 |
-| 当前分支 / 基线 | 目标公开线 `main`；收束前开发 tip 含 `071cdaf` + cherry-pick `ad8e1fe`（`d88ef43`） |
-| 当前写入方 / 记录维护方 | Cursor 按用户授权执行整合与推送；完成后日常只跟 `main` |
-| Cursor 既有审查结论 | `071cdaf` 宿主规程只读复核已通过；本轮为 Git 收束，不重新声称行为验证 |
-| 实际修改范围 | cherry-pick 仅 README.md / TODO.md（其余 coverage 文件本已在开发线）；交接本表；不入库 16 项未跟踪工程 |
-| 核心约束 | 快进-only 更新 `main`；禁止 force push；旧 `codex/master-clarify-test` 与三个 `upgrade/*` 远程分支删除 |
+| 当前任务 | 整包收束完成：唯一公开远程分支为 `main` |
+| 当前分支 / 基线 | `main` / `d27dc8a`（与 `origin/main` 一致） |
+| 当前写入方 / 记录维护方 | 空闲；日常开发跟 `main`。默认仍 Codex 写入、Cursor 审查，除非用户另指派 |
+| Cursor 既有审查结论 | `071cdaf` 宿主规程已复核；收束为快进推送，未改行为验收结论 |
+| 实际修改范围 | 已完成：`ad8e1fe`（coverage 文档）、`d27dc8a`（本交接）；远程删除 `codex/master-clarify-test` 与三个 `upgrade/*`；本地废分支与旧 clarify worktree 已移除 |
+| 核心约束 | 未 force push；16 项未跟踪工程未入库 |
 | 两臂加载 | 不变：baseline 三契约 / skill +3 说明；规程与答案不发给模型 |
 | 计费与运输 | 仍暂停；E4 PARTIAL / LIVE_ADMISSION_BLOCKED；`BEHAVIOR_NOT_VERIFIED`；不改 Master 默认入口 |
 | 既有工作 | 16 项未跟踪工程保持原字节、不入库 |
-| 验证 | 收束前：对 `origin/main` 可快进；cherry-pick 无冲突；coverage 脚本字节已与 `d88ef43` 一致 |
-| Git 操作 | 用户已授权：cherry-pick commit、检出 `main` 快进、`push origin main`、删远程废分支、移除旧 worktree |
-| 下一步 | 推送成功后请外部按 `skills/master-clarify/` 真人测；行为证据未齐前不标验收、不启用默认 Clarify 入口 |
+| 验证 | `origin/main` = `d27dc8a`；含 `skills/master-clarify/`；远程仅 `main` |
+| Git 操作 | 已 `push origin main`（`a6c2d0c..d27dc8a`）；已删 4 个过时远程分支 |
+| 下一步 | 外部按 `skills/master-clarify/` 真人测；行为证据未齐前不标验收、不启用默认 Clarify 入口 |
 
 ### 本轮文件清单（13 项）
 
