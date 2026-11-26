@@ -48,9 +48,9 @@ python scripts/master_skill.py export --modules 06 --output .local/skillopt-base
 This exports the entrypoint plus required dependency closure and 06, with a
 source lock. It performs no model call or training. Read
 [SkillOpt boundaries](../../docs/skillopt-baseline.md) before making a candidate.
-
-Dataset, scorer, config template, and reference SkillOpt env adapter:
-[evals/skillopt/](../../evals/skillopt/). Helper:
+That document also points to the repository-only SkillOpt materials under
+`evals/skillopt/` (dataset, scorer, config template, reference env). Those
+files are not part of the packaged skill. From the repository root:
 
 ```powershell
 python -B -X utf8 evals/skillopt/scripts/prepare_initial_skill.py

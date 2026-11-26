@@ -119,7 +119,8 @@ model IDs, authorization, monetary cap and independent judging before use.
 
 ## Prepared training materials (2026-11-26)
 
-Offline SkillOpt-ready materials are under [evals/skillopt/](../evals/skillopt/):
+Offline SkillOpt-ready materials live in the repository path `evals/skillopt/`
+(not packaged into the Master Skill distributable):
 
 - Corpus and `split_dir` (`train`/`val`/`test`, 12 each)
 - Contract scorer (`score_prediction.py`)
