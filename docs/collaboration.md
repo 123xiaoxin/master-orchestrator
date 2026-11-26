@@ -56,19 +56,19 @@ JSON 的 `pathNormalization` 标明本次整理及对应整理前提交；路径
 
 | 项目 | 内容 |
 | --- | --- |
-| 更新时间 | 2026-11-23（北京时间） |
-| 当前任务 | 整包收束完成：唯一公开远程分支为 `main` |
-| 当前分支 / 基线 | `main` / `d27dc8a`（与 `origin/main` 一致） |
-| 当前写入方 / 记录维护方 | 空闲；日常开发跟 `main`。默认仍 Codex 写入、Cursor 审查，除非用户另指派 |
-| Cursor 既有审查结论 | `071cdaf` 宿主规程已复核；收束为快进推送，未改行为验收结论 |
-| 实际修改范围 | 已完成：`ad8e1fe`（coverage 文档）、`d27dc8a`（本交接）；远程删除 `codex/master-clarify-test` 与三个 `upgrade/*`；本地废分支与旧 clarify worktree 已移除 |
-| 核心约束 | 未 force push；16 项未跟踪工程未入库 |
-| 两臂加载 | 不变：baseline 三契约 / skill +3 说明；规程与答案不发给模型 |
-| 计费与运输 | 仍暂停；E4 PARTIAL / LIVE_ADMISSION_BLOCKED；`BEHAVIOR_NOT_VERIFIED`；不改 Master 默认入口 |
-| 既有工作 | 16 项未跟踪工程保持原字节、不入库 |
-| 验证 | `origin/main` = `d27dc8a`；含 `skills/master-clarify/`；远程仅 `main` |
-| Git 操作 | 已 `push origin main`（`a6c2d0c..d27dc8a`）；已删 4 个过时远程分支 |
-| 下一步 | 外部按 `skills/master-clarify/` 真人测；行为证据未齐前不标验收、不启用默认 Clarify 入口 |
+| 更新时间 | 2026-11-26（北京时间） |
+| 当前任务 | 为本地 SkillOpt 准备 Master 训练材料（数据集 / 评分 / 配置 / 参考 env） |
+| 当前分支 / 基线 | `cursor/skillopt-training-materials-e4a2`（自 `main`） |
+| 当前写入方 / 记录维护方 | Cursor（用户明确要求准备训练材料）；默认分工仍可恢复为 Codex 写入、Cursor 审查 |
+| Cursor 既有审查结论 | 本轮为写入实现，非审查 |
+| 实际修改范围 | 新增 `evals/skillopt/`；更新 `evals/README.md`、`evals/skillopt-preflight.json`、`docs/skillopt-baseline.md`、`skills/master-skill/README.md`、本交接 |
+| 核心约束 | 不启动训练、不改 Master 默认入口、不写回 installed skill；仅材料准备 |
+| 两臂加载 | 不变 |
+| 计费与运输 | 仍暂停；本包 `promotionAllowed: false`；无模型调用 |
+| 既有工作 | 保留仓库既有未提交内容（若有）；本轮仅新增上述范围 |
+| 验证 | `materialize_split.py --check`；`unittest evals/skillopt/tests` 6/0 |
+| Git 操作 | 功能分支提交与推送由本云端任务执行；不操作 `main` 直推 |
+| 下一步 | 用户在本地 SkillOpt 接入 `evals/skillopt/`；获费用与模型授权后再干跑/训练 |
 
 ### 本轮文件清单（13 项）
 

@@ -33,6 +33,16 @@ and preserves it with the run. An explicit legacy `-PromptFile` remains
 available for reproduction, but a single 01 module is not the unified source.
 See [SkillOpt preconditions](../docs/skillopt-baseline.md); no training is started.
 
+Prepared SkillOpt dataset, scorer, config template, and reference env live under
+[skillopt/](skillopt/). Materialize/check with:
+
+```powershell
+python -B -X utf8 evals/skillopt/scripts/materialize_split.py --check
+python -B -X utf8 -m unittest discover -s evals/skillopt/tests -p 'test_*.py' -v
+```
+
+That package does not start SkillOpt training or authorize paid model calls.
+
 `run_llm_evals.ps1` calls an OpenAI-compatible chat completions endpoint and
 checks the generated output against each case's `mustContain`, `mustContainAny`,
 and `mustNotContain` assertions. It does not replace `run_prompt_evals.ps1`;
