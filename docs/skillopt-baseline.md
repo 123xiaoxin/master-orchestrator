@@ -116,3 +116,17 @@ improvement claims. No model evaluation or training has been run.
 `evals/skillopt-preflight.json` (repository planning record, not packaged runtime resource) is a disabled planning
 record, not a configuration proven against an installed SkillOpt API. Resolve
 model IDs, authorization, monetary cap and independent judging before use.
+
+## Prepared training materials (2026-11-26)
+
+Offline SkillOpt-ready materials live in the repository path `evals/skillopt/`
+(not packaged into the Master Skill distributable):
+
+- Corpus and `split_dir` (`train`/`val`/`test`, 12 each)
+- Contract scorer (`score_prediction.py`)
+- Config template and copy-ready reference env adapter
+- `prepare_initial_skill.py` to export governed `master-prompt.md` as `skill_init`
+
+Use those files with a local SkillOpt checkout. Materials preparation is not
+training admission: freeze/protection, held-out isolation, independent judging,
+and paid-run authorization remain mandatory before any live optimize loop.

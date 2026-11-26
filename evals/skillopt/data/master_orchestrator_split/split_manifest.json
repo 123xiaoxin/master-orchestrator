@@ -1,0 +1,38 @@
+{
+  "benchmark": "master_orchestrator",
+  "format": "skillopt.split_dir.v1",
+  "split_mode": "split_dir",
+  "counts": {
+    "train": 12,
+    "val": 12,
+    "test": 12
+  },
+  "item_fields": [
+    "id",
+    "question",
+    "task_type",
+    "category",
+    "ground_truth",
+    "soft_hints",
+    "inputSha256",
+    "optimizer_visible"
+  ],
+  "optimizerVisibleSplits": [
+    "train"
+  ],
+  "promotionOnly": [
+    "val",
+    "test"
+  ],
+  "scoring": {
+    "module": "evals/skillopt/scripts/score_prediction.py",
+    "hard": "decision (clarify≡require_more_information) AND shouldCreateAgent",
+    "soft": "0.7 decision + 0.3 shouldCreateAgent"
+  },
+  "sourceCorpus": "evals/skillopt/corpus/cases.json",
+  "notes": [
+    "Labels exist in all splits for local rollout scoring only.",
+    "Do not feed held-out inputs, labels, or per-case failures into SkillOpt reflection.",
+    "This package does not start training or authorize paid model calls."
+  ]
+}

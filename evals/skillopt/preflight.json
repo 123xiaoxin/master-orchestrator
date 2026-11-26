@@ -1,0 +1,37 @@
+{
+  "format": "planning-only.v1",
+  "enabled": false,
+  "skilloptImplementationVerified": false,
+  "relatedPlanningRecord": "evals/skillopt-preflight.json",
+  "materialsPackage": "evals/skillopt",
+  "dataset": "evals/skillopt/data/master_orchestrator_split",
+  "corpus": "evals/skillopt/corpus/cases.json",
+  "optimizerVisibleSplit": "train",
+  "trainCases": 12,
+  "validationCases": 12,
+  "testCases": 12,
+  "sampleSuitability": "expanded pilot; still insufficient for statistical promotion",
+  "sourceModules": [
+    "01",
+    "05",
+    "07",
+    "08",
+    "06"
+  ],
+  "suggestedOutputTokenCap": 4096,
+  "suggestedMaximumOptimizationSteps": 2,
+  "targetModel": null,
+  "optimizerModel": null,
+  "authorizedMonetaryBudget": null,
+  "stopConditions": [
+    "no budget authorization: do not start",
+    "stop before exceeding explicit monetary/token caps",
+    "do not retry truncation as a semantic failure",
+    "stop if protected fields or source hashes change",
+    "reject any contract/evidence/authorization regression",
+    "no held-out failures or expected answers returned to optimizer"
+  ],
+  "candidateRoot": ".local/skillopt-candidates/<experiment>/<step>",
+  "evaluationLogs": "evals/results/<unique-run-id>",
+  "promotionAllowed": false
+}
